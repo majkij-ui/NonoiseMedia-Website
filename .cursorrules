@@ -1,0 +1,21 @@
+# Nonoise Media - Project Rules
+
+## Tech Stack
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- Framer Motion (for all complex animations)
+- Lucide React (for icons)
+
+## Design System & Aesthetic
+- Vibe: Premium, cinematic, minimalist, dark-mode default.
+- Typography: Use the established ultra-condensed fonts for headings and clean sans-serif for body. Keep line-heights tight (`leading-none` or `leading-tight`) for stacked text.
+- Spacing: Embrace negative space. Do not clutter the UI.
+- Buttons: Avoid standard web buttons. Use the "highlighted text" style with tight padding.
+- Animations: Use Framer Motion with spring physics (e.g., `stiffness: 300, damping: 20`) for fluid, organic micro-interactions. Avoid rigid, linear CSS transitions.
+
+## Coding Standards
+- Write clean, modular, functional React components.
+- Keep client-side logic (hooks, state, Framer Motion) in files marked with `"use client"`.
+- When handling video, strictly use standard HTML5 `<video>` tags and `useRef` hooks to manage playback state, time updates, and muting. Do NOT restart the video on state changes unless explicitly requested.
+- Prioritize single-file components for simple layouts, but extract complex SVG animations (like the hamburger menu) into their own components.
