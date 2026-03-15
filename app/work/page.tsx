@@ -114,13 +114,13 @@ const projects = [
 
 // Trusted by logos
 const trustedBy = [
-  { id: 1, name: "PHH", src: "/logos/phhlogo.png" },
-  { id: 2, name: "Danone", src: "/logos/danone.png" },
-  { id: 3, name: "CIONET", src: "/logos/CIONET.png" },
-  { id: 4, name: "Rondo", src: "/logos/Rondo%20Logo.png" },
-  { id: 5, name: "FIRE", src: "/logos/fire.png" },
-  { id: 6, name: "North", src: "/logos/north.png" },
-  { id: 7, name: "Kunzek", src: "/logos/Kunzek.png" },
+  { id: 1, name: "PHH", src: "https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/logos/phhlogo.png" },
+  { id: 2, name: "Danone", src: "https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/logos/danone.png" },
+  { id: 3, name: "CIONET", src: "https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/logos/CIONET.png" },
+  { id: 4, name: "Rondo", src: "https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/logos/Rondo%20Logo.png" },
+  { id: 5, name: "FIRE", src: "https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/logos/fire.png" },
+  { id: 6, name: "North", src: "https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/logos/north.png" },
+  { id: 7, name: "Kunzek", src: "https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/logos/Kunzek.png" },
 ]
 
 export default function WorkPage() {
