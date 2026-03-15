@@ -37,7 +37,7 @@ export default function ContactPage() {
       <Navigation fixed />
 
       {/* Main Content */}
-      <div className="px-6 pb-24 pt-12 md:px-12 md:pt-24 lg:pt-32">
+      <div className="px-6 pb-24 pt-[calc(6.5rem+env(safe-area-inset-top))] md:px-12 md:pt-24 lg:pt-32">
         {/* Hero Email Section - Anchored at 50% */}
         <div className="mb-32 pl-0 md:mb-48 md:pl-[50%]">
           {/* Label */}
@@ -47,7 +47,7 @@ export default function ContactPage() {
             transition={{ duration: 0.6 }}
             className="mb-4 block text-xs uppercase tracking-[0.3em] text-muted-foreground"
           >
-            Get in Touch
+            co możemy dla Ciebie stworzyć?
           </motion.span>
 
           {/* Massive Email */}
@@ -60,6 +60,16 @@ export default function ContactPage() {
             className="block font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity sm:text-5xl md:text-6xl lg:text-7xl"
           >
             {contactEmail.toUpperCase()}
+          </motion.a>
+          <motion.a
+            href="tel:+48882111288"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.16 }}
+            whileHover={{ opacity: 0.7 }}
+            className="block font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity sm:text-5xl md:text-6xl lg:text-7xl"
+          >
+            TEL. 882 111 288
           </motion.a>
         </div>
 
