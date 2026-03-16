@@ -8,7 +8,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "nonoise.media",
+        hostname: "assets.nonoise.media",
       },
     ],
   },

@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
 
 export default function AboutPage() {
-  const gridImages = Array.from({ length: 30 }, (_, i) => `https://nonoise.media/about/collage${i + 1}.png`)
+  const gridImages = Array.from({ length: 30 }, (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.png`)
   const cinematicEase = [0.25, 0.1, 0.25, 1] as const
   const gridItemVariant = {
     hidden: { opacity: 0, y: 20 },
