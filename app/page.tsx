@@ -167,8 +167,8 @@ export default function Home() {
 
             {/* Footer */}
             <footer className="flex items-center justify-between px-6 py-6 text-xs tracking-widest text-muted-foreground md:px-12">
-              <span>© 2026</span>
-              <span>WARSZAWA, PL</span>
+              <span>WARSZAWA, PL © 2026</span>
+              <span>tel. 882 111 288, email: contact@nonoise.media</span>
             </footer>
           </motion.div>
         )}
