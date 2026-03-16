@@ -110,7 +110,7 @@ export default function Home() {
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
         style={{ opacity: isPlaying ? 1 : 0.6 }}
-        src="https://pub-5e1edab0c3d54a17ad7456338b638e3a.r2.dev/videos/my-reel.mp4"
+        src="https://nonoise.media/videos/my-reel.mp4"
         loop
         muted={isMuted}
         autoPlay
