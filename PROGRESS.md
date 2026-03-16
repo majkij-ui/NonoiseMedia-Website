@@ -18,6 +18,10 @@
   - map asset now prefers `/warsaw-map.png` with `/warsaw-map.jpg` fallback,
   - eased map block spacing and border treatment.
 - `/about` and `/work` footer alignment updated to the 2026 single-line brand format.
+- `/about` content and social-proof expansion:
+  - updated hero and editorial narrative copy toward a stronger positioning statement,
+  - increased hero vertical presence for a more cinematic above-the-fold impression,
+  - added a dedicated `REFERENCJE` testimonials section with staggered Framer Motion reveals.
 
 ## Planning / Documentation Added
 - Added `about_plan.md` covering a premium testimonials section for `/about`:
@@ -31,7 +35,7 @@
 - Keep media references consistent on `assets.nonoise.media` to avoid mixed-host regressions.
 
 ## Next Priorities
-- Implement the testimonials section from `about_plan.md` (recommended Option A).
-- Replace placeholder testimonial content with approved client quotes and attributions.
+- Validate and refine testimonial copy (language consistency, quote punctuation, legal approval).
+- Consider moving testimonials data into a dedicated data module for easier content maintenance.
 - Finalize and optimize map asset format/size for best Lighthouse performance.
 - Extend metadata/OG coverage for social previews across key routes.

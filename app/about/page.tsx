@@ -1,11 +1,26 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { Quote } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 
 export default function AboutPage() {
   const gridImages = Array.from({ length: 30 }, (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.png`)
   const cinematicEase = [0.25, 0.1, 0.25, 1] as const
+  const testimonials = [
+    {
+      text: "Doskonale odnajdują się w specyfice pracy z klientem korporacyjnym, łącząc wysoką estetykę nagrań z dyskrecją i szybkim czasem realizacji. Pełne zrozumienie biznesowych potrzeb klienta.",
+      author: "Martyna Mayer, Senior Project Manager, DE Group",
+    },
+    {
+      text: "Nasza branża wymagała pracy w trudnych warunkach plenerowych i uchwycenia dynamicznej akcji. Nonoise Media wykazało się najwyższym profesjonalizmem, kreatywnością i perfekcją techniczną.",
+      author: "Micheal MacDonald, Właściciel, Big Air Kite Center",
+    },
+    {
+      text: "Zrealizowali dla nas szereg spotów reklamowych oraz produkcji wizerunkowych. Wszystkie projekty zostały wykonane z najwyższą starannością, terminowo i wysoce profesjonalnie.",
+      author: "Marcin Jurasz, Marketing Manager, 7 Anna Group",
+    },
+  ]
   const gridItemVariant = {
     hidden: { opacity: 0, y: 20 },
     visible: (i: number) => ({
@@ -18,13 +33,31 @@ export default function AboutPage() {
       },
     }),
   }
+  const testimonialsContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.14,
+        delayChildren: 0.08,
+      },
+    },
+  }
+  const testimonialItem = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.75, ease: cinematicEase },
+    },
+  }
 
   return (
     <main className="relative min-h-screen w-full bg-background">
       <Navigation fixed />
 
       {/* Hero Section */}
-      <section className="flex min-h-[70vh] items-end px-6 pb-24 pt-32 md:px-12">
+      <section className="flex min-h-[88vh] items-end px-6 pb-24 pt-32 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -37,7 +70,7 @@ export default function AboutPage() {
             PONAD SZUM
           </h1>
           <p className="mt-8 max-w-2xl text-pretty font-sans text-base leading-relaxed text-foreground/80 md:text-lg">
-            Odrzucamy to, co zbędne, by skupić się na czystym, wizualnym storytellingu. Łączymy najwyższej klasy technologię z rzemieślniczym podejściem do światła i dźwięku.
+            Odrzucamy to, co zbędne, by skupić się na czystym, wizualnym storytellingu. Łączymy najnowsze technologie, sprzęt klasy kinowej i 5 lat doświadczenia na planie. Dzięki optymalizacji procesów dostarczamy jakość zarezerwowaną dotąd dla dużych domów produkcyjnych, zachowując zwinność i elastyczność. Tworzymy bez agencyjnego narzutu, ale z bezkompromisowym naciskiem na detal.
           </p>
         </motion.div>
       </section>
@@ -73,8 +106,9 @@ export default function AboutPage() {
             className="max-w-xs"
           >
             <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-              <span className="font-semibold text-foreground">Nonoise Media to niezależne studio</span>{" "}
-              produkcji wideo, które łączy pasję do opowiadania historii z techniczną perfekcją. Każdy projekt traktujemy jako unikalną okazję do stworzenia czegoś wyjątkowego.
+              <span className="font-semibold text-foreground">Branża wideo przeszła transformację,</span>{" "}
+              <br />
+              a demokratyzacja sprzętu i branżowych sekretów zmieniła zasady gry. W Nonoise Media odrzucamy ociężałe schematy dużych agencji na rzecz maksymalnej zwinności, budując studio nowej generacji.
             </p>
           </motion.div>
 
@@ -87,7 +121,7 @@ export default function AboutPage() {
             className="max-w-xs border-t border-foreground/20 pt-6"
           >
             <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-              Współpracujemy z markami, które cenią jakość i autentyczność. Nasz zespół to doświadczeni filmowcy, którzy rozumieją, że każdy detal ma znaczenie w budowaniu wizualnej narracji.
+            Naszą siłą jest połączenie 5 lat rynkowego doświadczenia z technologiczną rewolucją jaką stanowi AI. Odcinamy zbędne koszty operacyjne, optymalizujemy procesy i skupiamy się wyłącznie na dostarczeniu produktu dopasowanego do Twoich potrzeb.
             </p>
           </motion.div>
 
@@ -137,8 +171,9 @@ export default function AboutPage() {
           >
             <div className="max-w-xs">
               <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-                <span className="font-semibold text-foreground">Nonoise Media to niezależne studio</span>{" "}
-                produkcji wideo, które łączy pasję do opowiadania historii z techniczną perfekcją. Każdy projekt traktujemy jako unikalną okazję do stworzenia czegoś wyjątkowego.
+                <span className="font-semibold text-foreground">Branża wideo przeszła transformację,</span>{" "}
+                <br />
+                a demokratyzacja sprzętu i branżowych sekretów zmieniła zasady gry. W Nonoise Media odrzucamy ociężałe schematy dużych agencji na rzecz maksymalnej zwinności, budując studio nowej generacji.
               </p>
             </div>
           </motion.div>
@@ -153,7 +188,7 @@ export default function AboutPage() {
           >
             <div className="max-w-xs border-t border-foreground/20 pt-6">
               <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-                Współpracujemy z markami, które cenią jakość i autentyczność. Nasz zespół to doświadczeni filmowcy, którzy rozumieją, że każdy detal ma znaczenie w budowaniu wizualnej narracji.
+                Naszą siłą jest połączenie 5 lat rynkowego doświadczenia z technologiczną rewolucją jaką stanowi AI. Odcinamy zbędne koszty operacyjne, optymalizujemy procesy i skupiamy się wyłącznie na dostarczeniu produktu dopasowanego do Twoich potrzeb.
               </p>
             </div>
           </motion.div>
@@ -172,6 +207,42 @@ export default function AboutPage() {
               </p>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="pb-32 pt-4 md:pb-32 md:pt-6">
+        <div className="px-6 md:px-12">
+          <div className="grid grid-cols-1 gap-y-16 md:grid-cols-12 md:gap-x-6">
+            <div className="col-span-12 md:col-span-3">
+              <p className="font-[family-name:var(--font-display)] text-3xl uppercase leading-none tracking-[0.03em] text-foreground md:text-5xl">
+                REFERENCJE
+              </p>
+            </div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-15%" }}
+              variants={testimonialsContainer}
+              className="col-span-12 grid grid-cols-1 gap-12 md:col-span-9 md:grid-cols-3"
+            >
+              {testimonials.map((testimonial) => (
+                <motion.blockquote
+                  key={testimonial.author}
+                  variants={testimonialItem}
+                  className="border-t border-white/20 pt-6"
+                >
+                  <Quote className="mb-4 h-4 w-4 text-foreground/40" strokeWidth={1.5} />
+                  <p className="text-pretty font-sans text-base leading-relaxed text-foreground/90">
+                    {testimonial.text}
+                    <span aria-hidden="true">"</span>
+                  </p>
+                  <p className="mt-6 text-sm text-foreground/60">{testimonial.author}</p>
+                </motion.blockquote>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
