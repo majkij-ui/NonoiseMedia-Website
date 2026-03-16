@@ -112,12 +112,10 @@ export default function ContactPage() {
                 </span>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="name" className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                    Imię
-                  </label>
                   <input
                     id="name"
                     type="text"
+                    aria-label="Imię"
                     value={formData.name}
                     onChange={(e) =>
                       setFormData({ ...formData, name: e.target.value })
@@ -128,12 +126,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="email" className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                    Email
-                  </label>
                   <input
                     id="email"
                     type="email"
+                    aria-label="Email"
                     value={formData.email}
                     onChange={(e) =>
                       setFormData({ ...formData, email: e.target.value })
@@ -144,11 +140,9 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="message" className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                    Wiadomość
-                  </label>
                   <textarea
                     id="message"
+                    aria-label="Wiadomość"
                     value={formData.message}
                     onChange={(e) =>
                       setFormData({ ...formData, message: e.target.value })
@@ -161,7 +155,7 @@ export default function ContactPage() {
 
                 <motion.button
                   type="submit"
-                  className="group relative w-fit overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-[1.95rem] uppercase leading-none tracking-[0.02em] text-background"
+                  className="group relative w-fit overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.24rem] uppercase leading-none tracking-[0.02em] text-background"
                   whileHover="hover"
                   initial="initial"
                 >
@@ -192,7 +186,7 @@ export default function ContactPage() {
               <a href={mapsHref} target="_blank" rel="noopener noreferrer" className="block">
                 <div className="aspect-square min-h-[400px] w-full overflow-hidden border border-white/20 md:min-h-[520px]">
                   <img
-                    src="/warsaw-map.png"
+                    src="https://assets.nonoise.media/about/warsaw-map.png"
                     alt="Mapa Warszawy"
                     className="h-full w-full object-cover"
                     onError={(e) => {
