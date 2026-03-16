@@ -1,31 +1,49 @@
 "use client"
 
-import { useState } from "react"
+import { type FormEvent, useState } from "react"
 import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
 
 export default function ContactPage() {
   const contactEmail = "contact@nonoise.media"
+  const contactPhoneDisplay = "tel. 882 111 288"
+  const contactPhoneHref = "tel:+48882111288"
+  const mapsHref =
+    "https://www.google.com/maps/search/?api=1&query=Za+olszyn%C4%85+13B%2F2+05-090+Podolszyn+Nowy"
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   })
 
-  const socials = [
-    { label: "Instagram", href: "https://instagram.com" },
-    { label: "Vimeo", href: "https://vimeo.com" },
-    { label: "LinkedIn", href: "https://linkedin.com" },
-  ]
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const fadeUpVariants = {
+    hidden: { opacity: 0, y: 24 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    },
+  }
+
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    const subject = `New message from ${formData.name || "Website visitor"}`
+    const subject = `Nowa wiadomość od ${formData.name || "odwiedzającego stronę"}`
     const body = [
-      `Name: ${formData.name || "-"}`,
+      `Imię: ${formData.name || "-"}`,
       `Email: ${formData.email || "-"}`,
       "",
-      "Message:",
+      "Wiadomość:",
       formData.message || "-",
     ].join("\n")
 
@@ -33,160 +51,162 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="relative min-h-screen w-full bg-background">
+    <main className="min-h-screen w-full bg-background text-foreground">
       <Navigation fixed />
 
-      {/* Main Content */}
-      <div className="px-6 pb-24 pt-[calc(6.5rem+env(safe-area-inset-top))] md:px-12 md:pt-24 lg:pt-32">
-        {/* Hero Email Section - Anchored at 50% */}
-        <div className="mb-32 pl-0 md:mb-48 md:pl-[50%]">
-          {/* Label */}
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 block text-xs uppercase tracking-[0.3em] text-muted-foreground"
+      <div className="px-6 pb-16 pt-[calc(6.5rem+env(safe-area-inset-top))] md:px-12 md:pt-24 lg:pt-28">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8 lg:gap-10">
+          <motion.section
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={containerVariants}
+            className="md:col-span-5"
           >
-            co możemy dla Ciebie stworzyć?
-          </motion.span>
-
-          {/* Massive Email */}
-          <motion.a
-            href={`mailto:${contactEmail}`}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            whileHover={{ opacity: 0.7 }}
-            className="block font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity sm:text-5xl md:text-6xl lg:text-7xl"
-          >
-            {contactEmail.toUpperCase()}
-          </motion.a>
-          <motion.a
-            href="tel:+48882111288"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.16 }}
-            whileHover={{ opacity: 0.7 }}
-            className="block font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity sm:text-5xl md:text-6xl lg:text-7xl"
-          >
-            TEL. 882 111 288
-          </motion.a>
-        </div>
-
-        {/* Form + Socials Grid */}
-        <div className="grid grid-cols-1 gap-24 md:grid-cols-2 md:gap-12 lg:gap-24">
-          {/* Socials Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="order-2 md:order-1"
-          >
-            <span className="mb-6 block text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              Socials
-            </span>
-            <div className="flex flex-col gap-2">
-              {socials.map((social) => (
+            <div className="flex max-w-sm flex-col gap-9">
+              <motion.div variants={fadeUpVariants}>
+                <span className="mb-5 block text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  Co możemy dla Ciebie stworzyć?
+                </span>
                 <a
-                  key={social.label}
-                  href={social.href}
+                  href={`mailto:${contactEmail}`}
+                  data-gaw-contact="email-hero"
+                  className="block w-fit font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-5xl"
+                >
+                  {contactEmail}
+                </a>
+                <a
+                  href={contactPhoneHref}
+                  data-gaw-contact="phone-hero"
+                  className="mt-2 block w-fit font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-5xl"
+                >
+                  {contactPhoneDisplay}
+                </a>
+              </motion.div>
+
+              <motion.div variants={fadeUpVariants} className="space-y-4">
+                <span className="block text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  Adres
+                </span>
+                <a
+                  href={mapsHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group w-fit font-[family-name:var(--font-display)] text-xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-60 md:text-2xl"
+                  className="block max-w-xs border-b border-white/20 pb-2 text-sm leading-relaxed text-foreground/90 transition-colors hover:border-white/60 hover:text-foreground"
                 >
-                  {social.label}
+                  Za olszyną 13B/2
+                  <br />
+                  05-090 Podolszyn Nowy (Warszawa)
                 </a>
-              ))}
-            </div>
-          </motion.div>
+              </motion.div>
 
-          {/* Contact Form */}
-          <motion.form
-            onSubmit={handleSubmit}
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="order-1 flex flex-col gap-8 md:order-2"
+              <motion.form
+                onSubmit={handleSubmit}
+                variants={fadeUpVariants}
+                className="flex flex-col gap-6 pt-1"
+              >
+                <span className="block text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  Formularz kontaktowy
+                </span>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                    Imię
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    className="border-b border-white/20 bg-transparent py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-white"
+                    placeholder="Twoje imię"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    className="border-b border-white/20 bg-transparent py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-white"
+                    placeholder="twoj@email.pl"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="message" className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                    Wiadomość
+                  </label>
+                  <textarea
+                    id="message"
+                    value={formData.message}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
+                    rows={4}
+                    className="resize-none border-b border-white/20 bg-transparent py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-white"
+                    placeholder="Opowiedz nam o swoim projekcie..."
+                  />
+                </div>
+
+                <motion.button
+                  type="submit"
+                  className="group relative w-fit overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-2xl uppercase leading-none tracking-[0.02em] text-background"
+                  whileHover="hover"
+                  initial="initial"
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-background"
+                    variants={{
+                      initial: { x: "-100%" },
+                      hover: { x: 0 },
+                    }}
+                    transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+                  />
+                  <span className="relative z-10 transition-colors duration-300 group-hover:text-foreground">
+                    Zapytaj o wycenę
+                  </span>
+                </motion.button>
+              </motion.form>
+            </div>
+          </motion.section>
+
+          <motion.section
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+            className="md:col-start-7 md:col-span-6"
           >
-            {/* Name Input */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="name"
-                className="text-xs uppercase tracking-[0.3em] text-muted-foreground"
-              >
-                Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="border-b border-foreground/20 bg-transparent py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/50"
-                placeholder="Your name"
-              />
-            </div>
-
-            {/* Email Input */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="email"
-                className="text-xs uppercase tracking-[0.3em] text-muted-foreground"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="border-b border-foreground/20 bg-transparent py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/50"
-                placeholder="your@email.com"
-              />
-            </div>
-
-            {/* Message Input */}
-            <div className="flex flex-col gap-2">
-              <label
-                htmlFor="message"
-                className="text-xs uppercase tracking-[0.3em] text-muted-foreground"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                rows={4}
-                className="resize-none border-b border-foreground/20 bg-transparent py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-foreground/50"
-                placeholder="Your message..."
-              />
-            </div>
-
-            {/* Submit Button */}
-            <div className="mt-4">
-              <button
-                type="submit"
-                className="group relative overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-xl uppercase leading-none tracking-[0.02em] text-background"
-              >
-                <span className="relative z-10">Send Message</span>
-              </button>
-            </div>
-          </motion.form>
+            <motion.div variants={fadeUpVariants}>
+              <a href={mapsHref} target="_blank" rel="noopener noreferrer" className="block">
+                <div className="aspect-square min-h-[400px] w-full overflow-hidden border border-white/10 bg-white/5 md:min-h-[520px]">
+                  <img
+                    src="/warsaw-map.jpg"
+                    alt="Mapa Warszawy"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </a>
+            </motion.div>
+          </motion.section>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-6 py-6 text-xs tracking-widest text-muted-foreground md:px-12">
-        <span>© 2024</span>
-        <span>WARSAW, POLAND</span>
+      <footer className="border-t border-white/10 px-6 py-6 text-xs tracking-widest text-muted-foreground md:px-12">
+        <div className="flex items-center justify-between">
+          <span>© 2024</span>
+          <span>WARSAW, POLAND</span>
+        </div>
       </footer>
-
     </main>
   )
 }
