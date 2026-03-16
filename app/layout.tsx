@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   description: 'Cinematic video production for brands that demand excellence',
   generator: 'v0.app',
   icons: {
-    icon: '/images/logo-orb.png',
-    shortcut: '/images/logo-orb.png',
-    apple: '/images/logo-orb.png',
+    icon: 'https://assets.nonoise.media/logos/logo-orb.png',
+    shortcut: 'https://assets.nonoise.media/logos/logo-orb.png',
+    apple: 'https://assets.nonoise.media/logos/logo-orb.png',
   },
 }
 

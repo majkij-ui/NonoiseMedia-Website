@@ -26,7 +26,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
         <div className="flex items-center gap-4">
           <AnimatedMenuButton isOpen={false} onClick={() => setIsMenuOpen(true)} />
           <Link href="/" className="flex items-center gap-2.5">
-            <img src="/images/logo-orb.png" alt="Nonoise Media" className="h-5 w-5" />
+            <img src="https://assets.nonoise.media/logos/logo-orb.png" alt="Nonoise Media" className="h-5 w-5" />
             <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
           </Link>
         </div>
@@ -46,7 +46,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
               <div className="flex items-center gap-4">
                 <AnimatedMenuButton isOpen={true} onClick={() => setIsMenuOpen(false)} />
                 <div className="flex items-center gap-2.5">
-                  <img src="/images/logo-orb.png" alt="Nonoise Media" className="h-5 w-5" />
+                  <img src="https://assets.nonoise.media/logos/logo-orb.png" alt="Nonoise Media" className="h-5 w-5" />
                   <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
                 </div>
               </div>
