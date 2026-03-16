@@ -176,9 +176,8 @@ export default function AboutPage() {
       </section>
 
       {/* Footer */}
-      <footer className="flex items-center justify-between px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
-        <span>© 2024</span>
-        <span>WARSAW, POLAND</span>
+      <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+        <span>© 2026 NONOISE MEDIA</span>
       </footer>
     </main>
   )

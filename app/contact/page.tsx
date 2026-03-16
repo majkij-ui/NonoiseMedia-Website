@@ -27,12 +27,14 @@ export default function ContactPage() {
     },
   }
 
+  const revealEase = [0.22, 1, 0.36, 1] as const
+
   const fadeUpVariants = {
     hidden: { opacity: 0, y: 24 },
     show: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.7, ease: revealEase },
     },
   }
 
@@ -71,14 +73,14 @@ export default function ContactPage() {
                 <a
                   href={`mailto:${contactEmail}`}
                   data-gaw-contact="email-hero"
-                  className="block w-fit font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-5xl"
+                  className="block w-fit font-[family-name:var(--font-display)] text-[2.6rem] uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-[3.45rem]"
                 >
                   {contactEmail}
                 </a>
                 <a
                   href={contactPhoneHref}
                   data-gaw-contact="phone-hero"
-                  className="mt-2 block w-fit font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-5xl"
+                  className="mt-2 block w-fit font-[family-name:var(--font-display)] text-[2.6rem] uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-[3.45rem]"
                 >
                   {contactPhoneDisplay}
                 </a>
@@ -159,7 +161,7 @@ export default function ContactPage() {
 
                 <motion.button
                   type="submit"
-                  className="group relative w-fit overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-2xl uppercase leading-none tracking-[0.02em] text-background"
+                  className="group relative w-fit overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-[1.95rem] uppercase leading-none tracking-[0.02em] text-background"
                   whileHover="hover"
                   initial="initial"
                 >
@@ -184,15 +186,18 @@ export default function ContactPage() {
             whileInView="show"
             viewport={{ once: true, amount: 0.2 }}
             variants={containerVariants}
-            className="md:col-start-7 md:col-span-6"
+            className="md:col-start-7 md:col-span-6 md:pt-9"
           >
             <motion.div variants={fadeUpVariants}>
               <a href={mapsHref} target="_blank" rel="noopener noreferrer" className="block">
-                <div className="aspect-square min-h-[400px] w-full overflow-hidden border border-white/10 bg-white/5 md:min-h-[520px]">
+                <div className="aspect-square min-h-[400px] w-full overflow-hidden border border-white/20 md:min-h-[520px]">
                   <img
-                    src="/warsaw-map.jpg"
+                    src="/warsaw-map.png"
                     alt="Mapa Warszawy"
                     className="h-full w-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.src = "/warsaw-map.jpg"
+                    }}
                   />
                 </div>
               </a>
@@ -202,9 +207,8 @@ export default function ContactPage() {
       </div>
 
       <footer className="border-t border-white/10 px-6 py-6 text-xs tracking-widest text-muted-foreground md:px-12">
-        <div className="flex items-center justify-between">
-          <span>© 2024</span>
-          <span>WARSAW, POLAND</span>
+        <div className="flex items-center justify-end">
+          <span>© 2026 NONOISE MEDIA</span>
         </div>
       </footer>
     </main>
