@@ -1,17 +1,10 @@
 "use client"
 
-import type { Metadata } from "next"
 import { useEffect, useState } from "react"
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
 import { Play, X } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { BtsFilmStripe } from "@/components/bts-film-stripe"
-
-export const metadata: Metadata = {
-  title: "Portfolio",
-  description:
-    "Zobacz nasze realizacje. Produkcje komercyjne, wizerunkowe i dokumentalne tworzone z dbałością o każdy detal.",
-}
 
 // Project data
 const projects = [
@@ -464,8 +457,10 @@ export default function WorkPage() {
                   className="h-full w-full object-contain"
                   src={activeProject.video}
                   controls
+                  controlsList="nodownload"
                   autoPlay
                   playsInline
+                  preload="metadata"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}

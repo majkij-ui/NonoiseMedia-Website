@@ -1,15 +1,8 @@
 "use client"
 
-import type { Metadata } from "next"
 import { type FormEvent, useState } from "react"
 import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
-
-export const metadata: Metadata = {
-  title: "Kontakt",
-  description:
-    "Porozmawiajmy o Twoim kolejnym projekcie wideo. Skontaktuj się z naszym warszawskim studiem produkcyjnym.",
-}
 
 export default function ContactPage() {
   const contactEmail = "contact@nonoise.media"
