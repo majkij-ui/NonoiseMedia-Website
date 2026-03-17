@@ -121,6 +121,9 @@ const trustedBy = [
   { id: 5, name: "FIRE", src: "https://assets.nonoise.media/logos/fire.png" },
   { id: 6, name: "North", src: "https://assets.nonoise.media/logos/north.png" },
   { id: 7, name: "Kunzek", src: "https://assets.nonoise.media/logos/Kunzek.png" },
+  { id: 8, name: "Core", src: "/logos/core.png" },
+  { id: 9, name: "GKA", src: "/logos/gka.png" },
+  { id: 10, name: "Naish", src: "/logos/naish.png" },
 ]
 
 export default function WorkPage() {
@@ -245,6 +248,10 @@ export default function WorkPage() {
                             ? "h-[25px] max-w-[113px] md:h-[32px] md:max-w-[146px]"
                           : company.name === "Rondo"
                             ? "h-[50px] max-w-[218px] md:h-[62px] md:max-w-[281px]"
+                          : company.name === "Core"
+                            ? "h-4 max-w-[70px] md:h-5 md:max-w-[90px]"
+                          : company.name === "Naish"
+                            ? "h-4 max-w-[70px] md:h-5 md:max-w-[90px]"
                             : "h-8 max-w-[140px] md:h-10 md:max-w-[180px]"
                       }`}
                     />

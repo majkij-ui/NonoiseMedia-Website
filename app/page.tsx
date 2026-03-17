@@ -152,13 +152,11 @@ export default function Home() {
                 </motion.p>
 
                 {/* CTA Buttons - Diagonal checkerboard */}
-                <div className="grid w-fit grid-cols-2 grid-rows-2 gap-0">
-                  <div className="col-start-1 row-start-1 flex items-end justify-end">
+                <div className="relative mt-[3.5rem] flex w-fit md:mt-[3.1rem]">
+                  <div className="absolute bottom-full right-full m-0 p-0">
                     <CtaButton />
                   </div>
-                  <div className="col-start-2 row-start-2 flex items-start justify-start">
-                    <PlayReelButton onClick={handlePlayReel} />
-                  </div>
+                  <PlayReelButton onClick={handlePlayReel} />
                 </div>
 
                 {/* Horizontal Timer - Under the button */}
@@ -265,7 +263,7 @@ function CtaButton() {
           }}
           transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
         />
-        <span className="relative z-10 transition-colors duration-300 group-hover:text-foreground">
+        <span className="relative z-10 whitespace-nowrap transition-colors duration-300 group-hover:text-foreground">
           WYCEŃ PROJEKT
         </span>
       </Link>
