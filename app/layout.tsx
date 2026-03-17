@@ -8,9 +8,21 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 const _bebasNeue = Bebas_Neue({ subsets: ["latin", "latin-ext"], weight: ["400"] });
 
 export const metadata: Metadata = {
-  title: 'Nonoise Media | Produkcja Wideo',
-  description: 'Cinematic video production for brands that demand excellence',
-  generator: 'v0.app',
+  metadataBase: new URL('https://nonoise.media'),
+  title: {
+    default: 'Nonoise Media | Dom Produkcyjny Warszawa',
+    template: '%s | Nonoise Media'
+  },
+  description: 'Tworzymy kino dla marek. Od zwinnych ekip po pełne plany zdjęciowe. Łączymy rygorystyczną estetykę z celami biznesowymi. Bez dróg na skróty.',
+  openGraph: {
+    title: 'Nonoise Media | Dom Produkcyjny Warszawa',
+    description: 'Tworzymy kino dla marek. Od zwinnych ekip po pełne plany zdjęciowe. Łączymy rygorystyczną estetykę z celami biznesowymi.',
+    url: 'https://nonoise.media',
+    siteName: 'Nonoise Media',
+    locale: 'pl_PL',
+    type: 'website',
+    // images: [{ url: 'https://nonoise.media/og-image.jpg', width: 1200, height: 630 }], // To be added later
+  },
   icons: {
     icon: 'https://assets.nonoise.media/logos/logo-orb.png',
     shortcut: 'https://assets.nonoise.media/logos/logo-orb.png',

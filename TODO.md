@@ -11,7 +11,7 @@
 ⚪️ **Floating CTA on Work Page:** Add a sticky, unintrusive "Get a Quote" (or Polish equivalent) button that follows the user as they scroll through the `/work` portfolio.
 
 ## 📄 Pages & Content Expansion
-⚪️ **Rework Contact Page:** >   - Add a custom, minimalist black-and-white map of Warsaw with the studio address.
+🟢 **Rework Contact Page:** >   - Add a custom, minimalist black-and-white map of Warsaw with the studio address.
   - Translate and optimize the contact form into Polish, ensuring it clearly drives the "desired action" (e.g., getting a quote).
 ⚪️ **New Drone Services Page:** >   - Create a dedicated `/drone` page showcasing aerial cinematography capabilities.
   - Add "Drone" to the main hamburger navigation menu.
@@ -19,7 +19,7 @@
   - Draft and create `/services/corporate-video`
   - Draft and create `/services/product-video`
   - Draft and create `/services/drone-services` (can be the same as above)
-⚪️ **Social Proof Updates:**
+ 🟡**Social Proof Updates:**
   - Expand the "Zaufali Nam" (Trusted By) logo cloud on the `/work` page.
   - Add a high-end, editorial Testimonials/Quotes section to the `/about` page.
 

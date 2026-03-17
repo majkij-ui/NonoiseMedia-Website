@@ -1,8 +1,15 @@
 "use client"
 
+import type { Metadata } from "next"
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+
+export const metadata: Metadata = {
+  title: "O Nas",
+  description:
+    "Jesteśmy zespołem twórców, którzy wierzą w bezkompromisową jakość. Zamiast generować szum, dostarczamy konkretny, przemyślany obraz.",
+}
 
 export default function AboutPage() {
   const gridImages = Array.from({ length: 30 }, (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.png`)
