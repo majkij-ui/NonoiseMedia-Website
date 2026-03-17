@@ -13,15 +13,29 @@
   - `© 2026 NONOISE MEDIA`.
 
 ## Current Working Set (Unreleased in this file's timeline)
-- `/contact` page visual polish pass:
-  - adjusted typography scale for hero contact lines,
-  - map asset now prefers `/warsaw-map.png` with `/warsaw-map.jpg` fallback,
-  - eased map block spacing and border treatment.
-- `/about` and `/work` footer alignment updated to the 2026 single-line brand format.
-- `/about` content and social-proof expansion:
-  - updated hero and editorial narrative copy toward a stronger positioning statement,
-  - increased hero vertical presence for a more cinematic above-the-fold impression,
-  - added a dedicated `REFERENCJE` testimonials section with staggered Framer Motion reveals.
+- Homepage hero CTA iteration:
+  - added a dedicated `WYCEŃ PROJEKT` button beside `PLAY REEL`,
+  - refined overlap/positioning for cleaner composition and better hierarchy.
+- Navigation CTA behavior:
+  - added a contextual header CTA on `/about` and `/work`,
+  - CTA fades in only after initial scroll to avoid stealing first-frame focus.
+- `/work` trusted-by expansion:
+  - added additional brand logos (`Core`, `GKA`, `Naish`),
+  - introduced per-logo sizing tweaks for balanced visual rhythm.
+- Route metadata refactor:
+  - moved route-level metadata out of client pages into dedicated route layouts:
+    - `app/about/layout.tsx`
+    - `app/contact/layout.tsx`
+    - `app/work/layout.tsx`
+- Video behavior polish:
+  - homepage background reel now uses `preload="auto"`,
+  - portfolio modal video uses `preload="metadata"` and `controlsList="nodownload"`.
+- `/contact` accessibility/content refinement:
+  - replaced visible form labels with `aria-label` attributes,
+  - map image now loads from CDN (`assets.nonoise.media`) with local fallback.
+- Reusable phone-link component:
+  - introduced `components/ui/phone-number.tsx` for consistent tel-link formatting,
+  - reused on homepage footer and contact hero to centralize phone rendering.
 
 ## Planning / Documentation Added
 - Added `about_plan.md` covering a premium testimonials section for `/about`:
@@ -38,4 +52,5 @@
 - Validate and refine testimonial copy (language consistency, quote punctuation, legal approval).
 - Consider moving testimonials data into a dedicated data module for easier content maintenance.
 - Finalize and optimize map asset format/size for best Lighthouse performance.
-- Extend metadata/OG coverage for social previews across key routes.
+- Add explicit OG image asset(s) and route-specific social preview tuning.
+- Evaluate sticky CTA behavior on mobile breakpoints and tune animation timing.

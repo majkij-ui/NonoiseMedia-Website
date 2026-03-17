@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Volume2, VolumeX } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { PhoneNumber } from "@/components/ui/phone-number"
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -175,7 +176,10 @@ export default function Home() {
             {/* Footer */}
             <footer className="flex items-center justify-between px-6 py-6 text-xs tracking-widest text-muted-foreground md:px-12">
               <span>WARSZAWA, PL © 2026</span>
-              <span>tel. 882 111 288, email: contact@nonoise.media</span>
+              <span>
+                tel.{" "}
+                <PhoneNumber phoneNumber="+48 882 111 288" className="text-inherit no-underline" />, email: contact@nonoise.media
+              </span>
             </footer>
           </motion.div>
         )}

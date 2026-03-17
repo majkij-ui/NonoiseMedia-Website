@@ -3,11 +3,10 @@
 import { type FormEvent, useState } from "react"
 import { motion } from "framer-motion"
 import { Navigation } from "@/components/navigation"
+import { PhoneNumber } from "@/components/ui/phone-number"
 
 export default function ContactPage() {
   const contactEmail = "contact@nonoise.media"
-  const contactPhoneDisplay = "tel. 882 111 288"
-  const contactPhoneHref = "tel:+48882111288"
   const mapsHref =
     "https://www.google.com/maps/search/?api=1&query=Za+olszyn%C4%85+13B%2F2+05-090+Podolszyn+Nowy"
 
@@ -77,13 +76,11 @@ export default function ContactPage() {
                 >
                   {contactEmail}
                 </a>
-                <a
-                  href={contactPhoneHref}
+                <PhoneNumber
+                  phoneNumber="+48 882 111 288"
                   data-gaw-contact="phone-hero"
                   className="mt-2 block w-fit font-[family-name:var(--font-display)] text-[2.6rem] uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-[3.45rem]"
-                >
-                  {contactPhoneDisplay}
-                </a>
+                />
               </motion.div>
 
               <motion.div variants={fadeUpVariants} className="space-y-4">

@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "framer-motion"
 
 const navLinks = [
@@ -17,6 +18,29 @@ type NavigationProps = {
 
 export function Navigation({ fixed = false }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [hasScrolled, setHasScrolled] = useState(false)
+  const pathname = usePathname()
+  const showCta = pathname === "/work" || pathname === "/about"
+
+  useEffect(() => {
+    if (!showCta) {
+      setHasScrolled(false)
+      return
+    }
+
+    const onScroll = () => {
+      if (window.scrollY > 0) {
+        setHasScrolled(true)
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
+
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+    }
+  }, [showCta])
 
   return (
     <>
@@ -30,7 +54,18 @@ export function Navigation({ fixed = false }: NavigationProps) {
             <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
           </Link>
         </div>
-        <div className="w-10" />
+        <div className="flex w-10 items-center justify-end md:w-auto">
+          {showCta && (
+            <motion.div
+              className="hidden md:flex h-10 items-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: hasScrolled ? 1 : 0 }}
+              transition={{ duration: 0.45, delay: hasScrolled ? 2 : 0 }}
+            >
+              <HeaderCtaButton />
+            </motion.div>
+          )}
+        </div>
       </header>
 
       <AnimatePresence>
@@ -90,6 +125,29 @@ export function Navigation({ fixed = false }: NavigationProps) {
         )}
       </AnimatePresence>
     </>
+  )
+}
+
+function HeaderCtaButton() {
+  return (
+    <motion.div whileHover="hover" initial="initial">
+      <Link
+        href="/contact"
+        className="group relative block overflow-hidden bg-foreground px-[1.2px] py-[0.3px] font-[family-name:var(--font-display)] text-[1.29rem] uppercase leading-none tracking-[0.02em] text-background md:text-[1.62rem]"
+      >
+        <motion.div
+          className="absolute inset-0 bg-background"
+          variants={{
+            initial: { x: "-100%" },
+            hover: { x: 0 },
+          }}
+          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+        />
+        <span className="relative z-10 whitespace-nowrap transition-colors duration-300 group-hover:text-foreground">
+          WYCEŃ PROJEKT
+        </span>
+      </Link>
+    </motion.div>
   )
 }
 
