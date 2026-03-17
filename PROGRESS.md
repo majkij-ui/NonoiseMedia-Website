@@ -18,7 +18,10 @@
   - refined overlap/positioning for cleaner composition and better hierarchy.
 - Navigation CTA behavior:
   - added a contextual header CTA on `/about` and `/work`,
-  - CTA fades in only after initial scroll to avoid stealing first-frame focus.
+  - CTA now renders only after initial scroll and uses a tighter reveal timing.
+  - evolved header CTA animation with:
+    - letter-by-letter flicker-in text treatment,
+    - staged white-underlay reveal and black hover wipe for stronger contrast.
 - `/work` trusted-by expansion:
   - added additional brand logos (`Core`, `GKA`, `Naish`),
   - introduced per-logo sizing tweaks for balanced visual rhythm.
@@ -54,3 +57,4 @@
 - Finalize and optimize map asset format/size for best Lighthouse performance.
 - Add explicit OG image asset(s) and route-specific social preview tuning.
 - Evaluate sticky CTA behavior on mobile breakpoints and tune animation timing.
+- Verify readability/contrast of the new letter animation across dark and bright backgrounds.

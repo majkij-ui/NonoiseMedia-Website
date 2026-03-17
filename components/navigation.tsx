@@ -55,12 +55,12 @@ export function Navigation({ fixed = false }: NavigationProps) {
           </Link>
         </div>
         <div className="flex w-10 items-center justify-end md:w-auto">
-          {showCta && (
+          {showCta && hasScrolled && (
             <motion.div
               className="hidden md:flex h-10 items-center"
               initial={{ opacity: 0 }}
-              animate={{ opacity: hasScrolled ? 1 : 0 }}
-              transition={{ duration: 0.45, delay: hasScrolled ? 2 : 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.45, delay: 0.5 }}
             >
               <HeaderCtaButton />
             </motion.div>
@@ -129,22 +129,53 @@ export function Navigation({ fixed = false }: NavigationProps) {
 }
 
 function HeaderCtaButton() {
+  const text = "wyceń Twój projekt"
+  const letters = text.split("")
+
   return (
-    <motion.div whileHover="hover" initial="initial">
+    <motion.div whileHover="hover" initial="initial" animate="animate">
       <Link
         href="/contact"
-        className="group relative block overflow-hidden bg-foreground px-[1.2px] py-[0.3px] font-[family-name:var(--font-display)] text-[1.29rem] uppercase leading-none tracking-[0.02em] text-background md:text-[1.62rem]"
+        className="group relative isolate block overflow-hidden px-[1.2px] py-[0.3px] font-[family-name:var(--font-display)] text-[1.29rem] uppercase leading-none tracking-[0.02em] md:text-[1.62rem]"
       >
         <motion.div
-          className="absolute inset-0 bg-background"
+          className="pointer-events-none absolute inset-0 z-0 bg-white"
+          variants={{
+            initial: { scaleX: 0, originX: 1 },
+            animate: { scaleX: 1, originX: 1 },
+          }}
+          transition={{ delay: 1.05, duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+        />
+
+        <motion.div
+          className="absolute inset-0 z-10 bg-black"
           variants={{
             initial: { x: "-100%" },
             hover: { x: 0 },
           }}
           transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
         />
-        <span className="relative z-10 whitespace-nowrap transition-colors duration-300 group-hover:text-foreground">
-          WYCEŃ PROJEKT
+
+        <span className="relative z-20 flex whitespace-pre text-white mix-blend-difference transition-colors duration-300 group-hover:text-white">
+          {letters.map((char, index) => (
+            <motion.span
+              key={`${char}-${index}`}
+              variants={{
+                initial: { opacity: 0 },
+                animate: {
+                  opacity: [0, 1, 0, 1],
+                  transition: {
+                    delay: index * 0.06,
+                    duration: 0.3,
+                    times: [0, 0.4, 0.6, 1],
+                  },
+                },
+              }}
+              className="whitespace-pre"
+            >
+              {char}
+            </motion.span>
+          ))}
         </span>
       </Link>
     </motion.div>
