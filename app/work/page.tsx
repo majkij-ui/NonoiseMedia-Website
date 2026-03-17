@@ -121,9 +121,9 @@ const trustedBy = [
   { id: 5, name: "FIRE", src: "https://assets.nonoise.media/logos/fire.png" },
   { id: 6, name: "North", src: "https://assets.nonoise.media/logos/north.png" },
   { id: 7, name: "Kunzek", src: "https://assets.nonoise.media/logos/Kunzek.png" },
-  { id: 8, name: "Core", src: "/logos/core.png" },
-  { id: 9, name: "GKA", src: "/logos/gka.png" },
-  { id: 10, name: "Naish", src: "/logos/naish.png" },
+  { id: 8, name: "Core", src: "https://assets.nonoise.media/logos/core.png" },
+  { id: 9, name: "GKA", src: "https://assets.nonoise.media/logos/gka.png" },
+  { id: 10, name: "Naish", src: "https://assets.nonoise.media/logos/naish.png" },
 ]
 
 export default function WorkPage() {
