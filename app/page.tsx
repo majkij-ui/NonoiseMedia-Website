@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Volume2, VolumeX } from "lucide-react"
 import { Navigation } from "@/components/navigation"
@@ -150,8 +151,15 @@ export default function Home() {
                   Nonoise Media to niezależne studio produkcji wideo, tworzące nowoczesne treści wizualne.
                 </motion.p>
 
-                {/* Play Reel Button */}
-                <PlayReelButton onClick={handlePlayReel} />
+                {/* CTA Buttons - Diagonal checkerboard */}
+                <div className="grid w-fit grid-cols-2 grid-rows-2 gap-0">
+                  <div className="col-start-1 row-start-1 flex items-end justify-end">
+                    <CtaButton />
+                  </div>
+                  <div className="col-start-2 row-start-2 flex items-start justify-start">
+                    <PlayReelButton onClick={handlePlayReel} />
+                  </div>
+                </div>
 
                 {/* Horizontal Timer - Under the button */}
                 <motion.div
@@ -242,7 +250,29 @@ export default function Home() {
   )
 }
 
-// Play Reel Button - highlighted text style matching hero font size
+function CtaButton() {
+  return (
+    <motion.div whileHover="hover" initial="initial">
+      <Link
+        href="/contact"
+        className="group relative block overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] text-background md:text-[2.7rem]"
+      >
+        <motion.div
+          className="absolute inset-0 bg-background"
+          variants={{
+            initial: { x: "-100%" },
+            hover: { x: 0 },
+          }}
+          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+        />
+        <span className="relative z-10 transition-colors duration-300 group-hover:text-foreground">
+          WYCEŃ PROJEKT
+        </span>
+      </Link>
+    </motion.div>
+  )
+}
+
 function PlayReelButton({ onClick }: { onClick: () => void }) {
   return (
     <motion.button
@@ -251,7 +281,6 @@ function PlayReelButton({ onClick }: { onClick: () => void }) {
       whileHover="hover"
       initial="initial"
     >
-      {/* Sliding Background - reveals on hover by sliding right */}
       <motion.div
         className="absolute inset-0 bg-background"
         variants={{
@@ -260,8 +289,6 @@ function PlayReelButton({ onClick }: { onClick: () => void }) {
         }}
         transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
       />
-
-      {/* Text */}
       <span className="relative z-10 transition-colors duration-300 group-hover:text-foreground">
         PLAY REEL
       </span>
