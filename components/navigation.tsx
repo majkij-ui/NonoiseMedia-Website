@@ -57,7 +57,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
         <div className="flex w-10 items-center justify-end md:w-auto">
           {showCta && hasScrolled && (
             <motion.div
-              className="hidden md:flex h-10 items-center"
+              className="hidden md:block"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.45, delay: 0.5 }}
@@ -124,6 +124,12 @@ export function Navigation({ fixed = false }: NavigationProps) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {showCta && hasScrolled && (
+        <div className="fixed bottom-8 left-1/2 z-50 w-max -translate-x-1/2 md:hidden">
+          <HeaderCtaButton />
+        </div>
+      )}
     </>
   )
 }

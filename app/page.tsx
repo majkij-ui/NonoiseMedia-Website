@@ -154,9 +154,9 @@ export default function Home() {
                 {/* CTA Buttons - Diagonal checkerboard */}
                 <div className="relative mt-[3.5rem] flex w-fit md:mt-[3.1rem]">
                   <div className="absolute bottom-full right-full m-0 p-0">
-                    <AnimatedHomeButton text="WYCEŃ PROJEKT" href="/contact" entranceDelay={0.05} />
+                    <AnimatedHomeButton text="WYCEŃ PROJEKT" href="/contact" entranceDelay={0.05} entranceFrom="left" />
                   </div>
-                  <AnimatedHomeButton text="PLAY REEL" onClick={handlePlayReel} entranceDelay={0.45} />
+                  <AnimatedHomeButton text="PLAY REEL" onClick={handlePlayReel} entranceDelay={0.45} entranceFrom="right" hoverFrom="right" />
                 </div>
 
                 {/* Horizontal Timer - Under the button */}
@@ -254,12 +254,16 @@ const AnimatedHomeButton = ({
   onClick,
   href,
   entranceDelay = 0.5,
+  entranceFrom = "left",
+  hoverFrom = "left",
 }: {
   text: string
   className?: string
   onClick?: () => void
   href?: string
   entranceDelay?: number
+  entranceFrom?: "left" | "right"
+  hoverFrom?: "left" | "right"
 }) => {
   const letters = text.split("")
   const typingDuration = (letters.length - 1) * 0.04 + 0.15
@@ -267,14 +271,12 @@ const AnimatedHomeButton = ({
 
   const innerClassName = `group relative block overflow-hidden px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] md:text-[2.7rem] ${className || ""}`
   const content = (
-    <motion.div initial="initial" animate="animate" whileHover="hover" className={innerClassName}>
+    <motion.div initial="initial" whileHover="hover" className={innerClassName}>
       {/* LAYER 1: The Entrance Sweep (White) */}
       <motion.div
         className="absolute inset-0 z-0 bg-white"
-        variants={{
-          initial: { scaleX: 0, originX: 1 },
-          animate: { scaleX: 1 },
-        }}
+        initial={{ x: entranceFrom === "right" ? "100%" : "-100%" }}
+        animate={{ x: 0 }}
         transition={{ delay: sweepDelay, duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
       />
 
@@ -282,7 +284,7 @@ const AnimatedHomeButton = ({
       <motion.div
         className="absolute inset-0 z-0 bg-black"
         variants={{
-          initial: { x: "-100%" },
+          initial: { x: hoverFrom === "right" ? "100%" : "-100%" },
           hover: { x: 0 },
         }}
         transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
@@ -293,13 +295,9 @@ const AnimatedHomeButton = ({
         {letters.map((char, index) => (
           <motion.span
             key={index}
-            variants={{
-              initial: { opacity: 0 },
-              animate: {
-                opacity: [0, 1, 0, 1],
-                transition: { delay: entranceDelay + index * 0.04, duration: 0.15, times: [0, 0.4, 0.6, 1] },
-              },
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0, 1] }}
+            transition={{ delay: entranceDelay + index * 0.04, duration: 0.15, times: [0, 0.4, 0.6, 1] }}
             className="whitespace-pre"
           >
             {char}
