@@ -15,7 +15,8 @@
 ## Current Working Set (Unreleased in this file's timeline)
 - Homepage hero CTA iteration:
   - added a dedicated `WYCEŃ PROJEKT` button beside `PLAY REEL`,
-  - refined overlap/positioning for cleaner composition and better hierarchy.
+  - migrated to a shared `AnimatedHomeButton` pattern for both primary CTAs,
+  - added staged letter-flicker + sweep reveal timing for hero button entrances.
 - Navigation CTA behavior:
   - added a contextual header CTA on `/about` and `/work`,
   - CTA now renders only after initial scroll and uses a tighter reveal timing.
@@ -39,6 +40,12 @@
 - Reusable phone-link component:
   - introduced `components/ui/phone-number.tsx` for consistent tel-link formatting,
   - reused on homepage footer and contact hero to centralize phone rendering.
+- `/work` page iteration in progress:
+  - switched project and BTS media references back to local `/public` paths for a local-asset validation pass,
+  - adjusted card hover/play-overlay behavior and simplified section reveal wrappers,
+  - temporarily restored classic footer variant (`© 2024`, `WARSAW, POLAND`) for visual comparison.
+- Homepage footer/content pass:
+  - removed phone-link rendering from footer in favor of simplified location/brand footer copy.
 
 ## Planning / Documentation Added
 - Added `about_plan.md` covering a premium testimonials section for `/about`:
@@ -58,3 +65,4 @@
 - Add explicit OG image asset(s) and route-specific social preview tuning.
 - Evaluate sticky CTA behavior on mobile breakpoints and tune animation timing.
 - Verify readability/contrast of the new letter animation across dark and bright backgrounds.
+- Decide final strategy for `/work` media sourcing (CDN vs local) and lock one path before release.

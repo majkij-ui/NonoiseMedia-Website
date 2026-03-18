@@ -5,7 +5,6 @@ import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Volume2, VolumeX } from "lucide-react"
 import { Navigation } from "@/components/navigation"
-import { PhoneNumber } from "@/components/ui/phone-number"
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -155,9 +154,9 @@ export default function Home() {
                 {/* CTA Buttons - Diagonal checkerboard */}
                 <div className="relative mt-[3.5rem] flex w-fit md:mt-[3.1rem]">
                   <div className="absolute bottom-full right-full m-0 p-0">
-                    <CtaButton />
+                    <AnimatedHomeButton text="WYCEŃ PROJEKT" href="/contact" entranceDelay={0.05} />
                   </div>
-                  <PlayReelButton onClick={handlePlayReel} />
+                  <AnimatedHomeButton text="PLAY REEL" onClick={handlePlayReel} entranceDelay={0.45} />
                 </div>
 
                 {/* Horizontal Timer - Under the button */}
@@ -174,12 +173,9 @@ export default function Home() {
             </div>
 
             {/* Footer */}
-            <footer className="flex items-center justify-between px-6 py-6 text-xs tracking-widest text-muted-foreground md:px-12">
-              <span>WARSZAWA, PL © 2026</span>
-              <span>
-                tel.{" "}
-                <PhoneNumber phoneNumber="+48 882 111 288" className="text-inherit no-underline" />, email: contact@nonoise.media
-              </span>
+            <footer className="flex items-center justify-between px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+              <span>© 2024</span>
+              <span>© 2026 NONOISE MEDIA</span>
             </footer>
           </motion.div>
         )}
@@ -252,48 +248,67 @@ export default function Home() {
   )
 }
 
-function CtaButton() {
-  return (
-    <motion.div whileHover="hover" initial="initial">
-      <Link
-        href="/contact"
-        className="group relative block overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] text-background md:text-[2.7rem]"
-      >
-        <motion.div
-          className="absolute inset-0 bg-background"
-          variants={{
-            initial: { x: "-100%" },
-            hover: { x: 0 },
-          }}
-          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-        />
-        <span className="relative z-10 whitespace-nowrap transition-colors duration-300 group-hover:text-foreground">
-          WYCEŃ PROJEKT
-        </span>
-      </Link>
-    </motion.div>
-  )
-}
+const AnimatedHomeButton = ({
+  text,
+  className,
+  onClick,
+  href,
+  entranceDelay = 0.5,
+}: {
+  text: string
+  className?: string
+  onClick?: () => void
+  href?: string
+  entranceDelay?: number
+}) => {
+  const letters = text.split("")
+  const typingDuration = (letters.length - 1) * 0.04 + 0.15
+  const sweepDelay = entranceDelay + typingDuration + 0.05
 
-function PlayReelButton({ onClick }: { onClick: () => void }) {
-  return (
-    <motion.button
-      onClick={onClick}
-      className="group relative overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] text-background md:text-[2.7rem]"
-      whileHover="hover"
-      initial="initial"
-    >
+  const innerClassName = `group relative block overflow-hidden px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] md:text-[2.7rem] ${className || ""}`
+  const content = (
+    <motion.div initial="initial" animate="animate" whileHover="hover" className={innerClassName}>
+      {/* LAYER 1: The Entrance Sweep (White) */}
       <motion.div
-        className="absolute inset-0 bg-background"
+        className="absolute inset-0 z-0 bg-white"
+        variants={{
+          initial: { scaleX: 0, originX: 1 },
+          animate: { scaleX: 1 },
+        }}
+        transition={{ delay: sweepDelay, duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
+      />
+
+      {/* LAYER 2: The Hover Sweep (Black) */}
+      <motion.div
+        className="absolute inset-0 z-0 bg-black"
         variants={{
           initial: { x: "-100%" },
           hover: { x: 0 },
         }}
         transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
       />
-      <span className="relative z-10 transition-colors duration-300 group-hover:text-foreground">
-        PLAY REEL
+
+      {/* LAYER 3: The Text (Pure White + Mix-Blend) */}
+      <span className="relative z-10 flex whitespace-nowrap text-white mix-blend-difference">
+        {letters.map((char, index) => (
+          <motion.span
+            key={index}
+            variants={{
+              initial: { opacity: 0 },
+              animate: {
+                opacity: [0, 1, 0, 1],
+                transition: { delay: entranceDelay + index * 0.04, duration: 0.15, times: [0, 0.4, 0.6, 1] },
+              },
+            }}
+            className="whitespace-pre"
+          >
+            {char}
+          </motion.span>
+        ))}
       </span>
-    </motion.button>
+    </motion.div>
   )
+
+  if (href) return <Link href={href}>{content}</Link>
+  return <button type="button" onClick={onClick}>{content}</button>
 }
