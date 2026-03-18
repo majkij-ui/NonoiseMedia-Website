@@ -13,14 +13,14 @@ const projects = [
     title: "Gościnni z natury",
     subtitle: "Film wizerunkowy",
     client: "Polski Holding Hotelowy",
-    image: "/PHH.png",
-    video: "/PHH.mp4",
+    image: "https://assets.nonoise.media/videos/PHH.png",
+    video: "https://assets.nonoise.media/videos/PHH.mp4",
     btsImages: [
-      "/production pics/phhproduction1.png",
-      "/production pics/phhproduction2.png",
-      "/production pics/phhproduction3.png",
-      "/production pics/phhproduction4.png",
-      "/production pics/phhproduction5.png",
+      "https://assets.nonoise.media/bts/phhproduction1.png",
+      "https://assets.nonoise.media/bts/phhproduction2.png",
+      "https://assets.nonoise.media/bts/phhproduction3.png",
+      "https://assets.nonoise.media/bts/phhproduction4.png",
+      "https://assets.nonoise.media/bts/phhproduction5.png",
     ],
     challenge: "Klient – lider polskiego rynku hotelarskiego przechodzący rebranding – potrzebował emocjonalnego filmu wizerunkowego premium. Głównym wyzwaniem była logistyka: stworzenie ujęć o najwyższej kinowej jakości w wielu odległych od siebie lokacjach przy bardzo napiętym harmonogramie.",
     solution: "Kluczem było szybkie zgranie wizji dzięki precyzyjnej komunikacji oraz dopracowanym moodboardom. Elastycznie dobieraliśmy wielkość ekipy – od zwinnego, mobilnego teamu po rozbudowany set w najważniejszych scenach. Charakterystyczną plastykę obrazu osiągnęliśmy, łącząc najwyszej klasy kamerę z organicznym obrazkiem obiektywów vintage."
@@ -30,14 +30,14 @@ const projects = [
     title: "E-GRAVEL REVOLUTION",
     subtitle: "Film produktowy",
     client: "Rondo",
-    image: "/rondo.png",
-    video: "/rondo.mp4",
+    image: "https://assets.nonoise.media/videos/Rondo.png",
+    video: "https://assets.nonoise.media/videos/Rondo.mp4",
     btsImages: [
-      "/production pics/rondobts1.png",
-      "/production pics/rondobts2.png",
-      "/production pics/rondobts3.png",
-      "/production pics/rondobts4.png",
-      "/production pics/rondobts5.png",
+      "https://assets.nonoise.media/bts/rondobts1.png",
+      "https://assets.nonoise.media/bts/rondobts2.png",
+      "https://assets.nonoise.media/bts/rondobts3.png",
+      "https://assets.nonoise.media/bts/rondobts4.png",
+      "https://assets.nonoise.media/bts/rondobts5.png",
     ],
     challenge: "Wprowadzenie na rynek pionierskiego elektrycznego gravela polskiej marki butikowej, słynącej z wyjątkowego designu swoich rowerów. Naszym zadaniem było uchwycenie esencji e-gravela: bezkompromisowej radości z jazdy niezależnie od formy. Zależało nam na pokazaniu, że napęd elektryczny ułatwia strome podjazdy, zaciera różnice kondycyjne i czyni z roweru niezwykle wszechstronne narzędzie – od leśnych szlaków po miejskie dojazdy",
     solution: "Postawiliśmy na rygorystyczny dobór lokacji pod kątem najlepszych warunków świetlnych oraz elementów otoczenia wspomagających naszą narrację. Aby oddać dynamiczny charakter produktu, zaangażowaliśmy elitarnego operatora drona FPV. Pozwoliło to na rejestrację niezwykle widowiskowych, bliskich ujęć w gęstym leśnym terenie, z perspektywy niemożliwej do osiągnięcia tradycyjnymi metodami. Całość spięliśmy nowoczesnym udźwiękowieniem i animacjami, które napędzały rytm montażu równie mocno, co sam e-gravel."
@@ -47,14 +47,14 @@ const projects = [
     title: "Przestrzeń biurowa w sercu Warszawy",
     subtitle: "Kampania reklamowa",
     client: "OmniOffice",
-    image: "/omni.png",
-    video: "/Omni.mp4",
+    image: "https://assets.nonoise.media/videos/Omni.png",
+    video: "https://assets.nonoise.media/videos/Omni.mp4",
     btsImages: [
-      "/production pics/omniproduction1.PNG",
-      "/production pics/omniproduction2.png",
-      "/production pics/omniproduction3.png",
-      "/production pics/omniproduction4.png",
-      "/production pics/omniproduction5.png",
+      "https://assets.nonoise.media/bts/omniproduction1.png",
+      "https://assets.nonoise.media/bts/omniproduction2.png",
+      "https://assets.nonoise.media/bts/omniproduction3.png",
+      "https://assets.nonoise.media/bts/omniproduction4.PNG",
+      "https://assets.nonoise.media/bts/omniproduction5.png",
     ],
     challenge: "Stworzenie nowoczesnej, zoptymalizowanej budżetowo kampanii na potrzeby mediów społecznościowych dla przestrzeni biurowych w centrum Warszawy. Głównym wyzwaniem była logistyka: sfilmowanie aż 6 lokacji w zaledwie 2 dni zdjęciowe, bez jakichkolwiek kompromisów w kwestii jakości obrazu. Dodatkowo przestrzenie biurowe to często wielkie okna i duzo światła, co wymuszało bardzo staranne planowanie i wspomaganie się duza mocą lamp.",
     solution: "Precyzyjny scouting pozwolił nam dokladnie zaplanować i skompresować harmonogram pracy. Prestiżowe położenie biur podkreśliliśmy dynamicznymi ujęciami z drona. Zamiast pokazywać sterylne, chłodne wnętrza, wpletliśmy w kadry starannie dobranych epizodystów. Ich obecność ożywiła przestrzeń, nadając kampanii autentyczny, lifestylowy i wysoce angażujący charakter."
@@ -64,14 +64,14 @@ const projects = [
     title: "Networking kadry C-level",
     subtitle: "Reportaż eventowy",
     client: "CIONET",
-    image: "/CIONET.png",
-    video: "/CIONET.mp4",
+    image: "https://assets.nonoise.media/videos/CIONET.png",
+    video: "https://assets.nonoise.media/videos/CIONET.mp4",
     btsImages: [
-      "/production pics/CIONET1.png",
-      "/production pics/CIONET2.png",
-      "/production pics/CIONET3.png",
-      "/production pics/CIONET4.png",
-      "/production pics/CIONET5.png",
+      "https://assets.nonoise.media/bts/CIONET1.png",
+      "https://assets.nonoise.media/bts/CIONET2.png",
+      "https://assets.nonoise.media/bts/CIONET3.png",
+      "https://assets.nonoise.media/bts/CIONET4.png",
+      "https://assets.nonoise.media/bts/CIONET5.png",
     ],
     challenge: "Dokumentacja zamkniętych spotkań networkingowych dla najwyższej kadry zarządzającej. Cel: jakość obrazu oddająca prestiż wydarzenia, realizowana przy niemal zerowej ingerencji w przestrzeń gości.",
     solution: "Zastosowaliśmy strategię 'fly-on-the-wall'. Lekki i mobilny sprzęt i lata współpracy pozwalają nam działać w pełnej dyskrecji. Kompleksowo obsługujemy jednak każdy rodzaj eventu – płynnie rozszerzając zespół o drugi unit, który równolegle realizuje profesjonalnie doświetlone wywiady i testimoniale w osobno wydzielonej strefie."
@@ -81,14 +81,14 @@ const projects = [
     title: "W RYTMIE SŁÓW",
     subtitle: "Seria teledysków",
     client: "Fundacja FIRE",
-    image: "/wrytmieslow.png",
-    video: "/Wrytmieslow.mp4",
+    image: "https://assets.nonoise.media/videos/wrytmieslow.png",
+    video: "https://assets.nonoise.media/videos/Wrytmieslow.mp4",
     btsImages: [
-      "/production pics/wrytmieslowbts1.png",
-      "/production pics/wrytmieslowbts2.png",
-      "/production pics/wrytmieslowbts3.png",
-      "/production pics/wrytmieslowbts4.png",
-      "/production pics/wrytmieslowbts5.png",
+      "https://assets.nonoise.media/bts/wrytmieslowbts1.png",
+      "https://assets.nonoise.media/bts/wrytmieslowbts2.png",
+      "https://assets.nonoise.media/bts/wrytmieslowbts3.png",
+      "https://assets.nonoise.media/bts/wrytmieslowbts4.png",
+      "https://assets.nonoise.media/bts/wrytmieslowbts5.png",
     ],
     challenge: "Realizacja 12 unikalnych teledysków w zaledwie 3 dni zdjęciowe, dysponując wyłącznie jedną przestrzenią studia nagraniowego. Głównym wyzwaniem było nadanie każdemu z młodych artystów indywidualnego, niepowtarzalnego charakteru wizualnego pod ogromną presją czasu.",
     solution: "Postawiliśmy na ekstremalnie elastyczne i kreatywne sety oświetleniowe, budując unikalny klimat dla każdego twórcy. Świadomie zredukowaliśmy inwazyjność sprzętu na planie. Zespół kamerowy pracował z absolutną dyskrecją, dając młodym twórcom przestrzeń do swobodnej ekspresji bez poczucia bycia obserwowanym."
@@ -98,27 +98,32 @@ const projects = [
     title: "Robot na targach Warsaw Industry Week",
     subtitle: "Reportaż eventowy",
     client: "ZUT Jerzy Kunzek",
-    image: "/Kunzek.png",
-    video: "/Kunzek.mp4",
+    image: "https://assets.nonoise.media/videos/Kunzek.png",
+    video: "https://assets.nonoise.media/videos/Kunzek.mp4",
     btsImages: [
-      "/production pics/kunzek1.png",
-      "/production pics/kunzek2.png",
-      "/production pics/kunzek3.png",
-      "/production pics/kunzek4.png",
-      "/production pics/kunzek5.png",
+      "https://assets.nonoise.media/bts/kunzek1.png",
+      "https://assets.nonoise.media/bts/kunzek2.png",
+      "https://assets.nonoise.media/bts/kunzek3.png",
+      "https://assets.nonoise.media/bts/kunzek4.png",
+      "https://assets.nonoise.media/bts/kunzek5.png",
     ],
     challenge: "Stworzenie angażującego wideo z targów branżowych. Cel: płynne połączenie wywiadu pracowniczego z dynamicznym, wizualnie atrakcyjnym pokazem zautomatyzowanej linii, ze szczególnym naciskiem na ukazanie pracy robota.",
     solution: "Studyjna jakość dźwięku i obrazu w trudnych warunkach eventowych osiągnięta dzięki zwinnej, jednoosobowej ekipie. Dynamikę maszyny pokazaliśmy dzięki dronom oraz miniaturowym kamerom zamontowanym bezpośrednio na taśmie produkcyjnej, tworząc unikalne ujęcia z wnętrza procesu."
   }
 ]
 
-// Trusted by logos (placeholder companies)
+// Trusted by logos
 const trustedBy = [
-  { name: "APEX", id: 1 },
-  { name: "NOVA", id: 2 },
-  { name: "STRATOS", id: 3 },
-  { name: "LUMINA", id: 4 },
-  { name: "VERTEX", id: 5 },
+  { id: 1, name: "PHH", src: "https://assets.nonoise.media/logos/phhlogo.png" },
+  { id: 2, name: "Danone", src: "https://assets.nonoise.media/logos/danone.png" },
+  { id: 3, name: "CIONET", src: "https://assets.nonoise.media/logos/CIONET.png" },
+  { id: 4, name: "Rondo", src: "https://assets.nonoise.media/logos/Rondo%20Logo.png" },
+  { id: 5, name: "FIRE", src: "https://assets.nonoise.media/logos/fire.png" },
+  { id: 6, name: "North", src: "https://assets.nonoise.media/logos/north.png" },
+  { id: 7, name: "Kunzek", src: "https://assets.nonoise.media/logos/Kunzek.png" },
+  { id: 8, name: "Core", src: "https://assets.nonoise.media/logos/core.png" },
+  { id: 9, name: "GKA", src: "https://assets.nonoise.media/logos/gka.png" },
+  { id: 10, name: "Naish", src: "https://assets.nonoise.media/logos/naish.png" },
 ]
 
 export default function WorkPage() {
@@ -126,17 +131,8 @@ export default function WorkPage() {
   const [isVideoOpen, setIsVideoOpen] = useState(false)
   const [useSharedLayout, setUseSharedLayout] = useState(false)
   const cinematicEase = [0.25, 0.1, 0.25, 1] as const
+  const revealEase = [0.16, 1, 0.3, 1] as const
   const layoutSpring = { type: "spring" as const, stiffness: 250, damping: 25 }
-
-  // Animation variants
-  const fadeUp = {
-    hidden: { opacity: 0, y: 60 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.8, ease: cinematicEase }
-    }
-  }
 
   const staggerContainer = {
     hidden: { opacity: 0 },
@@ -221,7 +217,7 @@ export default function WorkPage() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, amount: "some" }}
               variants={staggerContainer}
             >
               <motion.p
@@ -240,9 +236,25 @@ export default function WorkPage() {
                     variants={staggerItem}
                     className="group cursor-default"
                   >
-                    <span className="font-[family-name:var(--font-display)] text-2xl tracking-[0.1em] text-foreground/40 transition-opacity duration-300 group-hover:text-foreground/100 md:text-3xl">
-                      {company.name}
-                    </span>
+                    <img
+                      src={company.src}
+                      alt={company.name}
+                      className={`w-auto object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${
+                        company.name === "Danone"
+                          ? "h-6 max-w-[105px] md:h-[30px] md:max-w-[135px]"
+                          : company.name === "PHH"
+                            ? "h-[38px] max-w-[168px] md:h-12 md:max-w-[216px]"
+                          : company.name === "CIONET"
+                            ? "h-[25px] max-w-[113px] md:h-[32px] md:max-w-[146px]"
+                          : company.name === "Rondo"
+                            ? "h-[50px] max-w-[218px] md:h-[62px] md:max-w-[281px]"
+                          : company.name === "Core"
+                            ? "h-4 max-w-[70px] md:h-5 md:max-w-[90px]"
+                          : company.name === "Naish"
+                            ? "h-4 max-w-[70px] md:h-5 md:max-w-[90px]"
+                            : "h-8 max-w-[140px] md:h-10 md:max-w-[180px]"
+                      }`}
+                    />
                   </motion.div>
                 ))}
               </motion.div>
@@ -251,35 +263,80 @@ export default function WorkPage() {
 
           {/* Project Case Studies */}
           <section className="px-6 pb-32 md:px-12">
-            {projects.map((project, index) => (
-              <motion.article
-                key={project.id}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={fadeUp}
-                className="py-24 md:py-32 lg:py-48"
-              >
-                <div className={`flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16 ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
-                }`}>
-                  {/* Image */}
-                  <div className="w-full lg:w-3/5">
-                    <motion.div className="group relative overflow-hidden" whileHover="hover">
-                      {project.video ? (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() => openProjectVideo(project.id, project.video)}
-                            className={`relative block w-full cursor-pointer text-left ${
-                              activeProjectId === project.id && isVideoOpen ? "pointer-events-none opacity-0" : "opacity-100"
-                            }`}
-                            aria-label={`Play video for ${project.title}`}
-                          >
-                            <motion.div
-                              layoutId={`project-media-${project.id}`}
-                              transition={layoutSpring}
+            {projects.map((project, index) => {
+              const isEven = index % 2 === 0
+              const slideOffset = isEven ? -80 : 80
+
+              return (
+                <article
+                  key={project.id}
+                  className="py-24 md:py-32 lg:py-48"
+                >
+                  <div
+                    className={`flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-16 ${
+                      index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                    }`}
+                  >
+                    {/* Image */}
+                    <div className="w-full lg:w-3/5">
+                      <motion.div
+                        initial={{ opacity: 0, x: slideOffset }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-15%" }}
+                        transition={{ duration: 0.8, ease: revealEase }}
+                      >
+                        <motion.div className="group relative overflow-hidden" whileHover="hover">
+                          {project.video ? (
+                            <button
+                              type="button"
+                              onClick={() => openProjectVideo(project.id, project.video)}
+                              className={`relative block w-full cursor-pointer text-left ${
+                                activeProjectId === project.id && isVideoOpen ? "pointer-events-none opacity-0" : "opacity-100"
+                              }`}
+                              aria-label={`Play video for ${project.title}`}
                             >
+                              <motion.div
+                                layoutId={`project-media-${project.id}`}
+                                transition={layoutSpring}
+                              >
+                                <motion.div
+                                  variants={{
+                                    hover: { scale: 1.03 },
+                                  }}
+                                  transition={{ duration: 0.6, ease: cinematicEase }}
+                                >
+                                  <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="h-auto w-full object-cover"
+                                  />
+                                </motion.div>
+                              </motion.div>
+
+                              <motion.div
+                                className="pointer-events-none absolute inset-0 bg-background/0"
+                                variants={{
+                                  hover: { backgroundColor: "rgba(0,0,0,0.18)" },
+                                }}
+                                transition={{ duration: 0.35 }}
+                              />
+
+                              <motion.div
+                                className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
+                                variants={{
+                                  hover: { opacity: 1, scale: 1 },
+                                  initial: { opacity: 0.65, scale: 0.96 },
+                                }}
+                                initial="initial"
+                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                              >
+                                <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/60 bg-black/35 text-white backdrop-blur-sm">
+                                  <Play size={20} fill="currentColor" />
+                                </span>
+                              </motion.div>
+                            </button>
+                          ) : (
+                            <>
                               <motion.div
                                 variants={{
                                   hover: { scale: 1.03 },
@@ -292,108 +349,84 @@ export default function WorkPage() {
                                   className="h-auto w-full object-cover"
                                 />
                               </motion.div>
-                            </motion.div>
+                              <motion.div
+                                className="pointer-events-none absolute inset-0 bg-background/0"
+                                variants={{
+                                  hover: { backgroundColor: "rgba(0,0,0,0.1)" },
+                                }}
+                                transition={{ duration: 0.4 }}
+                              />
+                            </>
+                          )}
+                        </motion.div>
+                      </motion.div>
 
-                            <motion.div
-                              className="pointer-events-none absolute inset-0 bg-background/0"
-                              variants={{
-                                hover: { backgroundColor: "rgba(0,0,0,0.18)" },
-                              }}
-                              transition={{ duration: 0.35 }}
-                            />
+                      <motion.div
+                        className="mt-5 md:mt-6"
+                        initial={{ opacity: 0, x: slideOffset }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-15%" }}
+                        transition={{
+                          opacity: { duration: 2, delay: 0.18, ease: revealEase },
+                          x: { duration: 0.8, delay: 0.18, ease: revealEase },
+                        }}
+                      >
+                        <BtsFilmStripe images={project.btsImages} title={project.title} />
+                      </motion.div>
+                    </div>
 
-                            <motion.div
-                              className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center"
-                              variants={{
-                                hover: { opacity: 1, scale: 1 },
-                                initial: { opacity: 0.65, scale: 0.96 },
-                              }}
-                              initial="initial"
-                              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                            >
-                              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/60 bg-black/35 text-white backdrop-blur-sm">
-                                <Play size={20} fill="currentColor" />
-                              </span>
-                            </motion.div>
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <motion.div
-                            variants={{
-                              hover: { scale: 1.03 },
-                            }}
-                            transition={{ duration: 0.6, ease: cinematicEase }}
-                          >
-                            <img
-                              src={project.image}
-                              alt={project.title}
-                              className="h-auto w-full object-cover"
-                            />
-                          </motion.div>
-                          <motion.div
-                            className="pointer-events-none absolute inset-0 bg-background/0"
-                            variants={{
-                              hover: { backgroundColor: "rgba(0,0,0,0.1)" },
-                            }}
-                            transition={{ duration: 0.4 }}
-                          />
-                        </>
-                      )}
+                    {/* Content */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-15%" }}
+                      transition={{ duration: 0.75, delay: 0.08, ease: revealEase }}
+                      className={`flex w-full flex-col justify-center lg:w-2/5 ${
+                        index % 2 === 1 ? "lg:text-right" : ""
+                      }`}
+                    >
+                      {/* Client Tag */}
+                      <p className="mb-4 text-xs tracking-[0.3em] text-muted-foreground">
+                        {`Klient: ${project.client}`}
+                      </p>
+
+                      {/* Title */}
+                      <h2 className="mb-3 font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-5xl lg:text-6xl">
+                        {project.title}
+                      </h2>
+                      <p className="mb-8 text-sm uppercase tracking-[0.2em] text-foreground/60 md:text-base">
+                        {project.subtitle}
+                      </p>
+
+                      {/* Challenge */}
+                      <div className="mb-6">
+                        <p className="mb-2 text-xs tracking-[0.2em] text-muted-foreground">
+                          WYZWANIE:
+                        </p>
+                        <p className="font-sans text-sm leading-relaxed text-foreground/70 md:text-base">
+                          {project.challenge}
+                        </p>
+                      </div>
+
+                      {/* Solution */}
+                      <div>
+                        <p className="mb-2 text-xs tracking-[0.2em] text-muted-foreground">
+                          ROZWIĄZANIE:
+                        </p>
+                        <p className="font-sans text-sm leading-relaxed text-foreground/70 md:text-base">
+                          {project.solution}
+                        </p>
+                      </div>
                     </motion.div>
-
-                    <div className="mt-5 md:mt-6">
-                      <BtsFilmStripe images={project.btsImages} title={project.title} />
-                    </div>
                   </div>
-
-                  {/* Content */}
-                  <div className={`flex w-full flex-col justify-center lg:w-2/5 ${
-                    index % 2 === 1 ? "lg:text-right" : ""
-                  }`}>
-                    {/* Client Tag */}
-                    <p className="mb-4 text-xs tracking-[0.3em] text-muted-foreground">
-                      {`Klient: ${project.client}`}
-                    </p>
-
-                    {/* Title */}
-                    <h2 className="mb-3 font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-5xl lg:text-6xl">
-                      {project.title}
-                    </h2>
-                    <p className="mb-8 text-sm uppercase tracking-[0.2em] text-foreground/60 md:text-base">
-                      {project.subtitle}
-                    </p>
-
-                    {/* Challenge */}
-                    <div className="mb-6">
-                      <p className="mb-2 text-xs tracking-[0.2em] text-muted-foreground">
-                        WYZWANIE:
-                      </p>
-                      <p className="font-sans text-sm leading-relaxed text-foreground/70 md:text-base">
-                        {project.challenge}
-                      </p>
-                    </div>
-
-                    {/* Solution */}
-                    <div>
-                      <p className="mb-2 text-xs tracking-[0.2em] text-muted-foreground">
-                        ROZWIĄZANIE:
-                      </p>
-                      <p className="font-sans text-sm leading-relaxed text-foreground/70 md:text-base">
-                        {project.solution}
-                      </p>
-                    </div>
-
-                  </div>
-                </div>
-              </motion.article>
-            ))}
+              </article>
+              )
+            })}
           </section>
 
           {/* Footer */}
-          <footer className="flex items-center justify-between px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
-            <span>© 2024</span>
-            <span>WARSAW, POLAND</span>
+          <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+            <span>© 2026 NONOISE MEDIA</span>
           </footer>
         </motion.div>
 
@@ -431,8 +464,10 @@ export default function WorkPage() {
                   className="h-full w-full object-contain"
                   src={activeProject.video}
                   controls
+                  controlsList="nodownload"
                   autoPlay
                   playsInline
+                  preload="metadata"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
