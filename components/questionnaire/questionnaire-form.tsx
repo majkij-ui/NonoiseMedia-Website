@@ -13,6 +13,7 @@ export type QuestionnaireField = {
   id: string
   label: string
   type?: string
+  placeholder?: string
 }
 
 export type QuestionnaireSection =
@@ -463,7 +464,7 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                       value={answers[q.id] ?? ""}
                       onChange={(e) => setAnswer(q.id, e.target.value)}
                       className={inputDraftClass}
-                      placeholder=""
+                      placeholder={q.placeholder || ""}
                     />
                   </motion.div>
                 ))}
@@ -500,7 +501,7 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                   onChange={(e) => setAnswer(q.id, e.target.value)}
                   rows={4}
                   className={`${inputDraftClass} min-h-[6rem] resize-none`}
-                  placeholder=""
+                  placeholder={q.placeholder || ""}
                 />
               </motion.div>
             </section>
@@ -539,7 +540,7 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                       value={answers[q.id] ?? ""}
                       onChange={(e) => setAnswer(q.id, e.target.value)}
                       className={inputDraftClass}
-                      placeholder=""
+                      placeholder={q.placeholder || ""}
                     />
                   </motion.div>
                 ))}

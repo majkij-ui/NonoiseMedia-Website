@@ -24,9 +24,9 @@
         "description": "Understanding where the video will 'live' lets us plan the right formats.",
         "type": "text-group",
         "questions": [
-          { "id": "q2_goal", "label": "What is the main goal of this piece?" },
-          { "id": "q2_audience", "label": "Who is the end audience?" },
-          { "id": "q2_platform", "label": "Where will your clients most often watch this video?" }
+          { "id": "q2_goal", "label": "What is the main goal of this piece?", "placeholder": "e.g., increasing B2B sales, lead generation, building brand trust" },
+          { "id": "q2_audience", "label": "Who is the end audience?", "placeholder": "e.g., purchasing directors, small business owners, IT specialists" },
+          { "id": "q2_platform", "label": "Where will your clients most often watch this video?", "placeholder": "e.g., website homepage, LinkedIn/Meta ads, trade shows" }
         ]
       },
       {
@@ -35,9 +35,9 @@
         "description": "Here we define whether we need a studio, actors, or an authentic approach.",
         "type": "text-group",
         "questions": [
-          { "id": "q3_visuals", "label": "What do we need to physically show in frame?" },
-          { "id": "q3_examples", "label": "Any reference videos you love? (Paste links)" },
-          { "id": "q3_cast", "label": "Who will be on camera?" }
+          { "id": "q3_visuals", "label": "What do we need to physically show in frame?", "placeholder": "e.g., product in use, client service process, CEO statement" },
+          { "id": "q3_examples", "label": "Any reference videos you love? (Paste links)", "placeholder": "Paste 1-2 links and tell us what you like about them" },
+          { "id": "q3_cast", "label": "Who will be on camera?", "placeholder": "e.g., our team, happy clients, hired actors, or just a voiceover?" }
         ]
       },
       {

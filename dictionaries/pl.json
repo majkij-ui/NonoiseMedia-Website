@@ -24,9 +24,9 @@
         "description": "Zrozumienie, gdzie wideo będzie 'żyć', pozwala nam zaplanować odpowiednie formaty.",
         "type": "text-group",
         "questions": [
-          { "id": "q2_goal", "label": "Jaki jest główny cel tego materiału?" },
-          { "id": "q2_audience", "label": "Kto jest odbiorcą końcowym?" },
-          { "id": "q2_platform", "label": "Gdzie najczęściej Twoi klienci będą oglądać to wideo?" }
+          { "id": "q2_goal", "label": "Jaki jest główny cel tego materiału?", "placeholder": "np. zwiększenie sprzedaży konkretnego produktu B2B, pozyskanie leadów, budowa zaufania do marki" },
+          { "id": "q2_audience", "label": "Kto jest odbiorcą końcowym?", "placeholder": "np. dyrektorzy zakupów, właściciele małych firm, specjaliści IT" },
+          { "id": "q2_platform", "label": "Gdzie najczęściej Twoi klienci będą oglądać to wideo?", "placeholder": "np. strona główna www, kampania reklamowa na LinkedIn/Meta, targi branżowe" }
         ]
       },
       {
@@ -35,9 +35,9 @@
         "description": "Tu określamy, czy potrzebujemy studia, aktorów, czy autentycznego podejścia.",
         "type": "text-group",
         "questions": [
-          { "id": "q3_visuals", "label": "Co musimy fizycznie pokazać w kadrze?" },
-          { "id": "q3_examples", "label": "Czy masz przykłady wideo, które wpadły Ci w oko? (Wklej linki)" },
-          { "id": "q3_cast", "label": "Kto wystąpi przed kamerą?" }
+          { "id": "q3_visuals", "label": "Co musimy fizycznie pokazać w kadrze?", "placeholder": "np. nasz nowy produkt w użyciu, proces świadczenia usługi u klienta, wypowiedź prezesa" },
+          { "id": "q3_examples", "label": "Czy masz przykłady wideo, które wpadły Ci w oko? (Wklej linki)", "placeholder": "Wklej 1-2 linki i napisz, co Ci się w nich podoba" },
+          { "id": "q3_cast", "label": "Kto wystąpi przed kamerą?", "placeholder": "np. nasz zespół, zadowoleni klienci, wynajęci aktorzy, a może tylko lektor w tle?" }
         ]
       },
       {
@@ -46,7 +46,7 @@
         "description": "Skala budżetu decyduje o wielkości ekipy i czasie na postprodukcję.",
         "type": "mixed",
         "questions": [
-          { "id": "q4_deadline", "label": "Kiedy gotowy materiał musi ujrzeć światło dzienne?", "type": "text" }
+          { "id": "q4_deadline", "label": "Kiedy gotowy materiał musi ujrzeć światło dzienne?", "type": "text", "placeholder": "Podaj deadline" }
         ],
         "options": [
           { "id": "one-off", "label": "Projekt jednorazowy. Mamy budżet w przedziale:", "hasInput": true },
@@ -60,7 +60,7 @@
         "description": "",
         "type": "textarea",
         "questions": [
-          { "id": "q5_extra", "label": "Czy jest coś jeszcze, o czym powinniśmy wiedzieć?" }
+          { "id": "q5_extra", "label": "Czy jest coś jeszcze, o czym powinniśmy wiedzieć?", "placeholder": "Czy jest coś jeszcze, o czym powinniśmy wiedzieć? (Specyficzne wymogi korporacyjne, a może obawy związane z występowaniem przed kamerą? Daj nam znać!" }
         ]
       }
     ],
