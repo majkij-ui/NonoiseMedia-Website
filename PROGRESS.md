@@ -1,6 +1,7 @@
 # Progress Log
 
 ## Recently Completed
+- Wired **Vercel Web Analytics** in-app: `@vercel/analytics` + root `app/layout.tsx` `<Analytics />`; confirmed `proxy.ts` matcher leaves `_vercel` paths untouched. **Enable Web Analytics in the Vercel project dashboard** after deploy for data to populate.
 - Updated all primary media and logo URLs to the dedicated CDN host `https://assets.nonoise.media`.
 - Synced `next.config.mjs` remote image hostname with the CDN migration.
 - Refined global brand assets in navigation and metadata icon config to use remote logo sources.

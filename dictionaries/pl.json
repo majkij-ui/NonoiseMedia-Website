@@ -1,0 +1,73 @@
+{
+  "questionnaire": {
+    "header": {
+      "title": "KWESTIONARIUSZ INFORMACYJNY",
+      "subtitle": "Najlepsze produkcje powstają, gdy od samego początku gramy do tej samej bramki. Wypełnij ten krótki formularz, abyśmy mogli zaproponować Ci najlepsze rozwiązanie."
+    },
+    "sections": [
+      {
+        "id": "q1",
+        "title": "1. TEMAT I KATEGORIA (Co robimy?)",
+        "description": "Wybierz kategorię, która najlepiej opisuje Twój projekt. To pomoże nam wstępnie określić charakter pracy na planie.",
+        "type": "radio",
+        "options": [
+          { "id": "product", "label": "Wideo produktowe / usługowe / wizerunkowe" },
+          { "id": "interviews", "label": "Wywiady / referencje / podcasty" },
+          { "id": "documentary", "label": "Dokument / wydarzenia / sport" },
+          { "id": "other", "label": "Inne (napisz poniżej)", "hasInput": true }
+        ]
+      },
+      {
+        "id": "q2",
+        "title": "2. CEL I DYSTRYBUCJA (Dlaczego i dla kogo to robimy?)",
+        "description": "Zrozumienie, gdzie wideo będzie 'żyć', pozwala nam zaplanować odpowiednie formaty.",
+        "type": "text-group",
+        "questions": [
+          { "id": "q2_goal", "label": "Jaki jest główny cel tego materiału?" },
+          { "id": "q2_audience", "label": "Kto jest odbiorcą końcowym?" },
+          { "id": "q2_platform", "label": "Gdzie najczęściej Twoi klienci będą oglądać to wideo?" }
+        ]
+      },
+      {
+        "id": "q3",
+        "title": "3. WIZJA I SKALA (Jak to ma wyglądać?)",
+        "description": "Tu określamy, czy potrzebujemy studia, aktorów, czy autentycznego podejścia.",
+        "type": "text-group",
+        "questions": [
+          { "id": "q3_visuals", "label": "Co musimy fizycznie pokazać w kadrze?" },
+          { "id": "q3_examples", "label": "Czy masz przykłady wideo, które wpadły Ci w oko? (Wklej linki)" },
+          { "id": "q3_cast", "label": "Kto wystąpi przed kamerą?" }
+        ]
+      },
+      {
+        "id": "q4",
+        "title": "4. MODEL WSPÓŁPRACY I BUDŻET (Realne ramy)",
+        "description": "Skala budżetu decyduje o wielkości ekipy i czasie na postprodukcję.",
+        "type": "mixed",
+        "questions": [
+          { "id": "q4_deadline", "label": "Kiedy gotowy materiał musi ujrzeć światło dzienne?", "type": "text" }
+        ],
+        "options": [
+          { "id": "one-off", "label": "Projekt jednorazowy. Mamy budżet w przedziale:", "hasInput": true },
+          { "id": "ongoing", "label": "Stała współpraca. Szukamy stałego partnera wideo." },
+          { "id": "consulting", "label": "Potrzebujemy doradztwa. Nie wiemy co się sprawdzi, prosimy o wycenę." }
+        ]
+      },
+      {
+        "id": "q5",
+        "title": "5. DODATKOWE INFORMACJE",
+        "description": "",
+        "type": "textarea",
+        "questions": [
+          { "id": "q5_extra", "label": "Czy jest coś jeszcze, o czym powinniśmy wiedzieć?" }
+        ]
+      }
+    ],
+    "contact": {
+      "title": "JAK MAMY SIĘ Z TOBĄ SKONTAKTOWAĆ?",
+      "email": "E-MAIL",
+      "phone": "TELEFON",
+      "sendButton": "WYŚLIJ ZAPYTANIE"
+    }
+  }
+}

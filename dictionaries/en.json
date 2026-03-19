@@ -1,0 +1,73 @@
+{
+  "questionnaire": {
+    "header": {
+      "title": "INFORMATION QUESTIONNAIRE",
+      "subtitle": "The best productions happen when we're aligned from day one. Fill out this short form so we can propose the best solution for you."
+    },
+    "sections": [
+      {
+        "id": "q1",
+        "title": "1. TOPIC AND CATEGORY (What are we doing?)",
+        "description": "Choose the category that best describes your project. This helps us determine the nature of the work on set.",
+        "type": "radio",
+        "options": [
+          { "id": "product", "label": "Product / service / brand image video" },
+          { "id": "interviews", "label": "Interviews / testimonials / podcasts" },
+          { "id": "documentary", "label": "Documentary / events / sports" },
+          { "id": "other", "label": "Other (write below)", "hasInput": true }
+        ]
+      },
+      {
+        "id": "q2",
+        "title": "2. GOAL AND DISTRIBUTION (Why and for whom are we doing this?)",
+        "description": "Understanding where the video will 'live' lets us plan the right formats.",
+        "type": "text-group",
+        "questions": [
+          { "id": "q2_goal", "label": "What is the main goal of this piece?" },
+          { "id": "q2_audience", "label": "Who is the end audience?" },
+          { "id": "q2_platform", "label": "Where will your clients most often watch this video?" }
+        ]
+      },
+      {
+        "id": "q3",
+        "title": "3. VISION AND SCALE (What should it look like?)",
+        "description": "Here we define whether we need a studio, actors, or an authentic approach.",
+        "type": "text-group",
+        "questions": [
+          { "id": "q3_visuals", "label": "What do we need to physically show in frame?" },
+          { "id": "q3_examples", "label": "Any reference videos you love? (Paste links)" },
+          { "id": "q3_cast", "label": "Who will be on camera?" }
+        ]
+      },
+      {
+        "id": "q4",
+        "title": "4. COLLABORATION MODEL AND BUDGET (Realistic scope)",
+        "description": "Budget scale determines crew size and post-production time.",
+        "type": "mixed",
+        "questions": [
+          { "id": "q4_deadline", "label": "When does the finished piece need to go live?", "type": "text" }
+        ],
+        "options": [
+          { "id": "one-off", "label": "One-off project. Our budget range is:", "hasInput": true },
+          { "id": "ongoing", "label": "Ongoing partnership. We're looking for a long-term video partner." },
+          { "id": "consulting", "label": "We need guidance. We're not sure what will work—please propose options and pricing." }
+        ]
+      },
+      {
+        "id": "q5",
+        "title": "5. ADDITIONAL INFORMATION",
+        "description": "",
+        "type": "textarea",
+        "questions": [
+          { "id": "q5_extra", "label": "Is there anything else we should know?" }
+        ]
+      }
+    ],
+    "contact": {
+      "title": "HOW SHOULD WE REACH YOU?",
+      "email": "EMAIL",
+      "phone": "PHONE",
+      "sendButton": "SEND INQUIRY"
+    }
+  }
+}
