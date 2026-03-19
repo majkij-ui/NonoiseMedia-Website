@@ -47,7 +47,7 @@ export type QuestionnaireSection =
     }
 
 export type QuestionnaireContent = {
-  header: { title: string; subtitle: string }
+  header: { title: string; subtitle: string; startCta: string }
   sections: QuestionnaireSection[]
   contact: {
     title: string
@@ -61,18 +61,47 @@ function extraInputKey(sectionId: string, optionId: string) {
   return `${sectionId}_${optionId}_extra`
 }
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+const extraRevealVariants = {
+  collapsed: { opacity: 0, height: 0, marginTop: 0 },
+  expanded: { opacity: 1, height: "auto", marginTop: 16 },
 }
 
-const expandVariants = {
-  collapsed: { height: 0, opacity: 0 },
-  expanded: { height: "auto", opacity: 1 },
-}
+const inputDraftClass =
+  "w-full border-b border-foreground/30 bg-transparent py-3 text-lg text-foreground outline-none transition-colors placeholder:text-foreground/30 focus:border-foreground"
 
 type QuestionnaireFormProps = {
   questionnaire: QuestionnaireContent
+}
+
+function SectionIntro({
+  index,
+  title,
+  description,
+}: {
+  index: number
+  title: string
+  description: string | null
+}) {
+  const n = String(index + 1).padStart(2, "0")
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6 }}
+      className="mb-8"
+    >
+      <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-muted-foreground">
+        {n}
+      </span>
+      <h2 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight text-foreground md:text-3xl">
+        {title}
+      </h2>
+      {description ? (
+        <p className="mt-2 text-sm text-muted-foreground">{description}</p>
+      ) : null}
+    </motion.div>
+  )
 }
 
 export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
@@ -89,7 +118,6 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
     el?.scrollIntoView({ behavior: "smooth", block: "center" })
   }, [])
 
-  /** Focus extra text field after AnimatePresence mounts it (skip auto-scroll for hasInput options). */
   const focusExtraInput = useCallback((extraKey: string) => {
     const id = `questionnaire-extra-${extraKey}`
     const run = () => {
@@ -107,63 +135,102 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
   }
 
   const { header, sections, contact } = questionnaire
+  const firstSectionId = sections[0]?.id
 
-  const inputBaseClass =
-    "border-b border-foreground/30 bg-transparent py-4 text-xl md:text-2xl focus:border-foreground focus:outline-none transition-colors w-full"
-
-  const radioBlockClass =
-    "relative block cursor-pointer overflow-hidden border border-foreground/50 py-3 pl-3 pr-3 transition-colors md:py-3 md:pl-4 md:pr-3"
-
-  const radioStackClass = "flex flex-col gap-2 md:gap-3"
+  const scrollToFirstQuestion = () => {
+    if (!firstSectionId) return
+    document
+      .getElementById("section-" + firstSectionId)
+      ?.scrollIntoView({ behavior: "smooth" })
+  }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col text-foreground"
+      className="px-6 pb-32 pt-[calc(6.5rem+env(safe-area-inset-top))] text-foreground md:px-12 md:pt-24 lg:pt-28"
     >
-      <motion.header
+      {/* Hero — v0 draft: full-height intro + START */}
+      <section
         id="section-header"
-        initial={sectionVariants.hidden}
-        whileInView={sectionVariants.visible}
-        viewport={{ once: true, margin: "-100px" }}
-        className="flex min-h-[40vh] flex-col justify-center border-b border-white/20 px-6 py-12 md:px-12"
+        className="flex min-h-[calc(100svh-6.5rem)] flex-col justify-center py-16"
       >
-        <h1 className="block w-fit font-[family-name:var(--font-display)] text-[2.6rem] uppercase leading-none tracking-[0.02em] text-foreground sm:text-[3.45rem]">
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-8 max-w-5xl font-[family-name:var(--font-display)] text-6xl uppercase leading-none tracking-tight text-foreground md:text-8xl lg:text-9xl"
+        >
           {header.title}
-        </h1>
-        <p className="mt-6 max-w-md border-b border-white/20 pb-2 text-sm leading-relaxed text-foreground/90 md:max-w-lg">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-2xl text-base text-muted-foreground md:text-lg"
+        >
           {header.subtitle}
-        </p>
-      </motion.header>
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mt-12 w-fit"
+        >
+          <motion.button
+            type="button"
+            onClick={scrollToFirstQuestion}
+            whileHover="hover"
+            initial="rest"
+            variants={{ rest: {}, hover: {} }}
+            className="group relative w-fit overflow-hidden bg-foreground px-4 py-2 font-[family-name:var(--font-display)] text-3xl uppercase tracking-wide text-background md:text-4xl"
+          >
+            <motion.div
+              className="absolute inset-0 bg-background"
+              variants={{
+                rest: { x: "-100%" },
+                hover: { x: 0 },
+              }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+            />
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-foreground">
+              {header.startCta}
+            </span>
+          </motion.button>
+        </motion.div>
+      </section>
 
       {sections.map((section, sectionIndex) => {
         const nextSectionId = sections[sectionIndex + 1]?.id ?? "contact"
 
         if (section.type === "radio") {
           return (
-            <motion.section
+            <section
               key={section.id}
               id={"section-" + section.id}
-              initial={sectionVariants.hidden}
-              whileInView={sectionVariants.visible}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex min-h-[60vh] flex-col justify-center gap-6 px-4 py-12 md:min-h-[80vh] md:gap-8 md:px-8"
+              className="flex min-h-[50vh] flex-col justify-center border-t border-foreground/10 py-16"
             >
-              <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase leading-tight tracking-tight md:text-5xl">
-                {section.title}
-              </h2>
-              {section.description ? (
-                <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-                  {section.description}
-                </p>
-              ) : null}
-              <div className={radioStackClass}>
-                {section.options.map((opt) => {
+              <SectionIntro
+                index={sectionIndex}
+                title={section.title}
+                description={section.description || null}
+              />
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                {section.options.map((opt, index) => {
                   const selected = answers[section.id] === opt.id
                   const extraKey = extraInputKey(section.id, opt.id)
                   return (
-                    <div key={opt.id} className="flex flex-col gap-0">
-                      <label className={radioBlockClass}>
+                    <div key={opt.id} className="flex flex-col">
+                      <motion.label
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-50px" }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className={`group relative block cursor-pointer overflow-hidden border px-6 py-5 text-left transition-all ${
+                          selected
+                            ? "border-foreground bg-foreground"
+                            : "border-foreground/30 bg-transparent hover:border-foreground/60"
+                        }`}
+                      >
                         <input
                           type="radio"
                           name={section.id}
@@ -180,22 +247,14 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                           className="sr-only"
                           aria-label={opt.label}
                         />
-                        {selected && (
-                          <motion.div
-                            layoutId={"radio-fill-" + section.id}
-                            className="absolute inset-0 z-0 bg-white"
-                            initial={false}
-                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                          />
-                        )}
                         <span
-                          className={`relative z-10 font-[family-name:var(--font-display)] text-lg uppercase tracking-tight md:text-xl ${
-                            selected ? "text-white mix-blend-difference" : ""
+                          className={`relative z-10 block font-[family-name:var(--font-display)] text-lg uppercase tracking-wide transition-colors md:text-xl ${
+                            selected ? "text-background" : "text-foreground"
                           }`}
                         >
                           {opt.label}
                         </span>
-                      </label>
+                      </motion.label>
                       <AnimatePresence initial={false}>
                         {opt.hasInput && selected ? (
                           <motion.div
@@ -203,16 +262,20 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                             initial="collapsed"
                             animate="expanded"
                             exit="collapsed"
-                            variants={expandVariants}
-                            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                            className="overflow-hidden pl-2 md:pl-4"
+                            variants={extraRevealVariants}
+                            transition={{
+                              duration: 0.4,
+                              ease: [0.4, 0, 0.2, 1],
+                            }}
+                            className="overflow-hidden"
                           >
                             <input
                               id={`questionnaire-extra-${extraKey}`}
                               type="text"
                               value={answers[extraKey] ?? ""}
                               onChange={(e) => setAnswer(extraKey, e.target.value)}
-                              className={inputBaseClass + " mt-2"}
+                              className={inputDraftClass}
+                              placeholder=""
                               aria-label={`${opt.label} — details`}
                             />
                           </motion.div>
@@ -222,44 +285,48 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                   )
                 })}
               </div>
-            </motion.section>
+            </section>
           )
         }
 
         if (section.type === "text-group") {
           return (
-            <motion.section
+            <section
               key={section.id}
               id={"section-" + section.id}
-              initial={sectionVariants.hidden}
-              whileInView={sectionVariants.visible}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex min-h-[60vh] flex-col justify-center gap-6 px-4 py-12 md:min-h-[80vh] md:gap-8 md:px-8"
+              className="flex min-h-[50vh] flex-col justify-center border-t border-foreground/10 py-16"
             >
-              <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase leading-tight tracking-tight md:text-5xl">
-                {section.title}
-              </h2>
-              {section.description ? (
-                <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-                  {section.description}
-                </p>
-              ) : null}
-              <div className="flex flex-col gap-6 md:gap-8">
-                {section.questions.map((q) => (
-                  <label key={q.id} className="flex flex-col gap-1">
-                    <span className="text-sm text-muted-foreground md:text-base">
+              <SectionIntro
+                index={sectionIndex}
+                title={section.title}
+                description={section.description || null}
+              />
+              <div className="flex flex-col gap-10">
+                {section.questions.map((q, qIndex) => (
+                  <motion.div
+                    key={q.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{
+                      duration: 0.5,
+                      delay: qIndex * 0.1,
+                    }}
+                  >
+                    <label className="mb-1 block text-sm text-foreground">
                       {q.label}
-                    </span>
+                    </label>
                     <input
                       type="text"
                       value={answers[q.id] ?? ""}
                       onChange={(e) => setAnswer(q.id, e.target.value)}
-                      className={inputBaseClass}
+                      className={inputDraftClass}
+                      placeholder=""
                     />
-                  </label>
+                  </motion.div>
                 ))}
               </div>
-            </motion.section>
+            </section>
           )
         }
 
@@ -267,160 +334,200 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
           const q = section.questions[0]
           if (!q) return null
           return (
-            <motion.section
+            <section
               key={section.id}
               id={"section-" + section.id}
-              initial={sectionVariants.hidden}
-              whileInView={sectionVariants.visible}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex min-h-[60vh] flex-col justify-center gap-6 px-4 py-12 md:min-h-[80vh] md:gap-8 md:px-8"
+              className="flex min-h-[40vh] flex-col justify-center border-t border-foreground/10 py-16"
             >
-              <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase leading-tight tracking-tight md:text-5xl">
-                {section.title}
-              </h2>
-              {section.description ? (
-                <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-                  {section.description}
-                </p>
-              ) : null}
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-muted-foreground md:text-base">
+              <SectionIntro
+                index={sectionIndex}
+                title={section.title}
+                description={section.description || null}
+              />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5 }}
+              >
+                <label className="mb-1 block text-sm text-foreground">
                   {q.label}
-                </span>
+                </label>
                 <textarea
                   value={answers[q.id] ?? ""}
                   onChange={(e) => setAnswer(q.id, e.target.value)}
                   rows={4}
-                  className={inputBaseClass + " min-h-[8rem] resize-y"}
+                  className={`${inputDraftClass} min-h-[6rem] resize-none`}
+                  placeholder=""
                 />
-              </label>
-            </motion.section>
+              </motion.div>
+            </section>
           )
         }
 
         if (section.type === "mixed") {
           return (
-            <motion.section
+            <section
               key={section.id}
               id={"section-" + section.id}
-              initial={sectionVariants.hidden}
-              whileInView={sectionVariants.visible}
-              viewport={{ once: true, margin: "-100px" }}
-              className="flex min-h-[60vh] flex-col justify-center gap-6 px-4 py-12 md:min-h-[80vh] md:gap-8 md:px-8"
+              className="flex min-h-[50vh] flex-col justify-center border-t border-foreground/10 py-16"
             >
-              <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase leading-tight tracking-tight md:text-5xl">
-                {section.title}
-              </h2>
-              {section.description ? (
-                <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-                  {section.description}
-                </p>
-              ) : null}
-              <div className="flex flex-col gap-6 md:gap-8">
-                {section.questions.map((q) => (
-                  <label key={q.id} className="flex flex-col gap-1">
-                    <span className="text-sm text-muted-foreground md:text-base">
+              <SectionIntro
+                index={sectionIndex}
+                title={section.title}
+                description={section.description || null}
+              />
+              <div className="flex flex-col gap-10">
+                {section.questions.map((q, qIndex) => (
+                  <motion.div
+                    key={q.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{
+                      duration: 0.5,
+                      delay: qIndex * 0.1,
+                    }}
+                  >
+                    <label className="mb-1 block text-sm text-foreground">
                       {q.label}
-                    </span>
+                    </label>
                     <input
                       type="text"
                       value={answers[q.id] ?? ""}
                       onChange={(e) => setAnswer(q.id, e.target.value)}
-                      className={inputBaseClass}
+                      className={inputDraftClass}
+                      placeholder=""
                     />
-                  </label>
+                  </motion.div>
                 ))}
-              </div>
-              <div className={radioStackClass}>
-                {section.options.map((opt) => {
-                  const selected = answers[section.id] === opt.id
-                  const extraKey = extraInputKey(section.id, opt.id)
-                  return (
-                    <div key={opt.id} className="flex flex-col gap-0">
-                      <label className={radioBlockClass}>
-                        <input
-                          type="radio"
-                          name={section.id}
-                          value={opt.id}
-                          checked={selected}
-                          onChange={() => {
-                            setAnswer(section.id, opt.id)
-                            if (opt.hasInput) {
-                              focusExtraInput(extraKey)
-                            } else {
-                              setTimeout(() => scrollToNextSection(nextSectionId), 0)
-                            }
-                          }}
-                          className="sr-only"
-                          aria-label={opt.label}
-                        />
-                        {selected && (
-                          <motion.div
-                            layoutId={"radio-fill-mixed-" + section.id}
-                            className="absolute inset-0 z-0 bg-white"
-                            initial={false}
-                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                          />
-                        )}
-                        <span
-                          className={`relative z-10 font-[family-name:var(--font-display)] text-lg uppercase tracking-tight md:text-xl ${
-                            selected ? "text-white mix-blend-difference" : ""
-                          }`}
-                        >
-                          {opt.label}
-                        </span>
-                      </label>
-                      <AnimatePresence initial={false}>
-                        {opt.hasInput && selected ? (
-                          <motion.div
-                            key={extraKey}
-                            initial="collapsed"
-                            animate="expanded"
-                            exit="collapsed"
-                            variants={expandVariants}
-                            transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                            className="overflow-hidden pl-2 md:pl-4"
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                    {section.options.map((opt, index) => {
+                      const selected = answers[section.id] === opt.id
+                      const extraKey = extraInputKey(section.id, opt.id)
+                      return (
+                        <div key={opt.id} className="flex flex-col">
+                          <motion.label
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{
+                              duration: 0.5,
+                              delay: index * 0.1,
+                            }}
+                            className={`group relative block cursor-pointer overflow-hidden border px-6 py-5 text-left transition-all ${
+                              selected
+                                ? "border-foreground bg-foreground"
+                                : "border-foreground/30 bg-transparent hover:border-foreground/60"
+                            }`}
                           >
                             <input
-                              id={`questionnaire-extra-${extraKey}`}
-                              type="text"
-                              value={answers[extraKey] ?? ""}
-                              onChange={(e) => setAnswer(extraKey, e.target.value)}
-                              className={inputBaseClass + " mt-2"}
-                              aria-label={`${opt.label} — details`}
+                              type="radio"
+                              name={section.id}
+                              value={opt.id}
+                              checked={selected}
+                              onChange={() => {
+                                setAnswer(section.id, opt.id)
+                                if (opt.hasInput) {
+                                  focusExtraInput(extraKey)
+                                } else {
+                                  setTimeout(
+                                    () => scrollToNextSection(nextSectionId),
+                                    0,
+                                  )
+                                }
+                              }}
+                              className="sr-only"
+                              aria-label={opt.label}
                             />
-                          </motion.div>
-                        ) : null}
-                      </AnimatePresence>
-                    </div>
-                  )
-                })}
+                            <span
+                              className={`relative z-10 block font-[family-name:var(--font-display)] text-lg uppercase tracking-wide transition-colors md:text-xl ${
+                                selected ? "text-background" : "text-foreground"
+                              }`}
+                            >
+                              {opt.label}
+                            </span>
+                          </motion.label>
+                          <AnimatePresence initial={false}>
+                            {opt.hasInput && selected ? (
+                              <motion.div
+                                key={extraKey}
+                                initial="collapsed"
+                                animate="expanded"
+                                exit="collapsed"
+                                variants={extraRevealVariants}
+                                transition={{
+                                  duration: 0.4,
+                                  ease: [0.4, 0, 0.2, 1],
+                                }}
+                                className="overflow-hidden"
+                              >
+                                <input
+                                  id={`questionnaire-extra-${extraKey}`}
+                                  type="text"
+                                  value={answers[extraKey] ?? ""}
+                                  onChange={(e) =>
+                                    setAnswer(extraKey, e.target.value)
+                                  }
+                                  className={inputDraftClass}
+                                  aria-label={`${opt.label} — details`}
+                                />
+                              </motion.div>
+                            ) : null}
+                          </AnimatePresence>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </motion.div>
               </div>
-            </motion.section>
+            </section>
           )
         }
 
         return null
       })}
 
-      <motion.footer
+      <footer
         id="section-contact"
-        initial={sectionVariants.hidden}
-        whileInView={sectionVariants.visible}
-        viewport={{ once: true, margin: "-100px" }}
-        className="flex min-h-[60vh] flex-col justify-center gap-8 border-t border-white/20 px-4 py-12 md:min-h-[80vh] md:gap-10 md:px-8"
+        className="flex min-h-[50vh] flex-col justify-center border-t border-foreground/10 py-16"
       >
-        <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase leading-tight tracking-tight md:text-5xl">
-          {contact.title}
-        </h2>
-        <div className="flex flex-wrap gap-4 md:gap-6">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+          <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-muted-foreground">
+            {String(sections.length + 1).padStart(2, "0")}
+          </span>
+          <h2 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight text-foreground md:text-3xl">
+            {contact.title}
+          </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-6 flex flex-wrap gap-3"
+        >
           <button
             type="button"
             onClick={() => setContactMethod("email")}
-            className={`border px-4 py-2 font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight transition-colors md:text-3xl ${
+            className={`border px-5 py-3 text-sm uppercase tracking-wide transition-all ${
               contactMethod === "email"
-                ? "border-foreground bg-foreground/10 font-bold text-foreground"
-                : "border-foreground/30 text-muted-foreground hover:border-foreground/50 hover:text-foreground/80"
+                ? "border-foreground bg-foreground text-background"
+                : "border-foreground/30 bg-transparent text-foreground hover:border-foreground/60"
             }`}
           >
             [ {contact.email} ]
@@ -428,65 +535,65 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
           <button
             type="button"
             onClick={() => setContactMethod("phone")}
-            className={`border px-4 py-2 font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight transition-colors md:text-3xl ${
+            className={`border px-5 py-3 text-sm uppercase tracking-wide transition-all ${
               contactMethod === "phone"
-                ? "border-foreground bg-foreground/10 font-bold text-foreground"
-                : "border-foreground/30 text-muted-foreground hover:border-foreground/50 hover:text-foreground/80"
+                ? "border-foreground bg-foreground text-background"
+                : "border-foreground/30 bg-transparent text-foreground hover:border-foreground/60"
             }`}
           >
             [ {contact.phone} ]
           </button>
-        </div>
-        <label className="flex flex-col gap-2">
-          <span className="text-sm text-muted-foreground">
-            {contactMethod === "email" ? contact.email : contact.phone}
-          </span>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-12"
+        >
           <input
             type={contactMethod === "email" ? "email" : "tel"}
             value={contactValue}
             onChange={(e) => setContactValue(e.target.value)}
-            className={inputBaseClass + " max-w-xl"}
+            className={inputDraftClass}
+            placeholder={
+              contactMethod === "email"
+                ? "email@example.com"
+                : "+48 XXX XXX XXX"
+            }
             autoComplete={contactMethod === "email" ? "email" : "tel"}
           />
-        </label>
+        </motion.div>
 
-        <SubmitButton label={contact.sendButton} />
-      </motion.footer>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="w-fit"
+        >
+          <motion.button
+            type="submit"
+            whileHover="hover"
+            initial="rest"
+            variants={{ rest: {}, hover: {} }}
+            className="group relative w-fit overflow-hidden border border-foreground bg-foreground px-10 py-5"
+          >
+            <motion.div
+              className="absolute inset-0 bg-background"
+              variants={{
+                rest: { x: "-100%" },
+                hover: { x: 0 },
+              }}
+              transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+            />
+            <span className="relative z-10 font-[family-name:var(--font-display)] text-xl uppercase tracking-wide text-background transition-colors group-hover:text-foreground md:text-2xl">
+              {contact.sendButton}
+            </span>
+          </motion.button>
+        </motion.div>
+      </footer>
     </form>
-  )
-}
-
-function SubmitButton({ label }: { label: string }) {
-  return (
-    <motion.div
-      initial="initial"
-      whileHover="hover"
-      className="relative w-fit overflow-hidden font-[family-name:var(--font-display)] text-2xl uppercase leading-none tracking-[0.02em] md:text-3xl"
-    >
-      <button type="submit" className="relative block w-full px-4 py-3 text-left">
-        {/* LAYER 1: White base (filled so default state is solid) */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-0 bg-white"
-          variants={{
-            initial: { opacity: 1 },
-            hover: { opacity: 1 },
-          }}
-        />
-        {/* LAYER 2: Black hover sweep */}
-        <motion.div
-          className="absolute inset-0 z-[1] bg-black"
-          variants={{
-            initial: { x: "-100%" },
-            hover: { x: 0 },
-          }}
-          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-          style={{ originX: 0 }}
-        />
-        {/* LAYER 3: Text (white + mix-blend-difference) */}
-        <span className="relative z-10 text-white mix-blend-difference">
-          {label}
-        </span>
-      </button>
-    </motion.div>
   )
 }

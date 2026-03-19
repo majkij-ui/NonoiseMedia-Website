@@ -2,7 +2,8 @@
   "questionnaire": {
     "header": {
       "title": "KWESTIONARIUSZ INFORMACYJNY",
-      "subtitle": "Najlepsze produkcje powstają, gdy od samego początku gramy do tej samej bramki. Wypełnij ten krótki formularz, abyśmy mogli zaproponować Ci najlepsze rozwiązanie."
+      "subtitle": "Najlepsze produkcje powstają, gdy od samego początku gramy do tej samej bramki. Wypełnij ten krótki formularz, abyśmy mogli zaproponować Ci najlepsze rozwiązanie.",
+      "startCta": "ROZPOCZNIJ"
     },
     "sections": [
       {

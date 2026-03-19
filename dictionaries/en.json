@@ -2,7 +2,8 @@
   "questionnaire": {
     "header": {
       "title": "INFORMATION QUESTIONNAIRE",
-      "subtitle": "The best productions happen when we're aligned from day one. Fill out this short form so we can propose the best solution for you."
+      "subtitle": "The best productions happen when we're aligned from day one. Fill out this short form so we can propose the best solution for you.",
+      "startCta": "START"
     },
     "sections": [
       {
