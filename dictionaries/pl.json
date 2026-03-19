@@ -68,6 +68,8 @@
       "title": "JAK MAMY SIĘ Z TOBĄ SKONTAKTOWAĆ?",
       "email": "E-MAIL",
       "phone": "TELEFON",
+      "nameLabel": "IMIĘ NAZWISKO/ FIRMA",
+      "namePlaceholder": "Twoje imię i nazwisko lub nazwa firmy",
       "sendButton": "WYŚLIJ ZAPYTANIE",
       "missingContact": "UZUPEŁNIJ KONTAKT",
       "submitting": "WYSYŁANIE...",

@@ -53,6 +53,8 @@ export type QuestionnaireContent = {
     title: string
     email: string
     phone: string
+    nameLabel: string
+    namePlaceholder: string
     sendButton: string
     missingContact: string
     submitting: string
@@ -76,6 +78,13 @@ const inputDraftClass =
 type QuestionnaireFormProps = {
   questionnaire: QuestionnaireContent
 }
+
+type FormSummaryItem = {
+  question: string
+  answer: string
+}
+
+const NO_ANSWER_TEXT = "Nie wybrano odpowiedzi / No answer chosen"
 
 function SectionIntro({
   index,
@@ -112,17 +121,13 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [contactMethod, setContactMethod] = useState<"email" | "phone">("email")
   const [contactValue, setContactValue] = useState("")
+  const [clientName, setClientName] = useState("")
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "missing" | "submitting" | "success" | "error"
   >("idle")
 
   const setAnswer = useCallback((key: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [key]: value }))
-  }, [])
-
-  const scrollToNextSection = useCallback((nextSectionId: string) => {
-    const el = document.getElementById("section-" + nextSectionId)
-    el?.scrollIntoView({ behavior: "smooth", block: "center" })
   }, [])
 
   const focusExtraInput = useCallback((extraKey: string) => {
@@ -146,20 +151,113 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
 
     setSubmitStatus("submitting")
 
+    const asAnswer = (value?: string) => {
+      if (!value || value.trim() === "") return NO_ANSWER_TEXT
+      return value.trim()
+    }
+
+    const formSummary: FormSummaryItem[] = sections.flatMap((section) => {
+      if (section.type === "radio") {
+        const selectedId = answers[section.id]
+        const selectedOption = section.options.find((opt) => opt.id === selectedId)
+        if (!selectedOption) {
+          return [{ question: section.title, answer: NO_ANSWER_TEXT }]
+        }
+
+        const extra = selectedOption.hasInput
+          ? answers[extraInputKey(section.id, selectedOption.id)]
+          : ""
+        const selectedAnswer =
+          selectedOption.hasInput && extra && extra.trim() !== ""
+            ? `${selectedOption.label}: ${extra.trim()}`
+            : selectedOption.label
+
+        return [{ question: section.title, answer: asAnswer(selectedAnswer) }]
+      }
+
+      if (section.type === "text-group") {
+        return section.questions.map((q) => ({
+          question: q.label,
+          answer: asAnswer(answers[q.id]),
+        }))
+      }
+
+      if (section.type === "textarea") {
+        const q = section.questions[0]
+        if (!q) return []
+        return [{ question: q.label, answer: asAnswer(answers[q.id]) }]
+      }
+
+      if (section.type === "mixed") {
+        const textAnswers = section.questions.map((q) => ({
+          question: q.label,
+          answer: asAnswer(answers[q.id]),
+        }))
+
+        const selectedId = answers[section.id]
+        const selectedOption = section.options.find((opt) => opt.id === selectedId)
+
+        let modelAnswer = NO_ANSWER_TEXT
+        if (selectedOption) {
+          const extra = selectedOption.hasInput
+            ? answers[extraInputKey(section.id, selectedOption.id)]
+            : ""
+          modelAnswer =
+            selectedOption.hasInput && extra && extra.trim() !== ""
+              ? `${selectedOption.label} ${extra.trim()}`
+              : selectedOption.label
+        }
+
+        return [
+          ...textAnswers,
+          {
+            question: section.title,
+            answer: asAnswer(modelAnswer),
+          },
+        ]
+      }
+
+      return []
+    })
+
+    formSummary.unshift({
+      question: "KLIENT / FIRMA",
+      answer: clientName.trim() || "Nie podano / Not provided",
+    })
+
     try {
       const response = await fetch("/api/send-quote", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, contactMethod, contactValue }),
+        body: JSON.stringify({
+          formSummary,
+          contactMethod,
+          contactValue,
+          clientName,
+        }),
       })
 
       if (response.ok) {
         setSubmitStatus("success")
       } else {
+        const rawText = await response.text().catch(() => "")
+        let errorPayload: unknown = null
+        try {
+          errorPayload = rawText ? JSON.parse(rawText) : null
+        } catch {
+          errorPayload = null
+        }
+        console.error("[questionnaire] Submit failed:", {
+          status: response.status,
+          statusText: response.statusText,
+          rawText,
+          errorPayload,
+        })
         setSubmitStatus("error")
         window.setTimeout(() => setSubmitStatus("idle"), 3000)
       }
     } catch (error) {
+      console.error("[questionnaire] Submit request crashed:", error)
       setSubmitStatus("error")
       window.setTimeout(() => setSubmitStatus("idle"), 3000)
     }
@@ -248,8 +346,6 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
       </section>
 
       {sections.map((section, sectionIndex) => {
-        const nextSectionId = sections[sectionIndex + 1]?.id ?? "contact"
-
         if (section.type === "radio") {
           return (
             <section
@@ -288,8 +384,6 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                             setAnswer(section.id, opt.id)
                             if (opt.hasInput) {
                               focusExtraInput(extraKey)
-                            } else {
-                              setTimeout(() => scrollToNextSection(nextSectionId), 0)
                             }
                           }}
                           className="sr-only"
@@ -485,11 +579,6 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                                 setAnswer(section.id, opt.id)
                                 if (opt.hasInput) {
                                   focusExtraInput(extraKey)
-                                } else {
-                                  setTimeout(
-                                    () => scrollToNextSection(nextSectionId),
-                                    0,
-                                  )
                                 }
                               }}
                               className="sr-only"
@@ -554,12 +643,26 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
           transition={{ duration: 0.6 }}
           className="mb-8"
         >
-          <span className="mb-2 block text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            {String(sections.length + 1).padStart(2, "0")}
-          </span>
           <h2 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight text-foreground md:text-3xl">
             {contact.title}
           </h2>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.5 }}
+          className="mb-8"
+        >
+          <input
+            type="text"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+            className={`${inputDraftClass} py-4 text-xl md:text-2xl`}
+            placeholder={contact.namePlaceholder}
+            autoComplete="organization"
+          />
         </motion.div>
 
         <motion.div

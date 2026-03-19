@@ -68,6 +68,8 @@
       "title": "HOW SHOULD WE REACH YOU?",
       "email": "EMAIL",
       "phone": "PHONE",
+      "nameLabel": "NAME / COMPANY",
+      "namePlaceholder": "Your name or company name",
       "sendButton": "SEND INQUIRY",
       "missingContact": "PLEASE ADD CONTACT INFO",
       "submitting": "SENDING...",
