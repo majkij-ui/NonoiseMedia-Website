@@ -20,6 +20,10 @@
   - introduced `messages/pl.json` and `messages/en.json` for translations,
   - added `LanguageSwitcher` and `SetDocumentLang` components,
   - integrated locale-aware routing and middleware.
+- `/questionnaire` intake UX (localized PL/EN):
+  - added localized questionnaire hero with a prominent START CTA,
+  - redesigned section intro + choice cards with animated option expansion for extra details,
+  - updated dictionaries to include the hero CTA text and section content.
 - Homepage hero CTA iteration:
   - added a dedicated `WYCEŃ PROJEKT` button beside `PLAY REEL`,
   - migrated to a shared `AnimatedHomeButton` pattern for both primary CTAs,
