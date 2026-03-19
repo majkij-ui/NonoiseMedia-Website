@@ -68,7 +68,11 @@
       "title": "HOW SHOULD WE REACH YOU?",
       "email": "EMAIL",
       "phone": "PHONE",
-      "sendButton": "SEND INQUIRY"
+      "sendButton": "SEND INQUIRY",
+      "missingContact": "PLEASE ADD CONTACT INFO",
+      "submitting": "SENDING...",
+      "success": "SENT!",
+      "error": "ERROR. TRY AGAIN"
     }
   }
 }

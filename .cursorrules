@@ -19,3 +19,6 @@
 - Keep client-side logic (hooks, state, Framer Motion) in files marked with `"use client"`.
 - When handling video, strictly use standard HTML5 `<video>` tags and `useRef` hooks to manage playback state, time updates, and muting. Do NOT restart the video on state changes unless explicitly requested.
 - Prioritize single-file components for simple layouts, but extract complex SVG animations (like the hamburger menu) into their own components.
+
+## Package management
+Always use pnpm for package management. Never use npm, yarn, or bun. Never generate a package-lock.json file.

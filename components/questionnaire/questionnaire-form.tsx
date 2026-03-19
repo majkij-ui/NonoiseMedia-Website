@@ -1,6 +1,6 @@
 "use client"
 
-import { type FormEvent, useCallback, useState } from "react"
+import { useCallback, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 export type QuestionnaireOption = {
@@ -54,6 +54,10 @@ export type QuestionnaireContent = {
     email: string
     phone: string
     sendButton: string
+    missingContact: string
+    submitting: string
+    success: string
+    error: string
   }
 }
 
@@ -108,6 +112,9 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [contactMethod, setContactMethod] = useState<"email" | "phone">("email")
   const [contactValue, setContactValue] = useState("")
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "missing" | "submitting" | "success" | "error"
+  >("idle")
 
   const setAnswer = useCallback((key: string, value: string) => {
     setAnswers((prev) => ({ ...prev, [key]: value }))
@@ -129,9 +136,33 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
     setTimeout(run, 120)
   }, [])
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(answers, contactMethod, contactValue)
+  const handleSubmit = async () => {
+    if (!contactValue || contactValue.trim() === "") {
+      setSubmitStatus("missing")
+      // Reset back to idle after 3 seconds so they can try again
+      window.setTimeout(() => setSubmitStatus("idle"), 3000)
+      return
+    }
+
+    setSubmitStatus("submitting")
+
+    try {
+      const response = await fetch("/api/send-quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answers, contactMethod, contactValue }),
+      })
+
+      if (response.ok) {
+        setSubmitStatus("success")
+      } else {
+        setSubmitStatus("error")
+        window.setTimeout(() => setSubmitStatus("idle"), 3000)
+      }
+    } catch (error) {
+      setSubmitStatus("error")
+      window.setTimeout(() => setSubmitStatus("idle"), 3000)
+    }
   }
 
   const { header, sections, contact } = questionnaire
@@ -144,9 +175,26 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
       ?.scrollIntoView({ behavior: "smooth" })
   }
 
+  const getButtonText = () => {
+    switch (submitStatus) {
+      case "missing":
+        return contact.missingContact
+      case "submitting":
+        return contact.submitting
+      case "success":
+        return contact.success
+      case "error":
+        return contact.error
+      default:
+        return contact.sendButton
+    }
+  }
+
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault()
+      }}
       className="px-6 pb-32 pt-[calc(6.5rem+env(safe-area-inset-top))] text-foreground md:px-12 md:pt-24 lg:pt-28"
     >
       {/* Hero — v0 draft: full-height intro + START */}
@@ -574,7 +622,9 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
           className="w-fit"
         >
           <motion.button
-            type="submit"
+            type="button"
+            onClick={handleSubmit}
+            disabled={submitStatus === "submitting" || submitStatus === "success"}
             whileHover="hover"
             initial="rest"
             variants={{ rest: {}, hover: {} }}
@@ -589,7 +639,7 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
               transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
             />
             <span className="relative z-10 font-[family-name:var(--font-display)] text-xl uppercase tracking-wide text-background transition-colors group-hover:text-foreground md:text-2xl">
-              {contact.sendButton}
+              {getButtonText()}
             </span>
           </motion.button>
         </motion.div>

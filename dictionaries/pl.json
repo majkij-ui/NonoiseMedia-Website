@@ -68,7 +68,11 @@
       "title": "JAK MAMY SIĘ Z TOBĄ SKONTAKTOWAĆ?",
       "email": "E-MAIL",
       "phone": "TELEFON",
-      "sendButton": "WYŚLIJ ZAPYTANIE"
+      "sendButton": "WYŚLIJ ZAPYTANIE",
+      "missingContact": "UZUPEŁNIJ KONTAKT",
+      "submitting": "WYSYŁANIE...",
+      "success": "WYSŁANO!",
+      "error": "BŁĄD. SPRÓBUJ PONOWNIE"
     }
   }
 }
