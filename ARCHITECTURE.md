@@ -8,7 +8,8 @@
 ## Hosting & analytics (Vercel)
 - **Web Analytics:** `@vercel/analytics` is installed and `<Analytics />` from `@vercel/analytics/next` is rendered in the root `app/layout.tsx` so all locales and routes are covered.
 - **Middleware / proxy:** `proxy.ts` matcher excludes `_vercel`, so Vercel-injected insight routes (`/_vercel/insights/*`) are not rewritten by i18n routing.
-- **Dashboard (required once):** In the Vercel project → **Analytics** → enable **Web Analytics**. After the next production deploy, page views appear in the dashboard; in DevTools Network you should see requests to `/_vercel/insights/view` on deployed previews/production (often minimal or no traffic locally).
+- **Speed Insights:** `@vercel/speed-insights` is installed and `<SpeedInsights />` from `@vercel/speed-insights/next` is rendered in the root layout for Core Web Vitals (LCP, FID, CLS, etc.) in the Vercel dashboard.
+- **Dashboard (required once):** In the Vercel project → **Analytics** → enable **Web Analytics**. After the next production deploy, page views and Speed Insights data appear in the dashboard; in DevTools Network you should see requests to `/_vercel/insights/view` on deployed previews/production (often minimal or no traffic locally).
 
 ## Strict Technical Rules
 1. **NO LOCAL MEDIA:** Absolutely no heavy `.mp4`, `.png`, or `.jpg` files in the local codebase or Git history. All project media, background videos, and BTS images MUST be loaded from the Cloudflare R2 CDN (`https://nonoise.media/...`).
