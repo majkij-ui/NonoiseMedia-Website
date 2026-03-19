@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "work": "Realizacje",
+    "about": "O nas",
+    "contact": "Kontakt"
+  },
+  "cta": {
+    "quote": "WYCEŃ PROJEKT",
+    "playReel": "PLAY REEL",
+    "headerCta": "wyceń projekt"
+  },
+  "home": {
+    "hero": "Nonoise Media to niezależne studio produkcji wideo, tworzące nowoczesne treści wizualne."
+  },
+  "reel": {
+    "close": "ZAMKNIJ",
+    "play": "PLAY",
+    "mute": "Wycisz",
+    "unmute": "Włącz dźwięk",
+    "openMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu"
+  },
+  "footer": {
+    "copyright": "© 2026 NONOISE MEDIA"
+  }
+}

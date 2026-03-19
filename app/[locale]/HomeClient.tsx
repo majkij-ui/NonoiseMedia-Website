@@ -1,12 +1,17 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import Link from "next/link"
+import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Volume2, VolumeX } from "lucide-react"
+import { Link } from "@/i18n/navigation"
 import { Navigation } from "@/components/navigation"
 
-export default function Home() {
+export default function HomeClient() {
+  const tCta = useTranslations("cta")
+  const tHome = useTranslations("home")
+  const tReel = useTranslations("reel")
+  const tFooter = useTranslations("footer")
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [isMuted, setIsMuted] = useState(true)
@@ -148,15 +153,15 @@ export default function Home() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="mb-5 w-48 text-left font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] text-foreground md:mb-6 md:w-56 md:text-[2.7rem]"
                 >
-                  Nonoise Media to niezależne studio produkcji wideo, tworzące nowoczesne treści wizualne.
+                  {tHome("hero")}
                 </motion.p>
 
                 {/* CTA Buttons - Diagonal checkerboard */}
                 <div className="relative mt-[3.5rem] flex w-fit md:mt-[3.1rem]">
                   <div className="absolute bottom-full right-full m-0 p-0">
-                    <AnimatedHomeButton text="WYCEŃ PROJEKT" href="/contact" entranceDelay={0.05} entranceFrom="left" />
+                    <AnimatedHomeButton text={tCta("quote")} href="/contact" entranceDelay={0.05} entranceFrom="left" />
                   </div>
-                  <AnimatedHomeButton text="PLAY REEL" onClick={handlePlayReel} entranceDelay={0.45} entranceFrom="right" hoverFrom="right" />
+                  <AnimatedHomeButton text={tCta("playReel")} onClick={handlePlayReel} entranceDelay={0.45} entranceFrom="right" hoverFrom="right" />
                 </div>
 
                 {/* Horizontal Timer - Under the button */}
@@ -173,9 +178,8 @@ export default function Home() {
             </div>
 
             {/* Footer */}
-            <footer className="flex items-center justify-between px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
-              <span>© 2024</span>
-              <span>© 2026 NONOISE MEDIA</span>
+            <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+              <span>{tFooter("copyright")}</span>
             </footer>
           </motion.div>
         )}
@@ -208,7 +212,7 @@ export default function Home() {
               >
                 <span>{formatTime(currentTime)}</span>
                 <span className="mx-1 text-[8px]">▶</span>
-                <span>PLAY</span>
+                <span>{tReel("play")}</span>
               </motion.div>
             </motion.div>
 
@@ -224,7 +228,7 @@ export default function Home() {
               <button
                 onClick={toggleMute}
                 className="flex h-12 w-12 items-center justify-center text-foreground/80 transition-colors hover:text-foreground"
-                aria-label={isMuted ? "Unmute" : "Mute"}
+                aria-label={isMuted ? tReel("unmute") : tReel("mute")}
               >
                 {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
               </button>
@@ -236,14 +240,13 @@ export default function Home() {
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <X size={16} />
-                  CLOSE
+                  {tReel("close")}
                 </span>
               </button>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-
     </main>
   )
 }
@@ -310,3 +313,4 @@ const AnimatedHomeButton = ({
   if (href) return <Link href={href}>{content}</Link>
   return <button type="button" onClick={onClick}>{content}</button>
 }
+

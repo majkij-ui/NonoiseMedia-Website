@@ -1,15 +1,16 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { useTranslations } from "next-intl"
 import { AnimatePresence, motion } from "framer-motion"
+import { Link, usePathname } from "@/i18n/navigation"
+import { LanguageSwitcher } from "@/components/language-switcher"
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Work", href: "/work" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+const navLinkKeys = [
+  { key: "home" as const, href: "/" },
+  { key: "work" as const, href: "/work" },
+  { key: "about" as const, href: "/about" },
+  { key: "contact" as const, href: "/contact" },
 ]
 
 type NavigationProps = {
@@ -20,6 +21,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
   const pathname = usePathname()
+  const tNav = useTranslations("nav")
   const showCta = pathname === "/work" || pathname === "/about"
 
   useEffect(() => {
@@ -54,7 +56,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
             <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
           </Link>
         </div>
-        <div className="flex w-10 items-center justify-end md:w-auto">
+        <div className="flex w-10 items-center justify-end gap-4 md:w-auto">
           {showCta && hasScrolled && (
             <motion.div
               className="hidden md:block"
@@ -65,6 +67,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
               <HeaderCtaButton />
             </motion.div>
           )}
+          <LanguageSwitcher />
         </div>
       </header>
 
@@ -85,14 +88,16 @@ export function Navigation({ fixed = false }: NavigationProps) {
                   <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
                 </div>
               </div>
-              <div className="w-10" />
+              <div className="flex items-center gap-4">
+                <LanguageSwitcher />
+              </div>
             </div>
 
             <nav className="flex flex-1 items-center">
               <div className="flex w-full flex-col gap-1 pl-[50%] pr-6 md:pr-12">
-                {navLinks.map((link, index) => (
+                {navLinkKeys.map((link, index) => (
                   <motion.div
-                    key={link.label}
+                    key={link.key}
                     initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -114,7 +119,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
                           style={{ originX: 0 }}
                           transition={{ type: "spring", stiffness: 300, damping: 25 }}
                         />
-                        <span className="relative z-10 text-foreground mix-blend-difference">{link.label}</span>
+                        <span className="relative z-10 text-foreground mix-blend-difference">{tNav(link.key)}</span>
                       </Link>
                     </motion.div>
                   </motion.div>
@@ -135,7 +140,8 @@ export function Navigation({ fixed = false }: NavigationProps) {
 }
 
 function HeaderCtaButton() {
-  const text = "wyceń Twój projekt"
+  const tCta = useTranslations("cta")
+  const text = tCta("headerCta")
   const letters = text.split("")
 
   return (
@@ -196,6 +202,7 @@ function AnimatedMenuButton({
   onClick: () => void
 }) {
   const [isHovered, setIsHovered] = useState(false)
+  const tReel = useTranslations("reel")
 
   const springTransition = {
     type: "spring" as const,
@@ -209,7 +216,7 @@ function AnimatedMenuButton({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="flex h-10 w-10 items-center justify-center"
-      aria-label={isOpen ? "Close menu" : "Open menu"}
+      aria-label={isOpen ? tReel("closeMenu") : tReel("openMenu")}
     >
       <motion.svg
         width="24"

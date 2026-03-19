@@ -1,0 +1,27 @@
+{
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "cta": {
+    "quote": "get a quote",
+    "playReel": "PLAY REEL",
+    "headerCta": "get a quote"
+  },
+  "home": {
+    "hero": "Nonoise Media is an independent video production studio creating modern visual content."
+  },
+  "reel": {
+    "close": "CLOSE",
+    "play": "PLAY",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "copyright": "© 2026 NONOISE MEDIA"
+  }
+}

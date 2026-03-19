@@ -13,6 +13,12 @@
   - `© 2026 NONOISE MEDIA`.
 
 ## Current Working Set (Unreleased in this file's timeline)
+- **i18n migration (PL/EN):**
+  - restructured app routes under `app/[locale]/` for locale-based routing,
+  - added `next-intl` with `i18n/` config (routing, request, navigation),
+  - introduced `messages/pl.json` and `messages/en.json` for translations,
+  - added `LanguageSwitcher` and `SetDocumentLang` components,
+  - integrated locale-aware routing and middleware.
 - Homepage hero CTA iteration:
   - added a dedicated `WYCEŃ PROJEKT` button beside `PLAY REEL`,
   - migrated to a shared `AnimatedHomeButton` pattern for both primary CTAs,

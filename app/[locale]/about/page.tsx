@@ -121,7 +121,7 @@ export default function AboutPage() {
             className="max-w-xs border-t border-foreground/20 pt-6"
           >
             <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-            Naszą siłą jest połączenie 5 lat rynkowego doświadczenia z technologiczną rewolucją jaką stanowi AI. Odcinamy zbędne koszty operacyjne, optymalizujemy procesy i skupiamy się wyłącznie na dostarczeniu produktu dopasowanego do Twoich potrzeb.
+            Naszą siłą jest połączenie 5 lat rynkowego doświadczenia z <span className="font-bold text-foreground">technologiczną rewolucją jaką stanowi AI</span>. Odcinamy zbędne koszty operacyjne, optymalizujemy procesy i skupiamy się wyłącznie na dostarczeniu produktu dopasowanego do Twoich potrzeb.
             </p>
           </motion.div>
 
@@ -134,7 +134,7 @@ export default function AboutPage() {
             className="max-w-xs"
           >
             <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-              Od koncepcji po finalną postprodukcję — każdy etap realizujemy z najwyższą starannością. Wierzymy w siłę wizualnego storytellingu i jego zdolność do łączenia ludzi z markami na głębszym poziomie.
+              Od koncepcji po finalną postprodukcję — każdy etap realizujemy z najwyższą starannością. Wierzymy w siłę wizualnego storytellingu i jego <span className="font-bold text-foreground">zdolność do łączenia ludzi z markami na głębszym poziomie.</span>
             </p>
           </motion.div>
         </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
           >
             <div className="max-w-xs border-t border-foreground/20 pt-6">
               <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-                Naszą siłą jest połączenie 5 lat rynkowego doświadczenia z technologiczną rewolucją jaką stanowi AI. Odcinamy zbędne koszty operacyjne, optymalizujemy procesy i skupiamy się wyłącznie na dostarczeniu produktu dopasowanego do Twoich potrzeb.
+                Naszą siłą jest połączenie 5 lat rynkowego doświadczenia z <span className="font-bold text-foreground">technologiczną rewolucją jaką stanowi AI</span>. Odcinamy zbędne koszty operacyjne, optymalizujemy procesy i skupiamy się wyłącznie na dostarczeniu produktu dopasowanego do Twoich potrzeb.
               </p>
             </div>
           </motion.div>
@@ -203,7 +203,7 @@ export default function AboutPage() {
           >
             <div className="max-w-xs border-t border-foreground/20 pt-6">
               <p className="text-pretty font-sans text-sm leading-relaxed text-foreground/80">
-                Od koncepcji po finalną postprodukcję — każdy etap realizujemy z najwyższą starannością. Wierzymy w siłę wizualnego storytellingu i jego zdolność do łączenia ludzi z markami na głębszym poziomie.
+                Od koncepcji po finalną postprodukcję — każdy etap realizujemy z najwyższą starannością. Wierzymy w siłę wizualnego storytellingu i jego <span className="font-bold text-foreground">zdolność do łączenia ludzi z markami na głębszym poziomie.</span>
               </p>
             </div>
           </motion.div>
