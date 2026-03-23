@@ -52,9 +52,9 @@
   - introduced `components/ui/phone-number.tsx` for consistent tel-link formatting,
   - reused on homepage footer and contact hero to centralize phone rendering.
 - `/work` page iteration in progress:
-  - switched project and BTS media references back to local `/public` paths for a local-asset validation pass,
-  - adjusted card hover/play-overlay behavior and simplified section reveal wrappers,
-  - temporarily restored classic footer variant (`© 2024`, `WARSAW, POLAND`) for visual comparison.
+  - switched project and BTS media references to `assets.nonoise.media` BTS stills folders (e.g. `.../bts/phh/phh-stills-*`),
+  - updated `BtsFilmStripe` to randomize visible frames after mount (avoids server/client hydration mismatches),
+  - previously kept a local `/public` validation pass note while tuning hover and reveal wrappers.
 - Homepage footer/content pass:
   - removed phone-link rendering from footer in favor of simplified location/brand footer copy.
 

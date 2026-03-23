@@ -9,11 +9,21 @@ type BtsFilmStripeProps = {
 }
 
 export function BtsFilmStripe({ images, title }: BtsFilmStripeProps) {
-  const stripeImages = images.slice(0, 6)
+  const [stripeImages, setStripeImages] = useState(() => images.slice(0, 6))
   const scrollRef = useRef<HTMLDivElement>(null)
   const animationFrameRef = useRef<number | null>(null)
   const lastFrameTimeRef = useRef<number | null>(null)
   const [scrollDirection, setScrollDirection] = useState<-1 | 0 | 1>(0)
+
+  useEffect(() => {
+    // Randomize BTS frames after mount to avoid server/client hydration mismatches.
+    const copy = images.slice()
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[copy[i], copy[j]] = [copy[j], copy[i]]
+    }
+    setStripeImages(copy.slice(0, 6))
+  }, [images])
 
   const startScroll = (direction: -1 | 1) => {
     lastFrameTimeRef.current = null
