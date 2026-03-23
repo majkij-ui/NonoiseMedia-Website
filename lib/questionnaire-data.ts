@@ -10,9 +10,9 @@ export const questionnairePl: QuestionnaireContent = {
   sections: [
     {
       id: "category",
-      title: "Co robimy?",
+      title: "Co nagrywamy?",
       description:
-        "Wybierz kategorię, która najlepiej opisuje projekt — od e-commerce po B2B i lifestyle.",
+        "Wybierz kategorię, która najlepiej opisuje czego dotyczyć będzie wideo.",
       type: "radio",
       options: [
         { id: "cat-product", label: "Produkt / e-commerce" },
@@ -26,7 +26,7 @@ export const questionnairePl: QuestionnaireContent = {
       id: "distribution",
       title: "Cel i dystrybucja",
       description:
-        "Gdzie materiał ma działać najmocniej? To pomaga dobrać format (pion, poziom, długość).",
+        "Gdzie docelowo będzie publikowany materiał?",
       type: "radio",
       options: [
         { id: "dist-social", label: "TikTok / Reels / Shorts" },
@@ -49,19 +49,19 @@ export const questionnairePl: QuestionnaireContent = {
       description: "Lokalizacja wpływa na logistykę, ekipę i koszt dojazdu.",
       type: "radio",
       options: [
-        { id: "loc-local", label: "Moje miasto / u nas na miejscu" },
-        { id: "loc-pl-other", label: "Inne miasto w Polsce" },
-        { id: "loc-abroad", label: "Za granicą" },
+        { id: "loc-local", label: "u nas w firmie" },
+        { id: "loc-pl-other", label: "w plenerze" },
+        { id: "loc-abroad", label: "w obiekcie gdzie odbywa się wydarzenie" },
         { id: "loc-studio", label: "Potrzebuję studia / hali / pleneru kontrolowanego" },
       ],
     },
     {
       id: "timeline",
       title: "Kiedy nagrywamy?",
-      description: "Chodzi o realny termin planu zdjęciowego, nie tylko premiery.",
+      description: "Realny termin planu zdjęciowego.",
       type: "radio",
       options: [
-        { id: "time-asap", label: "Jak najszybciej (ASAP)" },
+        { id: "time-asap", label: "Jak najszybciej" },
         { id: "time-month", label: "W ciągu najbliższego miesiąca" },
         { id: "time-quarter", label: "Za 2–3 miesiące" },
         { id: "time-quote", label: "Na razie tylko wycena / plan na później" },
@@ -76,7 +76,7 @@ export const questionnairePl: QuestionnaireContent = {
         { id: "del-one", label: "Jeden główny, dopracowany film" },
         {
           id: "del-pack",
-          label: "Główny film + krótsze wersje / cutdowny pod social",
+          label: "Główny film + krótsze wersje / reformat pod social",
         },
         {
           id: "del-batch",
@@ -91,9 +91,9 @@ export const questionnairePl: QuestionnaireContent = {
         "Orientacyjny przedział pomaga dobrać skalę produkcji — bez zobowiązań.",
       type: "radio",
       options: [
-        { id: "bud-under-10k", label: "Poniżej 10 000 PLN" },
-        { id: "bud-10-25k", label: "10 000 – 25 000 PLN" },
-        { id: "bud-over-25k", label: "Powyżej 25 000 PLN" },
+        { id: "bud-under-5k", label: "Poniżej 5 000 PLN" },
+        { id: "bud-5-15k", label: "5 000 – 15 000 PLN" },
+        { id: "bud-over-15k", label: "Powyżej 15 000 PLN" },
         {
           id: "bud-retainer",
           label: "Retainer / długofalowa współpraca (wycena indywidualna)",
