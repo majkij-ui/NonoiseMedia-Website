@@ -4,8 +4,7 @@ import { hasLocale } from "next-intl"
 import { routing } from "@/i18n/routing"
 import { Navigation } from "@/components/navigation"
 import { QuestionnaireForm } from "@/components/questionnaire/questionnaire-form"
-import enDictionary from "@/dictionaries/en.json"
-import plDictionary from "@/dictionaries/pl.json"
+import { questionnaireEn, questionnairePl } from "@/lib/questionnaire-data"
 
 type PageProps = {
   params: Promise<{ locale: string }>
@@ -20,8 +19,7 @@ export default async function QuestionnairePage({ params }: PageProps) {
 
   setRequestLocale(locale)
 
-  const questionnaire =
-    locale === "pl" ? plDictionary.questionnaire : enDictionary.questionnaire
+  const questionnaire = locale === "pl" ? questionnairePl : questionnaireEn
 
   return (
     <main className="relative min-h-screen w-full bg-background text-foreground">
