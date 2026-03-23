@@ -12,8 +12,9 @@ export const questionnairePl: QuestionnaireContent = {
       id: "category",
       title: "Co nagrywamy?",
       description:
-        "Wybierz kategorię, która najlepiej opisuje czego dotyczyć będzie wideo.",
+        "Wybierz kategorię, która najlepiej opisuje czego dotyczyć będzie wideo. Możesz zaznaczyć więcej niż jedno.",
       type: "radio",
+      multiple: true,
       options: [
         { id: "cat-product", label: "Produkt / e-commerce" },
         { id: "cat-brand", label: "Marka / usługa B2B" },
@@ -26,8 +27,9 @@ export const questionnairePl: QuestionnaireContent = {
       id: "distribution",
       title: "Cel i dystrybucja",
       description:
-        "Gdzie docelowo będzie publikowany materiał?",
+        "Gdzie docelowo będzie publikowany materiał? Możesz zaznaczyć więcej niż jedno.",
       type: "radio",
+      multiple: true,
       options: [
         { id: "dist-social", label: "TikTok / Reels / Shorts" },
         { id: "dist-youtube-ads", label: "YouTube — reklamy / kampanie wideo" },
@@ -46,8 +48,10 @@ export const questionnairePl: QuestionnaireContent = {
     {
       id: "location",
       title: "Plan zdjęciowy — lokalizacja",
-      description: "Lokalizacja wpływa na logistykę, ekipę i koszt dojazdu.",
+      description:
+        "Lokalizacja wpływa na logistykę, ekipę i koszt dojazdu. Możesz zaznaczyć więcej niż jedno.",
       type: "radio",
+      multiple: true,
       options: [
         { id: "loc-local", label: "u nas w firmie" },
         { id: "loc-pl-other", label: "w plenerze" },
@@ -145,8 +149,9 @@ export const questionnaireEn: QuestionnaireContent = {
       id: "category",
       title: "What are we making?",
       description:
-        "Pick the category that fits best — from e‑commerce and B2B to events and podcasts.",
+        "Pick the categories that fit best — from e‑commerce and B2B to events and podcasts. You can select more than one.",
       type: "radio",
+      multiple: true,
       options: [
         { id: "cat-product", label: "Product / e‑commerce" },
         { id: "cat-brand", label: "Brand / B2B service" },
@@ -159,8 +164,9 @@ export const questionnaireEn: QuestionnaireContent = {
       id: "distribution",
       title: "Goal and distribution",
       description:
-        "Where should this piece work hardest? That drives aspect ratio, length, and cutdowns.",
+        "Where should this piece work hardest? That drives aspect ratio, length, and cutdowns. You can select more than one.",
       type: "radio",
+      multiple: true,
       options: [
         { id: "dist-social", label: "TikTok / Reels / Shorts" },
         { id: "dist-youtube-ads", label: "YouTube — ads / video campaigns" },
@@ -179,8 +185,10 @@ export const questionnaireEn: QuestionnaireContent = {
     {
       id: "location",
       title: "Shoot location",
-      description: "Location affects logistics, crew, and travel.",
+      description:
+        "Location affects logistics, crew, and travel. You can select more than one.",
       type: "radio",
+      multiple: true,
       options: [
         { id: "loc-local", label: "My city / on our premises" },
         { id: "loc-pl-other", label: "Another city in Poland" },

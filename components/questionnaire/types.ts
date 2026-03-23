@@ -17,6 +17,8 @@ export type QuestionnaireSection =
       title: string
       description: string
       type: "radio"
+      /** When true, users can pick several options; payload lists all choices. */
+      multiple?: boolean
       options: QuestionnaireOption[]
     }
   | {
@@ -38,6 +40,7 @@ export type QuestionnaireSection =
       title: string
       description: string
       type: "mixed"
+      multiple?: boolean
       questions: QuestionnaireField[]
       options: QuestionnaireOption[]
     }
