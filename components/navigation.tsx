@@ -9,7 +9,7 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 const navLinkKeys = [
   { key: "home" as const, href: "/" },
   { key: "work" as const, href: "/work" },
-  { key: "about" as const, href: "/about" },
+  { key: "about" as const, href: "/about-alt" },
   { key: "contact" as const, href: "/contact" },
 ]
 
@@ -22,7 +22,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
   const [hasScrolled, setHasScrolled] = useState(false)
   const pathname = usePathname()
   const tNav = useTranslations("nav")
-  const showCta = pathname === "/work" || pathname === "/about"
+  const showCta = pathname === "/work" || pathname === "/about" || pathname === "/about-alt"
 
   useEffect(() => {
     if (!showCta) {

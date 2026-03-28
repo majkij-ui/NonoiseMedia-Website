@@ -539,12 +539,12 @@ function Philosophy() {
           className="font-mono text-xl text-foreground/25 tracking-tight md:text-3xl lg:text-4xl"
         />
 
-        <div className="mt-8 md:mt-12">
+        <div className="mt-6 md:mt-10">
           <WordRevealBlock
             text="Nasze mają za zadanie"
             className="font-mono text-2xl text-foreground/60 tracking-tight md:text-4xl lg:text-5xl"
           />
-          <div className="mt-2 md:mt-4">
+          <div className="mt-6 md:mt-10">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -570,7 +570,7 @@ function Philosophy() {
           </div>
         </div>
 
-        <div className="mt-12 max-w-lg md:mt-20">
+        <div className="mt-4 max-w-lg md:mt-6">
           <WordRevealBlock
             text="Każda klatka ma zadanie. Każde cięcie ma cel. Nie tworzymy kontentu — projektujemy reakcje emocjonalne."
             className="font-sans text-sm leading-relaxed text-foreground/30 md:text-base"
@@ -672,7 +672,7 @@ function TestimonialCards() {
         >
           <div
             className={`flex h-full w-full items-center overflow-y-auto px-6 py-16 md:overflow-visible md:px-12 md:py-0 ${
-              i % 2 === 0 ? "bg-background" : "bg-card"
+              i % 2 === 0 ? "bg-background" : "bg-neutral-950"
             }`}
           >
             <div className="relative mx-auto w-full max-w-[90rem]">
