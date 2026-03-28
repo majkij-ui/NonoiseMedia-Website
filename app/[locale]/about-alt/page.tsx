@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Quote, Check, Film, Clapperboard, Camera, ChevronDown, Target, Users, Fingerprint, MessageSquareQuote, Handshake, Award } from "lucide-react"
+import { Quote, Check, ChevronDown, Target, Users, Fingerprint, MessageSquareQuote, Handshake, Award } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Link } from "@/i18n/navigation"
 
@@ -32,7 +32,7 @@ const gridItemVariant = {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen px-6 pb-10 pt-28 md:px-12 md:pb-12 md:pt-32 lg:pt-36">
+    <section className="relative px-6 pb-16 pt-28 md:min-h-screen md:px-12 md:pb-12 md:pt-32 lg:pt-36">
       <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-6">
         {/* Left — typography */}
         <motion.div
@@ -84,7 +84,7 @@ function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-10">
+      <div className="pointer-events-none mt-10 flex justify-center md:absolute md:bottom-10 md:left-1/2 md:mt-0 md:-translate-x-1/2">
         <motion.div
           aria-label="Przewiń niżej"
           className="inline-flex flex-col items-center text-foreground/40"
@@ -426,7 +426,7 @@ function CursorScheduler() {
   return (
     <div className="flex h-full flex-col border border-foreground/10 bg-card p-6 md:p-8">
       <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-        03 / Strategiczna dystrybujca
+        03 / Strategiczna dystrybucja
       </p>
       <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
         Media nastawione na konwersję
@@ -556,13 +556,13 @@ function Philosophy() {
             >
               <motion.span
                 variants={wordFade}
-                className="mr-[0.3em] inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground/70 md:text-8xl lg:text-[10rem]"
+                className="mr-[0.3em] inline-block font-[family-name:var(--font-display)] text-4xl uppercase leading-[0.9] tracking-[0.02em] text-foreground/70 sm:text-5xl md:text-8xl lg:text-[10rem]"
               >
                 skłaniać
               </motion.span>
               <motion.span
                 variants={wordFade}
-                className="inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground md:text-8xl lg:text-[10rem]"
+                className="inline-block font-[family-name:var(--font-display)] text-4xl uppercase leading-[0.9] tracking-[0.02em] text-foreground sm:text-5xl md:text-8xl lg:text-[10rem]"
               >
                 do działania.
               </motion.span>
@@ -671,7 +671,7 @@ function TestimonialCards() {
           style={{ zIndex: i + 1 }}
         >
           <div
-            className={`flex h-full w-full items-center px-6 md:px-12 ${
+            className={`flex h-full w-full items-center overflow-y-auto px-6 py-16 md:overflow-visible md:px-12 md:py-0 ${
               i % 2 === 0 ? "bg-background" : "bg-card"
             }`}
           >

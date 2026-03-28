@@ -19,6 +19,11 @@
   - local reference clone `nonoise-new-ref/` is gitignored (nested project with its own `node_modules`; not part of this site).
 - **Alternate `/about` exploration:**
   - added locale route `app/[locale]/about-alt/` with dedicated layout metadata (title/description) and a full alternate about page (`page.tsx`) for layout/copy experiments without replacing the main `/about` yet.
+  - ongoing polish: mobile hero height and scroll-cue placement, responsive philosophy headline scale, testimonial stacking cards scroll on small viewports, copy fixes (e.g. “dystrybucja”), trimmed unused icon imports.
+- **`/contact` layout refresh (locale route):**
+  - full-viewport (`h-dvh`) shell with a compact top strip (eyebrow + inline email, phone, address link to Google Maps),
+  - two-column card grid: contact form (submit label “Wyślij wiadomość”) and a second card promoting the questionnaire with a sweep-style CTA to `/questionnaire`,
+  - large inline map image block removed from the page body in favor of the strip link (map asset no longer the focal right column).
 - **Global styles:**
   - added `@keyframes ekgDash` in `app/globals.css` for SVG stroke-dashoffset animation (e.g. EKG-style line treatments).
 - **i18n migration (PL/EN):**
