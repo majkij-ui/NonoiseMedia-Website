@@ -133,3 +133,9 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes ekgDash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

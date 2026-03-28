@@ -6,8 +6,10 @@ __v0_jsx-dev-runtime.ts
 # Common ignores
 node_modules/
 .next/
+.env
 .env*.local
 .DS_Store
+tsconfig.tsbuildinfo
 public/my-reel.mp4
 # Ignore massive media files
 *.mp4
@@ -16,3 +18,6 @@ public/my-reel.mp4
 *.psd
 *.png
 .vercel
+
+# Local reference / scratch clones (do not commit)
+nonoise-new-ref/

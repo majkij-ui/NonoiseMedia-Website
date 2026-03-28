@@ -14,6 +14,13 @@
   - `© 2026 NONOISE MEDIA`.
 
 ## Current Working Set (Unreleased in this file's timeline)
+- **Repo hygiene:**
+  - `.env` and `tsconfig.tsbuildinfo` are listed in `.gitignore` and removed from version control (files stay local only).
+  - local reference clone `nonoise-new-ref/` is gitignored (nested project with its own `node_modules`; not part of this site).
+- **Alternate `/about` exploration:**
+  - added locale route `app/[locale]/about-alt/` with dedicated layout metadata (title/description) and a full alternate about page (`page.tsx`) for layout/copy experiments without replacing the main `/about` yet.
+- **Global styles:**
+  - added `@keyframes ekgDash` in `app/globals.css` for SVG stroke-dashoffset animation (e.g. EKG-style line treatments).
 - **i18n migration (PL/EN):**
   - restructured app routes under `app/[locale]/` for locale-based routing,
   - added `next-intl` with `i18n/` config (routing, request, navigation),
