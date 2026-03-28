@@ -118,10 +118,10 @@ function Features() {
     <section className="px-6 py-24 md:px-12 md:py-40">
       <div className="mb-12 md:mb-20">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Co dostarczamy
+          Jak pracujemy
         </p>
         <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-6xl lg:text-7xl">
-          NASZA OFERTA
+        PRZEKUWAMY WIZJĘ W REALNE WYNIKI
         </h2>
       </div>
 
@@ -535,14 +535,14 @@ function Philosophy() {
 
       <div className="relative z-10 max-w-[70rem] mx-auto">
         <WordRevealBlock
-          text="Większość mediów skupia się na: ładnym wyglądzie."
-          className="font-sans text-xl text-foreground/30 tracking-tight md:text-3xl lg:text-4xl"
+          text="Większość produkcji ma po prostu dobrze wyglądać."
+          className="font-mono text-xl text-foreground/30 tracking-tight md:text-3xl lg:text-4xl"
         />
 
         <div className="mt-8 md:mt-12">
           <WordRevealBlock
-            text="My skupiamy się na:"
-            className="font-sans text-2xl text-foreground tracking-tight md:text-4xl lg:text-5xl"
+            text="Nasze mają za zadanie"
+            className="font-mono text-2xl text-foreground tracking-tight md:text-4xl lg:text-5xl"
           />
           <div className="mt-2 md:mt-4">
             <motion.div
@@ -558,13 +558,13 @@ function Philosophy() {
                 variants={wordFade}
                 className="mr-[0.3em] inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground md:text-8xl lg:text-[10rem]"
               >
-                PORUSZANIU
+                skłaniać
               </motion.span>
               <motion.span
                 variants={wordFade}
                 className="inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground/50 md:text-8xl lg:text-[10rem]"
               >
-                LUDZI.
+                do działania.
               </motion.span>
             </motion.div>
           </div>
