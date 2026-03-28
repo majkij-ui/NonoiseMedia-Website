@@ -536,13 +536,13 @@ function Philosophy() {
       <div className="relative z-10 max-w-[70rem] mx-auto">
         <WordRevealBlock
           text="Większość produkcji ma po prostu dobrze wyglądać."
-          className="font-mono text-xl text-foreground/30 tracking-tight md:text-3xl lg:text-4xl"
+          className="font-mono text-xl text-foreground/25 tracking-tight md:text-3xl lg:text-4xl"
         />
 
         <div className="mt-8 md:mt-12">
           <WordRevealBlock
             text="Nasze mają za zadanie"
-            className="font-mono text-2xl text-foreground tracking-tight md:text-4xl lg:text-5xl"
+            className="font-mono text-2xl text-foreground/60 tracking-tight md:text-4xl lg:text-5xl"
           />
           <div className="mt-2 md:mt-4">
             <motion.div
@@ -556,13 +556,13 @@ function Philosophy() {
             >
               <motion.span
                 variants={wordFade}
-                className="mr-[0.3em] inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground md:text-8xl lg:text-[10rem]"
+                className="mr-[0.3em] inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground/70 md:text-8xl lg:text-[10rem]"
               >
                 skłaniać
               </motion.span>
               <motion.span
                 variants={wordFade}
-                className="inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground/50 md:text-8xl lg:text-[10rem]"
+                className="inline-block font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-[0.02em] text-foreground md:text-8xl lg:text-[10rem]"
               >
                 do działania.
               </motion.span>
@@ -657,7 +657,7 @@ function TestimonialCards() {
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Referencje
         </p>
-        <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-6xl lg:text-7xl">
+        <h2 className="font-[family-name:var(--font-display)] text-7xl uppercase leading-none tracking-[0.02em] text-foreground md:text-8xl lg:text-9xl">
           ZAUFALI
           <br />
           NAM
@@ -730,6 +730,7 @@ const TIERS = [
       "Dostawa we wszystkich formatach",
     ],
     cta: "Rozpocznij projekt",
+    href: "/questionnaire",
     highlighted: false,
   },
   {
@@ -745,6 +746,7 @@ const TIERS = [
       "Dashboard analityczny",
     ],
     cta: "Umów rozmowę",
+    href: "/contact",
     highlighted: true,
   },
   {
@@ -759,6 +761,7 @@ const TIERS = [
       "Dedykowany opiekun klienta",
     ],
     cta: "Skontaktuj się",
+    href: "/contact",
     highlighted: false,
   },
 ]
@@ -836,7 +839,7 @@ function Pricing() {
             </ul>
 
             <Link
-              href="/contact"
+              href={tier.href}
               className={`block w-full border py-4 text-center font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.1em] transition-colors duration-300 ${
                 tier.highlighted
                   ? "border-background/30 text-background hover:bg-background/10"
