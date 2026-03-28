@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Quote, Check, Film, Clapperboard, Camera } from "lucide-react"
+import { Quote, Check, Film, Clapperboard, Camera, ChevronDown, Target, Users, Fingerprint } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Link } from "@/i18n/navigation"
 
@@ -12,92 +12,100 @@ const cinematicEase = [0.25, 0.1, 0.25, 1] as const
 // Hero
 // ---------------------------------------------------------------------------
 
-function Hero() {
-  return (
-    <section className="flex min-h-[88vh] items-end px-6 pb-24 pt-32 md:px-12">
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: cinematicEase }}
-        className="max-w-6xl"
-      >
-        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:mb-6">
-          Produkcja Wideo Premium
-        </p>
+const gridImages = Array.from(
+  { length: 30 },
+  (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.png`
+)
 
-        <h1 className="font-[family-name:var(--font-display)] text-6xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-7xl md:text-8xl lg:text-9xl">
-          WYBIJ SIĘ
-          <br />
-          PONAD SZUM
-        </h1>
-
-        <p className="mt-8 max-w-2xl text-pretty font-sans text-base leading-relaxed text-foreground/80 md:text-lg">
-          Odrzucamy to, co zbędne, by skupić się na czystym, wizualnym storytellingu. Łączymy najnowsze technologie, sprzęt klasy kinowej i 5 lat doświadczenia na planie. Dzięki optymalizacji procesów dostarczamy jakość zarezerwowaną dotąd dla dużych domów produkcyjnych, zachowując zwinność i elastyczność. Tworzymy bez agencyjnego narzutu, ale z bezkompromisowym naciskiem na detal.
-        </p>
-
-        <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-          <SweepButton href="/contact" text="WYCEŃ PROJEKT" />
-          <SweepButton href="/work" text="PORTFOLIO" variant="outline" />
-        </div>
-      </motion.div>
-    </section>
-  )
+const gridItemVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: Math.floor(i / 6) * 0.2,
+      duration: 0.8,
+      ease: cinematicEase,
+    },
+  }),
 }
 
-function SweepButton({
-  text,
-  href,
-  variant = "filled",
-}: {
-  text: string
-  href: string
-  variant?: "filled" | "outline"
-}) {
-  const letters = text.split("")
-  const isFilled = variant === "filled"
-
+function Hero() {
   return (
-    <motion.div whileHover="hover" initial="initial">
-      <Link
-        href={href}
-        className={`group relative isolate block overflow-hidden px-2 py-1.5 font-[family-name:var(--font-display)] text-[1.8rem] uppercase leading-none tracking-[0.02em] md:text-[2.2rem] ${
-          !isFilled ? "border border-foreground/20" : ""
-        }`}
-      >
+    <section className="relative min-h-screen px-6 pb-10 pt-28 md:px-12 md:pb-12 md:pt-32 lg:pt-36">
+      <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-6">
+        {/* Left — typography */}
         <motion.div
-          className="pointer-events-none absolute inset-0 z-0 bg-white"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          style={{ originX: 0 }}
-          transition={{ delay: 0.8, duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-        />
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: cinematicEase }}
+          className="flex flex-col md:col-span-6 md:min-h-[calc(100svh-11rem)] lg:col-span-7"
+        >
+          <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:mb-6">
+            Produkcja Filmowa i Wideo
+          </p>
+
+          <h1 className="font-[family-name:var(--font-display)] text-6xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-7xl md:text-8xl lg:text-9xl">
+            WYBIJ SIĘ
+            <br />
+            PONAD SZUM
+          </h1>
+
+          <p className="mt-6 max-w-2xl text-pretty font-sans text-sm leading-relaxed text-foreground/70 md:mt-7 md:text-base">
+            Odrzucamy to, co zbędne, by skupić się na czystym, wizualnym storytellingu. Dzięki optymalizacji procesów dostarczamy jakość zarezerwowaną dotąd dla dużych domów produkcyjnych, zachowując zwinność i elastyczność. Tworzymy z myślą o Twoich celach marketingowych.
+          </p>
+
+        </motion.div>
+
+        {/* Right — photo grid */}
         <motion.div
-          className="absolute inset-0 z-10 bg-black"
-          variants={{
-            initial: { x: "-100%" },
-            hover: { x: 0 },
-          }}
-          transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-        />
-        <span className="relative z-20 flex whitespace-nowrap text-white mix-blend-difference">
-          {letters.map((char, index) => (
-            <motion.span
-              key={index}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: [0, 1, 0, 1] }}
-              transition={{
-                delay: 0.4 + index * 0.04,
-                duration: 0.15,
-                times: [0, 0.4, 0.6, 1],
-              }}
-              className="whitespace-pre"
-            >
-              {char}
-            </motion.span>
-          ))}
-        </span>
-      </Link>
-    </motion.div>
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-10%" }}
+          className="md:col-span-6 lg:col-span-5"
+        >
+          <div className="grid grid-cols-6 gap-2 md:gap-2.5">
+            {gridImages.map((src, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                variants={gridItemVariant}
+                className="aspect-square overflow-hidden"
+              >
+                <img
+                  src={src}
+                  alt=""
+                  className="h-full w-full object-cover grayscale opacity-70 transition-all duration-[2000ms] ease-out hover:grayscale-0 hover:opacity-100 hover:duration-[50ms]"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Scroll cue */}
+      <div className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2 md:bottom-10">
+        <motion.div
+          aria-label="Przewiń niżej"
+          className="inline-flex flex-col items-center text-foreground/40"
+        >
+          <motion.span
+            animate={{ opacity: [0.75, 0.25, 0.75] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="leading-none"
+          >
+            <ChevronDown size={18} strokeWidth={1.8} />
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0.25, 0.8, 0.25] }}
+            transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+            className="-mt-2 leading-none"
+          >
+            <ChevronDown size={18} strokeWidth={1.8} />
+          </motion.span>
+        </motion.div>
+      </div>
+    </section>
   )
 }
 
@@ -113,9 +121,7 @@ function Features() {
           Co dostarczamy
         </p>
         <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-6xl lg:text-7xl">
-          TRZY FILARY
-          <br />
-          PRECYZYJNYCH MEDIÓW
+          NASZA OFERTA
         </h2>
       </div>
 
@@ -157,9 +163,21 @@ const cardReveal = {
 
 // — Card 1: Shuffling stack
 const CARDS_DATA = [
-  { label: "Filmy wizerunkowe", icon: Film, active: true },
-  { label: "Spoty reklamowe", icon: Clapperboard, active: false },
-  { label: "Styl dokumentalny", icon: Camera, active: false },
+  { 
+    label: "Analiza marki", 
+    icon: Fingerprint, 
+    status: "w trakcie" // Replaces active: true
+  }, 
+  { 
+    label: "Grupa docelowa", 
+    icon: Users, 
+    status: "oczekujące" // Replaces active: false
+  },     
+  { 
+    label: "Cele biznesowe", 
+    icon: Target, 
+    status: "oczekujące" // Replaces active: false
+  },    
 ]
 
 function DiagnosticShuffler() {
@@ -181,14 +199,13 @@ function DiagnosticShuffler() {
   return (
     <div className="flex h-full flex-col border border-foreground/10 bg-card p-6 md:p-8">
       <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-        01 / Tożsamość wizualna
+        01 / zrozumienie klienta
       </p>
       <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
-        Kinowy Storytelling
+      Odkrywamy Twoje potrzeby
       </h3>
       <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/50">
-        Wysokobudżetowa, angażująca emocjonalnie produkcja wideo, która podnosi
-        tożsamość Twojej marki i przyciąga uwagę odbiorców.
+      Analizujemy Twoją markę, grupę docelową i cele, zanim zaplanujemy choćby jedną klatkę. Strategia zawsze na pierwszym miejscu.
       </p>
 
       <div className="relative min-h-[160px] flex-1">
@@ -219,7 +236,7 @@ function DiagnosticShuffler() {
                   {card.label}
                 </span>
                 <span className="mt-0.5 block font-mono text-[10px] text-muted-foreground">
-                  Aktywne
+                  {card.status}
                 </span>
               </div>
               <div className="ml-auto h-2 w-2 bg-foreground" />
@@ -233,14 +250,14 @@ function DiagnosticShuffler() {
 
 // — Card 2: Terminal typewriter
 const PIPELINE_MESSAGES = [
-  "Brief kreatywny ────────────── zatwierdzony",
-  "Rozwój koncepcji ─────────── w toku",
-  "Storyboard v2 ──────────────  zamknięty",
-  "Reżyseria sceny 04 ────────── nagrywanie",
-  "Projekt dźwięku ─────────────  miks",
-  "Kolorystyka finalna ────────── renderowanie",
-  "Materiały spakowane ────────── gotowe",
-  "Assety kampanii ────────────── live",
+  "Brief kreatywny ──── zatwierdzony",
+  "Rozwój koncepcji ─────── w toku",
+  "Storyboard v2 ──────── zamknięty",
+  "Reżyseria sceny 01 ──── nagrywanie",
+  "Montaż ───────────── gotowy",
+  "Projekt dźwięku ──────── miks",
+  "Master koloru ───── renderowanie",
+  "Assety kampanii ──────── ONLINE",
 ]
 
 function TelemetryTypewriter() {
@@ -280,20 +297,20 @@ function TelemetryTypewriter() {
   return (
     <div className="flex h-full flex-col border border-foreground/10 bg-card p-6 md:p-8">
       <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-        02 / Pipeline produkcyjny
+        02 / Produkcja od A do Z
       </p>
       <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
-        Produkcja od A do Z
+      Kompletny pipeline produkcyjny
       </h3>
       <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/50">
         Bezproblemowa realizacja od koncepcji kreatywnej, przez profesjonalną
-        postprodukcję, aż po finalne dostarczenie materiałów.
+        produkcję, aż po finalne dostarczenie materiałów.
       </p>
 
       <div className="mb-3 flex items-center gap-2">
         <span className="h-2 w-2 animate-pulse bg-foreground" />
         <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-foreground/70">
-          Na żywo
+          Twój projekt
         </span>
       </div>
 
@@ -409,7 +426,7 @@ function CursorScheduler() {
   return (
     <div className="flex h-full flex-col border border-foreground/10 bg-card p-6 md:p-8">
       <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-        03 / Silnik dystrybucji
+        03 / Strategiczna dystrybujca
       </p>
       <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
         Media nastawione na konwersję
