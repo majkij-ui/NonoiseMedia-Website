@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { Quote, Check, Film, Clapperboard, Camera, ChevronDown, Target, Users, Fingerprint } from "lucide-react"
+import { Quote, Check, Film, Clapperboard, Camera, ChevronDown, Target, Users, Fingerprint, MessageSquareQuote, Handshake, Award } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Link } from "@/i18n/navigation"
 
@@ -623,137 +623,50 @@ function WordRevealBlock({
 }
 
 // ---------------------------------------------------------------------------
-// Protocol — "Nasz proces" (stacking cards)
+// Testimonials — Stacking cards
 // ---------------------------------------------------------------------------
 
-function ConcentricCircles() {
-  return (
-    <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-15 md:right-12">
-      <svg
-        width="200"
-        height="200"
-        viewBox="0 0 200 200"
-        className="md:h-[300px] md:w-[300px]"
-        style={{ animation: "spin 30s linear infinite" }}
-      >
-        {[30, 50, 70, 90].map((r) => (
-          <circle
-            key={r}
-            cx="100"
-            cy="100"
-            r={r}
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            className="text-foreground/30"
-          />
-        ))}
-        <circle cx="100" cy="100" r="4" fill="currentColor" className="text-foreground/30" />
-        <line x1="100" y1="10" x2="100" y2="190" stroke="currentColor" strokeWidth="0.3" className="text-foreground/20" />
-        <line x1="10" y1="100" x2="190" y2="100" stroke="currentColor" strokeWidth="0.3" className="text-foreground/20" />
-      </svg>
-    </div>
-  )
-}
-
-function LaserGrid() {
-  const dots = []
-  for (let r = 0; r < 6; r++) {
-    for (let c = 0; c < 12; c++) {
-      dots.push(
-        <circle
-          key={`${r}-${c}`}
-          cx={20 + c * 22}
-          cy={20 + r * 22}
-          r="2"
-          fill="currentColor"
-          className="text-foreground/15"
-        />
-      )
-    }
-  }
-
-  return (
-    <div className="absolute right-6 top-1/2 -translate-y-1/2 overflow-hidden opacity-30 md:right-12">
-      <svg
-        width="280"
-        height="160"
-        viewBox="0 0 280 160"
-        className="md:h-[180px] md:w-[340px]"
-      >
-        {dots}
-      </svg>
-    </div>
-  )
-}
-
-function EKGWaveform() {
-  const path =
-    "M0,50 L30,50 L35,50 L40,20 L45,80 L50,10 L55,60 L60,50 L90,50 L95,50 L100,20 L105,80 L110,10 L115,60 L120,50 L150,50 L155,50 L160,20 L165,80 L170,10 L175,60 L180,50 L210,50 L240,50"
-
-  return (
-    <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-20 md:right-12">
-      <svg
-        width="240"
-        height="80"
-        viewBox="0 0 240 80"
-        className="md:h-[100px] md:w-[340px]"
-      >
-        <path
-          d={path}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-foreground/40"
-          strokeDasharray="600"
-          strokeDashoffset="600"
-          style={{ animation: "ekgDash 2.5s ease-in-out infinite" }}
-        />
-      </svg>
-    </div>
-  )
-}
-
-const STEPS = [
+const TESTIMONIAL_SLIDES = [
   {
-    num: "01",
-    title: "ODKRYWAMY",
-    desc: "Analizujemy Twoją markę, grupę docelową i cele, zanim zaplanujemy choćby jedną klatkę. Strategia zawsze na pierwszym miejscu.",
-    Visual: ConcentricCircles,
+    num: "01 / DE GROUP",
+    text: "Firma Nonoise Media idealnie odnajduje się w pracy z kadrą zarządzającą C-level, zapewniając obsługę naszych wydarzeń z pełną dyskrecją i wyjątkową estetyką. Pan Michał wykazuje się głębokim zrozumieniem naszych celów biznesowych oraz ogromną proaktywnością w działaniu. To elastyczny i rzetelny partner, z którym z powodzeniem współpracujemy długoterminowo.",
+    author: "Martyna Mayer",
+    role: "Senior Project Manager",
+    Icon: MessageSquareQuote,
   },
   {
-    num: "02",
-    title: "PRODUKUJEMY",
-    desc: "Od scenariusza po ekran — reżyserujemy, nagrywamy i zarządzamy bez tarcia. Twoja wizja, nasza realizacja.",
-    Visual: LaserGrid,
+    num: "02 / BIG AIR KITE CENTER",
+    text: "Nonoise Media completely excels at capturing dynamic sports action in highly demanding outdoor conditions. Their technical excellence, creativity, and high professionalism significantly supported our marketing activities and social media campaigns. They are a truly reliable and highly creative business partner.",
+    author: "Micheal MacDonald",
+    role: "Foundernter",
+    Icon: Handshake,
   },
   {
-    num: "03",
-    title: "DOSTARCZAMY",
-    desc: "Gotowe materiały zoptymalizowane pod każdą platformę, format i punkt konwersji. Gotowe do działania.",
-    Visual: EKGWaveform,
+    num: "03 / 7 ANNA GROUP",
+    text: "Jako bezpośredni koordynator naszych projektów wideo, mogę z pełnym przekonaniem polecić zespół Nonoise Media. Doskonale poradzili sobie z produkcją dynamicznych spotów reklamowych naszych rowerów, idealnie trafiając w nasze potrzeby. To profesjonaliści, którzy realizują zlecenia należycie, w terminie i w pełnej zgodności z wymaganiami marki.",
+    author: "Marcin Jurasz",
+    role: "Marketing Manager",
+    Icon: Award,
   },
 ]
 
-function Protocol() {
+function TestimonialCards() {
   return (
     <section className="relative">
       <div className="px-6 py-16 md:px-12 md:py-24">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Nasz proces
+          Referencje
         </p>
         <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-6xl lg:text-7xl">
-          ZBUDOWANY
+          ZAUFALI
           <br />
-          NA PROTOKOLE
+          NAM
         </h2>
       </div>
 
-      {STEPS.map((step, i) => (
+      {TESTIMONIAL_SLIDES.map((slide, i) => (
         <div
-          key={step.num}
+          key={slide.num}
           className="sticky top-0 flex h-[100dvh] w-full items-center"
           style={{ zIndex: i + 1 }}
         >
@@ -763,18 +676,32 @@ function Protocol() {
             }`}
           >
             <div className="relative mx-auto w-full max-w-[90rem]">
-              <div className="max-w-xl">
-                <span className="mb-4 block font-mono text-sm tracking-[0.1em] text-foreground/50 md:text-base">
-                  {step.num}
+              <div className="max-w-2xl">
+                <span className="mb-6 block font-mono text-sm tracking-[0.1em] text-foreground/50 md:text-base">
+                  {slide.num}
                 </span>
-                <h3 className="mb-6 font-[family-name:var(--font-display)] text-5xl uppercase tracking-[0.02em] text-foreground md:text-7xl lg:text-8xl">
-                  {step.title}
-                </h3>
-                <p className="max-w-md font-sans text-base leading-relaxed text-foreground/40 md:text-lg">
-                  {step.desc}
+                <Quote
+                  className="mb-6 h-8 w-8 text-foreground/20"
+                  strokeWidth={1}
+                />
+                <p className="mb-8 font-sans text-xl leading-relaxed text-foreground/80 md:text-2xl lg:text-3xl">
+                  {slide.text}
+                </p>
+                <p className="font-[family-name:var(--font-display)] text-xl uppercase tracking-[0.02em] text-foreground md:text-2xl">
+                  {slide.author}
+                </p>
+                <p className="mt-1 font-mono text-xs tracking-[0.1em] text-foreground/40">
+                  {slide.role}
                 </p>
               </div>
-              <step.Visual />
+
+              <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 md:right-12 md:block">
+                <slide.Icon
+                  size={160}
+                  strokeWidth={0.5}
+                  className="text-foreground/[0.06]"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -789,11 +716,11 @@ function Protocol() {
 
 const TIERS = [
   {
-    name: "ESSENTIAL",
-    tagline: "Pojedynczy projekt",
-    price: "Od 10 000 PLN",
+    name: "Pojedyncze zlecenie",
+    tagline: "PROJEKT",
+    price: "Od 3 000 PLN",
     features: [
-      "Jeden kinowy materiał wideo",
+      "Materiały wideo szyte na miarę",
       "Kierownictwo kreatywne i koncepcja",
       "Profesjonalna ekipa i sprzęt",
       "Postprodukcja i korekcja kolorów",
@@ -804,32 +731,29 @@ const TIERS = [
     highlighted: false,
   },
   {
-    name: "PERFORMANCE",
-    tagline: "Abonament miesięczny",
-    price: "Od 25 000 PLN/mies.",
+    name: "Abonament miesięczny",
+    tagline: "RETAINER",
+    price: "Od 5 000 PLN/mies.",
     features: [
-      "4 dni produkcyjne miesięcznie",
+      "Pakiet dni produkcyjnych/miesiąc",
       "Dedykowany dyrektor kreatywny",
-      "Pełen pakiet postprodukcji",
+      "Kompleksowa postprodukcja",
       "Materiały social media i optymalizacja",
       "Priorytetowe terminy",
       "Dashboard analityczny",
-      "Nieograniczone poprawki",
     ],
     cta: "Umów rozmowę",
     highlighted: true,
   },
   {
-    name: "ENTERPRISE",
-    tagline: "Partnerstwo na miarę",
+    name: "Partnerstwo na miarę",
+    tagline: "SKALA",
     price: "Wycena indywidualna",
     features: [
       "Nieograniczony zakres produkcji",
       "Integracja z Twoim zespołem",
       "Strategia kampanii wielokanałowej",
-      "Dashboard projektu w czasie rzeczywistym",
       "Wsparcie priorytetowe 24/7",
-      "Kwartalne przeglądy strategiczne",
       "Dedykowany opiekun klienta",
     ],
     cta: "Skontaktuj się",
@@ -842,7 +766,7 @@ function Pricing() {
     <section className="px-6 py-24 md:px-12 md:py-40">
       <div className="mb-12 text-center md:mb-20">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          Inwestycja
+          Zainwestuj w swoją markę
         </p>
         <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-6xl lg:text-7xl">
           WYBIERZ FORMĘ
@@ -926,82 +850,6 @@ function Pricing() {
   )
 }
 
-// ---------------------------------------------------------------------------
-// Testimonials
-// ---------------------------------------------------------------------------
-
-const TESTIMONIALS = [
-  {
-    text: "Doskonale odnajdują się w specyfice pracy z klientem korporacyjnym, łącząc wysoką estetykę nagrań z dyskrecją i szybkim czasem realizacji. Pełne zrozumienie biznesowych potrzeb klienta.",
-    author: "Martyna Mayer, Senior Project Manager, DE Group",
-  },
-  {
-    text: "Nasza branża wymagała pracy w trudnych warunkach plenerowych i uchwycenia dynamicznej akcji. Nonoise Media wykazało się najwyższym profesjonalizmem, kreatywnością i perfekcją techniczną.",
-    author: "Micheal MacDonald, Właściciel, Big Air Kite Center",
-  },
-  {
-    text: "Zrealizowali dla nas szereg spotów reklamowych oraz produkcji wizerunkowych. Wszystkie projekty zostały wykonane z najwyższą starannością, terminowo i wysoce profesjonalnie.",
-    author: "Marcin Jurasz, Marketing Manager, 7 Anna Group",
-  },
-]
-
-function Testimonials() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.14, delayChildren: 0.08 },
-    },
-  }
-  const itemVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.75, ease: cinematicEase },
-    },
-  }
-
-  return (
-    <section className="px-6 pb-32 pt-4 md:px-12 md:pb-32 md:pt-6">
-      <div className="grid grid-cols-1 gap-y-16 md:grid-cols-12 md:gap-x-6">
-        <div className="col-span-12 md:col-span-3">
-          <p className="font-[family-name:var(--font-display)] text-3xl uppercase leading-none tracking-[0.03em] text-foreground md:text-5xl">
-            REFERENCJE
-          </p>
-        </div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-15%" }}
-          variants={containerVariants}
-          className="col-span-12 grid grid-cols-1 gap-12 md:col-span-9 md:grid-cols-3"
-        >
-          {TESTIMONIALS.map((testimonial) => (
-            <motion.blockquote
-              key={testimonial.author}
-              variants={itemVariants}
-              className="border-t border-white/20 pt-6"
-            >
-              <Quote
-                className="mb-4 h-4 w-4 text-foreground/40"
-                strokeWidth={1.5}
-              />
-              <p className="text-pretty font-sans text-base leading-relaxed text-foreground/90">
-                {testimonial.text}
-                <span aria-hidden="true">&rdquo;</span>
-              </p>
-              <p className="mt-6 text-sm text-foreground/60">
-                {testimonial.author}
-              </p>
-            </motion.blockquote>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  )
-}
 
 // ---------------------------------------------------------------------------
 // Page Assembly
@@ -1014,8 +862,7 @@ export default function AboutAltPage() {
       <Hero />
       <Features />
       <Philosophy />
-      <Protocol />
-      <Testimonials />
+      <TestimonialCards />
       <Pricing />
 
       <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
