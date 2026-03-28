@@ -638,7 +638,7 @@ const TESTIMONIAL_SLIDES = [
     num: "02 / BIG AIR KITE CENTER",
     text: "Nonoise Media completely excels at capturing dynamic sports action in highly demanding outdoor conditions. Their technical excellence, creativity, and high professionalism significantly supported our marketing activities and social media campaigns. They are a truly reliable and highly creative business partner.",
     author: "Micheal MacDonald",
-    role: "Foundernter",
+    role: "Founder",
     Icon: Handshake,
   },
   {
@@ -677,29 +677,31 @@ function TestimonialCards() {
           >
             <div className="relative mx-auto w-full max-w-[90rem]">
               <div className="max-w-2xl">
-                <span className="mb-6 block font-mono text-sm tracking-[0.1em] text-foreground/50 md:text-base">
+                <span className="mb-8 block font-mono text-sm tracking-[0.1em] text-foreground/50 md:text-base">
                   {slide.num}
                 </span>
                 <Quote
-                  className="mb-6 h-8 w-8 text-foreground/20"
-                  strokeWidth={1}
+                  className="mb-4 h-5 w-5 text-foreground/15"
+                  strokeWidth={1.2}
                 />
-                <p className="mb-8 font-sans text-xl leading-relaxed text-foreground/80 md:text-2xl lg:text-3xl">
+                <p className="mb-10 font-sans text-base leading-[1.7] tracking-tight text-foreground/70 md:text-lg md:leading-[1.75]">
                   {slide.text}
                 </p>
-                <p className="font-[family-name:var(--font-display)] text-xl uppercase tracking-[0.02em] text-foreground md:text-2xl">
-                  {slide.author}
-                </p>
-                <p className="mt-1 font-mono text-xs tracking-[0.1em] text-foreground/40">
-                  {slide.role}
-                </p>
+                <div className="border-t border-foreground/10 pt-4">
+                  <p className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
+                    {slide.author}
+                  </p>
+                  <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/35">
+                    {slide.role}
+                  </p>
+                </div>
               </div>
 
               <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 md:right-12 md:block">
                 <slide.Icon
                   size={160}
                   strokeWidth={0.5}
-                  className="text-foreground/[0.06]"
+                  className="text-foreground/[0.1]"
                 />
               </div>
             </div>
