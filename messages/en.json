@@ -2,6 +2,7 @@
   "nav": {
     "home": "Home",
     "work": "Work",
+    "offer": "Offer",
     "about": "About",
     "contact": "Contact"
   },
@@ -12,6 +13,49 @@
   },
   "home": {
     "hero": "Nonoise Media is an independent video production studio creating modern visual content."
+  },
+  "offer": {
+    "label": "01 / WHAT WE DO",
+    "headline": "OUR SERVICES",
+    "subheader": "End-to-end video production that scales your business. From strategy through production to final edit — we deliver visual storytelling built for conversion and real sales results.",
+    "services": {
+      "instagramReels": {
+        "title": "Instagram Reels",
+        "body": "Short, dynamic content that captures attention on social media. We create engaging material that positions you as an industry expert and drives interaction. From concept through filming to final edit — with top-tier quality you won't find elsewhere."
+      },
+      "linkedinVideo": {
+        "title": "LinkedIn Video",
+        "body": "Professional video content that builds your position in the B2B world. Stand out with substantive content and showcase your expertise in an attractive format. We'll help you create a consistent content calendar."
+      },
+      "productVideos": {
+        "title": "Product & Service Videos",
+        "body": "We present your solutions in a clear and engaging way. We showcase the real benefits and value of your product or service in a format that resonates with your audience. Focus on your product — we'll tell its story through visuals."
+      },
+      "caseStudies": {
+        "title": "Video Case Studies",
+        "body": "We transform your client success stories into compelling video material. Build trust by showcasing the real results of working with your company. A powerful tool for strengthening the middle of your sales funnel."
+      },
+      "webinars": {
+        "title": "Webinars & Online Training",
+        "body": "Comprehensive production of professional webinars and training sessions. We ensure top image and sound quality so your message is not only substantive but also professionally delivered."
+      },
+      "expertInterviews": {
+        "title": "Expert Interviews",
+        "body": "Professional recordings of interviews and industry commentary. Build your expert position through valuable conversations with people from your industry. Leverage the power of cross-marketing."
+      },
+      "vlogs": {
+        "title": "Vlogs",
+        "body": "Create regular video content that builds your online presence. We produce a cohesive content series that builds trust in your brand and positions you as a leader in your field."
+      },
+      "eventReportage": {
+        "title": "Event Coverage",
+        "body": "Professional video production for conferences, industry events, and corporate gatherings. Multi-camera coverage, dynamic editing, and full post-production — we deliver polished material that extends the life of your event online."
+      },
+      "personalizedVideo": {
+        "title": "Personalized Video",
+        "body": "Custom video materials for client communication — from corporate events to ad campaigns. Perfect for sales funnels and marketing automation."
+      }
+    }
   },
   "reel": {
     "close": "CLOSE",

@@ -9,6 +9,7 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 const navLinkKeys = [
   { key: "home" as const, href: "/" },
   { key: "work" as const, href: "/work" },
+  { key: "offer" as const, href: "/offer" },
   { key: "about" as const, href: "/about" },
   { key: "contact" as const, href: "/contact" },
 ]
@@ -22,7 +23,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
   const [hasScrolled, setHasScrolled] = useState(false)
   const pathname = usePathname()
   const tNav = useTranslations("nav")
-  const showCta = pathname === "/work" || pathname === "/about"
+  const showCta = pathname === "/work" || pathname === "/offer" || pathname === "/about"
 
   useEffect(() => {
     if (!showCta) {
@@ -131,8 +132,10 @@ export function Navigation({ fixed = false }: NavigationProps) {
       </AnimatePresence>
 
       {showCta && hasScrolled && (
-        <div className="fixed bottom-8 left-1/2 z-50 w-max -translate-x-1/2 md:hidden">
-          <HeaderCtaButton />
+        <div className="pointer-events-none fixed inset-x-0 bottom-8 z-50 flex justify-center px-3 md:hidden">
+          <div className="pointer-events-auto w-max shrink-0">
+            <HeaderCtaButton />
+          </div>
         </div>
       )}
     </>

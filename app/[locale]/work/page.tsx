@@ -213,10 +213,13 @@ export default function WorkPage() {
 
   return (
     <LayoutGroup>
-      <main className="relative min-h-screen w-full bg-background">
-        <motion.div
-          animate={{ opacity: isVideoOpen ? 0.08 : 1 }}
-          transition={{ duration: 0.35, ease: cinematicEase }}
+      <main className="relative min-h-screen w-full overflow-x-clip bg-background">
+        {/* Plain div (not motion): opacity-only — Framer's motion.div adds transform and breaks
+            position:fixed centering for Navigation's mobile CTA. CSS opacity does not. */}
+        <div
+          className={`transition-opacity duration-[350ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${
+            isVideoOpen ? "opacity-[0.08]" : "opacity-100"
+          }`}
         >
           <Navigation fixed />
 
@@ -451,7 +454,7 @@ export default function WorkPage() {
           <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
             <span>© 2026 NONOISE MEDIA</span>
           </footer>
-        </motion.div>
+        </div>
 
         <AnimatePresence
           onExitComplete={() => {
