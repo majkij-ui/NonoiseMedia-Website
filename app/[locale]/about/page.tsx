@@ -41,7 +41,7 @@ function Hero() {
           className="flex flex-col md:col-span-6 md:min-h-[calc(100svh-11rem)] lg:col-span-7"
         >
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:mb-6">
-            Produkcja Filmowa i Wideo
+            Produkcja Filmowa i Wideo Dla Biznesu
           </p>
 
           <h1 className="font-[family-name:var(--font-display)] text-6xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-7xl md:text-8xl lg:text-9xl">

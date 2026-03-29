@@ -147,6 +147,7 @@ const trustedBy = [
   { id: 8, name: "Core", src: "https://assets.nonoise.media/logos/core.png" },
   { id: 9, name: "GKA", src: "https://assets.nonoise.media/logos/gka.png" },
   { id: 10, name: "Naish", src: "https://assets.nonoise.media/logos/naish.png" },
+  { id: 11, name: "OmniOffice", src: "https://assets.nonoise.media/logos/omnioffice-logo-1.png" },
 ]
 
 export default function WorkPage() {
@@ -230,6 +231,9 @@ export default function WorkPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: cinematicEase }}
             >
+              <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:mb-6">
+                Zobacz nasze realizacje
+              </p>
               <h1 className="font-[family-name:var(--font-display)] text-6xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-7xl md:text-8xl lg:text-9xl">
                 WYBRANE
                 <br />
@@ -248,7 +252,7 @@ export default function WorkPage() {
             >
               <motion.p
                 variants={staggerItem}
-                className="mb-8 text-xs tracking-[0.3em] text-muted-foreground"
+                className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
               >
                 ZAUFALI NAM
               </motion.p>
@@ -278,6 +282,8 @@ export default function WorkPage() {
                             ? "h-4 max-w-[70px] md:h-5 md:max-w-[90px]"
                           : company.name === "Naish"
                             ? "h-4 max-w-[70px] md:h-5 md:max-w-[90px]"
+                          : company.name === "OmniOffice"
+                            ? "h-[39px] max-w-[224px] md:h-[50px] md:max-w-[280px]"
                             : "h-8 max-w-[140px] md:h-10 md:max-w-[180px]"
                       }`}
                     />
@@ -412,7 +418,7 @@ export default function WorkPage() {
                       }`}
                     >
                       {/* Client Tag */}
-                      <p className="mb-4 text-xs tracking-[0.3em] text-muted-foreground">
+                      <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                         {`Klient: ${project.client}`}
                       </p>
 
@@ -420,13 +426,13 @@ export default function WorkPage() {
                       <h2 className="mb-3 font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-5xl lg:text-6xl">
                         {project.title}
                       </h2>
-                      <p className="mb-8 text-sm uppercase tracking-[0.2em] text-foreground/60 md:text-base">
+                      <p className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-foreground/60 md:text-sm">
                         {project.subtitle}
                       </p>
 
                       {/* Challenge */}
                       <div className="mb-6">
-                        <p className="mb-2 text-xs tracking-[0.2em] text-muted-foreground">
+                        <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                           WYZWANIE:
                         </p>
                         <p className="font-sans text-sm leading-relaxed text-foreground/70 md:text-base">
@@ -436,7 +442,7 @@ export default function WorkPage() {
 
                       {/* Solution */}
                       <div>
-                        <p className="mb-2 text-xs tracking-[0.2em] text-muted-foreground">
+                        <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
                           ROZWIĄZANIE:
                         </p>
                         <p className="font-sans text-sm leading-relaxed text-foreground/70 md:text-base">

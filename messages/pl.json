@@ -1,7 +1,7 @@
 {
   "nav": {
     "home": "Strona główna",
-    "work": "Realizacje",
+    "work": "PORTFOLIO",
     "offer": "Oferta",
     "about": "O nas",
     "contact": "Kontakt"
@@ -17,7 +17,7 @@
   "offer": {
     "label": "01 / CZYM SIĘ ZAJMUJEMY",
     "headline": "NASZA OFERTA",
-    "subheader": "Kompleksowa realizacja materiałów wideo, które skalują Twój biznes. Od strategii, przez produkcję, aż po finalny montaż – dostarczamy wizualny storytelling nastawiony na konwersję i realne wyniki sprzedażowe.",
+    "subheader": "Kompleksowa realizacja materiałów wideo, które rozwijają Twój biznes. Od strategii, przez produkcję, aż po finalny montaż – dostarczamy wizualny storytelling nastawiony na konwersję i realne wyniki sprzedażowe.",
     "services": {
       "instagramReels": {
         "title": "Rolki na Instagram",

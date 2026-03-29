@@ -282,14 +282,14 @@ export default function ContactPage() {
             />
 
             <span className="mb-2 block font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              Potrzebujesz pomocy?
+              INTERAKTYWNY KWESTIONARIUSZ
             </span>
 
             <div className="flex flex-1 flex-col">
               <h2 className="mb-3 font-[family-name:var(--font-display)] text-2xl uppercase leading-none tracking-[0.02em] text-foreground md:text-3xl">
-                Nie wiesz, czego
+                Nie lubisz
                 <br />
-                dokładnie potrzebujesz?
+                pytań otwartych?
               </h2>
 
               <p className="max-w-sm text-sm leading-relaxed text-foreground/60">

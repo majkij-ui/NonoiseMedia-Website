@@ -7,6 +7,10 @@ import { X, Volume2, VolumeX } from "lucide-react"
 import { Link } from "@/i18n/navigation"
 import { Navigation } from "@/components/navigation"
 
+/** Phone / small tablet in landscape: short viewport; keeps desktop & portrait unchanged. */
+const LANDSCAPE_MOBILE_HERO =
+  "[@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:1024px)]"
+
 export default function HomeClient() {
   const tCta = useTranslations("cta")
   const tHome = useTranslations("home")
@@ -151,13 +155,15 @@ export default function HomeClient() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="mb-5 w-48 text-left font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] text-foreground md:mb-6 md:w-56 md:text-[2.7rem]"
+                  className={`mb-5 w-48 text-left font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] text-foreground md:mb-6 md:w-56 md:text-[2.7rem] ${LANDSCAPE_MOBILE_HERO}:!mb-3 ${LANDSCAPE_MOBILE_HERO}:!w-40 ${LANDSCAPE_MOBILE_HERO}:!text-[1.5rem]`}
                 >
                   {tHome("hero")}
                 </motion.p>
 
                 {/* CTA Buttons - Diagonal checkerboard */}
-                <div className="relative mt-[3.5rem] flex w-fit md:mt-[3.1rem]">
+                <div
+                  className={`relative mt-[3.5rem] flex w-fit md:mt-[3.1rem] ${LANDSCAPE_MOBILE_HERO}:!mt-5`}
+                >
                   <div className="absolute bottom-full right-full m-0 p-0">
                     <AnimatedHomeButton text={tCta("quote")} href="/contact" entranceDelay={0.05} entranceFrom="left" />
                   </div>
@@ -169,7 +175,7 @@ export default function HomeClient() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
-                  className="mt-0.5 flex items-center gap-2 font-[family-name:var(--font-display)] text-lg uppercase tracking-[0.02em] text-foreground/50"
+                  className={`mt-0.5 flex items-center gap-2 font-[family-name:var(--font-display)] text-lg uppercase tracking-[0.02em] text-foreground/50 ${LANDSCAPE_MOBILE_HERO}:!text-sm`}
                 >
                   <span>{formatTime(currentTime)}</span>
                   <span className="text-xs">▶</span>
@@ -178,7 +184,9 @@ export default function HomeClient() {
             </div>
 
             {/* Footer */}
-            <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+            <footer
+              className={`flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12 ${LANDSCAPE_MOBILE_HERO}:!py-4`}
+            >
               <span>{tFooter("copyright")}</span>
             </footer>
           </motion.div>
@@ -272,7 +280,7 @@ const AnimatedHomeButton = ({
   const typingDuration = (letters.length - 1) * 0.04 + 0.15
   const sweepDelay = entranceDelay + typingDuration + 0.05
 
-  const innerClassName = `group relative block overflow-hidden px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] md:text-[2.7rem] ${className || ""}`
+  const innerClassName = `group relative block overflow-hidden px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] md:text-[2.7rem] ${LANDSCAPE_MOBILE_HERO}:!text-[1.5rem] ${className || ""}`
   const content = (
     <motion.div initial="initial" whileHover="hover" className={innerClassName}>
       {/* LAYER 1: The Entrance Sweep (White) */}
