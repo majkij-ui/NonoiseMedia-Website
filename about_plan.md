@@ -106,7 +106,7 @@ const testimonials = [
     name: "Jan Kowalski",
     role: "CMO",
     company: "Danone",
-    logo?: "https://nonoise.media/testimonials/danone-logo.png",
+    logo?: "https://assets.nonoise.media/testimonials/danone-logo.png",
   },
   // ...
 ]
@@ -123,7 +123,7 @@ const testimonials = [
 | Client logos (optional) | R2 CDN | Small, grayscale by default. SVG or PNG. |
 | Quote marks / decorative (optional) | Inline SVG or Tailwind | Minimal, editorial. |
 
-**Rule:** No local media. All images from `https://nonoise.media/...` (ARCHITECTURE.md).
+**Rule:** No local media. All images from `https://assets.nonoise.media/...` (ARCHITECTURE.md).
 
 ---
 

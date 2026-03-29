@@ -89,7 +89,7 @@ export default function ContactPage() {
   )
 
   return (
-    <main className="flex h-dvh w-full flex-col overflow-hidden bg-background text-foreground">
+    <main className="flex min-h-dvh w-full flex-col bg-background text-foreground md:h-dvh md:overflow-hidden">
       <Navigation fixed />
 
       {/* Hero — brutalist header */}
@@ -136,12 +136,12 @@ export default function ContactPage() {
       </motion.section>
 
       {/* Two-card area */}
-      <div className="flex min-h-0 flex-1 flex-col border-t border-white/10 px-6 py-4 md:px-12 md:py-5">
+      <div className="flex flex-1 flex-col border-t border-white/10 px-6 py-4 md:min-h-0 md:px-12 md:py-5">
         <motion.div
           initial="hidden"
           animate="show"
           variants={containerVariants}
-          className="grid min-h-0 flex-1 grid-cols-1 gap-4 md:grid-cols-2 md:gap-4"
+          className="grid flex-1 grid-cols-1 gap-4 md:min-h-0 md:grid-cols-2 md:gap-4"
         >
           {/* Card 1 — Contact Form */}
           <motion.div

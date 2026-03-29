@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "O Nas",
   description:
-    "Jesteśmy zespołem twórców, którzy wierzą w bezkompromisową jakość. Zamiast generować szum, dostarczamy konkretny, przemyślany obraz.",
+    "Nonoise Media — studio produkcji wideo nowej generacji. Kinowa jakość, zwinność bez narzutu, bezkompromisowa dbałość o detal.",
 };
 
 export default function AboutLayout({

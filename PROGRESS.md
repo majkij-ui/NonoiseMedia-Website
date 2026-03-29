@@ -1,15 +1,12 @@
 # Progress Log
 
 ## Recently Completed
+- **About page migration:** Promoted the former **`/about-alt`** experience to the canonical **`/[locale]/about`** (navigation, metadata). Archived the previous `/about` implementation at **`/[locale]/about-old`** (not linked in nav). Removed the `about-alt` route; **`about-alt.md`** is restored as an agent onboarding guide (section map, template translation, preview URLs → `/about`). See **`ARCHITECTURE.md`** (About routes + CDN + pnpm).
 - Wired **Vercel Web Analytics** in-app: `@vercel/analytics` + root `app/layout.tsx` `<Analytics />`; confirmed `proxy.ts` matcher leaves `_vercel` paths untouched. **Enable Web Analytics in the Vercel project dashboard** after deploy for data to populate.
-- Updated all primary media and logo URLs to the dedicated CDN host `https://assets.nonoise.media`.
+- Updated all primary media and logo URLs to the dedicated CDN host `https://assets.nonoise.media` (Cloudflare R2).
 - Synced `next.config.mjs` remote image hostname with the CDN migration.
 - Refined global brand assets in navigation and metadata icon config to use remote logo sources.
-- Redesigned the `/contact` page into a premium two-column layout with:
-  - stronger Polish copy and hierarchy,
-  - direct email and phone CTAs,
-  - improved CTA button micro-interaction,
-  - map block linked to Google Maps.
+- Redesigned the locale **`/contact`** page over several iterations: brutalist hero (large display email + phone), bordered two-card grid (form + questionnaire promo), and **server-side submission** via **`POST /api/send-contact`** (Resend, same env pattern as the quote flow) with client-side sending / success / error states—no longer `mailto:`-only.
 - Standardized footer treatment across pages to the simplified right-aligned format:
   - `© 2026 NONOISE MEDIA`.
 
@@ -17,13 +14,12 @@
 - **Repo hygiene:**
   - `.env` and `tsconfig.tsbuildinfo` are listed in `.gitignore` and removed from version control (files stay local only).
   - local reference clone `nonoise-new-ref/` is gitignored (nested project with its own `node_modules`; not part of this site).
-- **Alternate `/about` exploration:**
-  - added locale route `app/[locale]/about-alt/` with dedicated layout metadata (title/description) and a full alternate about page (`page.tsx`) for layout/copy experiments without replacing the main `/about` yet.
-  - ongoing polish: mobile hero height and scroll-cue placement, responsive philosophy headline scale, testimonial stacking cards scroll on small viewports, copy fixes (e.g. “dystrybucja”), trimmed unused icon imports.
-- **`/contact` layout refresh (locale route):**
-  - full-viewport (`h-dvh`) shell with a compact top strip (eyebrow + inline email, phone, address link to Google Maps),
-  - two-column card grid: contact form (submit label “Wyślij wiadomość”) and a second card promoting the questionnaire with a sweep-style CTA to `/questionnaire`,
-  - large inline map image block removed from the page body in favor of the strip link (map asset no longer the focal right column).
+- **`/contact` (locale route) — current behavior:**
+  - full-viewport (`h-dvh`, `overflow-hidden`) layout: hero block with display-scale **email** and **phone**, **MapPin** address line to Google Maps,
+  - two-column cards: **contact form** posting JSON to **`/api/send-contact`** (validation + Polish error copy; success clears fields; `AnimatePresence` for feedback) and **questionnaire** card with sweep CTA to `/questionnaire`,
+  - decorative **Mail** icon on the form card; no large map image in the grid (address via link only).
+- **Contact API:**
+  - `app/api/send-contact/route.ts` — Resend HTML email to `contact@nonoise.media`, **`replyTo`** set to the visitor’s address; requires **`RESEND_API_KEY`** at runtime (Vercel + local `.env`).
 - **Global styles:**
   - added `@keyframes ekgDash` in `app/globals.css` for SVG stroke-dashoffset animation (e.g. EKG-style line treatments).
 - **i18n migration (PL/EN):**
@@ -41,25 +37,18 @@
   - migrated to a shared `AnimatedHomeButton` pattern for both primary CTAs,
   - added staged letter-flicker + sweep reveal timing for hero button entrances.
 - Navigation CTA behavior:
-  - added a contextual header CTA on `/about` and `/work`,
-  - CTA now renders only after initial scroll and uses a tighter reveal timing.
-  - evolved header CTA animation with:
-    - letter-by-letter flicker-in text treatment,
-    - staged white-underlay reveal and black hover wipe for stronger contrast.
+  - contextual header CTA on **`/about`** and **`/work`** (after scroll),
+  - evolved header CTA animation with letter-by-letter flicker-in, staged white-underlay reveal and black hover wipe.
 - `/work` trusted-by expansion:
   - added additional brand logos (`Core`, `GKA`, `Naish`),
   - introduced per-logo sizing tweaks for balanced visual rhythm.
 - Route metadata refactor:
-  - moved route-level metadata out of client pages into dedicated route layouts:
-    - `app/about/layout.tsx`
-    - `app/contact/layout.tsx`
-    - `app/work/layout.tsx`
+  - moved route-level metadata out of client pages into dedicated route layouts under `app/[locale]/` (e.g. `contact/layout.tsx`, `work/layout.tsx`, about routes).
 - Video behavior polish:
   - homepage background reel now uses `preload="auto"`,
   - portfolio modal video uses `preload="metadata"` and `controlsList="nodownload"`.
-- `/contact` accessibility/content refinement:
-  - replaced visible form labels with `aria-label` attributes,
-  - map image now loads from CDN (`assets.nonoise.media`) with local fallback.
+- `/contact` accessibility:
+  - form fields use `aria-label` where labels are not shown as visible text (see current `app/[locale]/contact/page.tsx`).
 - Reusable phone-link component:
   - introduced `components/ui/phone-number.tsx` for consistent tel-link formatting,
   - reused on homepage footer and contact hero to centralize phone rendering.
@@ -78,13 +67,14 @@
   - content/data checklist.
 
 ## Risks / Notes
-- Keep `.env` local-only and never commit.
+- Keep `.env` local-only and never commit. **`RESEND_API_KEY`** must be set in production for **`/api/send-contact`** and **`/api/send-quote`** to deliver mail.
 - Keep media references consistent on `assets.nonoise.media` to avoid mixed-host regressions.
 
 ## Next Priorities
 - Validate and refine testimonial copy (language consistency, quote punctuation, legal approval).
 - Consider moving testimonials data into a dedicated data module for easier content maintenance.
-- Finalize and optimize map asset format/size for best Lighthouse performance.
+- Smoke-test **contact** and **quote** email delivery on Vercel after each env or domain change.
+- Finalize and optimize map asset format/size for best Lighthouse performance (if a static map returns to the UI).
 - Add explicit OG image asset(s) and route-specific social preview tuning.
 - Evaluate sticky CTA behavior on mobile breakpoints and tune animation timing.
 - Verify readability/contrast of the new letter animation across dark and bright backgrounds.

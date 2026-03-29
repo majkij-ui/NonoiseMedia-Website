@@ -22,7 +22,7 @@ Rework the `/contact` page to be a high-converting, Google Ads–friendly destin
 ## 2. Picture / Visual Element
 
 **Requirements (per ARCHITECTURE.md):**
-- No local media. All images must load from Cloudflare R2 CDN (`https://nonoise.media/...`).
+- No local media. All images must load from Cloudflare R2 CDN (`https://assets.nonoise.media/...`).
 
 **Options:**
 - **Studio / office hero image:** A high-end, editorial B&W or desaturated photo of the studio, workspace, or Warsaw skyline. Host on R2 and use as a hero or sidebar image.

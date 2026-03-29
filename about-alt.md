@@ -1,23 +1,36 @@
-# About Alt Page — Documentation
+# About Page — Agent Onboarding (formerly “about-alt”)
 
-## Purpose
+## Current status (production routing)
 
-`/about-alt` is an **experimental alternative** to the main `/about` page. It was created by adapting a generic SaaS-style landing template (`nonoise-new-ref/`) into the main site's brutalist, editorial design language. The goal is to explore richer section types (interactive feature cards, sticky process steps, pricing tiers) while preserving the brand's dark-mode, type-driven, sharp-cornered aesthetic.
+This document describes the **design and implementation** of the rich About experience that originally lived at **`/about-alt`**. That route was **promoted to the canonical About page**:
 
-This page is **not live in production navigation** — it exists as a sandbox route for layout and copy experimentation. If a section proves successful here, it can be promoted to the main `/about` or other pages.
+| Route | Files | Notes |
+|-------|--------|--------|
+| **`/[locale]/about`** | `app/[locale]/about/layout.tsx`, `app/[locale]/about/page.tsx` | **Live** — navigation “O nas” / About points here. |
+| **`/[locale]/about-old`** | `app/[locale]/about-old/layout.tsx`, `app/[locale]/about-old/page.tsx` | **Archive** — previous simpler About (editorial grid + testimonials). Not linked in nav. |
+
+The experimental **`/about-alt` route no longer exists**; keep this file for **context, section map, and design-system translation** when editing `app/[locale]/about/page.tsx`.
+
+For hosting and media rules, see **`ARCHITECTURE.md`**.
 
 ---
 
-## Route & Files
+## Purpose (historical)
+
+The page was created by adapting a generic SaaS-style landing template (`nonoise-new-ref/`) into the main site's brutalist, editorial design language. The goal was to explore richer section types (interactive feature cards, sticky process steps, pricing tiers) while preserving the brand's dark-mode, type-driven, sharp-cornered aesthetic.
+
+---
+
+## Route & files (where to edit now)
 
 | File | Role |
 |------|------|
-| `app/[locale]/about-alt/layout.tsx` | Metadata only (title, description). No wrapper markup. |
-| `app/[locale]/about-alt/page.tsx` | Single `"use client"` component containing all sections. ~1060 lines. |
+| `app/[locale]/about/layout.tsx` | Metadata (title **“O Nas”**, description). No wrapper markup. |
+| `app/[locale]/about/page.tsx` | Single `"use client"` component containing all sections (large file). |
 
-Accessible at `/pl/about-alt` (Polish) or `/en/about-alt` (English). The i18n routing works via the existing `next-intl` setup in `app/[locale]/layout.tsx` and `proxy.ts`.
+Accessible at **`/pl/about`** and **`/en/about`**. i18n routing uses `next-intl` in `app/[locale]/layout.tsx` and `proxy.ts`.
 
-All content is currently **hardcoded in Polish**. It does not use `next-intl` translation keys — this is intentional for rapid iteration. If the page graduates to production, content should be extracted to `messages/pl.json` and `messages/en.json`.
+Content is still **mostly hardcoded in Polish** in the page file. English localization can be extracted to `messages/pl.json` and `messages/en.json` when prioritized.
 
 ---
 
@@ -92,9 +105,9 @@ Three fullscreen sticky cards that stack on scroll:
 - Left column (3 cols): Bebas Neue label "REFERENCJE".
 - Right columns (9 cols, split into 3): Three Polish testimonials with `border-t border-white/20`, Quote icon, blockquote text, author credit.
 - Framer Motion stagger reveal (`staggerChildren: 0.14`).
-- Testimonial data is duplicated from `app/[locale]/about/page.tsx` lines 10-23.
+- Testimonial data may overlap with **`about-old`**; consider a shared `data/testimonials.ts` if you dedupe.
 
-**Placed above Pricing** (per user direction — social proof before the investment ask).
+**Placed above Pricing** (social proof before the investment ask).
 
 ### 7. Pricing — "Wybierz forme wspolpracy"
 Three-tier pricing cards centered (`max-w-5xl`):
@@ -105,13 +118,13 @@ Three-tier pricing cards centered (`max-w-5xl`):
 - CTA buttons with sharp borders and hover invert (`hover:bg-foreground hover:text-background`).
 
 ### 8. Footer
-Right-aligned copyright: `(c) 2026 NONOISE MEDIA`. Same pattern as all other pages.
+Right-aligned copyright: `© 2026 NONOISE MEDIA`. Same pattern as all other pages.
 
 ---
 
 ## Key Components Defined In-File
 
-These are **not** extracted to `components/` — they live inside `page.tsx` for self-containment during the experimental phase:
+These are **not** extracted to `components/` — they live inside `about/page.tsx` for self-containment:
 
 | Component | Purpose |
 |-----------|---------|
@@ -125,7 +138,7 @@ These are **not** extracted to `components/` — they live inside `page.tsx` for
 | `Protocol` | Sticky stacking process cards |
 | `ConcentricCircles` / `LaserGrid` / `EKGWaveform` | SVG decorative elements for Protocol |
 | `Pricing` | Three-tier pricing grid |
-| `Testimonials` | 12-col testimonial grid |
+| `TestimonialCards` (or equivalent) | 12-col testimonial grid |
 
 ---
 
@@ -147,33 +160,40 @@ Used by the `EKGWaveform` SVG in the Protocol section. The `spin` keyframe (for 
 
 ## What's NOT Here
 
-- No `next-intl` integration (hardcoded Polish strings)
-- No mobile-specific nav changes
+- Full `next-intl` coverage for all strings (much is still hardcoded Polish)
 - No GSAP dependency (everything is Framer Motion)
-- No local media files (all images from CDN or Unsplash)
-- No changes to any existing pages or components
+- No local media files (all images from CDN or Unsplash; production should prefer **`https://assets.nonoise.media`** per `ARCHITECTURE.md`)
 
 ---
 
 ## Known Issues & Future Work
 
-1. **Protocol stacking cards** feel empty (user's words). The SVG decorations are placeholder-level. Consider replacing with actual project imagery, video thumbnails, or richer interactive elements.
-2. **Protocol scroll effect** lacks the GSAP-style scale-down + blur on previous cards. Could be added with Framer Motion `useScroll`/`useTransform` per-card, but requires careful scroll offset math.
-3. **Pricing is placeholder** — the tier names, prices, and features are illustrative. Real pricing should be validated before any production use.
-4. **Testimonials data is duplicated** from the main about page. If both pages go to production, extract to a shared `data/testimonials.ts` module.
-5. **Unsplash image** in Philosophy section should be replaced with a CDN-hosted image from `assets.nonoise.media` before production (per ARCHITECTURE.md: no external media in production).
-6. **Content not localized** — all Polish. English translation needed if this page goes into the i18n flow.
+1. **Protocol stacking cards** may feel sparse. Consider richer imagery or video thumbnails.
+2. **Protocol scroll effect** lacks GSAP-style scale-down + blur on previous cards; could use Framer Motion `useScroll`/`useTransform` with careful offsets.
+3. **Pricing** may be illustrative — validate before treating as final.
+4. **Testimonials** — dedupe with `about-old` or centralize in `data/testimonials.ts`.
+5. **Unsplash image** in Philosophy should be replaced with a CDN asset from `assets.nonoise.media` when possible.
+6. **English copy** — extract to `messages/*` when localizing.
 
 ---
 
 ## How to Preview
 
-With the dev server running (`pnpm dev` or `npm run dev`):
-- Polish: http://localhost:3000/pl/about-alt
-- English: http://localhost:3000/en/about-alt (renders but content is Polish)
+With the dev server running (`pnpm dev`):
 
-The reference template can be previewed separately:
+- Polish: `http://localhost:3000/pl/about`
+- English: `http://localhost:3000/en/about` (content may still be Polish in places)
+
+The reference template (if present) can be previewed separately:
+
 ```bash
 cd nonoise-new-ref && npx next dev -p 3001
 ```
-Then visit http://localhost:3001.
+
+Then visit `http://localhost:3001`.
+
+---
+
+## Archived simpler About
+
+The previous single-page About (editorial grid + testimonials only) lives at **`/about-old`** — see `app/[locale]/about-old/page.tsx`. Useful for diffing copy or layout when iterating on `/about`.

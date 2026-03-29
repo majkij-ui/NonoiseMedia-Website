@@ -9,7 +9,7 @@ import { LanguageSwitcher } from "@/components/language-switcher"
 const navLinkKeys = [
   { key: "home" as const, href: "/" },
   { key: "work" as const, href: "/work" },
-  { key: "about" as const, href: "/about-alt" },
+  { key: "about" as const, href: "/about" },
   { key: "contact" as const, href: "/contact" },
 ]
 
@@ -22,7 +22,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
   const [hasScrolled, setHasScrolled] = useState(false)
   const pathname = usePathname()
   const tNav = useTranslations("nav")
-  const showCta = pathname === "/work" || pathname === "/about" || pathname === "/about-alt"
+  const showCta = pathname === "/work" || pathname === "/about"
 
   useEffect(() => {
     if (!showCta) {
@@ -148,7 +148,7 @@ function HeaderCtaButton() {
     <motion.div whileHover="hover" initial="initial" animate="animate">
       <Link
         href="/contact"
-        className="group relative isolate block overflow-hidden px-[1.2px] py-[0.3px] font-[family-name:var(--font-display)] text-[1.29rem] uppercase leading-none tracking-[0.02em] md:text-[1.62rem]"
+        className="group relative isolate block overflow-hidden px-[2.07px] py-[0.518px] font-[family-name:var(--font-display)] text-[2.22525rem] uppercase leading-none tracking-[0.02em] md:px-[1.44px] md:py-[0.36px] md:text-[1.944rem]"
       >
         <motion.div
           className="pointer-events-none absolute inset-0 z-0 bg-white"
