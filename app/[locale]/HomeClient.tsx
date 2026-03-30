@@ -4,12 +4,11 @@ import { useState, useRef, useEffect } from "react"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { X, Volume2, VolumeX } from "lucide-react"
-import { Link } from "@/i18n/navigation"
 import { Navigation } from "@/components/navigation"
-
-/** Phone / small tablet in landscape: short viewport; keeps desktop & portrait unchanged. */
-const LANDSCAPE_MOBILE_HERO =
-  "[@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:1024px)]"
+import {
+  AnimatedHomeButton,
+  LANDSCAPE_MOBILE_HERO,
+} from "@/components/animated-home-button"
 
 export default function HomeClient() {
   const tCta = useTranslations("cta")
@@ -258,67 +257,3 @@ export default function HomeClient() {
     </main>
   )
 }
-
-const AnimatedHomeButton = ({
-  text,
-  className,
-  onClick,
-  href,
-  entranceDelay = 0.5,
-  entranceFrom = "left",
-  hoverFrom = "left",
-}: {
-  text: string
-  className?: string
-  onClick?: () => void
-  href?: string
-  entranceDelay?: number
-  entranceFrom?: "left" | "right"
-  hoverFrom?: "left" | "right"
-}) => {
-  const letters = text.split("")
-  const typingDuration = (letters.length - 1) * 0.04 + 0.15
-  const sweepDelay = entranceDelay + typingDuration + 0.05
-
-  const innerClassName = `group relative block overflow-hidden px-2 py-0.5 font-[family-name:var(--font-display)] text-[2.15rem] uppercase leading-none tracking-[0.02em] md:text-[2.7rem] ${LANDSCAPE_MOBILE_HERO}:!text-[1.5rem] ${className || ""}`
-  const content = (
-    <motion.div initial="initial" whileHover="hover" className={innerClassName}>
-      {/* LAYER 1: The Entrance Sweep (White) */}
-      <motion.div
-        className="absolute inset-0 z-0 bg-white"
-        initial={{ x: entranceFrom === "right" ? "100%" : "-100%" }}
-        animate={{ x: 0 }}
-        transition={{ delay: sweepDelay, duration: 0.3, ease: [0.76, 0, 0.24, 1] }}
-      />
-
-      {/* LAYER 2: The Hover Sweep (Black) */}
-      <motion.div
-        className="absolute inset-0 z-0 bg-black"
-        variants={{
-          initial: { x: hoverFrom === "right" ? "100%" : "-100%" },
-          hover: { x: 0 },
-        }}
-        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-      />
-
-      {/* LAYER 3: The Text (Pure White + Mix-Blend) */}
-      <span className="relative z-10 flex whitespace-nowrap text-white mix-blend-difference">
-        {letters.map((char, index) => (
-          <motion.span
-            key={index}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 0, 1] }}
-            transition={{ delay: entranceDelay + index * 0.04, duration: 0.15, times: [0, 0.4, 0.6, 1] }}
-            className="whitespace-pre"
-          >
-            {char}
-          </motion.span>
-        ))}
-      </span>
-    </motion.div>
-  )
-
-  if (href) return <Link href={href}>{content}</Link>
-  return <button type="button" onClick={onClick}>{content}</button>
-}
-

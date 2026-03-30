@@ -67,5 +67,20 @@
   },
   "footer": {
     "copyright": "© 2026 NONOISE MEDIA"
+  },
+  "lp": {
+    "kampania": {
+      "label": "Produkcja Filmowa i Wideo Dla Biznesu",
+      "headline": "TWORZYMY WIDEO\nKTÓRE SPRZEDAJE",
+      "body": "Odrzucamy to, co zbędne, by skupić się na czystym, wizualnym storytellingu. Dzięki optymalizacji procesów dostarczamy jakość zarezerwowaną dotąd dla dużych domów produkcyjnych, zachowując zwinność i elastyczność. Tworzymy z myślą o Twoich celach marketingowych.",
+      "ctaPortfolio": "Portfolio",
+      "ctaQuote": "Darmowa Wycena",
+      "portfolioLabel": "Realizacje",
+      "portfolioTitle": "WYBRANE PROJEKTY",
+      "moreWork": "Więcej w portfolio",
+      "playVideoAria": "Odtwórz wideo: {title}",
+      "leadLabel": "Następny krok",
+      "leadCta": "Porozmawiajmy o Twoim Projekcie"
+    }
   }
 }

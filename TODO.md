@@ -1,28 +1,30 @@
-# Immediate Task List
+# Task list
 
-**Legend:**
-⚪️ Not Started
-🟡 In Progress
-🟢 Completed
+**Legend:** ⚪️ Not started · 🟡 In progress · 🟢 Done
 
-## 🎯 General Direction: Ads Campaign Optimization
-⚪️ **Conversion Tracking Prep:** Ensure all phone numbers and email addresses use functional `tel:` and `mailto:` links across the entire site for Google Ads tracking.
-⚪️ **Global CTA:** Add a "Contact" or "Get a Quote" CTA button to the sticky header/navigation so it is always accessible on the Home page.
-⚪️ **Floating CTA on Work Page:** Add a sticky, unintrusive "Get a Quote" (or Polish equivalent) button that follows the user as they scroll through the `/work` portfolio.
+---
 
-## 📄 Pages & Content Expansion
-🟢 **Rework Contact Page:** >   - Add a custom, minimalist black-and-white map of Warsaw with the studio address.
-  - Translate and optimize the contact form into Polish, ensuring it clearly drives the "desired action" (e.g., getting a quote).
-⚪️ **New Drone Services Page:** >   - Create a dedicated `/drone` page showcasing aerial cinematography capabilities.
-  - Add "Drone" to the main hamburger navigation menu.
-⚪️ **Service-Specific Landing Pages (For Ads targeting):**
-  - Draft and create `/services/corporate-video`
-  - Draft and create `/services/product-video`
-  - Draft and create `/services/drone-services` (can be the same as above)
- 🟡**Social Proof Updates:**
-  - Expand the "Zaufali Nam" (Trusted By) logo cloud on the `/work` page.
-  - Add a high-end, editorial Testimonials/Quotes section to the `/about` page.
+## About page — testimonials
 
-## ⚙️ Speed, SEO & Technical
-⚪️ **SEO Metadata:** Implement proper `<title>` and `<meta description>` tags for all pages (using Next.js Metadata API) targeting keywords like "Corporate Video Production Warsaw" / "Produkcja Video Warszawa".
-⚪️ **Video Performance Check:** Verify that the Cloudflare R2 videos are optimized for mobile data. (e.g., ensure we aren't loading 4K ProRes files on mobile, check bitrates, and use appropriate `preload` attributes on `<video>` tags so the site doesn't stutter on 4G/5G).
+⚪️ **Logos instead of icons** — Replace Lucide icons in the testimonials block with client logos (assets to be provided).
+
+⚪️ **Fourth testimonial (Omni Office)** — Add a testimonial aligned in tone with the existing three. Source material: copy from the Omni Office project on the Work/portfolio page; draft testimonial text to match the set (can use AI assistance for a first pass, then edit).
+
+⚪️ **Click-through to portfolio projects** — Make each testimonial actionable in a clean way (e.g. whole card or subtle control). Behaviour: navigate to `/work` and scroll so the related project section is at the top of the viewport (deep link + scroll, or hash + `scroll-margin`, or equivalent). UX should stay minimal and editorial.
+
+⚪️ **Optimise collage grid images** — The photo grid currently uses many small PNGs from the CDN; replace or re-export with lighter formats / sizes (e.g. WebP/AVIF, appropriate dimensions) without hurting the visual design.
+
+---
+
+## Paid ads — invisible landing page
+
+⚪️ **Dedicated landing for paid traffic** — Build a conversion-focused page that stays off main nav / organic story (“invisible” in the IA sense). **Guidelines: TBD** (separate doc coming).
+
+---
+
+## Backlog (earlier ideas — not current sprint)
+
+- Conversion tracking: consistent `tel:` / `mailto:` site-wide for ads.
+- Sticky / global CTA patterns on Home and Work.
+- Optional: `/drone` or other service pages; service-specific landing URLs for ads (`/services/...`).
+- SEO metadata pass across routes; video preload / bitrate checks for mobile.

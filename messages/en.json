@@ -67,5 +67,20 @@
   },
   "footer": {
     "copyright": "© 2026 NONOISE MEDIA"
+  },
+  "lp": {
+    "kampania": {
+      "label": "Film & Video Production for Business",
+      "headline": "VIDEO THAT\nCONVERTS",
+      "body": "We strip away the noise to focus on pure visual storytelling. Through streamlined production we deliver big-studio quality with boutique agility — built around your marketing goals.",
+      "ctaPortfolio": "Portfolio",
+      "ctaQuote": "Free quote",
+      "portfolioLabel": "Selected work",
+      "portfolioTitle": "FEATURED PROJECTS",
+      "moreWork": "See full portfolio",
+      "playVideoAria": "Play video: {title}",
+      "leadLabel": "Next step",
+      "leadCta": "Let's talk about your project"
+    }
   }
 }
