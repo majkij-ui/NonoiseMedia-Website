@@ -54,7 +54,7 @@ export default function KampaniaLpPage() {
       <AboutFeatures />
       <AboutTestimonials showTrustedLogos />
       <AboutPhilosophy />
-      <OfferPricingTiers showCta={false} />
+      <OfferPricingTiers showCta={false} tightFooter />
       <LpLeadStrip />
 
       <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">

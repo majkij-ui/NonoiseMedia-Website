@@ -24,7 +24,7 @@ const TIERS = [
       "Materiały wideo szyte na miarę",
       "Kierownictwo kreatywne i koncepcja",
       "Profesjonalna ekipa i sprzęt",
-      "Kompletna postprodukcja z korekcją kolorów i masterem dźwięku",
+      "Wydajna postprodukcja in-house",
       "Filmy końcowe w wybranych przez Ciebie formatach",
     ],
     cta: "Rozpocznij projekt",
@@ -67,11 +67,19 @@ const TIERS = [
 type OfferPricingTiersProps = {
   /** When false, tier footer CTAs are hidden (e.g. landing page uses one global CTA). */
   showCta?: boolean
+  /** Less padding below the grid (e.g. LP CTA sits directly under). */
+  tightFooter?: boolean
 }
 
-export function OfferPricingTiers({ showCta = true }: OfferPricingTiersProps) {
+export function OfferPricingTiers({ showCta = true, tightFooter = false }: OfferPricingTiersProps) {
   return (
-    <section className="px-6 py-24 md:px-12 md:py-40">
+    <section
+      className={
+        tightFooter
+          ? "px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-40"
+          : "px-6 py-24 md:px-12 md:py-40"
+      }
+    >
       <div className="mb-12 text-center md:mb-20">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           02 / Zainwestuj w swoją markę

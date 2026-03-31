@@ -77,7 +77,7 @@ export default function WorkPage() {
             </motion.div>
           </section>
 
-          <section className="px-6 py-16 md:px-12 md:py-24">
+          <section className="px-6 pb-16 pt-8 md:px-12 md:pb-24 md:pt-10">
             <TrustedByLogos />
           </section>
 

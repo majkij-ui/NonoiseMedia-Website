@@ -62,7 +62,7 @@ export const projects: Project[] = [
     subtitle: "Kampania reklamowa",
     client: "OmniOffice",
     image: "https://assets.nonoise.media/videos/Omni.png",
-    video: "https://assets.nonoise.media/videos/Omni.mp4",
+    video: "https://assets.nonoise.media/videos/omni.mp4",
     btsImages: [
       "https://assets.nonoise.media/bts/omni/omni-stills-1.png",
       "https://assets.nonoise.media/bts/omni/omni-stills-2.png",
@@ -159,6 +159,8 @@ export const trustedBy: TrustedBrand[] = [
   { id: 9, name: "GKA", src: "https://assets.nonoise.media/logos/gka.png" },
   { id: 10, name: "Naish", src: "https://assets.nonoise.media/logos/naish.png" },
   { id: 11, name: "OmniOffice", src: "https://assets.nonoise.media/logos/omnioffice-logo-1.png" },
+  { id: 12, name: "BAKL", src: "https://assets.nonoise.media/logos/bakl-logo.png" },
+  { id: 13, name: "NS Bikes", src: "https://assets.nonoise.media/logos/nsbikes-logo.png" },
 ]
 
 export function logoSizeClass(name: string): string {
@@ -168,5 +170,7 @@ export function logoSizeClass(name: string): string {
   if (name === "Rondo") return "h-[50px] max-w-[218px] md:h-[62px] md:max-w-[281px]"
   if (name === "Core" || name === "Naish") return "h-4 max-w-[70px] md:h-5 md:max-w-[90px]"
   if (name === "OmniOffice") return "h-[39px] max-w-[224px] md:h-[50px] md:max-w-[280px]"
+  if (name === "BAKL") return "h-7 max-w-[170px] md:h-9 md:max-w-[220px]"
+  if (name === "NS Bikes") return "h-[31px] max-w-[221px] md:h-[42px] md:max-w-[286px]"
   return "h-8 max-w-[140px] md:h-10 md:max-w-[180px]"
 }
