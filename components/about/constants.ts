@@ -1,7 +1,7 @@
 export const cinematicEase = [0.25, 0.1, 0.25, 1] as const
 
 export const gridImages = Array.from(
-  { length: 30 },
+  { length: 36 },
   (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.png`
 )
 

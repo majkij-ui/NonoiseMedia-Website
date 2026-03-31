@@ -1,6 +1,7 @@
 "use client"
 
 import type { ReactNode } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { ChevronDown } from "lucide-react"
 import { cinematicEase, gridImages, gridItemVariant } from "./constants"
@@ -75,12 +76,14 @@ export function AboutHero({
                 key={i}
                 custom={i}
                 variants={gridItemVariant}
-                className="aspect-square overflow-hidden"
+                className="relative aspect-square overflow-hidden"
               >
-                <img
+                <Image
                   src={src}
-                  alt=""
-                  className="h-full w-full object-cover grayscale opacity-70 transition-all duration-[2000ms] ease-out hover:grayscale-0 hover:opacity-100 hover:duration-[50ms]"
+                  alt={`Nonoise Media produkcja wideo - ujęcie ${i + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 33vw, 16vw"
+                  className="object-cover grayscale opacity-70 transition-all duration-[2000ms] ease-out hover:grayscale-0 hover:opacity-100 hover:duration-[50ms]"
                 />
               </motion.div>
             ))}
