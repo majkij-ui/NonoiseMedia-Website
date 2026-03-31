@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
+import { GoogleTagManager } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
+
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nonoise.media'),
@@ -35,6 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
         {children}
         <Analytics />
         <SpeedInsights />

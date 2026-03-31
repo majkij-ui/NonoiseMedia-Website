@@ -48,7 +48,7 @@ const TESTIMONIAL_SLIDES: {
   },
   {
     num: "04 / OMNI OFFICE",
-    text: "Współpraca z firmą Nonoise Media przy naszej kampanii social media przebiegła bezproblemowo. Mimo skomplikowanej logistyki i trudnych warunków zdjęciowych, niezwykle sprawnie zrealizowali materiał w naszych sześciu warszawskich biurach w zaledwie dwa dni. Z pełnym przekonaniem polecam ten zespół.",
+    text: "Współpraca z firmą Nonoise Media przy naszej kampanii reklamowej przebiegła bezproblemowo. Mimo skomplikowanej logistyki i trudnych warunków zdjęciowych, niezwykle sprawnie zrealizowali materiał w naszych sześciu warszawskich biurach w zaledwie dwa dni. Z pełnym przekonaniem polecam ten zespół.",
     author: "Joanna Stychno",
     role: "Marketing Manager",
     brand: "OmniOffice",

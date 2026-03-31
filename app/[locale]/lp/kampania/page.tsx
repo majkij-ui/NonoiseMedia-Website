@@ -9,6 +9,7 @@ import { AboutPhilosophy } from "@/components/about/about-philosophy"
 import { OfferPricingTiers } from "@/components/offer/pricing-tiers"
 import { ProjectThumbnailGrid } from "@/components/lp/project-thumbnail-grid"
 import { LpLeadStrip } from "@/components/lp/lp-lead-strip"
+import { sendGTMEvent } from "@/lib/gtm"
 
 /** Fixed nav + small breathing room; tuned so “Portfolio” scroll doesn’t leave excess space above. */
 const SCROLL_OFFSET_PX = 72
@@ -34,14 +35,20 @@ export default function KampaniaLpPage() {
           <div className="mt-6 flex max-w-xl flex-col gap-3 sm:mt-7 sm:flex-row sm:flex-wrap">
             <button
               type="button"
-              onClick={() => scrollToAnchor("portfolio")}
+              onClick={() => {
+                sendGTMEvent("lp_portfolio_click")
+                scrollToAnchor("portfolio")
+              }}
               className="border border-white/25 bg-transparent px-5 py-2.5 text-left font-mono text-[11px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-white/45 hover:bg-white/[0.06] sm:min-w-0 sm:flex-1 sm:text-center"
             >
               {t("ctaPortfolio")}
             </button>
             <button
               type="button"
-              onClick={() => scrollToAnchor("lead")}
+              onClick={() => {
+                sendGTMEvent("lp_quote_click")
+                scrollToAnchor("lead")
+              }}
               className="border border-white/25 bg-transparent px-5 py-2.5 text-left font-mono text-[11px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-white/45 hover:bg-white/[0.06] sm:min-w-0 sm:flex-1 sm:text-center"
             >
               {t("ctaQuote")}
