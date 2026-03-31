@@ -7,7 +7,7 @@ import { cinematicEase, gridImages, gridItemVariant } from "./constants"
 
 const defaultLabel = "Produkcja Filmowa i Wideo Dla Biznesu"
 const defaultBody =
-  "Odrzucamy to, co zbędne, by skupić się na czystym, wizualnym storytellingu. Dzięki optymalizacji procesów dostarczamy jakość zarezerwowaną dotąd dla dużych domów produkcyjnych, zachowując zwinność i elastyczność. Tworzymy z myślą o Twoich celach marketingowych."
+  "Jesteśmy polskim studiem produkcyjnym, realizującym projekty wideo od A do Z. Tworzymy wysokiej klasy filmy korporacyjne, wideo produktowe oraz angażujące spoty do kampanii reklamowych. Odpowiadamy również na dzisiejsze tempo rynku, dostarczając dynamiczny, krótki kontent na social media, który realnie wspiera sprzedaż."
 
 export type AboutHeroProps = {
   label?: string
@@ -16,6 +16,11 @@ export type AboutHeroProps = {
   /** Renders below the body paragraph (e.g. campaign CTAs). */
   footerSlot?: ReactNode
   showScrollCue?: boolean
+  /**
+   * When true (default), the left column uses min-height ~ viewport so the layout matches the About page.
+   * Set false when extra actions are added so the hero stays compact and stays in view.
+   */
+  fillViewportColumn?: boolean
 }
 
 export function AboutHero({
@@ -30,6 +35,7 @@ export function AboutHero({
   body = defaultBody,
   footerSlot,
   showScrollCue = true,
+  fillViewportColumn = true,
 }: AboutHeroProps) {
   return (
     <section className="relative px-6 pb-16 pt-28 md:min-h-screen md:px-12 md:pb-12 md:pt-32 lg:pt-36">
@@ -38,7 +44,9 @@ export function AboutHero({
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: cinematicEase }}
-          className="flex flex-col md:col-span-6 md:min-h-[calc(100svh-11rem)] lg:col-span-7"
+          className={`flex flex-col md:col-span-6 lg:col-span-7 ${
+            fillViewportColumn ? "md:min-h-[calc(100svh-11rem)]" : ""
+          }`}
         >
           <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground md:mb-6">
             {label}

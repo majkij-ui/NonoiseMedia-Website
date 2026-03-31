@@ -1,6 +1,7 @@
 "use client"
 
 import { Quote, MessageSquareQuote, Handshake, Award } from "lucide-react"
+import { TrustedByLogos } from "@/components/trusted-by-logos"
 
 const TESTIMONIAL_SLIDES = [
   {
@@ -26,7 +27,12 @@ const TESTIMONIAL_SLIDES = [
   },
 ]
 
-export function AboutTestimonials() {
+type AboutTestimonialsProps = {
+  /** Work-style client logos under the main heading (no duplicate “ZAUFALI NAM” label). */
+  showTrustedLogos?: boolean
+}
+
+export function AboutTestimonials({ showTrustedLogos = false }: AboutTestimonialsProps) {
   return (
     <section className="relative">
       <div className="px-6 py-16 md:px-12 md:py-24">
@@ -38,6 +44,11 @@ export function AboutTestimonials() {
           <br />
           NAM
         </h2>
+        {showTrustedLogos ? (
+          <div className="mt-8 md:mt-10">
+            <TrustedByLogos withLabel={false} />
+          </div>
+        ) : null}
       </div>
 
       {TESTIMONIAL_SLIDES.map((slide, i) => (

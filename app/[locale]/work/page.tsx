@@ -6,7 +6,8 @@ import { Play } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { BtsFilmStripe } from "@/components/bts-film-stripe"
 import { ProjectVideoModal } from "@/components/project-video-modal"
-import { logoSizeClass, projects, trustedBy } from "@/lib/projects"
+import { TrustedByLogos } from "@/components/trusted-by-logos"
+import { projects } from "@/lib/projects"
 
 export default function WorkPage() {
   const [activeProjectId, setActiveProjectId] = useState<number | null>(null)
@@ -15,26 +16,6 @@ export default function WorkPage() {
   const cinematicEase = [0.25, 0.1, 0.25, 1] as const
   const revealEase = [0.16, 1, 0.3, 1] as const
   const layoutSpring = { type: "spring" as const, stiffness: 250, damping: 25 }
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const staggerItem = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: cinematicEase },
-    },
-  }
 
   const openProjectVideo = (projectId: number, videoSrc?: string) => {
     if (!videoSrc) return
@@ -97,37 +78,7 @@ export default function WorkPage() {
           </section>
 
           <section className="px-6 py-16 md:px-12 md:py-24">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: "some" }}
-              variants={staggerContainer}
-            >
-              <motion.p
-                variants={staggerItem}
-                className="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground"
-              >
-                ZAUFALI NAM
-              </motion.p>
-              <motion.div
-                variants={staggerContainer}
-                className="flex flex-wrap items-center gap-8 md:gap-12 lg:gap-16"
-              >
-                {trustedBy.map((company) => (
-                  <motion.div
-                    key={company.id}
-                    variants={staggerItem}
-                    className="group cursor-default"
-                  >
-                    <img
-                      src={company.src}
-                      alt={company.name}
-                      className={`w-auto object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${logoSizeClass(company.name)}`}
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
+            <TrustedByLogos />
           </section>
 
           <section className="px-6 pb-32 md:px-12">

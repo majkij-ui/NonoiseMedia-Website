@@ -55,8 +55,8 @@ export function ProjectThumbnailGrid({ projectsList = projects }: ProjectThumbna
 
   return (
     <LayoutGroup>
-      <section id="portfolio" className="scroll-mt-24 px-6 py-16 md:px-12 md:py-24">
-        <div className="mb-10 md:mb-14">
+      <section className="px-6 py-16 md:px-12 md:py-24">
+        <div id="portfolio" className="mb-10 md:mb-14">
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             {t("portfolioLabel")}
           </p>
