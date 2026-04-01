@@ -1,16 +1,11 @@
 import createNextIntlPlugin from 'next-intl/plugin'
 
 /**
- * Site-wide CSP — GTM / GA / Google Ads / Vercel; script-src includes 'unsafe-eval' for GTM.
- * script-src / connect-src / frame-src / img-src use explicit + wildcard Google hosts (GTM regions, gstatic, doubleclick).
+ * Shared HTTPS allowlist for Google (GTM / GA4 / Ads / reCAPTCHA / DoubleClick).
+ * Keeps script-src and worker-src aligned — GTM often spawns workers; blob: is required for some tag flows.
  */
-const CONTENT_SECURITY_POLICY = [
-  "default-src 'self'",
+const GOOGLE_HTTPS =
   [
-    "script-src",
-    "'self'",
-    "'unsafe-inline'",
-    "'unsafe-eval'",
     "https://www.googletagmanager.com",
     "https://*.googletagmanager.com",
     "https://tagmanager.google.com",
@@ -22,17 +17,43 @@ const CONTENT_SECURITY_POLICY = [
     "https://*.google.com",
     "https://www.gstatic.com",
     "https://*.gstatic.com",
-    "https://va.vercel-scripts.com",
-    "https://vercel.live",
     "https://www.googleadservices.com",
     "https://*.googleadservices.com",
     "https://googleads.g.doubleclick.net",
     "https://*.g.doubleclick.net",
-    "https://*.googlesyndication.com",
     "https://*.doubleclick.net",
+    "https://*.googlesyndication.com",
     "https://adservice.google.com",
+  ].join(" ")
+
+const VERCEL_SCRIPTS = "https://va.vercel-scripts.com https://vercel.live"
+
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  [
+    "script-src",
+    "'self'",
+    "'unsafe-inline'",
+    "'unsafe-eval'",
+    GOOGLE_HTTPS,
+    VERCEL_SCRIPTS,
+    // Some GTM / tag flows load dynamic script workers from blob: URLs
+    "blob:",
   ].join(" "),
-  "style-src 'self' 'unsafe-inline'",
+  // Dedicated workers / shared workers — not inherited safely for blob workers; mirror Google + blob
+  ["worker-src", "'self'", "blob:", GOOGLE_HTTPS, VERCEL_SCRIPTS].join(" "),
+  [
+    "style-src",
+    "'self'",
+    "'unsafe-inline'",
+    "https://tagmanager.google.com",
+    "https://www.googletagmanager.com",
+    "https://fonts.googleapis.com",
+    "https://www.gstatic.com",
+    "https://*.gstatic.com",
+    "https://www.google.com",
+    "https://*.google.com",
+  ].join(" "),
   [
     "img-src",
     "'self'",
@@ -43,7 +64,7 @@ const CONTENT_SECURITY_POLICY = [
     "https://*.googletagmanager.com",
     "https://www.google.com",
   ].join(" "),
-  "font-src 'self' data:",
+  ["font-src", "'self'", "data:", "https://fonts.gstatic.com", "https://*.gstatic.com"].join(" "),
   [
     "connect-src",
     "'self'",
@@ -55,9 +76,14 @@ const CONTENT_SECURITY_POLICY = [
     "https://www.googletagmanager.com",
     "https://tagmanager.google.com",
     "https://*.googletagmanager.com",
+    "https://www.google.com",
+    "https://*.google.com",
+    "https://www.googleadservices.com",
+    "https://*.googleadservices.com",
     "https://*.g.doubleclick.net",
-    "https://va.vercel-scripts.com",
-    "https://vercel.live",
+    "https://*.doubleclick.net",
+    "https://*.googlesyndication.com",
+    VERCEL_SCRIPTS,
   ].join(" "),
   "media-src 'self' blob: https://assets.nonoise.media",
   [
@@ -66,7 +92,10 @@ const CONTENT_SECURITY_POLICY = [
     "https://www.googletagmanager.com",
     "https://tagmanager.google.com",
     "https://td.doubleclick.net",
+    "https://www.google.com",
     "https://*.google.com",
+    "https://www.gstatic.com",
+    "https://*.gstatic.com",
   ].join(" "),
   // Not frame-ancestors 'none': same-origin + Vercel preview/toolbar; add other parent origins if needed.
   "frame-ancestors 'self' https://vercel.live",

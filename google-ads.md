@@ -44,15 +44,24 @@ So the “error” from Google’s tools is often a **CSP violation** (browser s
 
 ### What we allow (high level)
 
-The policy includes (among others):
+[`next.config.mjs`](next.config.mjs) centralizes a shared **`GOOGLE_HTTPS`** host list for **`script-src`** and **`worker-src`** so tag workers stay aligned with script loads.
 
-- **`script-src`:** `'self'`, `'unsafe-inline'`, `'unsafe-eval'`, `https://www.googletagmanager.com`, `tagmanager.google.com`, Google Analytics hosts, `va.vercel-scripts.com`, `vercel.live`, etc.  
-  - **`unsafe-eval`** was added because **GTM and some tags** rely on dynamic script behavior that browsers classify under eval-like rules in strict CSP environments.
-- **`connect-src`:** same-origin, `assets.nonoise.media`, Google Analytics / GTM-related hosts, Vercel analytics hosts — so **beacons and tag requests** can complete.
-- **`frame-src`:** GTM preview / certain embeds use iframes from Google hosts.
-- **`frame-ancestors`:** `'self'` and `https://vercel.live` — explicitly **not** `'none'`, so the site can be framed same-origin and in **Vercel preview / toolbar** contexts. To allow another tool’s iframe (e.g. an internal dashboard), add that **parent origin** here. `object-src 'none'` is unrelated (it blocks `<object>` plugins, not top-level framing).
+- **`script-src`:** `'self'`, `'unsafe-inline'`, `'unsafe-eval'`, shared Google hosts, Vercel analytics hosts, and **`blob:`** (some GTM/tag flows inject scripts via blob URLs — without it, DevTools often reports **`script-src` blocked** even when HTTPS hosts are listed).
+- **`worker-src`:** `'self'`, **`blob:`**, same Google + Vercel hosts as scripts. Dedicated workers do **not** always fall back cleanly for **`blob:`** workers; omitting this is a common source of “blocked” after fixing `script-src` alone ([CSP directive fallbacks](https://web.dev/articles/csp) — `worker-src` is separate from `script-src` in modern browsers).
+- **`style-src`:** `'unsafe-inline'` plus **Google / Fonts** (`fonts.googleapis.com`, `*.gstatic.com`, etc.) for widgets that inject stylesheets (e.g. reCAPTCHA).
+- **`font-src`:** `fonts.gstatic.com`, `*.gstatic.com` in addition to `'self'` / `data:`.
+- **`connect-src`:** same-origin, `assets.nonoise.media`, Google Analytics / GTM / **Ads / DoubleClick / googlesyndication**-style hosts (including `*.doubleclick.net`), Vercel — so **fetch/XHR/beacons** complete.
+- **`frame-src`:** GTM, DoubleClick, `*.google.com`, `gstatic` — preview / conversion / reCAPTCHA iframes.
+- **`frame-ancestors`:** `'self'` and `https://vercel.live` — explicitly **not** `'none'`, so the site can be framed same-origin and in **Vercel preview / toolbar** contexts. `object-src 'none'` is unrelated (it blocks `<object>` plugins, not top-level framing).
 
-If you add **new** tag vendors (e.g. another pixel), you may need to extend `connect-src` / `script-src` / `img-src` and redeploy.
+If you add **new** tag vendors (e.g. Meta, LinkedIn), add their **exact script/connect/frame/img** origins — Google-only lists will not cover them.
+
+### If something is still blocked
+
+1. Read the **full** console line: it names the **blocked URL** (scheme + host + path). Add **that host** (or `scheme:`) to the matching directive — not every failure is `script-src` (e.g. **`connect-src`** for XHR, **`worker-src`** for workers).
+2. **`Content-Security-Policy-Report-Only`:** Per [web.dev CSP guidance](https://web.dev/articles/csp), you can send a **report-only** policy (and optionally `report-to` / `report-uri`) to log violations **without** blocking, tune the allowlist, then merge into the enforced header.
+3. **Regional Google domains** (e.g. `google.pl`) are **not** covered by `*.google.com`; add `https:` in `connect-src` only if you truly need every HTTPS endpoint (very broad), or add specific hosts as violations appear.
+4. **Duplicate CSP** (Vercel dashboard + `next.config`) still applies — the stricter policy wins (see below).
 
 ### Duplicate CSP (Vercel / hosting)
 
