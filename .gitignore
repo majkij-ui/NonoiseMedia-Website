@@ -21,3 +21,6 @@ public/my-reel.mp4
 
 # Local reference / scratch clones (do not commit)
 nonoise-new-ref/
+
+# Local pnpm store (if created inside the repo by mistake)
+.pnpm-store/

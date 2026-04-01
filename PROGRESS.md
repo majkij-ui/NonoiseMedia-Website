@@ -1,6 +1,12 @@
 # Progress Log
 
 ## Recently Completed
+- **Bundle / CSS slimming and tooling (regression reference):** If something styling- or build-related breaks after a given deploy, check this first—these changes intentionally removed unused surface area.
+  - **`app/globals.css`:** Removed **`@import './tw-animate.css'`** (vendored tw-animate-css utilities used only by the old shadcn/Radix layer). Removed unused design tokens **`--chart-*`** and **`--sidebar-*`** from `:root`, `.dark`, and `@theme inline`. Core semantic tokens (`--background`, `--foreground`, `--muted`, `--border`, etc.) are unchanged for the marketing UI.
+  - **Removed the entire `components/ui/` tree** (shadcn/Radix scaffold). It was not imported by live routes except **`PhoneNumber`**, which now lives at **`components/phone-number.tsx`** (import: `@/components/phone-number`). **`hooks/use-toast`**, **`hooks/use-mobile`**, and **`components/theme-provider.tsx`** were removed as unused. **`components.json`** (shadcn CLI) was removed.
+  - **Dependencies removed from `package.json`:** all `@radix-ui/*`, `class-variance-authority`, `cmdk`, `date-fns`, `embla-carousel-react`, `input-otp`, `next-themes`, `react-day-picker`, `react-hook-form`, `@hookform/resolvers`, `react-resizable-panels`, `recharts`, `sonner`, `vaul`, `zod` (only referenced by deleted UI). Re-adding a dashboard or forms later would require **`pnpm add`** / shadcn again.
+  - **Stale duplicate CSS files removed:** `app/[locale]/globals.css` and `styles/globals.css` (unused imports, not wired by `app/layout.tsx`).
+  - **ESLint:** `eslint` + `eslint-config-next` (flat config in **`eslint.config.mjs`**), `pnpm lint` runs **`eslint .`**. Ignored paths include **`nonoise-new-ref/**`**, **`drafts/**`**, build output. Navigation scroll-CTA logic refactored to avoid `react-hooks/set-state-in-effect`; BTS stripe shuffle keeps a targeted eslint-disable for hydration-safe randomization.
 - **Paid traffic landing page (`/[locale]/lp/kampania`):** Dedicated **noindex** route for paid ads (`app/[locale]/lp/kampania/` — `robots: { index: false, follow: false }` in layout metadata). Page assembly: About-style hero (parity with `/about`, hero CTAs as compact bordered buttons; smooth scroll to `#portfolio` / `#lead`), thumbnail grid + shared video modal, About features, testimonials with optional Work-style **trusted logos** under “ZAUFALI NAM”, philosophy, **pricing tiers without per-tier buttons** (single bottom CTA), then lead strip to `/contact`. Strings under **`lp.kampania`** in `messages/pl.json` and `messages/en.json`. Spec notes: **`guidlines-landing.md`** (filename spelling kept for discoverability).
 - **Supporting refactors for LP + `/work`:** **`lib/projects.ts`** (shared project list + `logoSizeClass`), **`components/project-video-modal.tsx`**, **`components/about/*`** extracted from the old monolithic about page, **`components/animated-home-button.tsx`** (from homepage), **`components/trusted-by-logos.tsx`**, **`components/offer/pricing-tiers.tsx`** (from `/offer`; LP uses **`showCta={false}`**, **`tightFooter`**, lead CTA aligned to **middle column width**; no border line between pricing and lead).
 - **About page migration:** Promoted the former **`/about-alt`** experience to the canonical **`/[locale]/about`** (navigation, metadata). Archived the previous `/about` implementation at **`/[locale]/about-old`** (not linked in nav). Removed the `about-alt` route; **`about-alt.md`** is restored as an agent onboarding guide (section map, template translation, preview URLs → `/about`). See **`ARCHITECTURE.md`** (About routes + CDN + pnpm).
@@ -52,8 +58,7 @@
 - `/contact` accessibility:
   - form fields use `aria-label` where labels are not shown as visible text (see current `app/[locale]/contact/page.tsx`).
 - Reusable phone-link component:
-  - introduced `components/ui/phone-number.tsx` for consistent tel-link formatting,
-  - reused on homepage footer and contact hero to centralize phone rendering.
+  - lives at **`components/phone-number.tsx`** (consistent tel-link / copy-on-desktop behavior); contact imports `@/components/phone-number`.
 - `/work` page iteration in progress:
   - switched project and BTS media references to `assets.nonoise.media` BTS stills folders (e.g. `.../bts/phh/phh-stills-*`),
   - updated `BtsFilmStripe` to randomize visible frames after mount (avoids server/client hydration mismatches),

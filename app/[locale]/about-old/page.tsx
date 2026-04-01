@@ -241,7 +241,7 @@ export default function AboutOldPage() {
                   <Quote className="mb-4 h-4 w-4 text-foreground/40" strokeWidth={1.5} />
                   <p className="text-pretty font-sans text-base leading-relaxed text-foreground/90">
                     {testimonial.text}
-                    <span aria-hidden="true">"</span>
+                    <span aria-hidden="true">{'"'}</span>
                   </p>
                   <p className="mt-6 text-sm text-foreground/60">{testimonial.author}</p>
                 </motion.blockquote>

@@ -23,6 +23,7 @@ export function BtsFilmStripe({ images, title }: BtsFilmStripeProps) {
       const j = Math.floor(Math.random() * (i + 1))
       ;[copy[i], copy[j]] = [copy[j], copy[i]]
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only shuffle after mount (avoids SSR/CSR mismatch)
     setStripeImages(copy.slice(0, 6))
   }, [images])
 

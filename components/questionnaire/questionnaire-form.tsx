@@ -409,7 +409,6 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                           }
                           className="sr-only"
                           aria-label={opt.label}
-                          aria-checked={selected}
                         />
                         <span
                           className={`relative z-10 block font-[family-name:var(--font-display)] text-lg uppercase tracking-wide transition-colors md:text-xl ${
@@ -620,7 +619,6 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
                               }
                               className="sr-only"
                               aria-label={opt.label}
-                              aria-checked={selected}
                             />
                             <span
                               className={`relative z-10 block font-[family-name:var(--font-display)] text-lg uppercase tracking-wide transition-colors md:text-xl ${

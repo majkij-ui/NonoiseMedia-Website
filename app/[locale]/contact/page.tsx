@@ -4,7 +4,7 @@ import { type FormEvent, useState, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Mail, ClipboardList, Check, MapPin } from "lucide-react"
 import { Navigation } from "@/components/navigation"
-import { PhoneNumber } from "@/components/ui/phone-number"
+import { PhoneNumber } from "@/components/phone-number"
 import { Link } from "@/i18n/navigation"
 
 type FormStatus = "idle" | "sending" | "sent" | "error"

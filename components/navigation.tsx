@@ -1,13 +1,18 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { AnimatePresence, motion } from "framer-motion"
 import { Link, usePathname } from "@/i18n/navigation"
 import { LanguageSwitcher } from "@/components/language-switcher"
-import { NAV_LINK_KEYS } from "@/lib/nav-links"
 
 const NavigationMenuOverlay = dynamic(
   () =>
@@ -23,24 +28,22 @@ const NavigationMenuOverlay = dynamic(
         aria-label="Loading menu"
       />
     ),
-  }
+  },
 )
 
-type NavigationProps = {
-  fixed?: boolean
-}
+const ScrollCtaContext = createContext(false)
 
-export function Navigation({ fixed = false }: NavigationProps) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+function ScrollCtaProvider({
+  enabled,
+  children,
+}: {
+  enabled: boolean
+  children: ReactNode
+}) {
   const [hasScrolled, setHasScrolled] = useState(false)
-  const pathname = usePathname()
-  const showCta = pathname === "/work" || pathname === "/offer" || pathname === "/about"
 
   useEffect(() => {
-    if (!showCta) {
-      setHasScrolled(false)
-      return
-    }
+    if (!enabled) return
 
     const onScroll = () => {
       if (window.scrollY > 0) {
@@ -54,7 +57,55 @@ export function Navigation({ fixed = false }: NavigationProps) {
     return () => {
       window.removeEventListener("scroll", onScroll)
     }
-  }, [showCta])
+  }, [enabled])
+
+  const visible = enabled && hasScrolled
+
+  return (
+    <ScrollCtaContext.Provider value={visible}>{children}</ScrollCtaContext.Provider>
+  )
+}
+
+function useScrollCtaVisible() {
+  return useContext(ScrollCtaContext)
+}
+
+type NavigationProps = {
+  fixed?: boolean
+}
+
+export function Navigation({ fixed = false }: NavigationProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const showCta =
+    pathname === "/work" || pathname === "/offer" || pathname === "/about"
+
+  const ctaKey = showCta ? pathname : "off"
+
+  return (
+    <ScrollCtaProvider key={ctaKey} enabled={showCta}>
+      <NavigationShell
+        fixed={fixed}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+        showCta={showCta}
+      />
+    </ScrollCtaProvider>
+  )
+}
+
+function NavigationShell({
+  fixed,
+  isMenuOpen,
+  setIsMenuOpen,
+  showCta,
+}: {
+  fixed: boolean
+  isMenuOpen: boolean
+  setIsMenuOpen: (open: boolean) => void
+  showCta: boolean
+}) {
+  const ctaVisible = useScrollCtaVisible()
 
   return (
     <>
@@ -75,7 +126,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
           </Link>
         </div>
         <div className="flex w-10 items-center justify-end gap-4 md:w-auto">
-          {showCta && hasScrolled && (
+          {showCta && ctaVisible && (
             <motion.div
               className="hidden md:block"
               initial={{ opacity: 0 }}
@@ -93,7 +144,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
         {isMenuOpen ? <NavigationMenuOverlay onClose={() => setIsMenuOpen(false)} /> : null}
       </AnimatePresence>
 
-      {showCta && hasScrolled && (
+      {showCta && ctaVisible && (
         <div className="pointer-events-none fixed inset-x-0 bottom-8 z-50 flex justify-center px-3 md:hidden">
           <div className="pointer-events-auto w-max shrink-0">
             <HeaderCtaButton />

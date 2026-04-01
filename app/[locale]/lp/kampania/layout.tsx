@@ -1,13 +1,10 @@
 import type { Metadata } from "next"
 
-const isProduction = process.env.NODE_ENV === "production"
-
+/** Paid-traffic LP: not for organic search; keep out of index. */
 export const metadata: Metadata = {
   title: "Kampania",
   description: "Nonoise Media — landing dla ruchu płatnego.",
-  robots: isProduction
-    ? { index: true, follow: true }
-    : { index: false, follow: false },
+  robots: { index: false, follow: false },
 }
 
 export default function KampaniaLpLayout({
