@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { logoSizeClass, trustedBy } from "@/lib/projects"
 
@@ -52,10 +53,13 @@ export function TrustedByLogos({ withLabel = true, className = "" }: TrustedByLo
       <motion.div variants={staggerContainer} className="flex flex-wrap items-center gap-8 md:gap-12 lg:gap-16">
         {trustedBy.map((company) => (
           <motion.div key={company.id} variants={staggerItem} className="group cursor-default">
-            <img
+            <Image
               src={company.src}
               alt={company.name}
-              className={`w-auto object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${logoSizeClass(company.name)}`}
+              width={560}
+              height={140}
+              sizes="(max-width: 768px) 160px, 280px"
+              className={`w-auto max-w-full object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100 ${logoSizeClass(company.name)}`}
             />
           </motion.div>
         ))}

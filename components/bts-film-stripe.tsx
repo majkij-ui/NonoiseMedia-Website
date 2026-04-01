@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 
 type BtsFilmStripeProps = {
@@ -107,9 +108,12 @@ export function BtsFilmStripe({ images, title }: BtsFilmStripeProps) {
             transition={{ type: "spring", stiffness: 300, damping: 24 }}
             className="shrink-0 border border-white/10 bg-black/30 opacity-60"
           >
-            <img
+            <Image
               src={src}
               alt={`${title} BTS frame ${index + 1}`}
+              width={720}
+              height={224}
+              sizes="(max-width: 768px) 45vw, 360px"
               className="h-40 w-auto object-contain md:h-56"
             />
           </motion.div>

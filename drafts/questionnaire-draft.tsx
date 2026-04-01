@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { AnimatedMenuButton } from "@/components/animated-menu-button"
 
@@ -84,9 +85,11 @@ export default function QuestionnairePage() {
             onClick={() => setIsMenuOpen(true)}
           />
           <a href="/" className="flex items-center gap-2.5">
-            <img
+            <Image
               src="/images/logo-orb.png"
               alt="Nonoise Media"
+              width={20}
+              height={20}
               className="h-5 w-5"
             />
             <span className="text-sm font-light tracking-[0.3em] text-foreground">
@@ -670,9 +673,11 @@ export default function QuestionnairePage() {
                   onClick={() => setIsMenuOpen(false)}
                 />
                 <div className="flex items-center gap-2.5">
-                  <img
+                  <Image
                     src="/images/logo-orb.png"
                     alt="Nonoise Media"
+                    width={20}
+                    height={20}
                     className="h-5 w-5"
                   />
                   <span className="text-sm font-light tracking-[0.3em] text-foreground">

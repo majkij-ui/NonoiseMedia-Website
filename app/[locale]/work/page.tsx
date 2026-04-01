@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { LayoutGroup, motion } from "framer-motion"
 import { Play } from "lucide-react"
 import { Navigation } from "@/components/navigation"
@@ -122,9 +123,12 @@ export default function WorkPage() {
                                   }}
                                   transition={{ duration: 0.6, ease: cinematicEase }}
                                 >
-                                  <img
+                                  <Image
                                     src={project.image}
                                     alt={project.title}
+                                    width={1920}
+                                    height={1080}
+                                    sizes="(max-width: 1024px) 100vw, 60vw"
                                     className="h-auto w-full object-cover"
                                   />
                                 </motion.div>
@@ -160,9 +164,12 @@ export default function WorkPage() {
                                 }}
                                 transition={{ duration: 0.6, ease: cinematicEase }}
                               >
-                                <img
+                                <Image
                                   src={project.image}
                                   alt={project.title}
+                                  width={1920}
+                                  height={1080}
+                                  sizes="(max-width: 1024px) 100vw, 60vw"
                                   className="h-auto w-full object-cover"
                                 />
                               </motion.div>

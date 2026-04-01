@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { AnimatePresence, motion } from "framer-motion"
 import { Link, usePathname } from "@/i18n/navigation"
@@ -53,7 +54,13 @@ export function Navigation({ fixed = false }: NavigationProps) {
         <div className="flex items-center gap-4">
           <AnimatedMenuButton isOpen={false} onClick={() => setIsMenuOpen(true)} />
           <Link href="/" className="flex items-center gap-2.5">
-            <img src="https://assets.nonoise.media/logos/logo-orb.png" alt="Nonoise Media" className="h-5 w-5" />
+            <Image
+              src="https://assets.nonoise.media/logos/logo-orb.png"
+              alt="Nonoise Media"
+              width={20}
+              height={20}
+              className="h-5 w-5"
+            />
             <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
           </Link>
         </div>
@@ -85,7 +92,13 @@ export function Navigation({ fixed = false }: NavigationProps) {
               <div className="flex items-center gap-4">
                 <AnimatedMenuButton isOpen={true} onClick={() => setIsMenuOpen(false)} />
                 <div className="flex items-center gap-2.5">
-                  <img src="https://assets.nonoise.media/logos/logo-orb.png" alt="Nonoise Media" className="h-5 w-5" />
+                  <Image
+                    src="https://assets.nonoise.media/logos/logo-orb.png"
+                    alt="Nonoise Media"
+                    width={20}
+                    height={20}
+                    className="h-5 w-5"
+                  />
                   <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
                 </div>
               </div>

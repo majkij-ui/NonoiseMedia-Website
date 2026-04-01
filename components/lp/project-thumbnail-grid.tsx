@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Image from "next/image"
 import { LayoutGroup, motion } from "framer-motion"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
@@ -93,9 +94,11 @@ export function ProjectThumbnailGrid({ projectsList = projects }: ProjectThumbna
                     whileHover="hover"
                     initial="initial"
                   >
-                    <img
+                    <Image
                       src={project.image}
                       alt=""
+                      fill
+                      sizes="(max-width: 768px) 50vw, 33vw"
                       className="h-full w-full object-cover"
                     />
                     <motion.div

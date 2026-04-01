@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Quote } from "lucide-react"
 import { TrustedByLogos } from "@/components/trusted-by-logos"
 import { trustedBy } from "@/lib/projects"
@@ -119,16 +120,20 @@ export function AboutTestimonials({ showTrustedLogos = false }: AboutTestimonial
                 </div>
 
                 {brandLogo ? (
-                  <div className="pointer-events-none absolute right-6 top-1/2 hidden w-[min(280px,42vw)] -translate-y-1/2 md:right-12 md:flex md:w-[min(340px,36vw)] md:items-center md:justify-end">
-                    <img
-                      src={testimonialLogoSrc(slide.brand, brandLogo.src)}
-                      alt={brandLogo.name}
-                      className={`max-h-[140px] w-full max-w-full origin-right object-contain object-right opacity-[0.1] md:max-h-[180px] ${
-                        slide.brand === "CIONET" || slide.brand === "BAKL"
-                          ? "scale-[0.7]"
-                          : ""
+                  <div className="pointer-events-none absolute right-6 top-1/2 hidden h-[140px] w-[min(280px,42vw)] -translate-y-1/2 md:right-12 md:flex md:h-[180px] md:w-[min(340px,36vw)] md:items-center md:justify-end">
+                    <div
+                      className={`relative h-full w-full ${
+                        slide.brand === "CIONET" || slide.brand === "BAKL" ? "scale-[0.7]" : ""
                       }`}
-                    />
+                    >
+                      <Image
+                        src={testimonialLogoSrc(slide.brand, brandLogo.src)}
+                        alt={brandLogo.name}
+                        fill
+                        sizes="(max-width: 900px) 42vw, 340px"
+                        className="origin-right object-contain object-right opacity-[0.1]"
+                      />
+                    </div>
                   </div>
                 ) : null}
               </div>

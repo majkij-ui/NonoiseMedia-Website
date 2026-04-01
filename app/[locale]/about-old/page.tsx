@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
 import { Navigation } from "@/components/navigation"
@@ -87,11 +88,13 @@ export default function AboutOldPage() {
             className="grid grid-cols-6 gap-2"
           >
             {gridImages.map((src, i) => (
-              <motion.div key={i} custom={i} variants={gridItemVariant} className="aspect-square overflow-hidden">
-                <img
+              <motion.div key={i} custom={i} variants={gridItemVariant} className="relative aspect-square overflow-hidden">
+                <Image
                   src={src}
                   alt=""
-                  className="w-full h-full object-cover aspect-square grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-[2000ms] ease-out hover:duration-[50ms]"
+                  fill
+                  sizes="(max-width: 768px) 16vw, 14vw"
+                  className="aspect-square object-cover grayscale opacity-70 transition-all duration-[2000ms] ease-out hover:grayscale-0 hover:opacity-100 hover:duration-[50ms]"
                 />
               </motion.div>
             ))}
@@ -150,11 +153,13 @@ export default function AboutOldPage() {
           >
             <div className="grid grid-cols-6 gap-2 md:gap-2.5">
               {gridImages.map((src, i) => (
-                <motion.div key={i} custom={i} variants={gridItemVariant} className="aspect-square overflow-hidden">
-                  <img
+                <motion.div key={i} custom={i} variants={gridItemVariant} className="relative aspect-square overflow-hidden">
+                  <Image
                     src={src}
                     alt=""
-                    className="w-full h-full object-cover aspect-square grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-[2000ms] ease-out hover:duration-[50ms]"
+                    fill
+                    sizes="(max-width: 1280px) 12vw, 14vw"
+                    className="aspect-square object-cover grayscale opacity-70 transition-all duration-[2000ms] ease-out hover:grayscale-0 hover:opacity-100 hover:duration-[50ms]"
                   />
                 </motion.div>
               ))}
