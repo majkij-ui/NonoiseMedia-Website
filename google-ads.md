@@ -50,6 +50,7 @@ The policy includes (among others):
   - **`unsafe-eval`** was added because **GTM and some tags** rely on dynamic script behavior that browsers classify under eval-like rules in strict CSP environments.
 - **`connect-src`:** same-origin, `assets.nonoise.media`, Google Analytics / GTM-related hosts, Vercel analytics hosts — so **beacons and tag requests** can complete.
 - **`frame-src`:** GTM preview / certain embeds use iframes from Google hosts.
+- **`frame-ancestors`:** `'self'` and `https://vercel.live` — explicitly **not** `'none'`, so the site can be framed same-origin and in **Vercel preview / toolbar** contexts. To allow another tool’s iframe (e.g. an internal dashboard), add that **parent origin** here. `object-src 'none'` is unrelated (it blocks `<object>` plugins, not top-level framing).
 
 If you add **new** tag vendors (e.g. another pixel), you may need to extend `connect-src` / `script-src` / `img-src` and redeploy.
 

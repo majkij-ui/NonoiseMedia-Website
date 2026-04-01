@@ -1,8 +1,8 @@
 import createNextIntlPlugin from 'next-intl/plugin'
 
 /**
- * Site-wide CSP (no prior CSP in repo — set here so GTM / GA / Vercel scripts align with policy).
- * script-src includes 'unsafe-eval' and https://www.googletagmanager.com per GTM requirements.
+ * Site-wide CSP — GTM / GA / Google Ads / Vercel; script-src includes 'unsafe-eval' for GTM.
+ * connect-src / frame-src / img-src include explicit Google hosts used by Ads, pixels, reCAPTCHA, Maps.
  */
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
@@ -19,9 +19,23 @@ const CONTENT_SECURITY_POLICY = [
     "https://www.gstatic.com",
     "https://va.vercel-scripts.com",
     "https://vercel.live",
+    "https://www.googleadservices.com",
+    "https://googleads.g.doubleclick.net",
+    "https://*.googlesyndication.com",
+    "https://*.doubleclick.net",
+    "https://adservice.google.com",
   ].join(" "),
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https:",
+  [
+    "img-src",
+    "'self'",
+    "data:",
+    "blob:",
+    "https:",
+    "https://*.google-analytics.com",
+    "https://*.googletagmanager.com",
+    "https://www.google.com",
+  ].join(" "),
   "font-src 'self' data:",
   [
     "connect-src",
@@ -33,11 +47,22 @@ const CONTENT_SECURITY_POLICY = [
     "https://*.analytics.google.com",
     "https://www.googletagmanager.com",
     "https://tagmanager.google.com",
+    "https://*.googletagmanager.com",
+    "https://*.g.doubleclick.net",
     "https://va.vercel-scripts.com",
     "https://vercel.live",
   ].join(" "),
   "media-src 'self' blob: https://assets.nonoise.media",
-  "frame-src 'self' https://www.googletagmanager.com https://tagmanager.google.com",
+  [
+    "frame-src",
+    "'self'",
+    "https://www.googletagmanager.com",
+    "https://tagmanager.google.com",
+    "https://td.doubleclick.net",
+    "https://*.google.com",
+  ].join(" "),
+  // Not frame-ancestors 'none': same-origin + Vercel preview/toolbar; add other parent origins if needed.
+  "frame-ancestors 'self' https://vercel.live",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
