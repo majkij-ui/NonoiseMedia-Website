@@ -2,7 +2,7 @@ import createNextIntlPlugin from 'next-intl/plugin'
 
 /**
  * Site-wide CSP — GTM / GA / Google Ads / Vercel; script-src includes 'unsafe-eval' for GTM.
- * connect-src / frame-src / img-src include explicit Google hosts used by Ads, pixels, reCAPTCHA, Maps.
+ * script-src / connect-src / frame-src / img-src use explicit + wildcard Google hosts (GTM regions, gstatic, doubleclick).
  */
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
@@ -12,15 +12,22 @@ const CONTENT_SECURITY_POLICY = [
     "'unsafe-inline'",
     "'unsafe-eval'",
     "https://www.googletagmanager.com",
+    "https://*.googletagmanager.com",
     "https://tagmanager.google.com",
     "https://www.google-analytics.com",
+    "https://*.google-analytics.com",
     "https://ssl.google-analytics.com",
+    "https://analytics.google.com",
     "https://www.google.com",
+    "https://*.google.com",
     "https://www.gstatic.com",
+    "https://*.gstatic.com",
     "https://va.vercel-scripts.com",
     "https://vercel.live",
     "https://www.googleadservices.com",
+    "https://*.googleadservices.com",
     "https://googleads.g.doubleclick.net",
+    "https://*.g.doubleclick.net",
     "https://*.googlesyndication.com",
     "https://*.doubleclick.net",
     "https://adservice.google.com",
