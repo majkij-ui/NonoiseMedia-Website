@@ -1,19 +1,30 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import dynamic from "next/dynamic"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { AnimatePresence, motion } from "framer-motion"
 import { Link, usePathname } from "@/i18n/navigation"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { NAV_LINK_KEYS } from "@/lib/nav-links"
 
-const navLinkKeys = [
-  { key: "home" as const, href: "/" },
-  { key: "work" as const, href: "/work" },
-  { key: "offer" as const, href: "/offer" },
-  { key: "about" as const, href: "/about" },
-  { key: "contact" as const, href: "/contact" },
-]
+const NavigationMenuOverlay = dynamic(
+  () =>
+    import("@/components/navigation-menu-overlay").then((m) => ({
+      default: m.NavigationMenuOverlay,
+    })),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        className="fixed inset-0 z-50 bg-background/95 backdrop-blur-sm"
+        aria-busy
+        aria-label="Loading menu"
+      />
+    ),
+  }
+)
 
 type NavigationProps = {
   fixed?: boolean
@@ -23,7 +34,6 @@ export function Navigation({ fixed = false }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
   const pathname = usePathname()
-  const tNav = useTranslations("nav")
   const showCta = pathname === "/work" || pathname === "/offer" || pathname === "/about"
 
   useEffect(() => {
@@ -80,68 +90,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
       </header>
 
       <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-50 flex flex-col bg-background/95 backdrop-blur-sm"
-          >
-            <div className="flex justify-between px-6 py-6 md:px-12">
-              <div className="flex items-center gap-4">
-                <AnimatedMenuButton isOpen={true} onClick={() => setIsMenuOpen(false)} />
-                <div className="flex items-center gap-2.5">
-                  <Image
-                    src="https://assets.nonoise.media/logos/logo-orb.png"
-                    alt="Nonoise Media"
-                    width={20}
-                    height={20}
-                    className="h-5 w-5"
-                  />
-                  <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <LanguageSwitcher />
-              </div>
-            </div>
-
-            <nav className="flex flex-1 items-center">
-              <div className="flex w-full flex-col gap-1 pl-[50%] pr-6 md:pr-12">
-                {navLinkKeys.map((link, index) => (
-                  <motion.div
-                    key={link.key}
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ delay: index * 0.1, duration: 0.5 }}
-                    className="relative w-fit"
-                  >
-                    <motion.div initial="initial" whileHover="hover" className="relative w-fit">
-                      <Link
-                        href={link.href}
-                        className="relative inline-flex isolate overflow-hidden px-1 py-0.5 font-[family-name:var(--font-display)] text-[1.95rem] uppercase leading-none tracking-[0.02em] text-foreground md:text-[2.45rem]"
-                        onClick={() => setIsMenuOpen(false)}
-                      >
-                        <motion.span
-                          className="absolute inset-0 z-0 bg-white"
-                          variants={{
-                            initial: { scaleX: 0 },
-                            hover: { scaleX: 1 },
-                          }}
-                          style={{ originX: 0 }}
-                          transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                        />
-                        <span className="relative z-10 text-foreground mix-blend-difference">{tNav(link.key)}</span>
-                      </Link>
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </div>
-            </nav>
-          </motion.div>
-        )}
+        {isMenuOpen ? <NavigationMenuOverlay onClose={() => setIsMenuOpen(false)} /> : null}
       </AnimatePresence>
 
       {showCta && hasScrolled && (

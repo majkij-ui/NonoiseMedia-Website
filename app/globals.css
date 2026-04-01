@@ -1,5 +1,12 @@
 @import 'tailwindcss';
-@import 'tw-animate-css';
+/*
+ * Enter/exit + Radix/shadcn animation utilities (vendored from tw-animate-css).
+ * Audit: usage is confined to components/ui/* — animate-in/out, fade-*, zoom-*,
+ * slide-in-from-*, slide-out-to-*, accordion-*, caret-blink, etc.
+ * A few manual @keyframes cannot replace this; those classes rely on CSS variables
+ * (--tw-enter-*) and @utility rules. See app/tw-animate.css (upstream ~10.5KB source).
+ */
+@import './tw-animate.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -75,9 +82,10 @@
 }
 
 @theme inline {
-  --font-sans: 'Geist', 'Geist Fallback';
-  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
-  --font-display: 'Bebas Neue', 'Bebas Neue Fallback', sans-serif;
+  /* Bound in app/layout.tsx via next/font CSS variables */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-bebas), ui-sans-serif, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);

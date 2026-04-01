@@ -1,15 +1,10 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Bebas_Neue } from 'next/font/google'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { hasLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { SetDocumentLang } from '@/components/set-document-lang'
-
-const _geist = Geist({ subsets: ['latin'] })
-const _geistMono = Geist_Mono({ subsets: ['latin'] })
-const _bebasNeue = Bebas_Neue({ subsets: ['latin', 'latin-ext'], weight: ['400'] })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://nonoise.media'),

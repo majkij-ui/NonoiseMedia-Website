@@ -1,20 +1,35 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
+import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
-import { X, Volume2, VolumeX } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import {
   AnimatedHomeButton,
   LANDSCAPE_MOBILE_HERO,
 } from "@/components/animated-home-button"
 
+const HomePageFooter = dynamic(
+  () =>
+    import("@/components/home/home-page-footer").then((m) => ({
+      default: m.HomePageFooter,
+    })),
+  { ssr: true }
+)
+
+const HomeReelPlayingUI = dynamic(
+  () =>
+    import("@/components/home/home-reel-playing-ui").then((m) => ({
+      default: m.HomeReelPlayingUI,
+    })),
+  { ssr: false }
+)
+
 export default function HomeClient() {
   const tCta = useTranslations("cta")
   const tHome = useTranslations("home")
   const tReel = useTranslations("reel")
-  const tFooter = useTranslations("footer")
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   const [isMuted, setIsMuted] = useState(true)
@@ -182,77 +197,28 @@ export default function HomeClient() {
               </div>
             </div>
 
-            {/* Footer */}
-            <footer
+            <HomePageFooter
               className={`flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12 ${LANDSCAPE_MOBILE_HERO}:!py-4`}
-            >
-              <span>{tFooter("copyright")}</span>
-            </footer>
+            />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Playing UI */}
       <AnimatePresence>
-        {isPlaying && (
-          <>
-            {/* Progress Line */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed right-8 top-0 z-20 h-full w-px bg-foreground/20"
-            >
-              <motion.div
-                className="w-full bg-foreground"
-                style={{ height: `${progress}%` }}
-                transition={{ duration: 0.1 }}
-              />
-
-              {/* Rotated Timer - Anchored to progress point */}
-              <motion.div
-                className="absolute right-1 origin-top-right rotate-90 whitespace-nowrap font-[family-name:var(--font-display)] text-[10px] uppercase tracking-[0.02em] text-foreground/80"
-                style={{ top: `${progress}%` }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-              >
-                <span>{formatTime(currentTime)}</span>
-                <span className="mx-1 text-[8px]">▶</span>
-                <span>{tReel("play")}</span>
-              </motion.div>
-            </motion.div>
-
-            {/* Controls */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ delay: 0.3 }}
-              className="fixed bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-6"
-            >
-              {/* Mute Toggle */}
-              <button
-                onClick={toggleMute}
-                className="flex h-12 w-12 items-center justify-center text-foreground/80 transition-colors hover:text-foreground"
-                aria-label={isMuted ? tReel("unmute") : tReel("mute")}
-              >
-                {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-              </button>
-
-              {/* Close Button */}
-              <button
-                onClick={handleCloseReel}
-                className="group relative flex h-12 items-center gap-2 overflow-hidden border border-foreground/30 px-6 text-sm tracking-widest text-foreground transition-colors hover:border-foreground"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <X size={16} />
-                  {tReel("close")}
-                </span>
-              </button>
-            </motion.div>
-          </>
-        )}
+        {isPlaying ? (
+          <HomeReelPlayingUI
+            progress={progress}
+            currentTime={currentTime}
+            formatTime={formatTime}
+            isMuted={isMuted}
+            onToggleMute={toggleMute}
+            onClose={handleCloseReel}
+            playLabel={tReel("play")}
+            closeLabel={tReel("close")}
+            muteLabel={tReel("mute")}
+            unmuteLabel={tReel("unmute")}
+          />
+        ) : null}
       </AnimatePresence>
     </main>
   )
