@@ -123,7 +123,8 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/:path*",
+        // Match all paths (locale prefixes like /pl/..., static assets, API) — broader than /:path*
+        source: "/(.*)",
         headers: [
           {
             key: "Content-Security-Policy",
