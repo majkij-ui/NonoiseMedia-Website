@@ -148,8 +148,10 @@ export function LpHero() {
             transition={{ duration: 0.5 }}
             className="relative z-10 flex h-full min-h-screen flex-col"
           >
-            {/* Center content — anchored at 50% from left, same as homepage */}
-            <div className="flex flex-1 items-center">
+            {/* Center content — anchored at 50% from left; slight top inset for more headroom */}
+            <div
+              className={`flex flex-1 items-center pt-10 md:pt-14 ${LANDSCAPE_MOBILE_HERO}:!pt-6`}
+            >
               <div className="w-full pl-[50%] pr-6 md:pr-12">
                 {/* Label */}
                 <motion.p
@@ -218,36 +220,30 @@ export function LpHero() {
               </div>
             </div>
 
-            {/* Scroll cue — bottom center, horizontal layout */}
+            {/* Scroll cue — label + double chevron stacked (bounce) */}
             <div className={`pointer-events-none flex justify-center pb-6 md:pb-8 ${LANDSCAPE_MOBILE_HERO}:!pb-3`}>
-              <motion.div
+              <div
                 aria-label="Przewiń niżej"
-                className="inline-flex items-center gap-2 text-foreground/40"
+                className="inline-flex items-center gap-3 text-foreground/40"
               >
-                <motion.span
-                  animate={{ opacity: [0.3, 0.7, 0.3] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="font-mono text-[9px] uppercase tracking-[0.25em]"
-                >
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em]">
                   Scroll
-                </motion.span>
-                <div className="flex items-center -space-x-1">
-                  <motion.span
-                    animate={{ opacity: [0.75, 0.25, 0.75] }}
-                    transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-                    className="leading-none"
-                  >
-                    <ChevronDown size={14} strokeWidth={1.8} />
-                  </motion.span>
-                  <motion.span
-                    animate={{ opacity: [0.25, 0.8, 0.25] }}
-                    transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-                    className="leading-none"
-                  >
-                    <ChevronDown size={14} strokeWidth={1.8} />
-                  </motion.span>
-                </div>
-              </motion.div>
+                </span>
+                <motion.div
+                  className="inline-flex flex-col items-center leading-none"
+                  animate={{ y: [0, 6, 0] }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <ChevronDown size={18} strokeWidth={1.8} />
+                  <span className="-mt-1.5">
+                    <ChevronDown size={18} strokeWidth={1.8} />
+                  </span>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         )}
