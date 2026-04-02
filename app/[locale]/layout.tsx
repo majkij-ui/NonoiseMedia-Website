@@ -9,15 +9,15 @@ import { SetDocumentLang } from '@/components/set-document-lang'
 export const metadata: Metadata = {
   metadataBase: new URL('https://nonoise.media'),
   title: {
-    default: 'Nonoise Media | Dom Produkcyjny Warszawa',
+    default: 'Produkcja Filmowa i Wideo dla Firm Warszawa | Nonoise Media',
     template: '%s | Nonoise Media',
   },
   description:
-    'Tworzymy kino dla marek. Od zwinnych ekip po pełne plany zdjęciowe. Łączymy rygorystyczną estetykę z celami biznesowymi. Bez dróg na skróty.',
+    'Studio produkcji filmowej i wideo w Warszawie. Tworzymy filmy korporacyjne, reklamowe, produktowe i wizerunkowe dla firm i marek premium. Bezpłatna wycena.',
   openGraph: {
-    title: 'Nonoise Media | Dom Produkcyjny Warszawa',
+    title: 'Produkcja Filmowa i Wideo dla Firm Warszawa | Nonoise Media',
     description:
-      'Tworzymy kino dla marek. Od zwinnych ekip po pełne plany zdjęciowe. Łączymy rygorystyczną estetykę z celami biznesowymi.',
+      'Studio produkcji filmowej i wideo w Warszawie. Filmy korporacyjne, reklamowe i produktowe tworzone z kinową jakością dla marek premium.',
     url: 'https://nonoise.media',
     siteName: 'Nonoise Media',
     locale: 'pl_PL',

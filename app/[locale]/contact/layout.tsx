@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt — Wycena Projektu Wideo",
   description:
-    "Porozmawiajmy o Twoim kolejnym projekcie wideo. Skontaktuj się z naszym warszawskim studiem wideo produkcji.",
+    "Skontaktuj się z Nonoise Media — warszawskim studiem produkcji filmowej i wideo dla firm. Napisz, zadzwoń lub wypełnij kwestionariusz i otrzymaj bezpłatną wycenę.",
 };
 
 export default function ContactLayout({

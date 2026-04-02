@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Oferta",
+  title: "Oferta — Filmy Korporacyjne, Reklamowe i Produktowe",
   description:
-    "Kompleksowa realizacja produktów wideo dla biznesu — rolki, filmy produktowe, kampanie reklamowe, case studies, wywiady,webinary i więcej. Wizualny storytelling nastawiony na konwersję.",
+    "Kompleksowa produkcja wideo dla firm w Warszawie: filmy korporacyjne, reklamowe, produktowe, reportaże eventowe, rolki na Instagram i wideo na LinkedIn. Wizualny storytelling nastawiony na konwersję.",
 };
 
 export default function OfferLayout({

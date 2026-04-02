@@ -78,6 +78,14 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 
 ---
 
+## Git Conventions
+- Use Conventional Commits format (feat:, fix:, chore:, refactor:).
+- Keep subject lines under 72 characters.
+- Always run `npm test` before committing. If tests fail, do not commit.
+- Never push directly to `main`; always create a feature branch first.
+
+---
+
 ## Open Next Priorities
 - Validate testimonial copy (language, punctuation, legal approval).
 - Move testimonials data into a dedicated data module.

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Portfolio — Realizacje Wideo dla Firm",
   description:
-    "Zobacz nasze realizacje. Filmy komercyjne, wizerunkowe i dokumentalne reportaże eventowe tworzone z dbałością o każdy detal.",
+    "Portfolio Nonoise Media: filmy wizerunkowe, korporacyjne, produktowe i reportaże eventowe dla PHH, Danone, CIONET i innych marek premium. Zobacz nasze realizacje.",
 };
 
 export default function WorkLayout({
