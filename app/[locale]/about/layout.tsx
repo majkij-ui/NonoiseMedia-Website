@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "O Nas",
+  title: "O Nas — Studio Produkcji Filmowej w Warszawie",
   description:
-    "Nonoise Media — studio produkcji wideo nowej generacji w Warszawie. Usługi wideo dla firm: kinowa jakość, zwinność bez narzutu, bezkompromisowa dbałość o detal.",
+    "Nonoise Media to warszawskie studio produkcji filmowej i wideo dla firm. Filmy korporacyjne, reklamowe i produktowe tworzone z kinową jakością — bez agencyjnego narzutu.",
 };
 
 export default function AboutLayout({
