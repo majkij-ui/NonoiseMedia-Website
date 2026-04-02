@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next'
+import { servicePages } from '@/lib/service-pages'
 
 const baseUrl = 'https://nonoise.media'
 const locales = ['pl', 'en'] as const
@@ -16,6 +17,12 @@ const routes: Route[] = [
   { path: '/about',        priority: 0.9, changeFrequency: 'monthly' },
   { path: '/work',         priority: 0.9, changeFrequency: 'monthly' },
   { path: '/offer',        priority: 0.9, changeFrequency: 'monthly' },
+  // Service landing pages
+  ...servicePages.map((sp) => ({
+    path: `/offer/${sp.slug}`,
+    priority: 0.85,
+    changeFrequency: 'monthly' as const,
+  })),
   { path: '/contact',      priority: 0.8, changeFrequency: 'yearly'  },
   { path: '/questionnaire',priority: 0.6, changeFrequency: 'yearly'  },
 ]
