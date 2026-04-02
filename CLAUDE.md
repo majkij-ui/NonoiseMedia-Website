@@ -82,7 +82,6 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 - Use Conventional Commits format (feat:, fix:, chore:, refactor:).
 - Keep subject lines under 72 characters.
 - Always run `npm test` before committing. If tests fail, do not commit.
-- Never push directly to `main`; always create a feature branch first.
 
 ---
 
