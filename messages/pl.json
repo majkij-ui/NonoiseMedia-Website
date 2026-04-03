@@ -19,41 +19,41 @@
     "headline": "NASZA OFERTA",
     "subheader": "Kompleksowa realizacja materiałów wideo, które rozwijają Twój biznes. Od strategii, przez produkcję, aż po finalny montaż – dostarczamy wizualny storytelling nastawiony na konwersję i realne wyniki sprzedażowe.",
     "services": {
+      "corporateFilm": {
+        "title": "Film korporacyjny",
+        "body": "Filmy korporacyjne, które budują zaufanie, wzmacniają wizerunek i wspierają cele Twojej firmy — od employer brandingu po komunikację z inwestorami. Kinowa jakość bez agencyjnego narzutu."
+      },
+      "commercialFilm": {
+        "title": "Film reklamowy",
+        "body": "Spoty reklamowe i kampanie wideo nastawione na konwersję. Od 15-sekundowych reelsów po pełne kampanie multiplatformowe — każdy format projektujemy pod konkretny cel: kliknięcie, zapis, zakup."
+      },
+      "brandFilm": {
+        "title": "Film wizerunkowy",
+        "body": "Kinowe produkcje oddające esencję Twojej marki. Budujemy emocjonalną więź z odbiorcą i podnosimy percepcję jakości — film wizerunkowy to inwestycja, która pracuje przez lata."
+      },
+      "productVideos": {
+        "title": "Filmy produktowe",
+        "body": "Przedstawiamy Twoje rozwiązania w sposób zrozumiały i angażujący. Pokazujemy realne korzyści i wartość Twojego produktu w formie, która przemawia do odbiorców i zwiększa konwersję."
+      },
+      "eventReportage": {
+        "title": "Reportaż eventowy",
+        "body": "Profesjonalna realizacja materiałów video z konferencji, eventów branżowych i spotkań firmowych. Wielokamerowe ujęcia, dynamiczny montaż i pełna postprodukcja — dostarczamy gotowy materiał, który przedłuża życie Twojego eventu."
+      },
       "instagramReels": {
         "title": "Rolki na Instagram",
-        "body": "Krótkie, dynamiczne materiały przyciągające uwagę w social mediach. Tworzymy angażujący content, który buduje Twoją markę eksperta i generuje interakcje. Od pomysłu, przez nagranie, po finalny montaż. Z topową jakością, której nie znajdziesz u naszej konkurencji."
+        "body": "Krótkie, dynamiczne materiały przyciągające uwagę w social mediach. Tworzymy angażujący content, który buduje Twoją markę eksperta i generuje interakcje. Od pomysłu, przez nagranie, po finalny montaż."
       },
       "linkedinVideo": {
         "title": "Video na LinkedIn",
         "body": "Profesjonalne materiały video budujące Twoją pozycję w świecie B2B. Wyróżnij się merytorycznym contentem i pokaż ekspercką wiedzę w atrakcyjnej formie. Pomożemy Ci w tworzeniu regularnego contentu."
       },
-      "productVideos": {
-        "title": "Filmy produktowe i usługowe",
-        "body": "Przedstawiamy Twoje rozwiązania w sposób zrozumiały i angażujący. Pokazujemy realne korzyści i wartość Twojego produktu lub usługi w formie, która przemawia do odbiorców. Skup się na swoim produkcie, a my przedstawimy to za pomocą obrazu."
-      },
       "caseStudies": {
         "title": "Video case studies",
         "body": "Przekształcamy historie Twoich sukcesów klientów w przekonujące materiały video. Buduj zaufanie, pokazując realne efekty współpracy z Twoją firmą. Niesamowite narzędzie budowania środka lejka sprzedażowego."
       },
-      "webinars": {
-        "title": "Webinary i szkolenia online",
-        "body": "Kompleksowa realizacja profesjonalnych webinarów i szkoleń. Zadbamy o najwyższą jakość obrazu i dźwięku, by Twój przekaz był nie tylko merytoryczny, ale też profesjonalnie podany."
-      },
       "expertInterviews": {
-        "title": "Wywiady Eksperckie",
+        "title": "Wywiady eksperckie",
         "body": "Profesjonalne nagrania wywiadów i wypowiedzi branżowych. Buduj swoją pozycję eksperta poprzez wartościowe rozmowy z osobami z Twojej branży. Skorzystaj z możliwości, jakie daje cross marketing."
-      },
-      "vlogs": {
-        "title": "Vlogi",
-        "body": "Twórz materiały video budujące Twoją obecność online regularnie. Tworzymy spójną serię treści, które buduje zaufanie do Twojej marki, i jako lidera w swojej dziedzinie."
-      },
-      "eventReportage": {
-        "title": "Reportaż z wydarzenia",
-        "body": "Profesjonalna realizacja materiałów video z konferencji, eventów branżowych i spotkań firmowych. Wielokamerowe ujęcia, dynamiczny montaż i pełna postprodukcja — dostarczamy gotowy materiał, który przedłuża życie Twojego eventu w sieci."
-      },
-      "personalizedVideo": {
-        "title": "Personalizowane video",
-        "body": "Spersonalizowane materiały video do wykorzystania w komunikacji z klientami np. uroczystościach firmowych czy kampaniach reklamowych. Świetnie sprawdzają się w lejku sprzedażowym i marketing automation."
       }
     }
   },

@@ -2,46 +2,44 @@
 
 import { motion } from "framer-motion"
 import {
+  Building2,
+  Megaphone,
+  Film,
+  PackageOpen,
+  Clapperboard,
   Smartphone,
   Briefcase,
-  PackageOpen,
   TrendingUp,
-  Webcam,
   Mic,
-  Video,
-  Clapperboard,
-  UserCheck,
   type LucideIcon,
 } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { Navigation } from "@/components/navigation"
 import { OfferPricingTiers } from "@/components/offer/pricing-tiers"
 
 const cinematicEase = [0.25, 0.1, 0.25, 1] as const
 
-const serviceKeys = [
-  "productVideos",
-  "instagramReels",
-  "eventReportage",
-  "linkedinVideo",
-  "caseStudies",
-  "webinars",
-  "expertInterviews",
-  "vlogs",
-  "personalizedVideo",
-] as const
+// ---------------------------------------------------------------------------
+// Service definitions — order = grid order (row-major, 3-col)
+// href links to the dedicated landing page where one exists.
+// ---------------------------------------------------------------------------
 
-const serviceIcons: Record<(typeof serviceKeys)[number], LucideIcon> = {
-  productVideos: PackageOpen,
-  instagramReels: Smartphone,
-  eventReportage: Clapperboard,
-  linkedinVideo: Briefcase,
-  caseStudies: TrendingUp,
-  webinars: Webcam,
-  expertInterviews: Mic,
-  vlogs: Video,
-  personalizedVideo: UserCheck,
-}
+const services: {
+  key: string
+  icon: LucideIcon
+  href?: string
+}[] = [
+  { key: "corporateFilm",   icon: Building2,   href: "/offer/filmy-korporacyjne" },
+  { key: "commercialFilm",  icon: Megaphone,   href: "/offer/filmy-reklamowe"    },
+  { key: "brandFilm",       icon: Film,        href: "/offer/filmy-wizerunkowe"  },
+  { key: "productVideos",   icon: PackageOpen, href: "/offer/filmy-produktowe"   },
+  { key: "eventReportage",  icon: Clapperboard,href: "/offer/reportaz-eventowy"  },
+  { key: "instagramReels",  icon: Smartphone                                      },
+  { key: "linkedinVideo",   icon: Briefcase                                       },
+  { key: "caseStudies",     icon: TrendingUp                                      },
+  { key: "expertInterviews",icon: Mic                                             },
+]
 
 // ---------------------------------------------------------------------------
 // Hero
@@ -87,23 +85,23 @@ function Hero() {
 }
 
 // ---------------------------------------------------------------------------
-// Service Card
+// Service Card — optionally wrapped in a Link when href is provided
 // ---------------------------------------------------------------------------
 
 function ServiceCard({
   icon: Icon,
-  titleKey,
-  bodyKey,
+  serviceKey,
   index,
+  href,
 }: {
   icon: LucideIcon
-  titleKey: string
-  bodyKey: string
+  serviceKey: string
   index: number
+  href?: string
 }) {
   const t = useTranslations("offer.services")
 
-  return (
+  const inner = (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -114,8 +112,15 @@ function ServiceCard({
         ease: cinematicEase,
       }}
       whileHover={{ y: -4 }}
-      className="group border border-foreground/10 bg-background p-8 transition-colors duration-300 hover:bg-foreground hover:text-background md:p-10"
+      className="group relative border border-foreground/10 bg-background p-8 transition-colors duration-300 hover:bg-foreground hover:text-background md:p-10"
     >
+      {/* "See more" indicator for tiles with landing pages */}
+      {href && (
+        <span className="absolute right-6 top-6 font-mono text-[9px] uppercase tracking-[0.2em] text-foreground/20 transition-colors duration-300 group-hover:text-background/40">
+          →
+        </span>
+      )}
+
       <Icon
         size={28}
         strokeWidth={1.4}
@@ -123,14 +128,24 @@ function ServiceCard({
       />
 
       <h3 className="mb-4 font-[family-name:var(--font-display)] text-xl uppercase leading-none tracking-[0.02em] text-foreground transition-colors duration-300 group-hover:text-background md:text-2xl">
-        {t(`${titleKey}.title`)}
+        {t(`${serviceKey}.title`)}
       </h3>
 
       <p className="font-sans text-sm leading-relaxed text-foreground/50 transition-colors duration-300 group-hover:text-background/60">
-        {t(`${bodyKey}.body`)}
+        {t(`${serviceKey}.body`)}
       </p>
     </motion.div>
   )
+
+  if (href) {
+    return (
+      <Link href={href} className="block">
+        {inner}
+      </Link>
+    )
+  }
+
+  return inner
 }
 
 // ---------------------------------------------------------------------------
@@ -141,13 +156,13 @@ function ServicesGrid() {
   return (
     <section className="px-6 pb-32 md:px-12">
       <div className="grid grid-cols-1 gap-px bg-foreground/10 md:grid-cols-2 lg:grid-cols-3">
-        {serviceKeys.map((key, i) => (
+        {services.map(({ key, icon, href }, i) => (
           <ServiceCard
             key={key}
-            icon={serviceIcons[key]}
-            titleKey={key}
-            bodyKey={key}
+            icon={icon}
+            serviceKey={key}
             index={i}
+            href={href}
           />
         ))}
       </div>
