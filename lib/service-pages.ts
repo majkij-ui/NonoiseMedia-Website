@@ -44,8 +44,8 @@ export type ServicePageData = {
     sectionHeadline: string
     steps: ProcessStep[]
   }
-  /** id matching a project from lib/projects.ts */
-  featuredProjectId: number
+  /** id matching a project from lib/projects.ts — omit to hide the case study section */
+  featuredProjectId?: number
   caseStudy: {
     sectionLabel: string
     sectionHeadline: string
@@ -580,6 +580,394 @@ export const servicePages: ServicePageData[] = [
       headline: "Masz event?\nZadokumentujmy go razem",
       body: "Opowiedz nam o swoim wydarzeniu. Przygotujemy propozycję dopasowaną do skali, formatu i budżetu.",
       buttonText: "Wyceń reportaż",
+    },
+  },
+
+  // ── Rolki na Instagram ──────────────────────────────────────────────
+  {
+    slug: "rolki-instagram",
+    meta: {
+      pl: {
+        title: "Rolki na Instagram dla Firm Warszawa — Produkcja Reelsów",
+        description:
+          "Profesjonalna produkcja rolek na Instagram dla firm w Warszawie. Angażujący short-form content, który buduje markę i generuje zasięgi. Bezpłatna wycena.",
+      },
+      en: {
+        title: "Instagram Reels for Business Warsaw — Short-Form Video Production",
+        description:
+          "Professional Instagram Reels production for businesses in Warsaw. Engaging short-form content that builds your brand and drives organic reach. Free quote.",
+      },
+    },
+    hero: {
+      label: "Rolki na Instagram — Warszawa",
+      headline: "SHORT-FORM VIDEO\nKTÓRY ZATRZYMUJE\nKCIUK",
+      subheadline:
+        "Rolki na Instagram to dziś najskuteczniejszy organiczny kanał dotarcia do nowych odbiorców. Tworzymy krótkie, dynamiczne materiały, które nie giną w feedzie — budują markę eksperta, generują zasięgi i przekuwają widzów w klientów.",
+      ctaText: "Bezpłatna wycena",
+    },
+    benefits: {
+      sectionLabel: "01 / Dlaczego rolki na Instagram",
+      sectionHeadline: "ALGORYTM\nNA TWOJĄ STRONĘ",
+      items: [
+        {
+          label: "01 / Zasięg organiczny",
+          title: "Dotrzyj do nowych odbiorców bez płatnej reklamy",
+          body: "Reelsy to format faworyzowany przez algorytm Instagrama — docierają daleko poza krąg obserwujących. Profesjonalnie zrealizowane materiały multiplikują zasięg organiczny Twojego konta.",
+        },
+        {
+          label: "02 / Pozycja eksperta",
+          title: "Buduj autorytet w 60 sekund",
+          body: "Short-form video to najszybszy sposób na budowanie pozycji eksperta w swojej branży. Tworzymy treści, które pokazują wiedzę i wartość Twojej firmy w formacie, który ludzie faktycznie oglądają do końca.",
+        },
+        {
+          label: "03 / Spójność i skala",
+          title: "Regularny content bez chaosu",
+          body: "Z jednego dnia zdjęciowego dostarczamy pakiet rolek na cały miesiąc. Spójna estetyka, przemyślana narracja i gotowe materiały w formacie 9:16 — publikujesz, my zajmujemy się produkcją.",
+        },
+      ],
+    },
+    process: {
+      sectionLabel: "02 / Jak pracujemy",
+      sectionHeadline: "OD KONCEPTU\nDO PUBLIKACJI",
+      steps: [
+        {
+          number: "01",
+          title: "Strategia contentu",
+          body: "Analizujemy Twoje konto, grupę docelową i cele. Proponujemy tematy, formaty i hook'i dopasowane do algorytmu i Twojej branży.",
+        },
+        {
+          number: "02",
+          title: "Dzień zdjęciowy",
+          body: "Zwinny setup, szybki obrót scen. Nagrywamy pakiet rolek — różne tematy, hook'i i CTA — gotowych do montażu. Jeden dzień, kilka tygodni contentu.",
+        },
+        {
+          number: "03",
+          title: "Montaż & dostawa",
+          body: "Dynamiczny montaż pod rytm muzyki, napisy, motion graphics i korekta barwna. Dostarczamy gotowe pliki w formacie 9:16 zoptymalizowanym pod Instagram.",
+        },
+      ],
+    },
+    faqs: {
+      sectionLabel: "03 / FAQ",
+      sectionHeadline: "NAJCZĘSTSZE\nPYTANIA",
+      items: [
+        {
+          question: "Ile rolek mogę dostać z jednego dnia zdjęciowego?",
+          answer:
+            "Standardowo 6–12 rolek z jednego dnia zdjęciowego, w zależności od złożoności scenariuszy. Przy prostszych formatach \"mówionych do kamery\" możemy nagrać nawet więcej materiału.",
+        },
+        {
+          question: "Ile kosztuje produkcja rolek na Instagram?",
+          answer:
+            "Pakiety zaczynają się od 2 500 PLN za dzień zdjęciowy z postprodukcją. Abonament miesięczny z regularną dostawą contentu wyceniamy indywidualnie.",
+        },
+        {
+          question: "Czy pomagacie z koncepcją i scenariuszami?",
+          answer:
+            "Tak — strategia contentu, propozycje tematów i scenariusze to integralna część naszej usługi. Nie przychodzisz z gotowym scenariuszem — przychodzisz z branżą i celami.",
+        },
+        {
+          question: "Czy rolki muszą mieć mnie w kadrze?",
+          answer:
+            "Nie — tworzymy zarówno rolki \"face-forward\" (Ty lub Twój zespół w kadrze), jak i materiały lifestyle, b-roll, animacje i hybrydowe formaty bez konieczności bycia przed kamerą.",
+        },
+      ],
+    },
+    cta: {
+      headline: "Zacznij budować\npresencję na Instagramie",
+      body: "Opowiedz nam o swoim koncie i celach. Zaproponujemy strategię contentu i wycenę pakietu rolek dopasowanego do Twojej branży.",
+      buttonText: "Wyceń pakiet rolek",
+    },
+  },
+
+  // ── Video na LinkedIn ───────────────────────────────────────────────
+  {
+    slug: "video-linkedin",
+    meta: {
+      pl: {
+        title: "Video na LinkedIn dla Firm Warszawa — B2B Video Marketing",
+        description:
+          "Produkcja profesjonalnych materiałów wideo na LinkedIn dla firm B2B w Warszawie. Buduj pozycję eksperta i generuj leady organiczne. Bezpłatna wycena.",
+      },
+      en: {
+        title: "LinkedIn Video Production Warsaw — B2B Video Marketing",
+        description:
+          "Professional LinkedIn video production for B2B companies in Warsaw. Build thought leadership and generate organic leads. Free quote.",
+      },
+    },
+    hero: {
+      label: "Video na LinkedIn — Warszawa",
+      headline: "VIDEO B2B\nKTÓRE BUDUJE\nAUTORYTET",
+      subheadline:
+        "LinkedIn nagradza twórców wideo lepszymi zasięgami organicznymi niż jakikolwiek inny format. Tworzymy profesjonalne materiały wideo, które pozycjonują Ciebie i Twoją firmę jako ekspertów w branży — i zamieniają widzów w kontakty biznesowe.",
+      ctaText: "Bezpłatna wycena",
+    },
+    benefits: {
+      sectionLabel: "01 / Dlaczego video na LinkedIn",
+      sectionHeadline: "LIDER BRANŻY\nW KAŻDYM POŚCIE",
+      items: [
+        {
+          label: "01 / Zasięg B2B",
+          title: "Dotrzyj do decydentów bez cold mailingu",
+          body: "Video na LinkedIn generuje 5× więcej komentarzy i 3× więcej zasięgu niż posty tekstowe. Twoi potencjalni klienci i partnerzy są na LinkedIn — profesjonalne wideo sprawia, że zatrzymują się przy Twoim koncie.",
+        },
+        {
+          label: "02 / Thought leadership",
+          title: "Zostań twarzą swojej branży",
+          body: "Regularne, merytoryczne wideo buduje pozycję eksperta szybciej niż jakikolwiek inny format. Pokazujemy Twoją wiedzę w sposób, który angażuje, a nie nuży — bez korporacyjnej sztywności.",
+        },
+        {
+          label: "03 / Pipeline sprzedażowy",
+          title: "Content który generuje leady",
+          body: "Dobrze zaplanowany cykl wideo na LinkedIn to maszynka do generowania inbound leadów. Budujemy narrację, która prowadzi widza od \"znam tę firmę\" do \"chcę z nimi porozmawiać\".",
+        },
+      ],
+    },
+    process: {
+      sectionLabel: "02 / Jak pracujemy",
+      sectionHeadline: "OD STRATEGII\nDO ZASIĘGÓW",
+      steps: [
+        {
+          number: "01",
+          title: "Strategia & content plan",
+          body: "Analizujemy Twój profil, branżę i grupę docelową. Budujemy plan contentu wideo — tematy, formaty, rytm publikacji — spójny z celami biznesowymi.",
+        },
+        {
+          number: "02",
+          title: "Realizacja",
+          body: "Profesjonalne nagrania w Twoim biurze, plenerze lub naszym studio. Dbamy o jakość obrazu i dźwięku, która wyróżnia Cię na tle amatorskich nagrań telefonem.",
+        },
+        {
+          number: "03",
+          title: "Montaż pod platformę",
+          body: "Cięcia pod czas uwagi na LinkedIn, napisy, grafiki i CTA. Dostarczamy gotowe materiały zoptymalizowane pod algorytm platformy — w formatach kwadratowym i poziomym.",
+        },
+      ],
+    },
+    faqs: {
+      sectionLabel: "03 / FAQ",
+      sectionHeadline: "NAJCZĘSTSZE\nPYTANIA",
+      items: [
+        {
+          question: "Ile materiałów wideo mogę publikować miesięcznie na LinkedIn?",
+          answer:
+            "Optymalnie 2–4 materiały wideo miesięcznie — wystarczająco, żeby budować algorytmiczną widoczność, bez przytłaczania sieci. Z jednego dnia zdjęciowego dostarczamy materiał na 4–8 tygodni publikacji.",
+        },
+        {
+          question: "Ile kosztuje produkcja wideo na LinkedIn?",
+          answer:
+            "Pojedynczy materiał lub seria krótkich odcinków zaczyna się od 2 500 PLN za sesję. Abonament miesięczny z regularną dostawą contentu wyceniamy indywidualnie na podstawie częstotliwości i formatu.",
+        },
+        {
+          question: "Czy muszę sam mówić do kamery?",
+          answer:
+            "To najpopularniejszy format na LinkedIn, ale nie jedyny. Tworzymy też wywiady z ekspertami, relacje z wydarzeń, materiały lifestyle i animowane explainer videos — wszystko zależy od Twojej strategii.",
+        },
+        {
+          question: "Czy pomagacie z treścią postów towarzyszących wideo?",
+          answer:
+            "Skupiamy się na produkcji wideo, ale chętnie doradzimy w kwestii struktury posta, hook'u i CTA, które maksymalizują zasięg organiczny Twojego materiału na LinkedIn.",
+        },
+      ],
+    },
+    cta: {
+      headline: "Zacznij budować\npresencję na LinkedIn",
+      body: "Opowiedz nam o swoim koncie i celach biznesowych. Zaproponujemy strategię wideo i wycenę pakietu dopasowanego do Twojej branży.",
+      buttonText: "Wyceń video na LinkedIn",
+    },
+  },
+
+  // ── Video case studies ──────────────────────────────────────────────
+  {
+    slug: "video-case-studies",
+    meta: {
+      pl: {
+        title: "Video Case Studies Warszawa — Filmy z Referencjami Klientów",
+        description:
+          "Produkcja video case studies i filmów referencyjnych w Warszawie. Przekształć sukcesy klientów w przekonujące materiały sprzedażowe. Bezpłatna wycena.",
+      },
+      en: {
+        title: "Video Case Studies Warsaw — Customer Testimonial Video Production",
+        description:
+          "Video case study and customer testimonial production in Warsaw. Turn your client success stories into powerful sales tools. Free quote.",
+      },
+    },
+    hero: {
+      label: "Video case studies — Warszawa",
+      headline: "NIECH TWOI\nKLIENCI\nSPRZEDAJĄ ZA CIEBIE",
+      subheadline:
+        "Video case study to najskuteczniejszy dowód społeczny, jaki możesz pokazać potencjalnemu klientowi. Przekształcamy historię sukcesu Twojego klienta w przekonujący materiał filmowy — autentyczny, emocjonalny i mierzalnie skuteczny w procesie sprzedaży.",
+      ctaText: "Bezpłatna wycena",
+    },
+    benefits: {
+      sectionLabel: "01 / Dlaczego video case study",
+      sectionHeadline: "DOWÓD, KTÓRY\nPRZEKONUJE",
+      items: [
+        {
+          label: "01 / Wiarygodność",
+          title: "Zbuduj zaufanie zanim klient zadzwoni",
+          body: "92% kupujących B2B twierdzi, że recenzje i referencje wpływają na decyzję zakupową. Video case study to najpotężniejsza forma social proof — autentyczny głos Twojego klienta działa lepiej niż najlepsza copywriterska perswazja.",
+        },
+        {
+          label: "02 / Środek lejka",
+          title: "Skróć czas decyzji zakupowej",
+          body: "Potencjalny klient, który widzi, jak rozwiązałeś realny problem podobnej firmy, przechodzi przez etap rozważania kilkukrotnie szybciej. Video case study to narzędzie, które domyka leady.",
+        },
+        {
+          label: "03 / Wielokanałowość",
+          title: "Jeden materiał, wiele zastosowań",
+          body: "Pełny case study na stronie, short-form na LinkedIn, cytat klienta jako testimonial — z jednej produkcji wyciągamy maksimum contentu do wykorzystania w całym procesie sprzedaży.",
+        },
+      ],
+    },
+    process: {
+      sectionLabel: "02 / Jak pracujemy",
+      sectionHeadline: "OD HISTORII\nDO KONWERSJI",
+      steps: [
+        {
+          number: "01",
+          title: "Wybór historii & przygotowanie",
+          body: "Pomagamy wybrać klienta i projekt, który najlepiej ilustruje wartość Twojej firmy. Przygotowujemy pytania i briefujemy rozmówcę — żeby nagranie było naturalne, nie wyreżyserowane.",
+        },
+        {
+          number: "02",
+          title: "Realizacja",
+          body: "Profesjonalne nagranie wywiadu z klientem, uzupełnione materiałem ilustracyjnym z realizacji projektu. Dbamy o jakość obrazu i dźwięku na poziomie, który buduje prestiż Twojej marki.",
+        },
+        {
+          number: "03",
+          title: "Montaż & dystrybucja",
+          body: "Storytellingowy montaż z wyraźną strukturą: wyzwanie → rozwiązanie → wyniki. Dostarczamy pełną wersję i skróty gotowe do każdego kanału sprzedaży.",
+        },
+      ],
+    },
+    faqs: {
+      sectionLabel: "03 / FAQ",
+      sectionHeadline: "NAJCZĘSTSZE\nPYTANIA",
+      items: [
+        {
+          question: "Jak przekonać klienta do udziału w video case study?",
+          answer:
+            "Pomagamy w tym procesie — przygotowujemy briefing dla klienta, tłumaczymy jak wygląda sesja i jakie korzyści odnosi z udziału (ekspozycja jego marki, materiał do własnych kanałów). Większość klientów chętnie uczestniczy, gdy czują się bezpiecznie.",
+        },
+        {
+          question: "Ile kosztuje video case study?",
+          answer:
+            "Produkcja jednego video case study zaczyna się od 4 500 PLN i obejmuje nagranie wywiadu, materiał ilustracyjny i pełną postprodukcję. Pakiety kilku case studies wyceniamy korzystniej.",
+        },
+        {
+          question: "Jak długo powinno trwać video case study?",
+          answer:
+            "Pełna wersja: 2–4 minuty (na stronę www, prezentacje). Skrócona wersja: 60–90 sekund (LinkedIn, e-mail sprzedażowy). Dostarczamy obie — z jednej produkcji.",
+        },
+        {
+          question: "Czy klient musi być obecny na planie?",
+          answer:
+            "Wywiad z klientem to serce case study, więc tak — ale organizujemy sesję w miejscu wygodnym dla rozmówcy: jego biuro, Twoje biuro lub neutralna lokacja. Dbamy o to, żeby czuł się komfortowo.",
+        },
+      ],
+    },
+    cta: {
+      headline: "Zamień swoje\nnajlepsze realizacje\nw narzędzie sprzedaży",
+      body: "Opowiedz nam o projekcie, którym chcesz się pochwalić. Przygotujemy propozycję video case study, które będzie pracować na Twój pipeline.",
+      buttonText: "Wyceń video case study",
+    },
+  },
+
+  // ── Wywiady eksperckie ──────────────────────────────────────────────
+  {
+    slug: "wywiady-eksperckie",
+    meta: {
+      pl: {
+        title: "Wywiady Eksperckie Warszawa — Profesjonalne Nagrania Wywiadów",
+        description:
+          "Profesjonalna produkcja wywiadów eksperckich i wypowiedzi branżowych w Warszawie. Buduj autorytet i pozycję eksperta przez wartościowe rozmowy. Bezpłatna wycena.",
+      },
+      en: {
+        title: "Expert Interview Video Production Warsaw",
+        description:
+          "Professional expert interview and thought leadership video production in Warsaw. Build authority through valuable industry conversations. Free quote.",
+      },
+    },
+    hero: {
+      label: "Wywiady eksperckie — Warszawa",
+      headline: "ROZMOWY\nKTÓRE BUDUJĄ\nAUTORYTET",
+      subheadline:
+        "Wywiad ekspercki to jedno z najpotężniejszych narzędzi budowania pozycji w branży. Profesjonalnie zrealizowane rozmowy z ekspertami — Tobą, Twoim zespołem lub gośćmi zewnętrznymi — tworzą content, który angażuje, edukuje i buduje zaufanie do Twojej marki.",
+      ctaText: "Bezpłatna wycena",
+    },
+    benefits: {
+      sectionLabel: "01 / Dlaczego wywiady eksperckie",
+      sectionHeadline: "WIEDZA\nW KINOWEJ\nOPRAWIE",
+      items: [
+        {
+          label: "01 / Autorytet",
+          title: "Zostań głosem swojej branży",
+          body: "Regularne wywiady eksperckie budują wizerunek thought leadera szybciej niż jakakolwiek inna forma contentu. Twoja wiedza, oprawiona profesjonalnym obrazem i dźwiękiem, dociera do odbiorców z wagą, na jaką zasługuje.",
+        },
+        {
+          label: "02 / Cross-marketing",
+          title: "Rozszerz zasięg przez sieć gości",
+          body: "Każdy zaproszony ekspert to dostęp do jego sieci kontaktów. Wywiad, który publikujesz, trafia też do jego obserwujących — organicznie zwiększając zasięg Twojej marki bez kosztów reklamowych.",
+        },
+        {
+          label: "03 / Recykling contentu",
+          title: "Jeden wywiad, tygodnie materiału",
+          body: "Z jednego wywiadu wyciągamy: pełny odcinek, kilka short-formów na Instagram i LinkedIn, cytaty do postów tekstowych i fragmenty do newsletter. Maksimum contentu z jednej sesji.",
+        },
+      ],
+    },
+    process: {
+      sectionLabel: "02 / Jak pracujemy",
+      sectionHeadline: "OD TEMATU\nDO PUBLIKACJI",
+      steps: [
+        {
+          number: "01",
+          title: "Przygotowanie & briefing",
+          body: "Ustalamy temat, format i pytania. Briefujemy rozmówcę tak, żeby czuł się komfortowo przed kamerą. Planujemy setup wizualny dopasowany do charakteru rozmowy.",
+        },
+        {
+          number: "02",
+          title: "Realizacja",
+          body: "Profesjonalne nagranie: studyjna jakość dźwięku, cinematic obraz i oświetlenie, które buduje klimat — nie sterylne studio korporacyjne. Prowadzący lub swobodna rozmowa — w zależności od formatu.",
+        },
+        {
+          number: "03",
+          title: "Postprodukcja & formaty",
+          body: "Montaż pełnej rozmowy, wycinki short-form, napisy i grafiki. Dostarczamy gotowe materiały pod YouTube, LinkedIn, Instagram i podcast wideo.",
+        },
+      ],
+    },
+    faqs: {
+      sectionLabel: "03 / FAQ",
+      sectionHeadline: "NAJCZĘSTSZE\nPYTANIA",
+      items: [
+        {
+          question: "Ile kosztuje realizacja wywiadu eksperckiego?",
+          answer:
+            "Nagranie jednego wywiadu z postprodukcją zaczyna się od 2 500 PLN. Pakiety serii wywiadów (np. 4–6 odcinków) wyceniamy korzystniej — idealne dla regularnych formatów podcastowych lub serii contentowych.",
+        },
+        {
+          question: "Gdzie realizujecie wywiady?",
+          answer:
+            "W Twoim biurze, na evencie, w plenerze lub w profesjonalnej przestrzeni studia — dobieramy lokację do charakteru rozmowy i estetyki Twojej marki. Lubimy unikać sterylnych białych tłów.",
+        },
+        {
+          question: "Czy możecie pomóc w przygotowaniu pytań i scenariusza?",
+          answer:
+            "Tak — przygotowanie pytań, struktura rozmowy i briefing rozmówcy to część naszej usługi. Dbamy o to, żeby wywiad był naturalny i merytoryczny, a nie wyrecytowany.",
+        },
+        {
+          question: "Czy wywiad można realizować zdalnie?",
+          answer:
+            "Tak — realizujemy wywiady zdalne z profesjonalnym setupem po stronie prowadzącego i zestawem instrukcji dla gościa, który nagrywa u siebie. Jakość finalnego materiału jest znacznie wyższa niż standardowe nagrania Teams/Zoom.",
+        },
+      ],
+    },
+    cta: {
+      headline: "Zacznij budować\npozycję eksperta",
+      body: "Opowiedz nam o swoim projekcie wywiadów. Zaproponujemy format, estetykę i wycenę dopasowaną do Twoich celów.",
+      buttonText: "Wyceń wywiad ekspercki",
     },
   },
 ]

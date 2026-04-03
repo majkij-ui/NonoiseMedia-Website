@@ -39,7 +39,7 @@ const staggerContainer = {
 
 type Props = {
   data: ServicePageData
-  project: Project
+  project?: Project
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -217,7 +217,8 @@ function Process({ data }: { data: ServicePageData }) {
 // CASE STUDY — featured project (matches /work card pattern)
 // ═══════════════════════════════════════════════════════════════════════════
 
-function CaseStudy({ data, project }: { data: ServicePageData; project: Project }) {
+function CaseStudy({ data, project }: { data: ServicePageData; project: Project | undefined }) {
+  if (!project) return null
   const { caseStudy } = data
 
   return (
@@ -479,7 +480,7 @@ export function ServiceLandingClient({ data, project }: Props) {
       <Hero data={data} />
       <Benefits data={data} />
       <Process data={data} />
-      <CaseStudy data={data} project={project} />
+      {project && <CaseStudy data={data} project={project} />}
       <Faqs data={data} />
       <CtaStrip data={data} />
 

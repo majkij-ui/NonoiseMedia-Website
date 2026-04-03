@@ -35,10 +35,10 @@ const services: {
   { key: "brandFilm",       icon: Film,        href: "/offer/filmy-wizerunkowe"  },
   { key: "productVideos",   icon: PackageOpen, href: "/offer/filmy-produktowe"   },
   { key: "eventReportage",  icon: Clapperboard,href: "/offer/reportaz-eventowy"  },
-  { key: "instagramReels",  icon: Smartphone                                      },
-  { key: "linkedinVideo",   icon: Briefcase                                       },
-  { key: "caseStudies",     icon: TrendingUp                                      },
-  { key: "expertInterviews",icon: Mic                                             },
+  { key: "instagramReels",  icon: Smartphone, href: "/offer/rolki-instagram"      },
+  { key: "linkedinVideo",   icon: Briefcase,  href: "/offer/video-linkedin"        },
+  { key: "caseStudies",     icon: TrendingUp, href: "/offer/video-case-studies"    },
+  { key: "expertInterviews",icon: Mic,        href: "/offer/wywiady-eksperckie"    },
 ]
 
 // ---------------------------------------------------------------------------

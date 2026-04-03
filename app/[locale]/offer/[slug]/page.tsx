@@ -60,8 +60,9 @@ export default async function ServicePage({ params }: PageProps) {
   const page = getServicePage(slug)
   if (!page) notFound()
 
-  const project = projects.find((p) => p.id === page.featuredProjectId)
-  if (!project) notFound()
+  const project = page.featuredProjectId
+    ? projects.find((p) => p.id === page.featuredProjectId)
+    : undefined
 
   return <ServiceLandingClient data={page} project={project} />
 }
