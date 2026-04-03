@@ -583,30 +583,30 @@ export const servicePages: ServicePageData[] = [
     },
   },
 
-  // ── Rolki na Instagram ──────────────────────────────────────────────
+  // ── Wideo do Social Media ───────────────────────────────────────────
   {
-    slug: "rolki-instagram",
+    slug: "wideo-social-media",
     meta: {
       pl: {
-        title: "Rolki na Instagram dla Firm Warszawa — Produkcja Reelsów",
+        title: "Wideo do Social Media dla Firm Warszawa — Short-Form Video",
         description:
-          "Profesjonalna produkcja rolek na Instagram dla firm w Warszawie. Angażujący short-form content, który buduje markę i generuje zasięgi. Bezpłatna wycena.",
+          "Profesjonalna produkcja wideo do social media dla firm w Warszawie. Reelsy, TikToki i YouTube Shorts, które budują markę i generują zasięg organiczny. Bezpłatna wycena.",
       },
       en: {
-        title: "Instagram Reels for Business Warsaw — Short-Form Video Production",
+        title: "Social Media Video for Business Warsaw — Short-Form Production",
         description:
-          "Professional Instagram Reels production for businesses in Warsaw. Engaging short-form content that builds your brand and drives organic reach. Free quote.",
+          "Professional short-form video production for businesses in Warsaw. Reels, TikToks and YouTube Shorts that build your brand and drive organic reach. Free quote.",
       },
     },
     hero: {
-      label: "Rolki na Instagram — Warszawa",
+      label: "Wideo do Social Media — Warszawa",
       headline: "SHORT-FORM VIDEO\nKTÓRY ZATRZYMUJE\nKCIUK",
       subheadline:
-        "Rolki na Instagram to dziś najskuteczniejszy organiczny kanał dotarcia do nowych odbiorców. Tworzymy krótkie, dynamiczne materiały, które nie giną w feedzie — budują markę eksperta, generują zasięgi i przekuwają widzów w klientów.",
+        "TikTok, Instagram Reels, YouTube Shorts — niezależnie od platformy, krótkie wideo to dziś najskuteczniejszy organiczny kanał dotarcia do nowych odbiorców. Tworzymy dynamiczne materiały, które nie giną w feedzie — budują markę eksperta i przekuwają widzów w klientów.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
-      sectionLabel: "01 / Dlaczego rolki na Instagram",
+      sectionLabel: "01 / Dlaczego wideo do social media",
       sectionHeadline: "ALGORYTM\nNA TWOJĄ STRONĘ",
       items: [
         {

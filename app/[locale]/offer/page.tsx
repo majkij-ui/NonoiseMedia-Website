@@ -7,7 +7,7 @@ import {
   Film,
   PackageOpen,
   Clapperboard,
-  Smartphone,
+  Share2,
   Briefcase,
   TrendingUp,
   Mic,
@@ -35,7 +35,7 @@ const services: {
   { key: "brandFilm",       icon: Film,        href: "/offer/filmy-wizerunkowe"  },
   { key: "productVideos",   icon: PackageOpen, href: "/offer/filmy-produktowe"   },
   { key: "eventReportage",  icon: Clapperboard,href: "/offer/reportaz-eventowy"  },
-  { key: "instagramReels",  icon: Smartphone, href: "/offer/rolki-instagram"      },
+  { key: "instagramReels",  icon: Share2,     href: "/offer/wideo-social-media"    },
   { key: "linkedinVideo",   icon: Briefcase,  href: "/offer/video-linkedin"        },
   { key: "caseStudies",     icon: TrendingUp, href: "/offer/video-case-studies"    },
   { key: "expertInterviews",icon: Mic,        href: "/offer/wywiady-eksperckie"    },
@@ -112,7 +112,7 @@ function ServiceCard({
         ease: cinematicEase,
       }}
       whileHover={{ y: -4 }}
-      className="group relative border border-foreground/10 bg-background p-8 transition-colors duration-300 hover:bg-foreground hover:text-background md:p-10"
+      className="group relative h-full border border-foreground/10 bg-background p-8 transition-colors duration-300 hover:bg-foreground hover:text-background md:p-10"
     >
       {/* "See more" indicator for tiles with landing pages */}
       {href && (
@@ -139,7 +139,7 @@ function ServiceCard({
 
   if (href) {
     return (
-      <Link href={href} className="block">
+      <Link href={href} className="block h-full">
         {inner}
       </Link>
     )

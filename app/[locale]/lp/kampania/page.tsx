@@ -8,6 +8,7 @@ import { OfferPricingTiers } from "@/components/offer/pricing-tiers"
 import { ProjectThumbnailGrid } from "@/components/lp/project-thumbnail-grid"
 import { LpLeadStrip } from "@/components/lp/lp-lead-strip"
 import { LpHero } from "@/components/lp/lp-hero"
+import { LpServicesGrid } from "@/components/lp/lp-services-grid"
 
 export default function KampaniaLpPage() {
   return (
@@ -15,6 +16,7 @@ export default function KampaniaLpPage() {
       <Navigation fixed />
 
       <LpHero />
+      <LpServicesGrid />
 
       <AboutFeatures />
       <ProjectThumbnailGrid />
