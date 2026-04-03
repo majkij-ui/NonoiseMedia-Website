@@ -87,7 +87,7 @@ export const servicePages: ServicePageData[] = [
       label: "Filmy korporacyjne Warszawa",
       headline: "FILM KORPORACYJNY\nKTÓRY PRACUJE\nNA TWOJĄ MARKĘ",
       subheadline:
-        "Tworzymy filmy korporacyjne, które nie kończą jako zapomniany link w intranecie. Każdy kadr ma za zadanie budować zaufanie, wzmacniać wizerunek i realnie wspierać cele Twojej firmy — od employer brandingu po komunikację z inwestorami.",
+        "Większość filmów korporacyjnych kończy jako zapomniany link w intranecie. Nasze nie. Każdy kadr ma konkretne zadanie — budować zaufanie, wzmacniać wizerunek i wspierać cele firmy. Od employer brandingu po komunikację z inwestorami.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
@@ -96,18 +96,18 @@ export const servicePages: ServicePageData[] = [
       items: [
         {
           label: "01 / Wiarygodność",
-          title: "Buduj zaufanie od pierwszego kadru",
-          body: "Profesjonalny film korporacyjny to Twoja wizytówka w spotkaniach z partnerami, inwestorami i klientami. Wysokiej klasy obraz natychmiast buduje percepcję jakości i solidności Twojej firmy.",
+          title: "Twoja wizytówka w każdym spotkaniu",
+          body: "Profesjonalny film korporacyjny zmienia sposób, w jaki partnerzy, inwestorzy i klienci postrzegają Twoją firmę. Kinowa jakość obrazu sygnalizuje solidność i ambicję — zanim padnie pierwsze słowo.",
         },
         {
           label: "02 / Wielokanałowość",
           title: "Jeden film, dziesiątki zastosowań",
-          body: "Strona internetowa, LinkedIn, prezentacje handlowe, targi, onboarding — film korporacyjny pracuje w każdym punkcie styku z odbiorcą. Dostarczamy materiały w formatach zoptymalizowanych pod każdy kanał.",
+          body: "Strona internetowa, LinkedIn, prezentacje handlowe, targi, onboarding — film korporacyjny pracuje w każdym punkcie styku z odbiorcą. Dostarczamy materiały zoptymalizowane pod każdy kanał.",
         },
         {
           label: "03 / Emocje i dane",
-          title: "Połącz storytelling z twardymi faktami",
-          body: "Łączymy emocjonalną narrację z konkretnymi danymi i wynikami Twojej firmy. Efekt? Przekaz, który angażuje i jednocześnie przekonuje do działania.",
+          title: "Storytelling oparty na faktach",
+          body: "Łączymy emocjonalną narrację z konkretnymi wynikami Twojej firmy. Przekaz, który angażuje i jednocześnie daje odbiorcy twarde argumenty do podjęcia decyzji.",
         },
       ],
     },
@@ -118,17 +118,17 @@ export const servicePages: ServicePageData[] = [
         {
           number: "01",
           title: "Odkrycie & strategia",
-          body: "Analizujemy Twoją markę, cele i grupę docelową. Definiujemy przekaz, ton narracji i KPI filmu. Tworzymy moodboard i szczegółowy scenariusz.",
+          body: "Poznajemy Twój model biznesowy, cele i grupę docelową. Definiujemy przekaz, ton narracji i mierzalne KPI filmu. Efekt: moodboard i szczegółowy scenariusz.",
         },
         {
           number: "02",
           title: "Produkcja",
-          body: "Profesjonalna ekipa, sprzęt klasy kinowej i precyzyjnie zaplanowany plan zdjęciowy. Elastycznie dopasowujemy wielkość ekipy do skali projektu.",
+          body: "Profesjonalna ekipa, sprzęt klasy kinowej i precyzyjnie zaplanowany plan zdjęciowy. Skalujemy wielkość ekipy do projektu — od kameralnych wywiadów po wielolokacyjne realizacje.",
         },
         {
           number: "03",
           title: "Postprodukcja & dostawa",
-          body: "Montaż, korekcja barwna, udźwiękowienie i motion design. Dostarczamy gotowe materiały w formatach dopasowanych do każdego kanału dystrybucji.",
+          body: "Montaż, korekcja barwna, udźwiękowienie i motion design. Gotowe pliki w formatach dopasowanych do strony, social media, prezentacji i eventów.",
         },
       ],
     },
@@ -145,7 +145,7 @@ export const servicePages: ServicePageData[] = [
         {
           question: "Ile kosztuje film korporacyjny?",
           answer:
-            "Cena zależy od skali projektu — liczby lokacji, dni zdjęciowych i zakresu postprodukcji. Pojedyncze zlecenia zaczynają się od 4 000 PLN. Przygotujemy bezpłatną wycenę dopasowaną do Twojego budżetu i celów.",
+            "Cena zależy od skali projektu — liczby lokacji, dni zdjęciowych i zakresu postprodukcji. Realizacje zaczynają się od 8 000 PLN netto. Przygotujemy bezpłatną wycenę dopasowaną do Twojego budżetu i celów.",
         },
         {
           question: "Jak długo trwa produkcja filmu korporacyjnego?",
@@ -160,13 +160,13 @@ export const servicePages: ServicePageData[] = [
         {
           question: "Czy pomagacie z koncepcją i scenariuszem?",
           answer:
-            "Tak. Każdy projekt zaczynamy od warsztatu strategicznego, na którym wspólnie definiujemy cel, przekaz i grupę docelową. Scenariusz i moodboard to integralna część naszej usługi.",
+            "Tak. Każdy projekt zaczynamy od warsztatu strategicznego, na którym wspólnie definiujemy cel, przekaz i grupę docelową. Scenariusz i moodboard wchodzą w cenę produkcji.",
         },
       ],
     },
     cta: {
       headline: "Gotowy na film korporacyjny\nna najwyższym poziomie?",
-      body: "Opowiedz nam o swoim projekcie. Przygotujemy bezpłatną propozycję dopasowaną do Twoich celów i budżetu.",
+      body: "Wyślij krótki brief lub umów się na 15-minutową rozmowę. Przygotujemy propozycję dopasowaną do Twoich celów i budżetu.",
       buttonText: "Porozmawiajmy",
     },
   },
@@ -190,7 +190,7 @@ export const servicePages: ServicePageData[] = [
       label: "Filmy reklamowe Warszawa",
       headline: "REKLAMA WIDEO\nKTÓRA ZATRZYMUJE\nSCROLL",
       subheadline:
-        "Tworzymy spoty reklamowe i kampanie wideo, które nie giną w szumie. Od 15-sekundowych reelsów po pełne kampanie multiplatformowe — każdy format projektujemy pod konkretny cel: kliknięcie, zapis, zakup.",
+        "Spoty reklamowe i kampanie wideo, które nie giną w szumie. Od 15-sekundowych reelsów po pełne kampanie multiplatformowe — każdy format projektujemy pod konkretny cel: kliknięcie, zapis, zakup.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
@@ -200,23 +200,23 @@ export const servicePages: ServicePageData[] = [
         {
           label: "01 / Performance",
           title: "Projektowane pod konwersję",
-          body: "Każdy spot budujemy wokół jasnego CTA i mierzalnego celu. Znamy mechanikę platform reklamowych — od hook'ów po retargeting — i tworzymy kreacje, które realnie wpływają na ROAS.",
+          body: "Każdy spot budujemy wokół jasnego CTA i mierzalnego celu. Znamy mechanikę platform reklamowych — od hook'ów po retargeting — i dostarczamy kreacje, które realnie wpływają na ROAS.",
         },
         {
           label: "02 / Wieloformat",
           title: "Jeden shoot, pełna kampania",
-          body: "Z jednego dnia zdjęciowego dostarczamy kreacje w formatach 9:16, 1:1 i 16:9 — gotowe na Instagram, TikTok, YouTube, LinkedIn i display. Maksymalizujemy zwrot z każdej złotówki produkcyjnej.",
+          body: "Jeden dzień zdjęciowy, kreacje w formatach 9:16, 1:1 i 16:9 — gotowe na Instagram, TikTok, YouTube, LinkedIn i display. Maksymalny zwrot z budżetu produkcyjnego.",
         },
         {
           label: "03 / Szybkość",
-          title: "Od briefu do publikacji w 7 dni",
-          body: "Wiemy, że kampanie mają deadline'y. Nasza optymalizacja procesów pozwala dostarczać gotowe kreacje w trybie ekspresowym — bez kompromisów w jakości obrazu.",
+          title: "Kampanie mają deadline'y. My też.",
+          body: "Zoptymalizowane procesy pozwalają nam dostarczać gotowe kreacje w trybie ekspresowym — 7 dni od briefu do publikacji, bez kompromisów w jakości obrazu.",
         },
       ],
     },
     process: {
       sectionLabel: "02 / Jak pracujemy",
-      sectionHeadline: "OD KONCEPTU\nDO KONWERSJI",
+      sectionHeadline: "TRZY KROKI\nDO KAMPANII",
       steps: [
         {
           number: "01",
@@ -225,13 +225,13 @@ export const servicePages: ServicePageData[] = [
         },
         {
           number: "02",
-          title: "Produkcja zoptymalizowana",
-          body: "Zwinne ekipy, szybki setup, maksimum ujęć w minimum czasu. Nagrywamy warianty pod różne formaty i platformy w jednym dniu zdjęciowym.",
+          title: "Zoptymalizowany plan zdjęciowy",
+          body: "Pracujemy zwinnie i konkretnie. Szanujemy czas Twojego zespołu, realizując precyzyjnie zaplanowane ujęcia pod wiele formatów w ciągu jednego dnia.",
         },
         {
           number: "03",
           title: "Postprodukcja & iteracja",
-          body: "Dynamiczny montaż, motion graphics i udźwiękowienie. Dostarczamy warianty kreacji gotowe do testowania. Iterujemy na podstawie wyników kampanii.",
+          body: "Dynamiczny montaż, motion graphics i udźwiękowienie. Warianty kreacji gotowe do testowania. Po starcie kampanii — iterujemy na podstawie wyników.",
         },
       ],
     },
@@ -268,8 +268,8 @@ export const servicePages: ServicePageData[] = [
       ],
     },
     cta: {
-      headline: "Twoja reklama zasługuje\nna kinową jakość",
-      body: "Opowiedz nam o kampanii. Zaproponujemy koncept kreatywny i wycenę dopasowaną do Twoich celów performance.",
+      headline: "Masz brief?\nZróbmy z niego kampanię",
+      body: "Prześlij brief lub opisz cel kampanii w dwóch zdaniach. Wrócimy z konceptem kreatywnym i wyceną w ciągu 48 godzin.",
       buttonText: "Wyceń kampanię",
     },
   },
@@ -293,7 +293,7 @@ export const servicePages: ServicePageData[] = [
       label: "Filmy wizerunkowe Warszawa",
       headline: "FILM WIZERUNKOWY\nKTÓRY DEFINIUJE\nTWOJĄ MARKĘ",
       subheadline:
-        "Film wizerunkowy to nie ozdobnik — to fundament komunikacji Twojej marki. Tworzymy kinowe produkcje, które oddają esencję firmy, budują emocjonalną więź z odbiorcą i podnoszą percepcję jakości na lata.",
+        "Film wizerunkowy to nie ozdobnik — to fundament komunikacji marki. Kinowa produkcja, która oddaje to, czym Twoja firma naprawdę jest: jej kulturę, ambicję i wartości. Materiał, który pracuje na Twój wizerunek przez lata, nie miesiące.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
@@ -303,17 +303,17 @@ export const servicePages: ServicePageData[] = [
         {
           label: "01 / Percepcja marki",
           title: "Podnieś wartość swojego brandu",
-          body: "Profesjonalny film wizerunkowy natychmiast zmienia sposób, w jaki klienci, partnerzy i inwestorzy postrzegają Twoją firmę. Kinowa jakość = percepcja premium.",
+          body: "Profesjonalny film wizerunkowy zmienia sposób, w jaki klienci, partnerzy i inwestorzy postrzegają Twoją firmę. Kinowa jakość obrazu sygnalizuje ambicję i profesjonalizm — zanim ktokolwiek przeczyta ofertę.",
         },
         {
           label: "02 / Emocjonalna więź",
-          title: "Połącz się z odbiorcą na głębszym poziomie",
-          body: "Dane przekonują, ale emocje sprzedają. Film wizerunkowy to medium, które buduje autentyczną więź między Twoją marką a ludźmi — więź, której nie da się zbudować tekstem ani zdjęciem.",
+          title: "Pokaż to, czego oferta PDF nie przekaże",
+          body: "Dane przekonują, ale emocje budują lojalność. Film wizerunkowy łączy Twoją markę z ludźmi na poziomie, którego nie osiągnie żaden tekst, zdjęcie stockowe ani prezentacja.",
         },
         {
           label: "03 / Trwałość",
           title: "Inwestycja na lata, nie na sezon",
-          body: "Dobrze zrealizowany film wizerunkowy pracuje przez lata — na stronie, w prezentacjach, na eventach i w social media. To najdłużej żyjący element Twojej strategii contentowej.",
+          body: "Dobrze zrealizowany film wizerunkowy pracuje przez lata — na stronie, w prezentacjach, na eventach i w social media. To najdłużej żyjący element strategii contentowej.",
         },
       ],
     },
@@ -323,18 +323,18 @@ export const servicePages: ServicePageData[] = [
       steps: [
         {
           number: "01",
-          title: "Immersja w markę",
-          body: "Zanurzamy się w DNA Twojej firmy — wartości, kultura, wyróżniki. Budujemy narrację, która jest autentyczna i jednocześnie strategicznie precyzyjna.",
+          title: "Zrozumienie biznesu",
+          body: "Zaczynamy od poznania Twojego modelu biznesowego, kultury organizacji i tego, co realnie wyróżnia Cię na rynku. Budujemy narrację autentyczną i zrozumiałą dla Twoich klientów i inwestorów.",
         },
         {
           number: "02",
-          title: "Kinowa produkcja",
+          title: "Kinowa realizacja",
           body: "Sprzęt klasy kinowej, starannie dobrane lokacje i reżyseria nakierowana na emocje. Każdy kadr jest świadomie zaplanowany pod kątem estetyki i przekazu.",
         },
         {
           number: "03",
           title: "Finalna perfekcja",
-          body: "Precyzyjna korekcja barwna, profesjonalne udźwiękowienie i motion design. Dostarczamy materiał, który budzi emocje i spełnia najwyższe standardy techniczne.",
+          body: "Precyzyjna korekcja barwna, profesjonalne udźwiękowienie i motion design. Materiał, który budzi emocje i spełnia najwyższe standardy techniczne.",
         },
       ],
     },
@@ -372,7 +372,7 @@ export const servicePages: ServicePageData[] = [
     },
     cta: {
       headline: "Twoja marka zasługuje\nna kinową opowieść",
-      body: "Opowiedz nam o swojej wizji. Stworzymy film, który będzie pracował na Twój wizerunek przez lata.",
+      body: "Opisz swoją firmę w kilku zdaniach. Wrócimy z propozycją narracji i wstępną wyceną — bez zobowiązań.",
       buttonText: "Porozmawiajmy o wizji",
     },
   },
@@ -384,7 +384,7 @@ export const servicePages: ServicePageData[] = [
       pl: {
         title: "Filmy Produktowe Warszawa — Wideo Prezentacja Produktu",
         description:
-          "Produkcja filmów produktowych w Warszawie. Dynamiczne prezentacje produktów, unboxingi i filmy e-commerce z kinową jakością. Bezpłatna wycena.",
+          "Produkcja filmów produktowych w Warszawie. Dynamiczne prezentacje produktów, unboxingi i filmy e-commerce z jakością premium. Bezpłatna wycena.",
       },
       en: {
         title: "Product Video Production Warsaw",
@@ -396,7 +396,7 @@ export const servicePages: ServicePageData[] = [
       label: "Filmy produktowe Warszawa",
       headline: "POKAŻ PRODUKT\nW SPOSÓB, KTÓRY\nSPRZEDAJE",
       subheadline:
-        "Tworzymy filmy produktowe, które zamieniają przeglądarki w kupujących. Dynamiczne ujęcia, precyzyjne oświetlenie i montaż nastawiony na konwersję — pokażemy Twój produkt tak, jak zasługuje.",
+        "Film produktowy zamienia scrollowanie w zakup. Dynamiczne ujęcia, precyzyjne oświetlenie i montaż pod konwersję — Twój produkt widziany tak, jak zdjęcie nigdy go nie pokaże.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
@@ -405,24 +405,24 @@ export const servicePages: ServicePageData[] = [
       items: [
         {
           label: "01 / Konwersja",
-          title: "Zwiększ sprzedaż o dziesiątki procent",
-          body: "Wideo produktowe na stronie zwiększa współczynnik konwersji nawet o 80%. Klienci, którzy oglądają film produktowy, kupują szybciej i pewniej — bo widzą dokładnie to, co dostają.",
+          title: "Mniej zwrotów, szybsza decyzja",
+          body: "Klienci, którzy oglądają film produktowy przed zakupem, kupują pewniej i rzadziej zwracają towar. Wideo redukuje wątpliwości, bo pokazuje produkt dokładnie takim, jaki jest — w ruchu, w kontekście, w skali.",
         },
         {
           label: "02 / Detale",
           title: "Pokaż to, czego zdjęcie nie pokaże",
-          body: "Faktura materiału, mechanizm działania, skala i proporcje — film produktowy oddaje detale, które tracą się w fotografii. Twój produkt ożywa w oczach klienta.",
+          body: "Faktura materiału, mechanizm działania, skala i proporcje — film produktowy oddaje detale, które tracą się w fotografii. Ruch i światło pokazują jakość wykonania lepiej niż jakikolwiek opis.",
         },
         {
           label: "03 / Kontekst",
           title: "Produkt w naturalnym środowisku",
-          body: "Pokazujemy Twój produkt w użyciu — w realnym kontekście, z prawdziwymi ludźmi. Klient nie kupuje przedmiotu; kupuje doświadczenie, które za nim stoi.",
+          body: "Pokazujemy Twój produkt w użyciu — w realnym kontekście, z prawdziwymi ludźmi. Odbiorca widzi nie sam przedmiot, a to, jak wpasowuje się w jego codzienność.",
         },
       ],
     },
     process: {
       sectionLabel: "02 / Jak pracujemy",
-      sectionHeadline: "OD PRODUKTU\nDO KONWERSJI",
+      sectionHeadline: "JAK TO ROBIMY",
       steps: [
         {
           number: "01",
@@ -432,12 +432,12 @@ export const servicePages: ServicePageData[] = [
         {
           number: "02",
           title: "Sesja zdjęciowa",
-          body: "Precyzyjne oświetlenie, makro detale, dynamiczne ujęcia ruchowe i FPV. Nagrywamy warianty pod e-commerce, social media i stronę produktu.",
+          body: "Precyzyjna praca kamery (motion control, macro), która wydobywa detale niewidoczne na zwykłych zdjęciach. Nagrywamy warianty pod e-commerce, social media i stronę produktu.",
         },
         {
           number: "03",
           title: "Montaż & optymalizacja",
-          body: "Rytmiczny montaż, animacje i korekcja barwna. Dostarczamy warianty pod każdy format i platformę — od hero video po karuzele produktowe.",
+          body: "Rytmiczny montaż, animacje i korekcja barwna. Warianty pod każdy format i platformę — od hero video na stronę po karuzele produktowe.",
         },
       ],
     },
@@ -475,7 +475,7 @@ export const servicePages: ServicePageData[] = [
     },
     cta: {
       headline: "Pokaż swój produkt\ntak, jak zasługuje",
-      body: "Opowiedz nam o swoim produkcie. Stworzymy wideo, które konwertuje przeglądarki w klientów.",
+      body: "Prześlij zdjęcie produktu i krótki opis. Zaproponujemy styl realizacji i wycenę — zwykle w ciągu 24 godzin.",
       buttonText: "Wyceń film produktowy",
     },
   },
@@ -487,7 +487,7 @@ export const servicePages: ServicePageData[] = [
       pl: {
         title: "Reportaż Eventowy Warszawa — Filmowanie Wydarzeń i Konferencji",
         description:
-          "Profesjonalna realizacja reportaży eventowych w Warszawie. Filmujemy konferencje, eventy korporacyjne i spotkania branżowe z dyskrecją i kinową jakością. Bezpłatna wycena.",
+          "Profesjonalna realizacja reportaży eventowych w Warszawie. Filmujemy konferencje, eventy korporacyjne i spotkania branżowe z dyskrecją i jakością premium. Bezpłatna wycena.",
       },
       en: {
         title: "Event Coverage Warsaw — Corporate Event Video Production",
@@ -497,9 +497,9 @@ export const servicePages: ServicePageData[] = [
     },
     hero: {
       label: "Reportaż eventowy Warszawa",
-      headline: "TWÓJ EVENT\nZASŁUGUJE NA\nWIECZNOŚĆ",
+      headline: "EVENT MIJA.\nCONTENT PRACUJE\nDALEJ",
       subheadline:
-        "Profesjonalny reportaż eventowy przedłuża życie Twojego wydarzenia daleko poza salę konferencyjną. Filmujemy konferencje, eventy korporacyjne i spotkania branżowe z dyskrecją, wielokamerowym setupem i kinową jakością — bez zakłócania atmosfery.",
+        "Profesjonalny reportaż eventowy przedłuża życie Twojego wydarzenia daleko poza salę konferencyjną. Filmujemy konferencje, eventy korporacyjne i spotkania branżowe z dyskrecją i wielokamerowym setupem — bez zakłócania atmosfery.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
@@ -514,7 +514,7 @@ export const servicePages: ServicePageData[] = [
         {
           label: "02 / Wieloformatowość",
           title: "Jeden event, dziesiątki materiałów",
-          body: "Z jednego eventu dostarczamy: pełny reportaż, highlight reel na social media, wycinki z wywiadów eksperckich i relacje w formatach 9:16 i 1:1. Maksimum contentu z jednego dnia produkcji.",
+          body: "Z jednego eventu dostarczamy: pełny reportaż, highlight reel na social media, wycinki z wywiadów eksperckich i relacje w formatach 9:16 i 1:1. Cały kwartał contentu z jednego dnia.",
         },
         {
           label: "03 / Prestiż",
@@ -525,12 +525,12 @@ export const servicePages: ServicePageData[] = [
     },
     process: {
       sectionLabel: "02 / Jak pracujemy",
-      sectionHeadline: "OD PLANU\nDO PREMIERY",
+      sectionHeadline: "SPRAWDZONA\nŚCIEŻKA",
       steps: [
         {
           number: "01",
           title: "Przygotowanie & scouting",
-          body: "Analizujemy program eventu, mapujemy kluczowe momenty i planujemy pozycje kamer. Koordynujemy z organizatorem, by być niewidoczni — a jednocześnie wszechobecni.",
+          body: "Analizujemy program eventu, mapujemy kluczowe momenty i planujemy pozycje kamer. Koordynujemy z organizatorem, by być niewidoczni — a jednocześnie wszędzie tam, gdzie trzeba.",
         },
         {
           number: "02",
@@ -547,7 +547,7 @@ export const servicePages: ServicePageData[] = [
     featuredProjectId: 6, // Kunzek — Warsaw Industry Week
     caseStudy: {
       sectionLabel: "03 / Case study",
-      sectionHeadline: "EVENT NA ŻYWO,\nKINOWY EFEKT",
+      sectionHeadline: "EVENT NA ŻYWO,\nPREMIUM EFEKT",
       linkText: "Zobacz pełne portfolio",
     },
     faqs: {
@@ -567,7 +567,7 @@ export const servicePages: ServicePageData[] = [
         {
           question: "Czy filmujecie eventy zamknięte i poufne?",
           answer:
-            "Tak — mamy duże doświadczenie w dokumentowaniu zamkniętych spotkań C-level, negocjacji i wydarzeń objętych NDA. Dyskrecja i poufność to integralna część naszej usługi.",
+            "Tak — mamy duże doświadczenie w dokumentowaniu zamkniętych spotkań C-level. Podpisujemy NDA przed każdą produkcją i ograniczamy dostęp do materiału do wyznaczonych osób.",
         },
         {
           question: "Jakie formaty wideo dostarczacie po evencie?",
@@ -577,8 +577,8 @@ export const servicePages: ServicePageData[] = [
       ],
     },
     cta: {
-      headline: "Masz event?\nZadokumentujmy go razem",
-      body: "Opowiedz nam o swoim wydarzeniu. Przygotujemy propozycję dopasowaną do skali, formatu i budżetu.",
+      headline: "Zbliża się Twój event?",
+      body: "Podrzuć datę, lokalizację i skalę wydarzenia. Wrócimy z propozycją ekipy i wyceny dopasowaną do formatu.",
       buttonText: "Wyceń reportaż",
     },
   },
@@ -602,48 +602,48 @@ export const servicePages: ServicePageData[] = [
       label: "Wideo do Social Media — Warszawa",
       headline: "SHORT-FORM VIDEO\nKTÓRY ZATRZYMUJE\nKCIUK",
       subheadline:
-        "TikTok, Instagram Reels, YouTube Shorts — niezależnie od platformy, krótkie wideo to dziś najskuteczniejszy organiczny kanał dotarcia do nowych odbiorców. Tworzymy dynamiczne materiały, które nie giną w feedzie — budują markę eksperta i przekuwają widzów w klientów.",
+        "TikTok, Instagram Reels, YouTube Shorts — niezależnie od platformy, krótkie wideo to dziś najskuteczniejszy organiczny kanał dotarcia do nowych odbiorców. Dynamiczne materiały w pionie, które nie giną w feedzie — budują markę eksperta i przekuwają widzów w leady.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
       sectionLabel: "01 / Dlaczego wideo do social media",
-      sectionHeadline: "ALGORYTM\nNA TWOJĄ STRONĘ",
+      sectionHeadline: "ALGORYTM\nPO TWOJEJ STRONIE",
       items: [
         {
           label: "01 / Zasięg organiczny",
           title: "Dotrzyj do nowych odbiorców bez płatnej reklamy",
-          body: "Reelsy to format faworyzowany przez algorytm Instagrama — docierają daleko poza krąg obserwujących. Profesjonalnie zrealizowane materiały multiplikują zasięg organiczny Twojego konta.",
+          body: "Short-form video to jedyny format, który platformy aktywnie promują poza Twoją sieć obserwujących. Profesjonalnie zrealizowane materiały docierają do ludzi, którzy jeszcze nie wiedzą, że Cię potrzebują.",
         },
         {
           label: "02 / Pozycja eksperta",
-          title: "Buduj autorytet w 60 sekund",
-          body: "Short-form video to najszybszy sposób na budowanie pozycji eksperta w swojej branży. Tworzymy treści, które pokazują wiedzę i wartość Twojej firmy w formacie, który ludzie faktycznie oglądają do końca.",
+          title: "60 sekund, które budują autorytet",
+          body: "Krótkie, konkretne wideo z Twoją wiedzą branżową to najszybsza droga do pozycji eksperta w social media. Format, który ludzie faktycznie oglądają do końca — i zapamiętują.",
         },
         {
           label: "03 / Spójność i skala",
           title: "Regularny content bez chaosu",
-          body: "Z jednego dnia zdjęciowego dostarczamy pakiet rolek na cały miesiąc. Spójna estetyka, przemyślana narracja i gotowe materiały w formacie 9:16 — publikujesz, my zajmujemy się produkcją.",
+          body: "Jeden dzień zdjęciowy, miesiąc gotowego contentu. Spójna estetyka, przemyślana narracja i gotowe materiały w formacie 9:16 na każdą platformę — Ty publikujesz, my zajmujemy się produkcją.",
         },
       ],
     },
     process: {
       sectionLabel: "02 / Jak pracujemy",
-      sectionHeadline: "OD KONCEPTU\nDO PUBLIKACJI",
+      sectionHeadline: "PROCES, KTÓRY\nSIĘ SKALUJE",
       steps: [
         {
           number: "01",
           title: "Strategia contentu",
-          body: "Analizujemy Twoje konto, grupę docelową i cele. Proponujemy tematy, formaty i hook'i dopasowane do algorytmu i Twojej branży.",
+          body: "Analizujemy Twoje kanały, grupę docelową i cele. Proponujemy tematy, formaty i hook'i dopasowane do algorytmów poszczególnych platform.",
         },
         {
           number: "02",
           title: "Dzień zdjęciowy",
-          body: "Zwinny setup, szybki obrót scen. Nagrywamy pakiet rolek — różne tematy, hook'i i CTA — gotowych do montażu. Jeden dzień, kilka tygodni contentu.",
+          body: "Zoptymalizowany setup, szybki obrót scen. Nagrywamy pakiet materiałów — różne tematy, hook'i i CTA — gotowych do montażu. Jeden dzień, kilka tygodni contentu.",
         },
         {
           number: "03",
           title: "Montaż & dostawa",
-          body: "Dynamiczny montaż pod rytm muzyki, napisy, motion graphics i korekta barwna. Dostarczamy gotowe pliki w formacie 9:16 zoptymalizowanym pod Instagram.",
+          body: "Dynamiczny montaż, napisy, motion graphics i korekta barwna. Gotowe pliki w formacie 9:16 zoptymalizowanym pod TikTok, Reels i Shorts.",
         },
       ],
     },
@@ -652,31 +652,31 @@ export const servicePages: ServicePageData[] = [
       sectionHeadline: "NAJCZĘSTSZE\nPYTANIA",
       items: [
         {
-          question: "Ile rolek mogę dostać z jednego dnia zdjęciowego?",
+          question: "Ile materiałów mogę dostać z jednego dnia zdjęciowego?",
           answer:
-            "Standardowo 6–12 rolek z jednego dnia zdjęciowego, w zależności od złożoności scenariuszy. Przy prostszych formatach \"mówionych do kamery\" możemy nagrać nawet więcej materiału.",
+            "Standardowo 6–12 filmów z jednego dnia zdjęciowego, w zależności od złożoności scenariuszy. Przy prostszych formatach \"mówionych do kamery\" możemy nagrać nawet więcej materiału.",
         },
         {
-          question: "Ile kosztuje produkcja rolek na Instagram?",
+          question: "Ile kosztuje produkcja wideo do social media?",
           answer:
             "Pakiety zaczynają się od 2 500 PLN za dzień zdjęciowy z postprodukcją. Abonament miesięczny z regularną dostawą contentu wyceniamy indywidualnie.",
         },
         {
           question: "Czy pomagacie z koncepcją i scenariuszami?",
           answer:
-            "Tak — strategia contentu, propozycje tematów i scenariusze to integralna część naszej usługi. Nie przychodzisz z gotowym scenariuszem — przychodzisz z branżą i celami.",
+            "Tak — strategia contentu, propozycje tematów i scenariusze wchodzą w zakres usługi. Nie przychodzisz z gotowym scenariuszem — przychodzisz z branżą i celami.",
         },
         {
-          question: "Czy rolki muszą mieć mnie w kadrze?",
+          question: "Czy muszę występować w kadrze?",
           answer:
-            "Nie — tworzymy zarówno rolki \"face-forward\" (Ty lub Twój zespół w kadrze), jak i materiały lifestyle, b-roll, animacje i hybrydowe formaty bez konieczności bycia przed kamerą.",
+            "Nie — realizujemy zarówno materiały \"face-forward\" (Ty lub Twój zespół w kadrze), jak i formaty lifestyle, b-roll, animacje i hybrydy bez konieczności bycia przed kamerą.",
         },
       ],
     },
     cta: {
-      headline: "Zacznij budować\npresencję na Instagramie",
-      body: "Opowiedz nam o swoim koncie i celach. Zaproponujemy strategię contentu i wycenę pakietu rolek dopasowanego do Twojej branży.",
-      buttonText: "Wyceń pakiet rolek",
+      headline: "Chcesz regularny content\nbez własnego studia?",
+      body: "Podrzuć link do swojego profilu i opisz cele w dwóch zdaniach. Zaproponujemy strategię i wycenę pakietu dopasowanego do Twojej branży.",
+      buttonText: "Wyceń pakiet wideo",
     },
   },
 
@@ -699,7 +699,7 @@ export const servicePages: ServicePageData[] = [
       label: "Video na LinkedIn — Warszawa",
       headline: "VIDEO B2B\nKTÓRE BUDUJE\nAUTORYTET",
       subheadline:
-        "LinkedIn nagradza twórców wideo lepszymi zasięgami organicznymi niż jakikolwiek inny format. Tworzymy profesjonalne materiały wideo, które pozycjonują Ciebie i Twoją firmę jako ekspertów w branży — i zamieniają widzów w kontakty biznesowe.",
+        "LinkedIn nagradza twórców wideo lepszymi zasięgami organicznymi niż jakikolwiek inny format. Profesjonalne materiały wideo pozycjonują Ciebie i Twoją firmę jako ekspertów w branży — i zamieniają widzów w kontakty biznesowe.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
@@ -709,23 +709,23 @@ export const servicePages: ServicePageData[] = [
         {
           label: "01 / Zasięg B2B",
           title: "Dotrzyj do decydentów bez cold mailingu",
-          body: "Video na LinkedIn generuje 5× więcej komentarzy i 3× więcej zasięgu niż posty tekstowe. Twoi potencjalni klienci i partnerzy są na LinkedIn — profesjonalne wideo sprawia, że zatrzymują się przy Twoim koncie.",
+          body: "Algorytmy wideo przyciągają uwagę na dłużej i budują głębszą relację niż szybkie skanowanie tekstu. Twoi potencjalni klienci i partnerzy są na LinkedIn — profesjonalne wideo sprawia, że zatrzymują się przy Twoim profilu.",
         },
         {
           label: "02 / Thought leadership",
-          title: "Zostań twarzą swojej branży",
-          body: "Regularne, merytoryczne wideo buduje pozycję eksperta szybciej niż jakikolwiek inny format. Pokazujemy Twoją wiedzę w sposób, który angażuje, a nie nuży — bez korporacyjnej sztywności.",
+          title: "Bądź twarzą swojej branży",
+          body: "Regularne, merytoryczne wideo buduje pozycję eksperta szybciej niż posty tekstowe. Pokazujemy Twoją wiedzę w sposób, który angażuje, a nie nuży — bez korporacyjnej sztywności.",
         },
         {
           label: "03 / Pipeline sprzedażowy",
           title: "Content który generuje leady",
-          body: "Dobrze zaplanowany cykl wideo na LinkedIn to maszynka do generowania inbound leadów. Budujemy narrację, która prowadzi widza od \"znam tę firmę\" do \"chcę z nimi porozmawiać\".",
+          body: "Dobrze zaplanowany cykl wideo na LinkedIn to stały kanał inbound leadów. Narracja, która prowadzi widza od \"znam tę firmę\" do \"chcę z nimi porozmawiać\".",
         },
       ],
     },
     process: {
       sectionLabel: "02 / Jak pracujemy",
-      sectionHeadline: "OD STRATEGII\nDO ZASIĘGÓW",
+      sectionHeadline: "JAK DZIAŁAMY",
       steps: [
         {
           number: "01",
@@ -735,12 +735,12 @@ export const servicePages: ServicePageData[] = [
         {
           number: "02",
           title: "Realizacja",
-          body: "Profesjonalne nagrania w Twoim biurze, plenerze lub naszym studio. Dbamy o jakość obrazu i dźwięku, która wyróżnia Cię na tle amatorskich nagrań telefonem.",
+          body: "Profesjonalne nagrania w Twoim biurze, plenerze lub naszym studio. Jakość obrazu i dźwięku, która wyróżnia Cię na tle amatorskich nagrań telefonem.",
         },
         {
           number: "03",
           title: "Montaż pod platformę",
-          body: "Cięcia pod czas uwagi na LinkedIn, napisy, grafiki i CTA. Dostarczamy gotowe materiały zoptymalizowane pod algorytm platformy — w formatach kwadratowym i poziomym.",
+          body: "Cięcia pod czas uwagi na LinkedIn, napisy, grafiki i CTA. Gotowe materiały zoptymalizowane pod algorytm platformy — w formatach kwadratowym i poziomym.",
         },
       ],
     },
@@ -771,8 +771,8 @@ export const servicePages: ServicePageData[] = [
       ],
     },
     cta: {
-      headline: "Zacznij budować\npresencję na LinkedIn",
-      body: "Opowiedz nam o swoim koncie i celach biznesowych. Zaproponujemy strategię wideo i wycenę pakietu dopasowanego do Twojej branży.",
+      headline: "Twoja konkurencja\njuż publikuje wideo",
+      body: "Umów się na 15-minutową rozmowę. Pokażemy przykłady z Twojej branży i zaproponujemy strategię dopasowaną do celów.",
       buttonText: "Wyceń video na LinkedIn",
     },
   },
@@ -796,7 +796,7 @@ export const servicePages: ServicePageData[] = [
       label: "Video case studies — Warszawa",
       headline: "NIECH TWOI\nKLIENCI\nSPRZEDAJĄ ZA CIEBIE",
       subheadline:
-        "Video case study to najskuteczniejszy dowód społeczny, jaki możesz pokazać potencjalnemu klientowi. Przekształcamy historię sukcesu Twojego klienta w przekonujący materiał filmowy — autentyczny, emocjonalny i mierzalnie skuteczny w procesie sprzedaży.",
+        "Video case study to najsilniejszy dowód społeczny w procesie sprzedaży B2B. Przekształcamy historię sukcesu Twojego klienta w przekonujący materiał filmowy — autentyczny, konkretny i skuteczny na każdym etapie lejka.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
@@ -806,23 +806,23 @@ export const servicePages: ServicePageData[] = [
         {
           label: "01 / Wiarygodność",
           title: "Zbuduj zaufanie zanim klient zadzwoni",
-          body: "92% kupujących B2B twierdzi, że recenzje i referencje wpływają na decyzję zakupową. Video case study to najpotężniejsza forma social proof — autentyczny głos Twojego klienta działa lepiej niż najlepsza copywriterska perswazja.",
+          body: "Zdecydowana większość decydentów B2B szuka dowodu społecznego przed podpisaniem umowy. Video case study to najpotężniejsza forma referencji — autentyczny głos Twojego klienta działa lepiej niż najlepsza oferta PDF.",
         },
         {
           label: "02 / Środek lejka",
           title: "Skróć czas decyzji zakupowej",
-          body: "Potencjalny klient, który widzi, jak rozwiązałeś realny problem podobnej firmy, przechodzi przez etap rozważania kilkukrotnie szybciej. Video case study to narzędzie, które domyka leady.",
+          body: "Potencjalny klient, który widzi, jak rozwiązałeś realny problem podobnej firmy, przechodzi przez etap rozważania znacznie szybciej. Video case study domyka leady, które utknęły w pipeline.",
         },
         {
           label: "03 / Wielokanałowość",
           title: "Jeden materiał, wiele zastosowań",
-          body: "Pełny case study na stronie, short-form na LinkedIn, cytat klienta jako testimonial — z jednej produkcji wyciągamy maksimum contentu do wykorzystania w całym procesie sprzedaży.",
+          body: "Pełny case study na stronie, short-form na LinkedIn, cytat klienta w mailu sprzedażowym — jedna produkcja zasila cały lejek od awareness po zamknięcie.",
         },
       ],
     },
     process: {
       sectionLabel: "02 / Jak pracujemy",
-      sectionHeadline: "OD HISTORII\nDO KONWERSJI",
+      sectionHeadline: "WYZWANIE.\nROZWIĄZANIE.\nWYNIKI.",
       steps: [
         {
           number: "01",
@@ -832,12 +832,12 @@ export const servicePages: ServicePageData[] = [
         {
           number: "02",
           title: "Realizacja",
-          body: "Profesjonalne nagranie wywiadu z klientem, uzupełnione materiałem ilustracyjnym z realizacji projektu. Dbamy o jakość obrazu i dźwięku na poziomie, który buduje prestiż Twojej marki.",
+          body: "Profesjonalne nagranie wywiadu z klientem, uzupełnione materiałem ilustracyjnym z realizacji projektu. Jakość obrazu i dźwięku na poziomie, który buduje prestiż Twojej marki.",
         },
         {
           number: "03",
           title: "Montaż & dystrybucja",
-          body: "Storytellingowy montaż z wyraźną strukturą: wyzwanie → rozwiązanie → wyniki. Dostarczamy pełną wersję i skróty gotowe do każdego kanału sprzedaży.",
+          body: "Montaż z klarowną strukturą narracyjną: wyzwanie → rozwiązanie → wyniki. Pełna wersja na stronę plus skróty gotowe do każdego kanału sprzedaży.",
         },
       ],
     },
@@ -848,7 +848,7 @@ export const servicePages: ServicePageData[] = [
         {
           question: "Jak przekonać klienta do udziału w video case study?",
           answer:
-            "Pomagamy w tym procesie — przygotowujemy briefing dla klienta, tłumaczymy jak wygląda sesja i jakie korzyści odnosi z udziału (ekspozycja jego marki, materiał do własnych kanałów). Większość klientów chętnie uczestniczy, gdy czują się bezpiecznie.",
+            "Pomagamy w tym procesie — przygotowujemy briefing dla klienta, tłumaczymy jak wygląda sesja i jakie korzyści odnosi z udziału (ekspozycja jego marki, materiał do własnych kanałów). Większość klientów chętnie uczestniczy, gdy wiedzą, że proces będzie krótki, profesjonalny, a finalny materiał wzmocni również ich własny wizerunek.",
         },
         {
           question: "Ile kosztuje video case study?",
@@ -869,7 +869,7 @@ export const servicePages: ServicePageData[] = [
     },
     cta: {
       headline: "Zamień swoje\nnajlepsze realizacje\nw narzędzie sprzedaży",
-      body: "Opowiedz nam o projekcie, którym chcesz się pochwalić. Przygotujemy propozycję video case study, które będzie pracować na Twój pipeline.",
+      body: "Masz klienta, który byłby dobrym bohaterem case study? Napisz — przygotujemy propozycję narracji i wycenę.",
       buttonText: "Wyceń video case study",
     },
   },
@@ -893,17 +893,17 @@ export const servicePages: ServicePageData[] = [
       label: "Wywiady eksperckie — Warszawa",
       headline: "ROZMOWY\nKTÓRE BUDUJĄ\nAUTORYTET",
       subheadline:
-        "Wywiad ekspercki to jedno z najpotężniejszych narzędzi budowania pozycji w branży. Profesjonalnie zrealizowane rozmowy z ekspertami — Tobą, Twoim zespołem lub gośćmi zewnętrznymi — tworzą content, który angażuje, edukuje i buduje zaufanie do Twojej marki.",
+        "Wywiad ekspercki to jedno z najskuteczniejszych narzędzi budowania pozycji w branży. Profesjonalnie zrealizowane rozmowy — z Tobą, Twoim zespołem lub gośćmi zewnętrznymi — dają content, który angażuje, edukuje i buduje zaufanie do Twojej marki.",
       ctaText: "Bezpłatna wycena",
     },
     benefits: {
       sectionLabel: "01 / Dlaczego wywiady eksperckie",
-      sectionHeadline: "WIEDZA\nW KINOWEJ\nOPRAWIE",
+      sectionHeadline: "WIEDZA\nW PREMIUM\nOPRAWIE",
       items: [
         {
           label: "01 / Autorytet",
-          title: "Zostań głosem swojej branży",
-          body: "Regularne wywiady eksperckie budują wizerunek thought leadera szybciej niż jakakolwiek inna forma contentu. Twoja wiedza, oprawiona profesjonalnym obrazem i dźwiękiem, dociera do odbiorców z wagą, na jaką zasługuje.",
+          title: "Bądź głosem swojej branży",
+          body: "Regularne wywiady eksperckie budują wizerunek thought leadera szybciej niż posty tekstowe czy artykuły. Twoja wiedza, oprawiona profesjonalnym obrazem i dźwiękiem, dociera do odbiorców z zupełnie inną siłą.",
         },
         {
           label: "02 / Cross-marketing",
@@ -913,13 +913,13 @@ export const servicePages: ServicePageData[] = [
         {
           label: "03 / Recykling contentu",
           title: "Jeden wywiad, tygodnie materiału",
-          body: "Z jednego wywiadu wyciągamy: pełny odcinek, kilka short-formów na Instagram i LinkedIn, cytaty do postów tekstowych i fragmenty do newsletter. Maksimum contentu z jednej sesji.",
+          body: "Z jednego wywiadu wyciągamy: pełny odcinek, kilka short-formów na social media, cytaty do postów tekstowych i fragmenty do newslettera. Jedna sesja nagraniowa zasila kanały na tygodnie.",
         },
       ],
     },
     process: {
       sectionLabel: "02 / Jak pracujemy",
-      sectionHeadline: "OD TEMATU\nDO PUBLIKACJI",
+      sectionHeadline: "TEMAT. KAMERA.\nPUBLIKACJA.",
       steps: [
         {
           number: "01",
@@ -929,12 +929,12 @@ export const servicePages: ServicePageData[] = [
         {
           number: "02",
           title: "Realizacja",
-          body: "Profesjonalne nagranie: studyjna jakość dźwięku, cinematic obraz i oświetlenie, które buduje klimat — nie sterylne studio korporacyjne. Prowadzący lub swobodna rozmowa — w zależności od formatu.",
+          body: "Profesjonalne nagranie: studyjna jakość dźwięku, premium obraz i oświetlenie, które buduje klimat — nie sterylne studio korporacyjne. Prowadzący lub swobodna rozmowa — w zależności od formatu.",
         },
         {
           number: "03",
           title: "Postprodukcja & formaty",
-          body: "Montaż pełnej rozmowy, wycinki short-form, napisy i grafiki. Dostarczamy gotowe materiały pod YouTube, LinkedIn, Instagram i podcast wideo.",
+          body: "Montaż pełnej rozmowy, wycinki short-form, napisy i grafiki. Gotowe materiały pod YouTube, LinkedIn, Instagram i podcast wideo.",
         },
       ],
     },
@@ -955,7 +955,7 @@ export const servicePages: ServicePageData[] = [
         {
           question: "Czy możecie pomóc w przygotowaniu pytań i scenariusza?",
           answer:
-            "Tak — przygotowanie pytań, struktura rozmowy i briefing rozmówcy to część naszej usługi. Dbamy o to, żeby wywiad był naturalny i merytoryczny, a nie wyrecytowany.",
+            "Tak — przygotowanie pytań, struktura rozmowy i briefing rozmówcy wchodzą w zakres produkcji. Dbamy o to, żeby wywiad był naturalny i merytoryczny, a nie wyrecytowany.",
         },
         {
           question: "Czy wywiad można realizować zdalnie?",
@@ -965,8 +965,8 @@ export const servicePages: ServicePageData[] = [
       ],
     },
     cta: {
-      headline: "Zacznij budować\npozycję eksperta",
-      body: "Opowiedz nam o swoim projekcie wywiadów. Zaproponujemy format, estetykę i wycenę dopasowaną do Twoich celów.",
+      headline: "Masz temat?\nMy mamy studio",
+      body: "Opisz format, który Ci się marzy — seria, jednorazowy odcinek, podcast wideo. Wrócimy z propozycją setupu i wyceny.",
       buttonText: "Wyceń wywiad ekspercki",
     },
   },
