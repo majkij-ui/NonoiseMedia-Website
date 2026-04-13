@@ -139,7 +139,7 @@ export function ProjectThumbnailGrid({ projectsList = projects }: ProjectThumbna
         <p className="mt-8 text-center md:mt-10">
           <Link
             href="/work"
-            className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+            className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline py-2"
           >
             {t("moreWork")}
           </Link>

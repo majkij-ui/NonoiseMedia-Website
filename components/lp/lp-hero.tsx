@@ -158,7 +158,7 @@ export function LpHero() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.1 }}
-                  className={`mb-3 w-48 font-mono text-[10px] uppercase leading-snug tracking-[0.2em] text-muted-foreground md:mb-4 md:w-56 ${LANDSCAPE_MOBILE_HERO}:!mb-2 ${LANDSCAPE_MOBILE_HERO}:!w-40 ${LANDSCAPE_MOBILE_HERO}:!text-[8px]`}
+                  className={`mb-3 w-48 font-mono text-[11px] uppercase leading-snug tracking-[0.2em] text-muted-foreground md:mb-4 md:w-56 ${LANDSCAPE_MOBILE_HERO}:!mb-2 ${LANDSCAPE_MOBILE_HERO}:!w-40 ${LANDSCAPE_MOBILE_HERO}:!text-[8px]`}
                 >
                   {LABEL}
                 </motion.p>
@@ -179,7 +179,7 @@ export function LpHero() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className={`mt-4 max-w-xs text-pretty font-sans text-xs leading-relaxed text-foreground/50 md:mt-5 md:text-sm ${LANDSCAPE_MOBILE_HERO}:!mt-2 ${LANDSCAPE_MOBILE_HERO}:!text-[10px]`}
+                  className={`mt-4 max-w-xs text-pretty font-sans text-sm leading-relaxed text-foreground/60 md:mt-5 md:text-base ${LANDSCAPE_MOBILE_HERO}:!mt-2 ${LANDSCAPE_MOBILE_HERO}:!text-[10px]`}
                 >
                   {BODY}
                 </motion.p>
@@ -224,9 +224,9 @@ export function LpHero() {
             <div className={`pointer-events-none flex justify-center pb-6 md:pb-8 ${LANDSCAPE_MOBILE_HERO}:!pb-3`}>
               <div
                 aria-label="Przewiń niżej"
-                className="inline-flex items-center gap-3 text-foreground/40"
+                className="inline-flex items-center gap-3 text-foreground/50"
               >
-                <span className="font-mono text-[9px] uppercase tracking-[0.25em]">
+                <span className="font-mono text-[10px] uppercase tracking-[0.25em]">
                   Scroll
                 </span>
                 <motion.div

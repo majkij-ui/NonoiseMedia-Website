@@ -51,19 +51,19 @@ function ServiceTile({
         delay: (index % 3) * 0.1,
         ease: cinematicEase,
       }}
-      className="group h-full border border-foreground/10 bg-background p-7 transition-colors duration-300 hover:bg-foreground hover:text-background md:p-8"
+      className="group h-full border border-foreground/10 bg-surface-raised p-7 transition-colors duration-300 hover:bg-foreground hover:text-background md:p-8"
     >
       <Icon
         size={24}
         strokeWidth={1.4}
-        className="mb-6 text-foreground/60 transition-colors duration-300 group-hover:text-background/70"
+        className="mb-6 text-foreground/70 transition-colors duration-300 group-hover:text-background/70"
       />
 
       <h3 className="mb-3 font-[family-name:var(--font-display)] text-lg uppercase leading-none tracking-[0.02em] text-foreground transition-colors duration-300 group-hover:text-background md:text-xl">
         {t(`${serviceKey}.title`)}
       </h3>
 
-      <p className="font-sans text-xs leading-relaxed text-foreground/50 transition-colors duration-300 group-hover:text-background/60">
+      <p className="font-sans text-sm leading-relaxed text-foreground/60 transition-colors duration-300 group-hover:text-background/60">
         {t(`${serviceKey}.body`)}
       </p>
     </motion.div>
@@ -72,17 +72,25 @@ function ServiceTile({
 
 export function LpServicesGrid() {
   return (
-    <section className="px-6 py-20 md:px-12 md:py-24">
+    <section className="relative overflow-hidden bg-surface px-6 py-20 md:px-12 md:py-24">
+      {/* Atmospheric background — same image as philosophy section */}
+      <img
+        src="https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?auto=format&fit=crop&w=1920&q=80"
+        alt=""
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.07]"
+        loading="lazy"
+      />
+
       {/* Section header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
         transition={{ duration: 0.8, ease: cinematicEase }}
-        className="mb-12 grid grid-cols-1 gap-4 md:mb-16 md:grid-cols-12"
+        className="relative z-10 mb-12 grid grid-cols-1 gap-4 md:mb-16 md:grid-cols-12"
       >
         <div className="md:col-span-8 lg:col-span-6">
-          <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
             02 / CO MOŻEMY DLA CIEBIE ZROBIĆ
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-5xl md:text-6xl">
@@ -95,7 +103,7 @@ export function LpServicesGrid() {
       </motion.div>
 
       {/* 3 × 3 grid */}
-      <div className="grid grid-cols-1 gap-px bg-foreground/10 md:grid-cols-2 lg:grid-cols-3">
+      <div className="relative z-10 grid grid-cols-1 gap-px bg-foreground/10 md:grid-cols-2 lg:grid-cols-3">
         {services.map(({ key, icon }, i) => (
           <ServiceTile key={key} icon={icon} serviceKey={key} index={i} />
         ))}

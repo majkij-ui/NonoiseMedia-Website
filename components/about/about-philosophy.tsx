@@ -15,7 +15,7 @@ export function AboutPhilosophy() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden bg-background px-6 py-32 md:px-12 md:py-48"
+      className="relative overflow-hidden border-t border-foreground/5 bg-background px-6 py-32 md:px-12 md:py-48"
     >
       <motion.img
         src="https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?auto=format&fit=crop&w=1920&q=80"
@@ -65,7 +65,7 @@ export function AboutPhilosophy() {
         <div className="mt-4 max-w-lg md:mt-6">
           <WordRevealBlock
             text="Każda klatka ma zadanie. Każde cięcie ma cel. Nie tworzymy kontentu — projektujemy reakcje emocjonalne."
-            className="font-sans text-sm leading-relaxed text-foreground/30 md:text-base"
+            className="font-sans text-base leading-relaxed text-foreground/45 md:text-lg"
           />
         </div>
       </div>

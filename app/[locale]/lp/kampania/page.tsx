@@ -18,8 +18,8 @@ export default function KampaniaLpPage() {
       <LpHero />
       <LpServicesGrid />
 
-      <AboutFeatures />
       <ProjectThumbnailGrid />
+      <AboutFeatures />
       <AboutTestimonials showTrustedLogos />
       <AboutPhilosophy />
       <OfferPricingTiers showCta={false} tightFooter />

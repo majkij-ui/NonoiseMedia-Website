@@ -48,8 +48,8 @@
 | # | Action | Impact | Effort | Notes |
 |---|--------|--------|--------|-------|
 | ✅ | **Submit sitemap to Google Search Console** — go to GSC → Sitemaps → add `https://nonoise.media/sitemap.xml` | Critical | 5 min | Do this today; accelerates indexation of all SEO changes |
-| ☐ | **Claim Google Business Profile** — create/verify listing for Nonoise Media in Warsaw | High | 1 hr | Essential for local `produkcja filmowa Warszawa` map pack results |
-| ☐ | **Create Clutch.co profile** — competitors (Solvo Film, BeeProduction) appear in "Top Video Production Warsaw" rankings | High | 1 hr | Free listing; Clutch results appear on page 1 for agency searches |
+| ✅ | **Claim Google Business Profile** — create/verify listing for Nonoise Media in Warsaw | High | 1 hr | Essential for local `produkcja filmowa Warszawa` map pack results |
+| ✅ | **Create Clutch.co profile** — competitors (Solvo Film, BeeProduction) appear in "Top Video Production Warsaw" rankings | High | 1 hr | Free listing; Clutch results appear on page 1 for agency searches |
 | ☐ | **Create Sortlist profile** — same rationale as Clutch | Medium | 30 min | Secondary but low effort |
 | ☐ | **Make pricing public** — move `OfferPricingTiers` from noindex `/lp/kampania` to `/offer` or a new `/cennik` page | High | 1–2 hr | Captures `ile kosztuje film korporacyjny` + `produkcja wideo cena` queries |
 | ☐ | **Verify hreflang tags in live HTML** — confirm `next-intl` is generating correct `<link rel="alternate" hreflang="...">` tags | Medium | 30 min | Open DevTools on `/pl/` and `/en/`, check `<head>` for alternate links |

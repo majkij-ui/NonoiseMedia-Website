@@ -7,7 +7,7 @@ import { cardReveal } from "./constants"
 
 export function AboutFeatures() {
   return (
-    <section className="px-6 py-24 md:px-12 md:py-40">
+    <section className="bg-surface px-6 py-24 md:px-12 md:py-40">
       <div className="mb-12 md:mb-20">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           Jak pracujemy
@@ -79,14 +79,14 @@ function DiagnosticShuffler() {
   }, [cycle])
 
   return (
-    <div className="flex h-full flex-col border border-foreground/10 bg-card p-6 md:p-8">
+    <div className="flex h-full flex-col border border-foreground/10 bg-surface-raised p-6 md:p-8">
       <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
         01 / zrozumienie klienta
       </p>
       <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
         Odkrywamy Twoje potrzeby
       </h3>
-      <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/50">
+      <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/60">
         Analizujemy Twoją markę, grupę docelową i cele, zanim zaplanujemy choćby jedną klatkę. Strategia zawsze na pierwszym miejscu.
       </p>
 
@@ -101,7 +101,7 @@ function DiagnosticShuffler() {
           return (
             <div
               key={card.label}
-              className="absolute left-0 right-0 flex items-center gap-4 border border-foreground/10 bg-secondary p-4"
+              className="absolute left-0 right-0 flex items-center gap-4 border border-foreground/10 bg-[oklch(0.22_0_0)] p-4"
               style={{
                 transform: `translateY(${yOffset}px) scale(${scale})`,
                 zIndex: 3 - position,
@@ -110,7 +110,7 @@ function DiagnosticShuffler() {
                   "transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease",
               }}
             >
-              <div className="flex h-10 w-10 items-center justify-center border border-foreground/10 bg-background">
+              <div className="flex h-10 w-10 items-center justify-center border border-foreground/10 bg-[oklch(0.12_0_0)]">
                 <Icon size={18} className="text-foreground/70" />
               </div>
               <div>
@@ -176,14 +176,14 @@ function TelemetryTypewriter() {
   }, [lines, currentChar])
 
   return (
-    <div className="flex h-full flex-col border border-foreground/10 bg-card p-6 md:p-8">
+    <div className="flex h-full flex-col border border-foreground/10 bg-surface-raised p-6 md:p-8">
       <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
         02 / Produkcja od A do Z
       </p>
       <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
         Kompletny pipeline produkcyjny
       </h3>
-      <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/50">
+      <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/60">
         Bezproblemowa realizacja od koncepcji kreatywnej, przez profesjonalną produkcję, aż po finalne dostarczenie materiałów.
       </p>
 
@@ -196,12 +196,12 @@ function TelemetryTypewriter() {
 
       <div
         ref={feedRef}
-        className="min-h-[140px] flex-1 overflow-hidden border border-foreground/10 bg-background p-4"
+        className="min-h-[140px] flex-1 overflow-hidden border border-foreground/10 bg-[oklch(0.10_0_0)] p-4"
       >
         {lines.map((line, i) => (
           <p
             key={`${line}-${i}`}
-            className="overflow-hidden whitespace-nowrap font-mono text-[11px] leading-relaxed text-foreground/40"
+            className="overflow-hidden whitespace-nowrap font-mono text-[11px] leading-relaxed text-foreground/50"
           >
             <span className="mr-2 text-foreground/20">{String(i + 1).padStart(2, "0")}</span>
             {line}
@@ -299,14 +299,14 @@ function CursorScheduler() {
   }, [step, getCellCenter, getSaveCenter])
 
   return (
-    <div className="flex h-full flex-col border border-foreground/10 bg-card p-6 md:p-8">
+    <div className="flex h-full flex-col border border-foreground/10 bg-surface-raised p-6 md:p-8">
       <p className="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
         03 / Strategiczna dystrybucja
       </p>
       <h3 className="mb-1 font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
         Media nastawione na konwersję
       </h3>
-      <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/50">
+      <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/60">
         Cyfrowe materiały, które zatrzymują scroll — zaprojektowane by angażować, budować zaufanie i maksymalizować ROI z marketingu.
       </p>
 
@@ -327,7 +327,7 @@ function CursorScheduler() {
               className={`flex aspect-square items-center justify-center border transition-all duration-300 ${
                 activeDays.includes(i)
                   ? "border-foreground bg-foreground text-background"
-                  : "border-foreground/10 bg-secondary text-foreground/30"
+                  : "border-foreground/10 bg-[oklch(0.22_0_0)] text-foreground/30"
               }`}
             >
               <span className="font-mono text-[10px]">
@@ -343,7 +343,7 @@ function CursorScheduler() {
           className={`w-full border py-2.5 font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.1em] transition-all duration-300 ${
             saved
               ? "border-foreground bg-foreground text-background"
-              : "border-foreground/10 bg-secondary text-foreground/50"
+              : "border-foreground/10 bg-[oklch(0.22_0_0)] text-foreground/50"
           }`}
         >
           {saved ? "Opublikowano ✓" : "Publikuj harmonogram"}

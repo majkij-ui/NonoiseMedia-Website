@@ -10,7 +10,7 @@ export function LpLeadStrip() {
   return (
     <section
       id="lead"
-      className="scroll-mt-24 bg-neutral-950 px-6 pb-20 pt-8 md:px-12 md:pb-28 md:pt-10"
+      className="scroll-mt-24 border-t border-foreground/10 bg-surface-raised px-6 pb-20 pt-8 md:px-12 md:pb-28 md:pt-10"
     >
       {/* Same grid as OfferPricingTiers: middle column = width of center tier card */}
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">

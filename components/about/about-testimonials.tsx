@@ -97,7 +97,7 @@ export function AboutTestimonials({ showTrustedLogos = false }: AboutTestimonial
           >
             <div
               className={`flex h-full w-full items-center overflow-y-auto px-6 py-16 md:overflow-visible md:px-12 md:py-0 ${
-                i % 2 === 0 ? "bg-background" : "bg-neutral-950"
+                i % 2 === 0 ? "bg-surface-raised" : "bg-surface"
               }`}
             >
               <div className="relative mx-auto w-full max-w-[90rem]">
@@ -105,7 +105,7 @@ export function AboutTestimonials({ showTrustedLogos = false }: AboutTestimonial
                   <span className="mb-8 block font-mono text-sm tracking-[0.1em] text-foreground/50 md:text-base">
                     {slide.num}
                   </span>
-                  <Quote className="mb-4 h-5 w-5 text-foreground/15" strokeWidth={1.2} />
+                  <Quote className="mb-4 h-5 w-5 text-foreground/25" strokeWidth={1.2} />
                   <p className="mb-10 font-sans text-base leading-[1.7] tracking-tight text-foreground/70 md:text-lg md:leading-[1.75]">
                     {slide.text}
                   </p>
@@ -113,7 +113,7 @@ export function AboutTestimonials({ showTrustedLogos = false }: AboutTestimonial
                     <p className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-[0.02em] text-foreground md:text-3xl">
                       {slide.author}
                     </p>
-                    <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/35">
+                    <p className="mt-1 font-mono text-xs uppercase tracking-[0.15em] text-foreground/45">
                       {slide.role}
                     </p>
                   </div>
@@ -131,7 +131,7 @@ export function AboutTestimonials({ showTrustedLogos = false }: AboutTestimonial
                         alt={brandLogo.name}
                         fill
                         sizes="(max-width: 900px) 42vw, 340px"
-                        className="origin-right object-contain object-right opacity-[0.1]"
+                        className="origin-right object-contain object-right opacity-[0.25]"
                       />
                     </div>
                   </div>

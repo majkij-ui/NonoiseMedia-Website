@@ -76,7 +76,7 @@ export function OfferPricingTiers({ showCta = true, tightFooter = false }: Offer
     <section
       className={
         tightFooter
-          ? "px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-40"
+          ? "bg-surface-raised px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-40"
           : "px-6 py-24 md:px-12 md:py-40"
       }
     >
@@ -115,7 +115,7 @@ export function OfferPricingTiers({ showCta = true, tightFooter = false }: Offer
             }`}
           >
             <p
-              className={`mb-1 font-mono text-[10px] uppercase tracking-[0.15em] ${
+              className={`mb-1 font-mono text-[11px] uppercase tracking-[0.15em] ${
                 tier.highlighted ? "text-background/50" : "text-muted-foreground"
               }`}
             >
@@ -135,12 +135,12 @@ export function OfferPricingTiers({ showCta = true, tightFooter = false }: Offer
                   <Check
                     size={14}
                     className={`mt-0.5 shrink-0 ${
-                      tier.highlighted ? "text-background/60" : "text-foreground/40"
+                      tier.highlighted ? "text-background/60" : "text-foreground/50"
                     }`}
                   />
                   <span
                     className={`font-sans text-sm leading-relaxed ${
-                      tier.highlighted ? "text-background/70" : "text-foreground/50"
+                      tier.highlighted ? "text-background/70" : "text-foreground/60"
                     }`}
                   >
                     {feature}
