@@ -24,6 +24,7 @@ const GOOGLE_HTTPS =
     "https://*.doubleclick.net",
     "https://*.googlesyndication.com",
     "https://adservice.google.com",
+    "https://*.google.*",
   ].join(" ")
 
 const VERCEL_SCRIPTS = "https://va.vercel-scripts.com https://vercel.live"
