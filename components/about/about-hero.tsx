@@ -82,6 +82,7 @@ export function AboutHero({
                   src={src}
                   alt={`Nonoise Media produkcja wideo - ujęcie ${i + 1}`}
                   fill
+                  unoptimized
                   sizes="(max-width: 768px) 33vw, 16vw"
                   className="object-cover grayscale opacity-70 transition-all duration-[2000ms] ease-out hover:grayscale-0 hover:opacity-100 hover:duration-[50ms]"
                 />

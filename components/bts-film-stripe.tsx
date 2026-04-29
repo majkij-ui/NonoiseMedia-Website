@@ -114,6 +114,7 @@ export function BtsFilmStripe({ images, title }: BtsFilmStripeProps) {
               alt={`${title} BTS frame ${index + 1}`}
               width={720}
               height={224}
+              unoptimized
               sizes="(max-width: 768px) 45vw, 360px"
               className="h-40 w-auto object-contain md:h-56"
             />
