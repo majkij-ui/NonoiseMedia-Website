@@ -24,3 +24,6 @@ nonoise-new-ref/
 
 # Local pnpm store (if created inside the repo by mistake)
 .pnpm-store/
+
+# Temporary media download folder
+temp/

@@ -6,7 +6,7 @@ import { Quote } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 
 export default function AboutOldPage() {
-  const gridImages = Array.from({ length: 30 }, (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.png`)
+  const gridImages = Array.from({ length: 30 }, (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.webp`)
   const cinematicEase = [0.25, 0.1, 0.25, 1] as const
   const testimonials = [
     {
