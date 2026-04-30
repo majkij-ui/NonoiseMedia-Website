@@ -151,7 +151,7 @@ export const trustedBy: TrustedBrand[] = [
   { id: 1, name: "PHH", src: "https://assets.nonoise.media/logos/phhlogo.png" },
   { id: 2, name: "Danone", src: "https://assets.nonoise.media/logos/danone.png" },
   { id: 3, name: "CIONET", src: "https://assets.nonoise.media/logos/CIONET.png" },
-  { id: 4, name: "Rondo", src: "https://assets.nonoise.media/logos/Rondo%20Logo.png" },
+  { id: 4, name: "Rondo", src: "https://assets.nonoise.media/logos/Rondo%2520Logo.png" },
   { id: 5, name: "FIRE", src: "https://assets.nonoise.media/logos/fire.png" },
   { id: 6, name: "North", src: "https://assets.nonoise.media/logos/north.png" },
   { id: 7, name: "Kunzek", src: "https://assets.nonoise.media/logos/Kunzek.png" },
