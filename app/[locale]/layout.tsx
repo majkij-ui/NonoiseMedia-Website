@@ -36,7 +36,7 @@ const bebasNeue = Bebas_Neue({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nonoise.media'),
+  metadataBase: new URL('https://www.nonoise.media'),
   title: {
     default: 'Produkcja Filmowa i Wideo dla Firm Warszawa | Nonoise Media',
     template: '%s | Nonoise Media',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: 'Produkcja Filmowa i Wideo dla Firm Warszawa | Nonoise Media',
     description:
       'Studio produkcji filmowej i wideo w Warszawie. Filmy korporacyjne, reklamowe i produktowe tworzone z kinową jakością dla marek premium.',
-    url: 'https://nonoise.media',
+    url: 'https://www.nonoise.media',
     siteName: 'Nonoise Media',
     locale: 'pl_PL',
     type: 'website',
@@ -95,7 +95,7 @@ export default async function LocaleLayout({
               '@context': 'https://schema.org',
               '@type': ['Organization', 'LocalBusiness'],
               name: 'Nonoise Media',
-              url: 'https://nonoise.media',
+              url: 'https://www.nonoise.media',
               logo: 'https://assets.nonoise.media/logos/logo-orb.png',
               image: 'https://assets.nonoise.media/logos/logo-orb.png',
               description:

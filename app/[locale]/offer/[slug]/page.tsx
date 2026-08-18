@@ -4,6 +4,7 @@ import { setRequestLocale } from "next-intl/server"
 import { hasLocale } from "next-intl"
 import { routing } from "@/i18n/routing"
 import { servicePages, getServicePage } from "@/lib/service-pages"
+import { buildAlternates } from "@/lib/seo"
 import { projects } from "@/lib/projects"
 import { ServiceLandingClient } from "@/components/service-landing/service-landing-client"
 
@@ -35,6 +36,7 @@ export async function generateMetadata({
   return {
     title: meta.title,
     description: meta.description,
+    alternates: buildAlternates(locale, `/offer/${slug}`),
     openGraph: {
       title: meta.title,
       description: meta.description,
