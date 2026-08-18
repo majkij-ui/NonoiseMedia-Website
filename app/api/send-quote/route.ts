@@ -25,15 +25,27 @@ export async function POST(request: Request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const { formSummary, contactMethod, contactValue, clientName } = await request.json();
-    const normalizedClientName = String(clientName ?? '').trim();
+
+    if (!Array.isArray(formSummary) || formSummary.length === 0 || formSummary.length > 50) {
+      return NextResponse.json(
+        { error: 'Invalid form data' },
+        { status: 400 },
+      );
+    }
+
+    const clamp = (value: unknown, max: number) => String(value ?? '').trim().slice(0, max);
+    const normalizedClientName = clamp(clientName, 200);
     const subjectClient = normalizedClientName || 'Nowe zapytanie';
 
-    const answersHtml = formSummary.map((item: any) => `
+    const answersHtml = formSummary.map((item: unknown) => {
+      const entry = (item ?? {}) as Record<string, unknown>;
+      return `
   <div style="margin-bottom: 20px; border-left: 2px solid #000; padding-left: 15px;">
-    <p style="margin: 0; font-size: 14px; text-transform: uppercase; color: #666;">${escapeHtml(item.question)}</p>
-    <p style="margin: 5px 0 0 0; font-size: 18px; color: #000;">${escapeHtml(item.answer)}</p>
+    <p style="margin: 0; font-size: 14px; text-transform: uppercase; color: #666;">${escapeHtml(clamp(entry.question, 500))}</p>
+    <p style="margin: 5px 0 0 0; font-size: 18px; color: #000;">${escapeHtml(clamp(entry.answer, 5000))}</p>
   </div>
-`).join('');
+`;
+    }).join('');
 
     const data = await resend.emails.send({
       from: 'Nonoise Website <hello@nonoise.media>',
@@ -48,7 +60,7 @@ export async function POST(request: Request) {
       ${answersHtml}
     </div>
     <hr style="border: 1px solid #eee; margin: 40px 0;" />
-    <p style="font-size: 16px;"><strong>Contact Detail:</strong> ${escapeHtml(contactValue)} (${escapeHtml(contactMethod)})</p>
+    <p style="font-size: 16px;"><strong>Contact Detail:</strong> ${escapeHtml(clamp(contactValue, 300))} (${escapeHtml(clamp(contactMethod, 50))})</p>
   </div>
       `,
     });
@@ -62,7 +74,7 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ success: true, data });
+    return NextResponse.json({ success: true });
   } catch (error) {
     const err = error as { message?: string; name?: string };
     console.error('[send-quote] Route error:', error);
