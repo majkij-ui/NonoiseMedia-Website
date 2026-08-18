@@ -15,6 +15,8 @@ export async function generateMetadata({
   };
 }
 
+// No BreadcrumbList here: this layout also wraps /offer/[slug], which emits its own
+// deeper breadcrumb — two BreadcrumbLists on one page would contradict each other.
 export default function OfferLayout({
   children,
 }: {

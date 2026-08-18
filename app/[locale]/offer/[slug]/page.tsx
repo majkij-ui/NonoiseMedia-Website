@@ -5,6 +5,8 @@ import { hasLocale } from "next-intl"
 import { routing } from "@/i18n/routing"
 import { servicePages, getServicePage } from "@/lib/service-pages"
 import { buildAlternates } from "@/lib/seo"
+import { breadcrumbList, faqPage, serviceSchema } from "@/lib/structured-data"
+import { JsonLd } from "@/components/json-ld"
 import { projects } from "@/lib/projects"
 import { ServiceLandingClient } from "@/components/service-landing/service-landing-client"
 
@@ -66,5 +68,19 @@ export default async function ServicePage({ params }: PageProps) {
     ? projects.find((p) => p.id === page.featuredProjectId)
     : undefined
 
-  return <ServiceLandingClient data={page} project={project} />
+  const isEn = locale === "en"
+  const breadcrumbs = breadcrumbList(locale, [
+    { name: isEn ? "Home" : "Strona główna", path: "" },
+    { name: isEn ? "Services" : "Oferta", path: "/offer" },
+    { name: page.hero.label, path: `/offer/${page.slug}` },
+  ])
+
+  return (
+    <>
+      <JsonLd data={serviceSchema(page, locale)} />
+      <JsonLd data={faqPage(page)} />
+      <JsonLd data={breadcrumbs} />
+      <ServiceLandingClient data={page} project={project} />
+    </>
+  )
 }
