@@ -6,8 +6,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        // Paid-traffic LP is noindex in metadata; also block crawlers at robots level
-        disallow: ['/pl/lp/', '/en/lp/'],
+        // /lp/* and /about-old are kept out of search via robots noindex metadata.
+        // Don't also disallow them here — a robots.txt block would stop crawlers
+        // from ever seeing the noindex tag.
       },
     ],
     sitemap: 'https://nonoise.media/sitemap.xml',
