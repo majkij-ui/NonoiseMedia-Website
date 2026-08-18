@@ -28,9 +28,7 @@ Live scores at time of audit: Desktop 81 / Mobile 62 performance; mobile LCP 9.8
 
 ---
 
-## ✅ Done locally — NEEDS DEPLOY
-
-Everything below is committed-ready in the working tree but not yet on production:
+## ✅ Deploy 1 shipped (2026-08-18) — audit fixes
 
 - Audit fixes: `/about-old` noindexed, robots.txt `/lp/` disallow removed, `lang`
   attribute server-rendered per locale (root layout merged into `app/[locale]/layout.tsx`),
@@ -59,12 +57,25 @@ Everything below is committed-ready in the working tree but not yet on productio
   www sibling exists. Fix: in `nonoise-media-website` → Domains → **Add Existing** →
   `nonoise.media` → "Redirect to Another Domain" → `www.nonoise.media` → **308**.
   Verify after: `curl -sI https://nonoise.media/` → expect `HTTP/2 308`.
-- [ ] **Cloudflare → Caching**: add cache rule for `assets.nonoise.media` with
-  `max-age=31536000` (1 year). Currently 4h — returning visitors re-download the
-  17 MB reel.
-- [ ] **Cloudflare → decide on "Content Signals"**: Cloudflare injects a managed block
-  into robots.txt (flags Lighthouse "invalid robots.txt", blocks GPTBot/ClaudeBot/CCBot
-  etc.). Decide: keep AI-bot blocking or disable the managed robots.txt injection.
+- [x] **Cloudflare → Caching**: cache rule live (2026-08-18).
+  `(http.host eq "assets.nonoise.media")` → Eligible for cache → Edge TTL "ignore
+  cache-control, use this TTL" = 1 year → Browser TTL "override origin" = 1 year.
+  Before: no `cache-control` header at all, `cf-cache-status: DYNAMIC` (R2 hit on every
+  request). After: `cache-control: max-age=31536000`, `HIT`; reel still serves 206 range
+  requests.
+  ⚠️ **Verify with GET, not HEAD** — `curl -I` always reports DYNAMIC and hides the
+  cache-control header. Use: `curl -s -o /dev/null -D - <url> | grep -i "cf-cache-status\|cache-control"`.
+  ⚠️ **Content versioning is now mandatory:** with a 1-year browser TTL, replacing a file
+  at the same URL leaves returning visitors on the old copy for up to a year (purging
+  Cloudflare does NOT clear browser caches). Always upload changed media under a
+  **new filename** (`my-reel-v2.mp4`) and update the URL in code.
+- [x] **Cloudflare → AI bot access** (decided 2026-08-18): "Block AI training bots" =
+  **Do not block**, "Manage your robots.txt" = **Disable robots.txt configuration**.
+  Verified live: robots.txt is now only our app's output (71 bytes, no Content-Signal
+  block → fixes the Lighthouse "invalid robots.txt" flag), and GPTBot / ClaudeBot /
+  CCBot / Google-Extended / Googlebot all return 200.
+  **Consequence:** `app/robots.ts` is now the single source of truth for crawler policy —
+  any future bot rules belong there (version-controlled), not in the Cloudflare dashboard.
 
 ---
 
@@ -79,14 +90,11 @@ questionnaire has zero tracking), (b) organic/direct leads are correctly not cou
 by Ads, (c) ad blockers / iOS block GTM but not the server-side email, (d) possible
 Consent Mode defaults, (e) "One per click" counting setting.
 
-### Code (Claude)
-- [ ] Push `contact_form_success` via `sendGTMEvent` in the contact form success branch
-  (`app/[locale]/contact/page.tsx`, after `res.ok` → `setStatus("sent")`).
-- [ ] Push `questionnaire_success` in the questionnaire success branch
-  (`components/questionnaire/questionnaire-form.tsx`, after `response.ok`).
-- [ ] Add `phone_click` event in `components/phone-number.tsx` (matches existing
-  `data-gaw-contact="phone-hero"` intent).
-- Safe to deploy before GTM changes — unused events are inert.
+### Code (Claude) — ✅ shipped in Deploy 2 (2026-08-18)
+- [x] `contact_form_success` in the contact form success branch (fires after API 200).
+- [x] `questionnaire_success` in the questionnaire success branch.
+- [x] `phone_click` in `components/phone-number.tsx`.
+- Events are live but inert until the GTM triggers below are created.
 
 ### GTM (Michał, ~5 min, after code deploy)
 - [ ] Create Custom Event trigger `contact_form_success`; point the existing Google Ads
@@ -110,17 +118,30 @@ Consent Mode defaults, (e) "One per click" counting setting.
 
 ## 🔜 Code — performance (approved direction, not yet done)
 
-- [ ] **Reel loading strategy**: `preload="none"` + poster frame (WebP on R2) + start
-  video load after hydration. Removes 17 MB from the critical loading window.
-  Update CLAUDE.md hard rule about `preload="auto"` when done.
-- [ ] **Compress `my-reel.mp4`** — 17 MB is heavy even lazy-loaded; well-encoded 1080p
-  background loop should land at 5–8 MB. (Re-export/ffmpeg, upload to R2.)
+> **Decision (2026-08-18): `preload="none"` REJECTED.** Tried previously; Michał disliked
+> how the homepage loads with it. Combined with the no-compression decision below, the
+> reel stays `preload="auto"` at 53 MB — first-paint cost is accepted by design.
+> Repeat visits are handled by the 1-year cache rule. Do not re-propose either change.
+> **Decision (2026-08-18): reel will NOT be compressed.** The file is 53 MB
+> (`content-length: 55713433`; the earlier "17 MB" was only what Lighthouse pulled during
+> the page-load window). Michał considers the reel's image quality more important than the
+> byte size — it is the studio's core product demo. Do not re-propose compressing or
+> re-encoding it. The size is mitigated by the 1-year cache rule above, which makes
+> repeat visitors download it once.
 - [ ] **Preconnect hints** for `assets.nonoise.media` + `www.googletagmanager.com`
   (~350 ms estimated LCP savings).
 - [x] **Canonical domain alignment** — done in Deploy 2: www everywhere in code.
 
 ## 🔜 Code — SEO / i18n
 
+- [x] **Structured data** (2026-08-18, ready to deploy): `lib/structured-data.ts` +
+  `components/json-ld.tsx`. Organization `sameAs` (Instagram + YouTube) sitewide;
+  `Service` + `FAQPage` + `BreadcrumbList` on all 9 service pages; `BreadcrumbList` +
+  6 × `VideoObject` on /work. Validated: every block parses, no duplicate breadcrumbs.
+- [ ] ⚠️ **VideoObject needs real `uploadDate`s** — optional field on `Project`
+  (`lib/projects.ts`), currently omitted for all 6 films. Google requires it for video
+  rich results. Ask Michał for the publication date (YYYY-MM-DD, approximate month is
+  fine) of each: PHH, Rondo, OmniOffice, CIONET, W Rytmie Słów, Kunzek. Never guess.
 - [x] **hreflang alternates** — done in Deploy 2 (see above).
 - [ ] **Localize `/en/work`**: hardcoded Polish strings in `app/[locale]/work/page.tsx`,
   Polish-only metadata in `work/layout.tsx`, Polish-only copy in `lib/projects.ts`

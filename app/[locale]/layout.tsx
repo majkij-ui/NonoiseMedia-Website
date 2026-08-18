@@ -6,6 +6,7 @@ import { hasLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { DeferredThirdParties } from '@/components/deferred-third-parties'
+import { SAME_AS } from '@/lib/structured-data'
 import { cn } from '@/lib/utils'
 import '../globals.css'
 
@@ -109,6 +110,7 @@ export default async function LocaleLayout({
               },
               telephone: '+48882111288',
               email: 'contact@nonoise.media',
+              sameAs: SAME_AS,
               areaServed: { '@type': 'Country', name: 'Poland' },
               hasMap:
                 'https://www.google.com/maps/search/?api=1&query=Za+olszyn%C4%85+13B%2F2+05-090+Podolszyn+Nowy',

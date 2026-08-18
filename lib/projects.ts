@@ -8,6 +8,9 @@ export type Project = {
   btsImages: string[]
   challenge: string
   solution: string
+  /** ISO date (YYYY-MM-DD) the film was published. Required by Google for video
+   *  rich results — omit rather than guess; VideoObject drops the field when absent. */
+  uploadDate?: string
 }
 
 export const projects: Project[] = [

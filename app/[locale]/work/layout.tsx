@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { buildAlternates } from "@/lib/seo";
+import { breadcrumbList, videoObject } from "@/lib/structured-data";
+import { JsonLd } from "@/components/json-ld";
+import { projects } from "@/lib/projects";
 
 export async function generateMetadata({
   params,
@@ -15,10 +18,28 @@ export async function generateMetadata({
   };
 }
 
-export default function WorkLayout({
+export default async function WorkLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  return <>{children}</>;
+  const { locale } = await params;
+  const isEn = locale === "en";
+
+  return (
+    <>
+      <JsonLd
+        data={breadcrumbList(locale, [
+          { name: isEn ? "Home" : "Strona główna", path: "" },
+          { name: isEn ? "Portfolio" : "Realizacje", path: "/work" },
+        ])}
+      />
+      {projects.map((project) => (
+        <JsonLd key={project.id} data={videoObject(project, locale)} />
+      ))}
+      {children}
+    </>
+  );
 }
