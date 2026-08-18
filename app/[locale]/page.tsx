@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
+import { buildAlternates } from '@/lib/seo'
 import HomeClient from './HomeClient'
 
 export async function generateMetadata({
@@ -14,6 +15,7 @@ export async function generateMetadata({
       title: { absolute: 'Video Production for Business Warsaw | Nonoise Media' },
       description:
         'Warsaw-based video production studio creating corporate films, commercials, product videos and brand films for premium brands. Get a free quote.',
+      alternates: buildAlternates(locale, ''),
       openGraph: {
         title: 'Video Production for Business Warsaw | Nonoise Media',
         description:
@@ -26,6 +28,7 @@ export async function generateMetadata({
     title: { absolute: 'Produkcja Filmowa i Wideo dla Firm Warszawa | Nonoise Media' },
     description:
       'Warszawskie studio produkcji filmowej i wideo dla firm. Tworzymy filmy korporacyjne, reklamowe, produktowe i wizerunkowe dla marek premium. Bezpłatna wycena.',
+    alternates: buildAlternates(locale, ''),
     openGraph: {
       title: 'Produkcja Filmowa i Wideo dla Firm Warszawa | Nonoise Media',
       description:

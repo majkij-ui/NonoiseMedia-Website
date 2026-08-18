@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { setRequestLocale } from "next-intl/server"
 import { hasLocale } from "next-intl"
 import { routing } from "@/i18n/routing"
+import { buildAlternates } from "@/lib/seo"
 import { Navigation } from "@/components/navigation"
 
 export async function generateMetadata({
@@ -16,12 +17,14 @@ export async function generateMetadata({
       title: "Video Project Brief — Free Quote",
       description:
         "Tell us about your video project using our short questionnaire. We'll prepare a personalised proposal with pricing for your corporate or commercial video.",
+      alternates: buildAlternates(locale, "/questionnaire"),
     }
   }
   return {
     title: "Kwestionariusz — Bezpłatna Wycena Projektu Wideo",
     description:
       "Opowiedz nam o swoim projekcie wideo za pomocą krótkiego kwestionariusza. Przygotujemy spersonalizowaną propozycję z wyceną dla Twojej firmy.",
+    alternates: buildAlternates(locale, "/questionnaire"),
   }
 }
 import { QuestionnaireForm } from "@/components/questionnaire/questionnaire-form"

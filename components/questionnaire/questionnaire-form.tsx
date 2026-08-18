@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
+import { sendGTMEvent } from "@/lib/gtm"
 
 import type {
   QuestionnaireContent,
@@ -249,6 +250,8 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
 
       if (response.ok) {
         setSubmitStatus("success")
+        // Conversion signal: fires only on confirmed send (API 200).
+        sendGTMEvent("questionnaire_success")
       } else {
         const rawText = await response.text().catch(() => "")
         let errorPayload: unknown = null

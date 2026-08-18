@@ -99,6 +99,14 @@ const nextConfig = {
     // Serve pre-generated WebP straight from R2; no Vercel image optimization.
     unoptimized: true,
   },
+  async redirects() {
+    return [
+      // Legacy /pl URLs (pre localePrefix:'as-needed') — PL now serves unprefixed.
+      // Permanent so ads/backlinks/search consolidate onto the new URLs.
+      { source: "/pl", destination: "/", permanent: true },
+      { source: "/pl/:path*", destination: "/:path*", permanent: true },
+    ]
+  },
   async headers() {
     return [
       {

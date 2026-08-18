@@ -5,16 +5,26 @@ Live scores at time of audit: Desktop 81 / Mobile 62 performance; mobile LCP 9.8
 
 ---
 
-## ⏸ Deferred — do AFTER paid campaign stops
+## ✅ Deploy 2 shipped (2026-08-18) — locale prefix, hreflang, conversion events
 
-- [ ] **Switch `localePrefix` to `'as-needed'`** in `i18n/routing.ts` so Polish serves at
-  `/`, `/about`, `/work` (no `/pl` prefix) and the `/` → `/pl` redirect disappears
-  (~150–450 ms saved on entry).
-  **Why deferred:** Google Ads currently points at `/pl/...` URLs — changing now would
-  put a redirect on every paid click, the exact thing we're trying to remove. No organic
-  traffic yet, so migration cost is near zero once ads stop.
-  **When doing it:** update sitemap paths, hreflang alternates, and re-point ad final URLs
-  to the new prefix-less URLs.
+- [x] `localePrefix: 'as-needed'` + `localeDetection: false` — PL serves unprefixed at
+  `/`, `/about`, ...; `/` never redirects (crawlers with EN headers still get PL);
+  EN via switcher at `/en/...`.
+- [x] Permanent 308 redirects `/pl` → `/` and `/pl/:path*` → `/:path*` (next.config).
+- [x] Sitemap + robots on canonical **www** domain, PL unprefixed.
+- [x] Canonical + hreflang (`pl`/`en`/`x-default`) on all indexable routes via
+  `lib/seo.ts` `buildAlternates()`; metadataBase/OG/JSON-LD moved to www.
+- [x] Conversion events: `contact_form_success`, `questionnaire_success` (fire only on
+  API 200), `phone_click`.
+
+### ⚠️ Before resuming Google Ads (Michał)
+- [ ] Update **final URLs** in Google Ads: `/pl/lp/kampania` → `/lp/kampania` (and any
+  other `/pl/...` final or tracking URLs).
+- [ ] GTM: retarget the Ads conversion tag to Custom Event trigger
+  `contact_form_success`; remove the old click/form-listener trigger. Optional second
+  conversion for `questionnaire_success`. Update any triggers/audiences filtered by
+  paths containing `/pl/`.
+- [ ] Search Console: submit the updated sitemap; expect re-index churn for ~2 weeks.
 
 ---
 
@@ -27,8 +37,10 @@ Everything below is committed-ready in the working tree but not yet on productio
   API input validation/length caps, type-checking re-enabled (`ignoreBuildErrors` removed),
   dead `lib/media.ts` and `drafts/` deleted, sitemap `lastModified` dropped.
 
-- [ ] **Deploy to production** (feature branch → PR → main per repo convention)
-- [ ] Re-run PageSpeed after deploy
+- [x] **Deploy to production** — PR #2 merged & verified live 2026-08-18: lang pl/en ✅,
+  about-old noindex ✅, robots.txt clean ✅, sitemap no lastmod ✅, API 400s on bad
+  payloads ✅, both email APIs smoke-tested (2 labeled TEST emails sent) ✅
+- [ ] Re-run PageSpeed after deploy (optional — hero fade decision caps mobile LCP)
 
 > **Decision (2026-07-07): hero LCP fix REVERTED.** Making the hero visible at first
 > paint (no opacity fade) was implemented, but Michał preferred the original fade-in
@@ -40,8 +52,8 @@ Everything below is committed-ready in the working tree but not yet on productio
 
 ## 🖥 Dashboard tasks (Michał, ~10 min)
 
-- [ ] **Vercel → Domains**: make `nonoise.media` → `www.nonoise.media` redirect
-  **permanent (308)** — currently 307 temporary, bad canonical signal.
+- [x] **Vercel → Domains**: apex → www redirect is now **308 permanent** (verified live
+  2026-08-18).
   Note: the apex is NOT attached to any project (verified 2026-07-07 across all 10
   team projects) — the 307 is Vercel's implicit fallback for an unassigned apex whose
   www sibling exists. Fix: in `nonoise-media-website` → Domains → **Add Existing** →
@@ -105,14 +117,11 @@ Consent Mode defaults, (e) "One per click" counting setting.
   background loop should land at 5–8 MB. (Re-export/ffmpeg, upload to R2.)
 - [ ] **Preconnect hints** for `assets.nonoise.media` + `www.googletagmanager.com`
   (~350 ms estimated LCP savings).
-- [ ] **Canonical domain alignment**: site serves on `www.nonoise.media` but
-  `metadataBase`, OG URLs, sitemap, robots sitemap ref and JSON-LD all say apex
-  `nonoise.media`. Standardize on **www** everywhere in code.
+- [x] **Canonical domain alignment** — done in Deploy 2: www everywhere in code.
 
 ## 🔜 Code — SEO / i18n
 
-- [ ] **hreflang alternates** (`alternates.languages` + canonical) on all pages —
-  two locales published with no relation signals.
+- [x] **hreflang alternates** — done in Deploy 2 (see above).
 - [ ] **Localize `/en/work`**: hardcoded Polish strings in `app/[locale]/work/page.tsx`,
   Polish-only metadata in `work/layout.tsx`, Polish-only copy in `lib/projects.ts`
   and `components/service-landing/service-landing-client.tsx`. Or decide to drop EN.

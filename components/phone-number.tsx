@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
+import { sendGTMEvent } from "@/lib/gtm"
 
 type PhoneNumberProps = Omit<
   React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -28,6 +29,8 @@ export function PhoneNumber({
   }, [])
 
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Fires for both mobile tel: taps and desktop copy-to-clipboard.
+    sendGTMEvent("phone_click")
     if (window.innerWidth >= 768) {
       e.preventDefault()
 
