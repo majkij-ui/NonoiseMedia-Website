@@ -148,7 +148,10 @@ export default function HomeClient() {
         style={{ opacity: isPlaying ? 0 : 1 }}
       />
 
-      {/* UI Layer - Fades out when playing */}
+      {/* UI Layer - Fades out when playing.
+          Note: the entrance fade keeps the hero (LCP element) at opacity:0 until
+          hydration, which costs Lighthouse LCP. Deliberate owner decision (July 2026):
+          the fade-in look wins over the metric. Don't "optimize" this away. */}
       <AnimatePresence>
         {!isPlaying && (
           <motion.div

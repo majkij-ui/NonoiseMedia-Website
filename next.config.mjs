@@ -95,20 +95,9 @@ const CONTENT_SECURITY_POLICY = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
+    // Serve pre-generated WebP straight from R2; no Vercel image optimization.
     unoptimized: true,
-    formats: ["image/avif", "image/webp"],
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "assets.nonoise.media",
-        pathname: "/**",
-      },
-    ],
   },
   async headers() {
     return [

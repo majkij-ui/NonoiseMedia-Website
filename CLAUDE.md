@@ -19,7 +19,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | Package manager | **pnpm** (lockfile: `pnpm-lock.yaml`) |
 | i18n | `next-intl`, routes under `app/[locale]/` |
 | Email | Resend (`RESEND_API_KEY` env var) |
-| Analytics | `@vercel/analytics` + `@vercel/speed-insights` (both in root `app/layout.tsx`) |
+| Analytics | `@vercel/analytics` + `@vercel/speed-insights` (loaded via `components/deferred-third-parties.tsx` in `app/[locale]/layout.tsx`) |
 
 ---
 
@@ -38,7 +38,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 
 | What | Where |
 |---|---|
-| Root layout (Analytics, SpeedInsights) | `app/layout.tsx` |
+| Root layout (`<html lang>`, fonts, Analytics, JSON-LD) | `app/[locale]/layout.tsx` — there is **no** `app/layout.tsx`; the locale layout is the root layout |
 | Global styles | `app/globals.css` |
 | i18n config | `i18n/` directory |
 | Translations | `messages/pl.json`, `messages/en.json` |
@@ -81,7 +81,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 ## Git Conventions
 - Use Conventional Commits format (feat:, fix:, chore:, refactor:).
 - Keep subject lines under 72 characters.
-- Always run `npm test` before committing. If tests fail, do not commit.
+- There is no test suite. Before committing, run `pnpm lint` and `pnpm build`; do not commit if either fails.
 - Never push directly to `main`; always create a feature branch first.
 
 ---

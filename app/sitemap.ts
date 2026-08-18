@@ -34,9 +34,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const route of routes) {
       // Slightly lower priority for non-default (EN) locale pages
       const priority = locale === 'pl' ? route.priority : Math.round(route.priority * 0.9 * 10) / 10
+      // No lastModified: stamping build time on every URL is a meaningless signal.
       entries.push({
         url: `${baseUrl}/${locale}${route.path}`,
-        lastModified: new Date(),
         changeFrequency: route.changeFrequency,
         priority,
       })

@@ -22,9 +22,9 @@ export async function POST(request: Request) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     const body = await request.json();
-    const name = String(body.name ?? '').trim();
-    const email = String(body.email ?? '').trim();
-    const message = String(body.message ?? '').trim();
+    const name = String(body.name ?? '').trim().slice(0, 200);
+    const email = String(body.email ?? '').trim().slice(0, 320);
+    const message = String(body.message ?? '').trim().slice(0, 10000);
 
     if (!name) {
       return NextResponse.json(
@@ -85,7 +85,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    const err = error as { message?: string; name?: string };
     console.error('[send-contact] Route error:', error);
     return NextResponse.json(
       { error: 'Nie udało się wysłać wiadomości. Spróbuj ponownie.' },
