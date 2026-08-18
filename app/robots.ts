@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         // from ever seeing the noindex tag.
       },
     ],
-    sitemap: 'https://nonoise.media/sitemap.xml',
+    sitemap: 'https://www.nonoise.media/sitemap.xml',
   }
 }

@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { servicePages } from '@/lib/service-pages'
+import { SITE_URL } from '@/lib/seo'
 
-const baseUrl = 'https://nonoise.media'
 const locales = ['pl', 'en'] as const
 
 type Route = {
@@ -34,9 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const route of routes) {
       // Slightly lower priority for non-default (EN) locale pages
       const priority = locale === 'pl' ? route.priority : Math.round(route.priority * 0.9 * 10) / 10
+      // localePrefix 'as-needed': PL (default) is unprefixed, EN under /en.
       // No lastModified: stamping build time on every URL is a meaningless signal.
       entries.push({
-        url: `${baseUrl}/${locale}${route.path}`,
+        url:
+          locale === 'pl'
+            ? `${SITE_URL}${route.path || '/'}`
+            : `${SITE_URL}/en${route.path}`,
         changeFrequency: route.changeFrequency,
         priority,
       })
