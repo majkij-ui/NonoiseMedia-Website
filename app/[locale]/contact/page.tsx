@@ -6,6 +6,7 @@ import { Mail, ClipboardList, Check, MapPin } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PhoneNumber } from "@/components/phone-number"
 import { Link } from "@/i18n/navigation"
+import { sendGTMEvent } from "@/lib/gtm"
 
 type FormStatus = "idle" | "sending" | "sent" | "error"
 
@@ -80,6 +81,9 @@ export default function ContactPage() {
 
         setStatus("sent")
         setFormData({ name: "", email: "", message: "" })
+        // Conversion signal: fires only on confirmed send (API 200), so GTM
+        // counts real leads, not submit attempts.
+        sendGTMEvent("contact_form_success")
       } catch {
         setErrorMsg("Błąd połączenia. Sprawdź internet i spróbuj ponownie.")
         setStatus("error")
