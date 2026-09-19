@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { DeferredThirdParties } from '@/components/deferred-third-parties'
 import { SAME_AS } from '@/lib/structured-data'
+import { OG_IMAGE } from '@/lib/seo'
 import { cn } from '@/lib/utils'
 import '../globals.css'
 
@@ -52,6 +53,11 @@ export const metadata: Metadata = {
     siteName: 'Nonoise Media',
     locale: 'pl_PL',
     type: 'website',
+    images: [OG_IMAGE],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    images: [OG_IMAGE.url],
   },
   icons: {
     icon: 'https://assets.nonoise.media/logos/logo-orb.png',

@@ -22,3 +22,15 @@ export function buildAlternates(
     languages: { pl, en, 'x-default': pl },
   }
 }
+
+/**
+ * Default social share card. 1200x630 JPEG (~70 KB) — JPEG rather than the source
+ * WebP because some scrapers (notably LinkedIn) handle WebP unreliably, and small
+ * enough for WhatsApp's preview threshold.
+ */
+export const OG_IMAGE = {
+  url: 'https://assets.nonoise.media/og/nonoise-media-og.jpg',
+  width: 1200,
+  height: 630,
+  alt: 'Nonoise Media — studio produkcji filmowej i wideo, Warszawa',
+}

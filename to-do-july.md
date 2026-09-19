@@ -138,10 +138,14 @@ Consent Mode defaults, (e) "One per click" counting setting.
   `components/json-ld.tsx`. Organization `sameAs` (Instagram + YouTube) sitewide;
   `Service` + `FAQPage` + `BreadcrumbList` on all 9 service pages; `BreadcrumbList` +
   6 × `VideoObject` on /work. Validated: every block parses, no duplicate breadcrumbs.
-- [ ] ⚠️ **VideoObject needs real `uploadDate`s** — optional field on `Project`
-  (`lib/projects.ts`), currently omitted for all 6 films. Google requires it for video
-  rich results. Ask Michał for the publication date (YYYY-MM-DD, approximate month is
-  fine) of each: PHH, Rondo, OmniOffice, CIONET, W Rytmie Słów, Kunzek. Never guess.
+- [x] **VideoObject `uploadDate`s** (2026-09-19): PHH 2025-07, Rondo 2024-10,
+  OmniOffice 2025-04, W Rytmie Słów 2024-11, Kunzek 2024-09. Day set to `-01` as a
+  precision convention where only month/year is known (month + year are real).
+- [ ] **CIONET film has no publication date** — Michał described it as an "ongoing
+  partnership 2021–present", which describes the relationship, not the film's release.
+  `uploadDate` is omitted for project id 4 (never guessed). Ask for the specific film's
+  publication month if one exists; otherwise it stays without video-rich-result
+  eligibility, which is fine.
 - [x] **hreflang alternates** — done in Deploy 2 (see above).
 - [ ] **Localize `/en/work`**: hardcoded Polish strings in `app/[locale]/work/page.tsx`,
   Polish-only metadata in `work/layout.tsx`, Polish-only copy in `lib/projects.ts`
@@ -165,6 +169,7 @@ Consent Mode defaults, (e) "One per click" counting setting.
 - Validate testimonial copy (language, punctuation, legal approval).
 - Move testimonials data into a dedicated data module.
 - Smoke-test both email APIs after any env/domain change.
-- OG images + route-specific social previews.
+- ~~OG images~~ default card done 2026-09-19 (PHH still, 1200×630 JPEG). Still open:
+  route-specific social previews (per-service and per-project images).
 - Evaluate sticky CTA on mobile; tune animation timing.
 - Finalize `/work` media sourcing before release.

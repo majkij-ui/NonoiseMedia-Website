@@ -16,6 +16,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 1,
+    uploadDate: "2025-07-01",
     title: "Gościnni z natury",
     subtitle: "Film wizerunkowy",
     client: "Polski Holding Hotelowy",
@@ -39,6 +40,7 @@ export const projects: Project[] = [
   },
   {
     id: 2,
+    uploadDate: "2024-10-01",
     title: "E-GRAVEL REVOLUTION",
     subtitle: "Film produktowy",
     client: "Rondo",
@@ -61,6 +63,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
+    uploadDate: "2025-04-01",
     title: "Przestrzeń biurowa w sercu Warszawy",
     subtitle: "Kampania reklamowa",
     client: "OmniOffice",
@@ -105,6 +108,7 @@ export const projects: Project[] = [
   },
   {
     id: 5,
+    uploadDate: "2024-11-01",
     title: "W RYTMIE SŁÓW",
     subtitle: "Seria teledysków",
     client: "Fundacja FIRE",
@@ -127,6 +131,7 @@ export const projects: Project[] = [
   },
   {
     id: 6,
+    uploadDate: "2024-09-01",
     title: "Robot na targach Warsaw Industry Week",
     subtitle: "Reportaż eventowy",
     client: "ZUT Jerzy Kunzek",
