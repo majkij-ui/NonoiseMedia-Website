@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server"
 import { hasLocale } from "next-intl"
 import { routing } from "@/i18n/routing"
 import { servicePages, getServicePage } from "@/lib/service-pages"
-import { buildAlternates } from "@/lib/seo"
+import { buildAlternates, OG_IMAGE } from "@/lib/seo"
 import { breadcrumbList, faqPage, serviceSchema } from "@/lib/structured-data"
 import { JsonLd } from "@/components/json-ld"
 import { projects } from "@/lib/projects"
@@ -43,6 +43,9 @@ export async function generateMetadata({
       title: meta.title,
       description: meta.description,
       locale: locale === "en" ? "en_US" : "pl_PL",
+      siteName: "Nonoise Media",
+      type: "website",
+      images: [OG_IMAGE],
     },
   }
 }

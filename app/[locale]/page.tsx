@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
-import { buildAlternates } from '@/lib/seo'
+import { buildAlternates, OG_IMAGE } from '@/lib/seo'
 import HomeClient from './HomeClient'
 
 export async function generateMetadata({
@@ -21,6 +21,9 @@ export async function generateMetadata({
         description:
           'Warsaw video production studio. Corporate films, commercials and product videos with cinematic quality for premium brands.',
         locale: 'en_US',
+        siteName: 'Nonoise Media',
+        type: 'website',
+        images: [OG_IMAGE],
       },
     }
   }
@@ -34,6 +37,9 @@ export async function generateMetadata({
       description:
         'Studio produkcji filmowej i wideo w Warszawie. Filmy korporacyjne, reklamowe i produktowe tworzone z kinową jakością dla marek premium.',
       locale: 'pl_PL',
+      siteName: 'Nonoise Media',
+      type: 'website',
+      images: [OG_IMAGE],
     },
   }
 }
