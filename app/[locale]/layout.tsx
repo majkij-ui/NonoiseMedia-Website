@@ -5,6 +5,7 @@ import { getMessages, setRequestLocale } from 'next-intl/server'
 import { hasLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
+import { AttributionCapture } from '@/components/attribution-capture'
 import { DeferredThirdParties } from '@/components/deferred-third-parties'
 import { SAME_AS } from '@/lib/structured-data'
 import { OG_IMAGE } from '@/lib/seo'
@@ -94,6 +95,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <AttributionCapture />
         <DeferredThirdParties gtmId={gtmId} />
         <script
           type="application/ld+json"

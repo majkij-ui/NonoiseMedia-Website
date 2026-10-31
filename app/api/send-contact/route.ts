@@ -1,14 +1,11 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-
-function escapeHtml(input: unknown): string {
-  return String(input ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
+import { escapeHtml } from '@/lib/html';
+import {
+  buildLeadSubject,
+  renderLeadSourceHtml,
+  sanitizeLeadSource,
+} from '@/lib/lead-source';
 
 export async function POST(request: Request) {
   try {
@@ -45,11 +42,15 @@ export async function POST(request: Request) {
       );
     }
 
+    // Ad attribution is optional: an older cached bundle may post without it,
+    // and a lead must never fail to send over a missing marketing field.
+    const leadSource = sanitizeLeadSource(body, { email });
+
     const data = await resend.emails.send({
       from: 'Nonoise Website <hello@nonoise.media>',
       to: 'contact@nonoise.media',
       replyTo: email,
-      subject: `Wiadomość od ${name} — nonoise.media`,
+      subject: buildLeadSubject(`Wiadomość od ${name} — nonoise.media`, leadSource),
       html: `
   <div style="font-family: sans-serif; max-width: 600px;">
     <h1 style="font-size: 24px; text-transform: uppercase; border-bottom: 4px solid #000; padding-bottom: 10px;">
@@ -71,6 +72,7 @@ export async function POST(request: Request) {
         <p style="margin: 5px 0 0 0; font-size: 16px; color: #000; white-space: pre-wrap;">${escapeHtml(message)}</p>
       </div>
     </div>
+    ${renderLeadSourceHtml(leadSource)}
   </div>
       `,
     });

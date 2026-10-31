@@ -3,6 +3,13 @@
 import { useCallback, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { sendGTMEvent } from "@/lib/gtm"
+import {
+  newLeadId,
+  normalizeEmail,
+  normalizePhoneE164,
+  readAttribution,
+} from "@/lib/attribution"
+import { getAdStorageConsent } from "@/lib/consent"
 
 import type {
   QuestionnaireContent,
@@ -236,6 +243,21 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
       answer: clientName.trim() || "Nie podano / Not provided",
     })
 
+    // One id per submission: goes to the email subject, to the dataLayer as
+    // transaction_id, and later to Google as Order ID.
+    const leadId = newLeadId()
+    // Nothing is validated beyond "not empty", so a contact that cannot be
+    // normalized is left out rather than sent to Google as an empty value.
+    const normalizedContact =
+      contactMethod === "email"
+        ? normalizeEmail(contactValue)
+        : normalizePhoneE164(contactValue)
+    const userData = !normalizedContact
+      ? undefined
+      : contactMethod === "email"
+        ? { email: normalizedContact }
+        : { phone_number: normalizedContact }
+
     try {
       const response = await fetch("/api/send-quote", {
         method: "POST",
@@ -245,13 +267,21 @@ export function QuestionnaireForm({ questionnaire }: QuestionnaireFormProps) {
           contactMethod,
           contactValue,
           clientName,
+          leadId,
+          attribution: readAttribution(),
+          consent: getAdStorageConsent(),
         }),
       })
 
       if (response.ok) {
         setSubmitStatus("success")
         // Conversion signal: fires only on confirmed send (API 200).
-        sendGTMEvent("questionnaire_success")
+        // user_data feeds enhanced conversions — GTM hashes it, we only hand
+        // over the plain value.
+        sendGTMEvent("questionnaire_success", {
+          transaction_id: leadId,
+          ...(userData ? { user_data: userData } : {}),
+        })
       } else {
         const rawText = await response.text().catch(() => "")
         let errorPayload: unknown = null

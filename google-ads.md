@@ -9,7 +9,7 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
 ### How it loads
 
 - **Package:** `@next/third-parties` — `GoogleTagManager` from `@next/third-parties/google`.
-- **Root layout:** [`app/layout.tsx`](app/layout.tsx) renders [`components/deferred-third-parties.tsx`](components/deferred-third-parties.tsx), which **lazy-loads** GTM (and Vercel Analytics / Speed Insights) with `next/dynamic` and `ssr: false` so those scripts are **not** on the critical path for first paint.
+- **Root layout:** `app/[locale]/layout.tsx` renders [`components/deferred-third-parties.tsx`](components/deferred-third-parties.tsx), which **lazy-loads** GTM (and Vercel Analytics / Speed Insights) with `next/dynamic` and `ssr: false` so those scripts are **not** on the critical path for first paint.
 - **Container ID:** `NEXT_PUBLIC_GTM_ID` (e.g. `GTM-XXXXXXX`). Set it in Vercel **Environment Variables** for Production (and Preview if you want tags there). If unset, GTM does not render.
 
 ### dataLayer and custom events
@@ -21,6 +21,116 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
 
 - **Vercel Web Analytics** and **Speed Insights** are separate from GA; they load in the same deferred client bundle as GTM.
 - This project does **not** embed the legacy `gtag.js` snippet by hand — **GA4 (and Ads remarketing/conversions)** are normally configured **inside GTM** (tags + triggers), not as a second global script, unless you add them explicitly.
+
+---
+
+## Offline lead attribution (gclid → mail → Google Ads)
+
+Why: Google treats the classic gclid file import as legacy and points to
+**enhanced conversions for leads** with import through **Data Manager**. The
+site's job is therefore to (a) remember which ad click a visitor arrived on,
+and (b) put that, plus a stable lead id and a normalized contact, into the
+lead email — so leads can later be graded by hand and only the real ones sent
+back to Google. Full rollout plan, including the GTM / Google Ads steps:
+[`google-ads-offline-plan.md`](google-ads-offline-plan.md).
+
+### The flow
+
+1. Visitor lands on any route with `gclid` / `gbraid` / `wbraid` / `utm_*`.
+   `AttributionCapture` (mounted in `app/[locale]/layout.tsx`) stores those
+   plus `clickedAt` and the landing path.
+2. Visitor submits the contact form or the questionnaire. The client mints a
+   `leadId` and posts it with the stored attribution and the current consent
+   state.
+3. The API route appends a **„Źródło"** block to the Resend email and prefixes
+   the subject with `[Ads]` when a click id is present.
+4. On HTTP 200 the client pushes the conversion event with `transaction_id`
+   (the same `leadId`) and `user_data` for enhanced conversions.
+5. You grade the lead in the lead app and export the real ones to Google Ads
+   via Data Manager, using `leadId` as Order ID so nothing is counted twice.
+
+### Modules
+
+| File | Role |
+|---|---|
+| `lib/attribution.ts` | Capture / read attribution, `newLeadId()`, `normalizeEmail()`, `normalizePhoneE164()`. |
+| `lib/consent.ts` | `getAdStorageConsent()` → `granted` / `denied` / `unknown`. |
+| `lib/lead-source.ts` | Server-side sanitizer, „Źródło" renderer, subject builder. |
+| `lib/html.ts` | Shared `escapeHtml` for email HTML. |
+| `components/attribution-capture.tsx` | Mounts the capture in the locale layout. |
+
+Two details that are easy to undo by accident:
+
+- Attribution is read from **`window.location.search`**, not
+  `useSearchParams()`. The hook would force a Suspense boundary or dynamic
+  rendering on these prerendered routes — `pnpm build` should keep showing
+  every page as `●` (SSG).
+- Storage is `localStorage` with a **90-day** expiry, unless `ad_storage`
+  is explicitly `denied`, in which case it is `sessionStorage` for the session
+  only. Key: `nnm_attr_v1`. Every read and write is wrapped in `try/catch`
+  (private mode, blocked storage).
+
+### dataLayer contract
+
+```js
+dataLayer.push({
+  event: "contact_form_success",     // or "questionnaire_success"
+  transaction_id: "K7Q2M9XA",        // leadId
+  user_data: { email: "anna@firma.pl" },         // contact form
+  // user_data: { phone_number: "+48600100200" }, // questionnaire, phone
+})
+```
+
+Both events still fire **only after the API confirms the send** (HTTP 200), so
+GTM counts delivered leads, not submit attempts. `phone_click` is unchanged
+and carries no lead id.
+
+**Required GTM configuration** (manual, in the container):
+1. In the questionnaire and contact conversion tags, enable **user-provided
+   data** from the dataLayer variable `user_data`. Google hashes it; the site
+   sends the plain value.
+2. Set **Transaction ID** to the dataLayer variable `transaction_id`.
+3. Publish the container.
+
+### „Źródło" field contract
+
+What the lead app reads out of each email and what each field is for:
+
+| Field | Purpose |
+|---|---|
+| Lead ID | Order ID in the export, duplicate guard |
+| Z reklamy | export filter (`tak` whenever a click id is present) |
+| gclid / gbraid / wbraid | match to the ad click |
+| E-mail / Telefon | normalized (lowercase / E.164 `+48…`) — matching without a click id |
+| Kliknięcie | click time |
+| Wysłano | Conversion Time, `Europe/Warsaw`, with seconds |
+| utm_source / medium / campaign / term | reporting |
+| Strona wejścia | which page pulls ad leads |
+| Zgoda ad_storage | consent columns in the export |
+
+Rows with no value are omitted. Everything is clamped and escaped in
+`lib/lead-source.ts` before it reaches the email — the whole block arrives in
+the request body, so it is untrusted input.
+
+### Consent, before and after the cookie banner
+
+There is no CMP yet, so `getAdStorageConsent()` returns **`unknown`**: tags
+load unblocked and Google receives no consent signals. `unknown` is written to
+the email as-is — it must not be exported as `Granted`, because nobody granted
+anything. Rows carrying a gclid match on the click anyway; the consent columns
+matter for rows matched on a hashed email or phone.
+
+Once a CMP is wired into GTM, the same function starts returning
+`granted` / `denied` with no changes anywhere else — but **its domains have to
+be added to the CSP** in `next.config.mjs` (`script-src`, `connect-src`,
+`frame-src`), or the banner is silently blocked. See the CSP section below.
+
+### Not in this repo
+
+Grading leads, the CSV/Sheets export, SHA-256 hashing of contacts, and the
+upload through Data Manager all live in the separate lead app. Phone calls and
+emails sent straight from the address on the site carry no gclid and no lead
+id — those get marked as ad leads by hand and matched on contact details only.
 
 ---
 
@@ -87,7 +197,7 @@ These reduce main-thread and network contention; they help **Core Web Vitals** a
 | **Homepage** | Footer and “reel playing” UI split into dynamic imports where appropriate ([`HomeClient`](app/[locale]/HomeClient.tsx)). |
 | **Navigation** | Full-screen menu overlay loaded on demand ([`navigation-menu-overlay.tsx`](components/navigation-menu-overlay.tsx)). |
 | **Images** | `next/image` + `images.formats` (AVIF/WebP) in [`next.config.mjs`](next.config.mjs); remote asset host `assets.nonoise.media`. |
-| **Fonts** | `next/font/google` in [`app/layout.tsx`](app/layout.tsx) with `display: 'swap'`, CSS variables, **preload only** on primary Geist sans. |
+| **Fonts** | `next/font/google` in `app/[locale]/layout.tsx` with `display: 'swap'`, CSS variables, **preload only** on primary Geist sans. |
 
 ### CSS bundle slimming (if PageSpeed or UI regress — check this)
 
@@ -119,8 +229,13 @@ A dedicated pass reduced **first-party CSS** weight (fewer render-blocking bytes
 | Topic | File |
 |--------|------|
 | CSP header | [`next.config.mjs`](next.config.mjs) |
-| GTM + deferred analytics | [`components/deferred-third-parties.tsx`](components/deferred-third-parties.tsx), [`app/layout.tsx`](app/layout.tsx) |
+| GTM + deferred analytics | [`components/deferred-third-parties.tsx`](components/deferred-third-parties.tsx), `app/[locale]/layout.tsx` |
 | dataLayer helper | [`lib/gtm.ts`](lib/gtm.ts) |
+| gclid / utm capture | [`lib/attribution.ts`](lib/attribution.ts), [`components/attribution-capture.tsx`](components/attribution-capture.tsx) |
+| Consent signal | [`lib/consent.ts`](lib/consent.ts) |
+| „Źródło" block in lead emails | [`lib/lead-source.ts`](lib/lead-source.ts), [`lib/html.ts`](lib/html.ts) |
+| Lead APIs | [`app/api/send-contact/route.ts`](app/api/send-contact/route.ts), [`app/api/send-quote/route.ts`](app/api/send-quote/route.ts) |
+| Offline lead rollout plan | [`google-ads-offline-plan.md`](google-ads-offline-plan.md) |
 | LP events | [`app/[locale]/lp/kampania/page.tsx`](app/[locale]/lp/kampania/page.tsx), [`components/lp/lp-lead-strip.tsx`](components/lp/lp-lead-strip.tsx) |
 | Kampania SEO / robots | [`app/[locale]/lp/kampania/layout.tsx`](app/[locale]/lp/kampania/layout.tsx) |
 

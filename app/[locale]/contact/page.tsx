@@ -7,6 +7,8 @@ import { Navigation } from "@/components/navigation"
 import { PhoneNumber } from "@/components/phone-number"
 import { Link } from "@/i18n/navigation"
 import { sendGTMEvent } from "@/lib/gtm"
+import { newLeadId, normalizeEmail, readAttribution } from "@/lib/attribution"
+import { getAdStorageConsent } from "@/lib/consent"
 
 type FormStatus = "idle" | "sending" | "sent" | "error"
 
@@ -65,11 +67,21 @@ export default function ContactPage() {
       setStatus("sending")
       setErrorMsg("")
 
+      // One id per submission: goes to the email subject, to the dataLayer as
+      // transaction_id, and later to Google as Order ID.
+      const leadId = newLeadId()
+      const email = normalizeEmail(formData.email)
+
       try {
         const res = await fetch("/api/send-contact", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({
+            ...formData,
+            leadId,
+            attribution: readAttribution(),
+            consent: getAdStorageConsent(),
+          }),
         })
         const data = await res.json()
 
@@ -82,8 +94,12 @@ export default function ContactPage() {
         setStatus("sent")
         setFormData({ name: "", email: "", message: "" })
         // Conversion signal: fires only on confirmed send (API 200), so GTM
-        // counts real leads, not submit attempts.
-        sendGTMEvent("contact_form_success")
+        // counts real leads, not submit attempts. user_data feeds enhanced
+        // conversions — GTM hashes it, we only hand over the plain value.
+        sendGTMEvent("contact_form_success", {
+          transaction_id: leadId,
+          ...(email ? { user_data: { email } } : {}),
+        })
       } catch {
         setErrorMsg("Błąd połączenia. Sprawdź internet i spróbuj ponownie.")
         setStatus("error")
