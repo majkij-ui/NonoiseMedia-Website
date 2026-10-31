@@ -1,14 +1,11 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-
-function escapeHtml(input: unknown): string {
-  return String(input ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
+import { escapeHtml } from '@/lib/html';
+import {
+  buildLeadSubject,
+  renderLeadSourceHtml,
+  sanitizeLeadSource,
+} from '@/lib/lead-source';
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +21,8 @@ export async function POST(request: Request) {
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { formSummary, contactMethod, contactValue, clientName } = await request.json();
+    const body = await request.json();
+    const { formSummary, contactMethod, contactValue, clientName } = body;
 
     if (!Array.isArray(formSummary) || formSummary.length === 0 || formSummary.length > 50) {
       return NextResponse.json(
@@ -47,10 +45,17 @@ export async function POST(request: Request) {
 `;
     }).join('');
 
+    // Ad attribution is optional: an older cached bundle may post without it,
+    // and a lead must never fail to send over a missing marketing field.
+    const leadSource = sanitizeLeadSource(body, {
+      email: contactMethod === 'email' ? contactValue : '',
+      phone: contactMethod === 'phone' ? contactValue : '',
+    });
+
     const data = await resend.emails.send({
       from: 'Nonoise Website <hello@nonoise.media>',
       to: 'contact@nonoise.media',
-      subject: `Projekt: ${subjectClient} - Nonoise Media`,
+      subject: buildLeadSubject(`Projekt: ${subjectClient} - Nonoise Media`, leadSource),
       html: `
   <div style="font-family: sans-serif; max-width: 600px;">
     <h1 style="font-size: 24px; text-transform: uppercase; border-bottom: 4px solid #000; padding-bottom: 10px;">
@@ -61,6 +66,7 @@ export async function POST(request: Request) {
     </div>
     <hr style="border: 1px solid #eee; margin: 40px 0;" />
     <p style="font-size: 16px;"><strong>Contact Detail:</strong> ${escapeHtml(clamp(contactValue, 300))} (${escapeHtml(clamp(contactMethod, 50))})</p>
+    ${renderLeadSourceHtml(leadSource)}
   </div>
       `,
     });
