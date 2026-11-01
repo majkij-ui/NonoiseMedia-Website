@@ -66,7 +66,9 @@
     "closeMenu": "Close menu"
   },
   "footer": {
-    "copyright": "© 2026 NONOISE MEDIA"
+    "copyright": "© 2026 NONOISE MEDIA",
+    "privacy": "Privacy policy",
+    "cookieSettings": "Cookie settings"
   },
   "lp": {
     "kampania": {
@@ -82,5 +84,143 @@
       "leadLabel": "Next step",
       "leadCta": "Let's talk about your project"
     }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Privacy Policy",
+      "description": "How Nonoise Media processes personal data: contact forms, hosting, analytics, Google Ads and cookies."
+    },
+    "label": "Legal",
+    "title": "Privacy Policy",
+    "updated": "Version of 1 November 2026",
+    "intro": "This document explains what personal data we collect when you use nonoise.media, why we collect it, who we share it with and what rights you have.",
+    "cookiePolicy": "A detailed list of cookies, their providers and lifetimes is available in the cookie policy.",
+    "cookiePolicyLink": "Cookie policy",
+    "sections": [
+      {
+        "id": "administrator",
+        "title": "Data controller",
+        "paragraphs": [
+          "The controller of your personal data is Nonoise Media, Za olszyną 13B/2, 05-090 Warszawa, Poland.",
+          "For anything related to your personal data, write to contact@nonoise.media."
+        ]
+      },
+      {
+        "id": "data",
+        "title": "What data we collect",
+        "paragraphs": [
+          "We process the data you give us and the technical data needed to run the site and measure how our ads perform."
+        ],
+        "items": [
+          "Contact form: your name, email address and message.",
+          "Questionnaire: your answers about the project, your name or company name and the contact method you choose, either an email address or a phone number.",
+          "Direct contact: whatever you share when you email or call us.",
+          "Technical data: IP address, browser and device type, pages visited, referring page and time of visit.",
+          "Visit source: Google ad click identifiers and campaign parameters, described in the next section."
+        ]
+      },
+      {
+        "id": "ads",
+        "title": "Google Ads and conversion measurement",
+        "paragraphs": [
+          "We run Google Ads campaigns. When you arrive from an ad, the page address carries a click identifier (gclid, gbraid or wbraid) and campaign parameters (utm_source, utm_medium, utm_campaign, utm_term).",
+          "The site stores these values, together with the click time and landing page, in your browser's storage (localStorage) for 90 days. If you decline advertising cookies, they go to session storage (sessionStorage) only and are cleared when you close the browser tab.",
+          "When you send the contact form or the questionnaire, this information reaches our inbox together with your enquiry. It tells us which ad brought the enquiry and lets us later report to Google Ads which enquiries turned into work. We then send the click identifier or, when there is none, a hashed email address or phone number.",
+          "When you send a form, we also pass your email address or phone number to Google Ads for enhanced conversions. The Google tag hashes this data with SHA-256 in your browser before it is sent, so Google receives a hash, not the plain value. Google uses it to match the enquiry to the ad click.",
+          "Google tags run through Google Tag Manager, within the limits set by your cookie settings."
+        ]
+      },
+      {
+        "id": "analytics",
+        "title": "Analytics and performance",
+        "items": [
+          "Vercel Web Analytics measures traffic without cookies. A visitor is recognised by a hash derived from the request, valid for one day.",
+          "Vercel Speed Insights collects page load measurements (Core Web Vitals), without cookies.",
+          "If you accept analytics cookies, we also use Google Analytics to understand how visitors use the site."
+        ]
+      },
+      {
+        "id": "legal-basis",
+        "title": "Legal bases",
+        "items": [
+          "Answering your enquiry and preparing a quote: Art. 6(1)(b) GDPR (steps taken at your request before entering into a contract) and Art. 6(1)(f) GDPR (our legitimate interest in handling correspondence).",
+          "Running and securing the site, and cookieless analytics: Art. 6(1)(f) GDPR.",
+          "Non-essential cookies and similar technologies, including Google Analytics, Google Ads and enhanced conversions: your consent, Art. 6(1)(a) GDPR in connection with Art. 399 of the Polish Electronic Communications Law.",
+          "Assessing which enquiries came from ads and turned into work, and reporting this to Google Ads: Art. 6(1)(f) GDPR (our legitimate interest in measuring advertising performance).",
+          "Establishing, pursuing or defending legal claims: Art. 6(1)(f) GDPR."
+        ],
+        "after": [
+          "Providing data is voluntary, but without it we cannot answer your enquiry."
+        ]
+      },
+      {
+        "id": "processors",
+        "title": "Who processes data for us",
+        "paragraphs": [
+          "We use external providers who process data on our behalf:"
+        ],
+        "items": [
+          "Resend (Resend, Inc., USA): delivering contact form and questionnaire messages to our inbox.",
+          "Vercel (Vercel Inc., USA): hosting, server logs, Vercel Web Analytics and Speed Insights.",
+          "Google (Google Ireland Limited, Google LLC): Google Tag Manager, Google Ads and Google Analytics. For advertising, Google may act as an independent controller."
+        ],
+        "after": [
+          "Data may also be disclosed to authorities entitled to it by law."
+        ]
+      },
+      {
+        "id": "transfers",
+        "title": "Transfers outside the EEA",
+        "paragraphs": [
+          "Resend, Vercel and Google also process data in the United States. Transfers rely on the European Commission's adequacy decision for the EU-US Data Privacy Framework or on standard contractual clauses approved by the Commission."
+        ]
+      },
+      {
+        "id": "retention",
+        "title": "How long we keep data",
+        "items": [
+          "Correspondence and form submissions: for as long as needed to handle the enquiry and any resulting work, then until the limitation period for claims expires.",
+          "Click identifiers and campaign parameters in your browser: 90 days from the ad visit, or until the tab is closed if you decline advertising cookies. You can remove them sooner by clearing site data in your browser.",
+          "Data processed on the basis of consent: until you withdraw it.",
+          "Server logs and analytics data: according to the retention periods used by Vercel and Google."
+        ]
+      },
+      {
+        "id": "rights",
+        "title": "Your rights",
+        "paragraphs": [
+          "You have the right to:"
+        ],
+        "items": [
+          "access your data and receive a copy,",
+          "have it corrected,",
+          "have it erased,",
+          "restrict its processing,",
+          "data portability,",
+          "object to processing based on our legitimate interest,",
+          "withdraw consent at any time, without affecting the lawfulness of processing before withdrawal."
+        ],
+        "after": [
+          "To exercise these rights, write to contact@nonoise.media.",
+          "You also have the right to lodge a complaint with the Polish supervisory authority, the President of the Personal Data Protection Office (PUODO, ul. Stawki 2, 00-193 Warszawa, uodo.gov.pl).",
+          "We do not make decisions about you based solely on automated processing that produce legal effects."
+        ]
+      },
+      {
+        "id": "cookies",
+        "title": "Cookies",
+        "paragraphs": [
+          "The site uses cookies and similar technologies (localStorage, sessionStorage). Those needed for the site to work are always on; analytics and advertising ones only after you consent in the cookie banner.",
+          "You can change or withdraw consent at any time through the “Cookie settings” link in the site footer."
+        ]
+      },
+      {
+        "id": "changes",
+        "title": "Changes to this policy",
+        "paragraphs": [
+          "We may update this policy when the tools we use or the law change. The current version is always on this page, and the date at the top shows the latest change."
+        ]
+      }
+    ]
   }
 }

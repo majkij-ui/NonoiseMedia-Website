@@ -66,7 +66,9 @@
     "closeMenu": "Zamknij menu"
   },
   "footer": {
-    "copyright": "© 2026 NONOISE MEDIA"
+    "copyright": "© 2026 NONOISE MEDIA",
+    "privacy": "Polityka prywatności",
+    "cookieSettings": "Ustawienia cookies"
   },
   "lp": {
     "kampania": {
@@ -82,5 +84,143 @@
       "leadLabel": "Następny krok",
       "leadCta": "Porozmawiajmy o Twoim Projekcie"
     }
+  },
+  "privacy": {
+    "meta": {
+      "title": "Polityka prywatności",
+      "description": "Jak Nonoise Media przetwarza dane osobowe: formularze kontaktowe, hosting, analityka, reklamy Google i pliki cookies."
+    },
+    "label": "Informacje prawne",
+    "title": "Polityka prywatności",
+    "updated": "Wersja z 1 listopada 2026",
+    "intro": "Ten dokument wyjaśnia, jakie dane osobowe zbieramy, gdy korzystasz ze strony nonoise.media, w jakim celu to robimy, komu je powierzamy i jakie przysługują Ci prawa.",
+    "cookiePolicy": "Szczegółowy wykaz plików cookies, ich dostawców i okresów ważności znajdziesz w polityce cookies.",
+    "cookiePolicyLink": "Polityka cookies",
+    "sections": [
+      {
+        "id": "administrator",
+        "title": "Administrator danych",
+        "paragraphs": [
+          "Administratorem Twoich danych osobowych jest Nonoise Media, Za olszyną 13B/2, 05-090 Warszawa.",
+          "We wszystkich sprawach dotyczących danych osobowych możesz pisać na adres contact@nonoise.media."
+        ]
+      },
+      {
+        "id": "data",
+        "title": "Jakie dane zbieramy",
+        "paragraphs": [
+          "Przetwarzamy dane, które sam nam przekazujesz, oraz dane techniczne potrzebne do działania strony i pomiaru skuteczności reklam."
+        ],
+        "items": [
+          "Formularz kontaktowy: imię i nazwisko, adres e-mail i treść wiadomości.",
+          "Kwestionariusz: odpowiedzi dotyczące projektu, imię lub nazwa firmy oraz wybrany sposób kontaktu, czyli adres e-mail albo numer telefonu.",
+          "Kontakt bezpośredni: dane, które podajesz, pisząc do nas lub dzwoniąc.",
+          "Dane techniczne: adres IP, typ przeglądarki i urządzenia, odwiedzane podstrony, strona odsyłająca i czas wizyty.",
+          "Źródło wizyty: identyfikatory kliknięcia reklamy Google i parametry kampanii, opisane w następnej sekcji."
+        ]
+      },
+      {
+        "id": "ads",
+        "title": "Reklamy Google i pomiar konwersji",
+        "paragraphs": [
+          "Prowadzimy kampanie w Google Ads. Jeśli trafiasz na stronę z reklamy, jej adres zawiera identyfikator kliknięcia (gclid, gbraid lub wbraid) i parametry kampanii (utm_source, utm_medium, utm_campaign, utm_term).",
+          "Strona zapisuje te wartości, razem z czasem kliknięcia i adresem strony wejścia, w pamięci Twojej przeglądarki (localStorage) na 90 dni. Jeśli nie zgodzisz się na pliki cookies reklamowe, zapis trafia tylko do pamięci sesji (sessionStorage) i znika po zamknięciu karty przeglądarki.",
+          "Gdy wysyłasz formularz kontaktowy lub kwestionariusz, te informacje trafiają razem ze zgłoszeniem do naszej skrzynki e-mail. Dzięki temu wiemy, która reklama przyniosła zapytanie, i możemy później przekazać do Google Ads informację o zapytaniach, które zakończyły się współpracą. Przekazujemy wtedy identyfikator kliknięcia, a gdy go brak, zahaszowany adres e-mail lub numer telefonu.",
+          "Przy wysłaniu formularza przekazujemy też do Google Ads Twój adres e-mail albo numer telefonu w ramach konwersji rozszerzonych (enhanced conversions). Tag Google haszuje te dane algorytmem SHA-256 w Twojej przeglądarce, zanim zostaną wysłane, więc Google otrzymuje skrót, a nie dane w postaci jawnej. Google używa go do powiązania zgłoszenia z kliknięciem reklamy.",
+          "Tagi Google uruchamiamy przez Google Tag Manager, w zakresie, na który pozwalają Twoje ustawienia cookies."
+        ]
+      },
+      {
+        "id": "analytics",
+        "title": "Analityka i wydajność",
+        "items": [
+          "Vercel Web Analytics mierzy ruch na stronie bez plików cookies. Odwiedzający jest rozpoznawany przez skrót tworzony z danych żądania, ważny przez jeden dzień.",
+          "Vercel Speed Insights zbiera pomiary szybkości ładowania strony (Core Web Vitals), bez plików cookies.",
+          "Jeśli zgodzisz się na pliki cookies analityczne, korzystamy także z Google Analytics, aby zrozumieć, jak odwiedzający korzystają ze strony."
+        ]
+      },
+      {
+        "id": "legal-basis",
+        "title": "Podstawy prawne",
+        "items": [
+          "Odpowiedź na zapytanie i przygotowanie oferty: art. 6 ust. 1 lit. b RODO (działania przed zawarciem umowy, podjęte na Twoje żądanie) oraz art. 6 ust. 1 lit. f RODO (nasz prawnie uzasadniony interes w prowadzeniu korespondencji).",
+          "Działanie i bezpieczeństwo strony oraz analityka bez plików cookies: art. 6 ust. 1 lit. f RODO.",
+          "Pliki cookies i podobne technologie, które nie są niezbędne, w tym Google Analytics, Google Ads i konwersje rozszerzone: Twoja zgoda, art. 6 ust. 1 lit. a RODO w związku z art. 399 ustawy Prawo komunikacji elektronicznej.",
+          "Ocena, które zgłoszenia pochodzą z reklam i zakończyły się współpracą, oraz przekazanie tej informacji do Google Ads: art. 6 ust. 1 lit. f RODO (nasz prawnie uzasadniony interes w mierzeniu skuteczności reklam).",
+          "Ustalenie, dochodzenie lub obrona roszczeń: art. 6 ust. 1 lit. f RODO."
+        ],
+        "after": [
+          "Podanie danych jest dobrowolne, ale bez nich nie możemy odpowiedzieć na zapytanie."
+        ]
+      },
+      {
+        "id": "processors",
+        "title": "Komu powierzamy dane",
+        "paragraphs": [
+          "Korzystamy z usług zewnętrznych dostawców, którzy przetwarzają dane w naszym imieniu:"
+        ],
+        "items": [
+          "Resend (Resend, Inc., USA): wysyłka wiadomości z formularza kontaktowego i kwestionariusza do naszej skrzynki.",
+          "Vercel (Vercel Inc., USA): hosting strony, logi serwera, Vercel Web Analytics i Speed Insights.",
+          "Google (Google Ireland Limited, Google LLC): Google Tag Manager, Google Ads i Google Analytics. W zakresie reklam Google może działać jako odrębny administrator danych."
+        ],
+        "after": [
+          "Dane mogą otrzymać także organy uprawnione na podstawie przepisów prawa."
+        ]
+      },
+      {
+        "id": "transfers",
+        "title": "Przekazywanie danych poza EOG",
+        "paragraphs": [
+          "Resend, Vercel i Google przetwarzają dane również w Stanach Zjednoczonych. Przekazanie odbywa się na podstawie decyzji Komisji Europejskiej w sprawie EU-US Data Privacy Framework albo standardowych klauzul umownych zatwierdzonych przez Komisję."
+        ]
+      },
+      {
+        "id": "retention",
+        "title": "Jak długo przechowujemy dane",
+        "items": [
+          "Korespondencja i zgłoszenia z formularzy: przez czas potrzebny do obsługi zapytania i ewentualnej współpracy, a następnie do upływu okresu przedawnienia roszczeń.",
+          "Identyfikatory kliknięcia i parametry kampanii w Twojej przeglądarce: 90 dni od wejścia z reklamy, a bez zgody na cookies reklamowe do zamknięcia karty. Możesz je usunąć wcześniej, czyszcząc dane strony w przeglądarce.",
+          "Dane przetwarzane na podstawie zgody: do czasu jej wycofania.",
+          "Logi serwera i dane analityczne: zgodnie z okresami przechowywania stosowanymi przez Vercel i Google."
+        ]
+      },
+      {
+        "id": "rights",
+        "title": "Twoje prawa",
+        "paragraphs": [
+          "Masz prawo do:"
+        ],
+        "items": [
+          "dostępu do swoich danych i otrzymania ich kopii,",
+          "sprostowania danych,",
+          "usunięcia danych,",
+          "ograniczenia przetwarzania,",
+          "przenoszenia danych,",
+          "sprzeciwu wobec przetwarzania opartego na naszym prawnie uzasadnionym interesie,",
+          "wycofania zgody w dowolnym momencie, bez wpływu na zgodność z prawem przetwarzania przed jej wycofaniem."
+        ],
+        "after": [
+          "Aby skorzystać z tych praw, napisz na contact@nonoise.media.",
+          "Masz też prawo wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych (ul. Stawki 2, 00-193 Warszawa, uodo.gov.pl).",
+          "Nie podejmujemy wobec Ciebie decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu, które wywoływałyby skutki prawne."
+        ]
+      },
+      {
+        "id": "cookies",
+        "title": "Pliki cookies",
+        "paragraphs": [
+          "Strona korzysta z plików cookies i podobnych technologii (localStorage, sessionStorage). Te niezbędne do działania strony są używane zawsze, a analityczne i reklamowe dopiero po wyrażeniu zgody w banerze cookies.",
+          "Zgodę możesz w każdej chwili zmienić lub wycofać, korzystając z odnośnika „Ustawienia cookies” w stopce strony."
+        ]
+      },
+      {
+        "id": "changes",
+        "title": "Zmiany polityki",
+        "paragraphs": [
+          "Możemy aktualizować tę politykę, gdy zmienią się używane przez nas narzędzia lub przepisy. Aktualna wersja jest zawsze dostępna na tej stronie, a data na górze wskazuje ostatnią zmianę."
+        ]
+      }
+    ]
   }
 }
