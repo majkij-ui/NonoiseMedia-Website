@@ -201,7 +201,7 @@ export default function HomeClient() {
             </div>
 
             <HomePageFooter
-              className={`flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12 ${LANDSCAPE_MOBILE_HERO}:!py-4`}
+              className={`flex flex-wrap items-center justify-end gap-x-6 gap-y-2 px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12 ${LANDSCAPE_MOBILE_HERO}:!py-4`}
             />
           </motion.div>
         )}

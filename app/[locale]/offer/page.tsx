@@ -17,6 +17,7 @@ import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { Navigation } from "@/components/navigation"
 import { OfferPricingTiers } from "@/components/offer/pricing-tiers"
+import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 const cinematicEase = [0.25, 0.1, 0.25, 1] as const
 
@@ -182,7 +183,8 @@ export default function OfferPage() {
       <ServicesGrid />
       <OfferPricingTiers />
 
-      <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+      <footer className="flex flex-wrap items-center justify-end gap-x-6 gap-y-2 px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+        <FooterLegalLinks />
         <span>&copy; 2026 NONOISE MEDIA</span>
       </footer>
     </main>
