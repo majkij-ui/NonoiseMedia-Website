@@ -1,4 +1,4 @@
-import { getAdStorageConsent } from "@/lib/consent"
+import { getAdStorageConsent, type ConsentValue } from "@/lib/consent"
 
 /** Ad-click attribution captured on the landing hit, carried to form submit. */
 export type Attribution = {
@@ -131,12 +131,37 @@ export function captureAttribution(): Attribution | null {
     // Path is a nice-to-have.
   }
 
-  // Without consent for ad_storage the record may not outlive the session.
-  // "unknown" means no CMP is installed yet, which is how tags behave today.
-  const persist = getAdStorageConsent() !== "denied"
+  // Only granted ad_storage may keep the record past the session. On a first
+  // visit CookieYes loads after this runs (GTM is deferred), so "unknown" means
+  // the visitor has not decided yet; applyAdStorageConsent() persists the
+  // record once they accept.
+  const persist = getAdStorageConsent() === "granted"
   write({ data: next, expiresAt: persist ? Date.now() + TTL_MS : undefined }, persist)
 
   return next
+}
+
+/**
+ * Moves the stored record to match a consent decision made after landing:
+ * granted → localStorage until 90 days after the click, denied → this
+ * session only. This is what the privacy policy promises.
+ */
+export function applyAdStorageConsent(consent: ConsentValue): void {
+  if (typeof window === "undefined" || consent === "unknown") return
+
+  const data = readAttribution()
+  if (!data) return
+
+  if (consent === "denied") {
+    write({ data }, false)
+    return
+  }
+
+  const clickedAt = Date.parse(data.clickedAt)
+  const expiresAt = (Number.isNaN(clickedAt) ? Date.now() : clickedAt) + TTL_MS
+  if (expiresAt <= Date.now()) return
+
+  write({ data, expiresAt }, true)
 }
 
 const LEAD_ID_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
