@@ -34,13 +34,18 @@ const VERCEL_SCRIPTS = "https://va.vercel-scripts.com https://vercel.live"
  * CookieYes consent banner, installed through the GTM gallery template (not in app code).
  * Source: CookieYes CSP guide, https://www.cookieyes.com/documentation/content-security-policy/
  * - script-src: banner script and config are served from cdn-cookieyes.com
- * - connect-src: cdn-cookieyes.com plus *.cookieyes.com (consent logging); the guide
- *   lists the wildcard, scoped to CookieYes's own domain. Narrow it to the exact host
- *   once the live banner's network requests have been checked.
+ * - connect-src: the hosts the live banner actually contacted on www.nonoise.media
+ *   (checked 2026-11-02): cdn-cookieyes.com (config), log.cookieyes.com (consent log),
+ *   directory.cookieyes.com (after a consent choice). The guide allows *.cookieyes.com;
+ *   if a "Refused to connect" to another cookieyes.com host appears, add it here.
  * The guide lists no frame-src. img-src is already covered by `https:`.
  */
 const COOKIEYES_SCRIPTS = "https://cdn-cookieyes.com"
-const COOKIEYES_CONNECT = "https://cdn-cookieyes.com https://*.cookieyes.com"
+const COOKIEYES_CONNECT = [
+  "https://cdn-cookieyes.com",
+  "https://log.cookieyes.com",
+  "https://directory.cookieyes.com",
+].join(" ")
 
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",

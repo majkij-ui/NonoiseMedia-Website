@@ -94,8 +94,6 @@
     "title": "Polityka prywatności",
     "updated": "Wersja z 1 listopada 2026",
     "intro": "Ten dokument wyjaśnia, jakie dane osobowe zbieramy, gdy korzystasz ze strony nonoise.media, w jakim celu to robimy, komu je powierzamy i jakie przysługują Ci prawa.",
-    "cookiePolicy": "Szczegółowy wykaz plików cookies, ich dostawców i okresów ważności znajdziesz w polityce cookies.",
-    "cookiePolicyLink": "Polityka cookies",
     "sections": [
       {
         "id": "administrator",
@@ -211,7 +209,7 @@
         "title": "Pliki cookies",
         "paragraphs": [
           "Strona korzysta z plików cookies i podobnych technologii (localStorage, sessionStorage). Te niezbędne do działania strony są używane zawsze, a analityczne i reklamowe dopiero po wyrażeniu zgody w banerze cookies.",
-          "Zgodę możesz w każdej chwili zmienić lub wycofać, korzystając z odnośnika „Ustawienia cookies” w stopce strony."
+          "Szczegółowy wykaz plików cookies, ich dostawców i okresów przechowywania znajdziesz po kliknięciu „Ustawienia cookies” w stopce strony. Tam też możesz w każdej chwili zmienić lub wycofać zgodę."
         ]
       },
       {
