@@ -94,8 +94,6 @@
     "title": "Privacy Policy",
     "updated": "Version of 1 November 2026",
     "intro": "This document explains what personal data we collect when you use nonoise.media, why we collect it, who we share it with and what rights you have.",
-    "cookiePolicy": "A detailed list of cookies, their providers and lifetimes is available in the cookie policy.",
-    "cookiePolicyLink": "Cookie policy",
     "sections": [
       {
         "id": "administrator",
@@ -211,7 +209,7 @@
         "title": "Cookies",
         "paragraphs": [
           "The site uses cookies and similar technologies (localStorage, sessionStorage). Those needed for the site to work are always on; analytics and advertising ones only after you consent in the cookie banner.",
-          "You can change or withdraw consent at any time through the “Cookie settings” link in the site footer."
+          "A detailed list of cookies, their providers and retention periods is available under “Cookie settings” in the site footer. There you can also change or withdraw consent at any time."
         ]
       },
       {
