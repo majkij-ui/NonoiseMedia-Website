@@ -8,8 +8,7 @@ import { FooterLegalLinks } from "@/components/footer-legal-links"
  * DRAFT FOR LEGAL REVIEW. The copy in messages/{pl,en}.json under `privacy`
  * is an honest description of what the code does today (lib/attribution.ts,
  * lib/consent.ts, lib/lead-source.ts, google-ads.md), not an approved legal
- * document. A lawyer must review it before it is treated as final, including
- * the controller's full legal name and tax ID, which are not on the site yet.
+ * document. A lawyer must review it before it is treated as final.
  *
  * The copy lives only in server-rendered output: app/[locale]/layout.tsx keeps
  * the `privacy` namespace out of the client message bundle.
