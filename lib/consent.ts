@@ -28,12 +28,11 @@ function readCookie(name: string): string {
 /**
  * Current `ad_storage` consent signal.
  *
- * The site has no cookie banner yet, so "unknown" is the expected answer
- * today: tags load unblocked and Google receives no consent signals. Callers
- * must treat "unknown" as its own case — reporting it as "granted" would put
- * a consent claim in the Google Ads export that nobody ever gave. Once a CMP
- * is wired into GTM (Etap 1) this resolves to granted/denied with no changes
- * anywhere else.
+ * CookieYes runs through GTM, which loads after hydration, so "unknown" means
+ * the visitor has not decided yet (or the banner is blocked). Callers must
+ * treat "unknown" as its own case: reporting it as "granted" would put a
+ * consent claim in the Google Ads export that nobody ever gave, and storage
+ * must treat it like "denied".
  */
 export function getAdStorageConsent(): ConsentValue {
   if (typeof window === "undefined") return "unknown"

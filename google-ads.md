@@ -65,10 +65,13 @@ Two details that are easy to undo by accident:
   `useSearchParams()`. The hook would force a Suspense boundary or dynamic
   rendering on these prerendered routes — `pnpm build` should keep showing
   every page as `●` (SSG).
-- Storage is `localStorage` with a **90-day** expiry, unless `ad_storage`
-  is explicitly `denied`, in which case it is `sessionStorage` for the session
-  only. Key: `nnm_attr_v1`. Every read and write is wrapped in `try/catch`
-  (private mode, blocked storage).
+- Storage is `sessionStorage` until the visitor accepts advertising cookies.
+  `localStorage` with a **90-day** expiry (counted from the click) is used
+  only when `ad_storage` is `granted`: either already at landing (returning
+  visitor) or after a `cookieyes_consent_update` event, which
+  `applyAdStorageConsent()` handles in both directions. This matches the
+  privacy policy. Key: `nnm_attr_v1`. Every read and write is wrapped in
+  `try/catch` (private mode, blocked storage).
 
 ### dataLayer contract
 
@@ -114,16 +117,17 @@ the request body, so it is untrusted input.
 
 ### Consent, before and after the cookie banner
 
-There is no CMP yet, so `getAdStorageConsent()` returns **`unknown`**: tags
-load unblocked and Google receives no consent signals. `unknown` is written to
-the email as-is — it must not be exported as `Granted`, because nobody granted
-anything. Rows carrying a gclid match on the click anyway; the consent columns
-matter for rows matched on a hashed email or phone.
+CookieYes is installed through GTM (Consent Initialization trigger, basic
+consent mode: Google tags fire only after consent). `getAdStorageConsent()`
+returns `granted` / `denied` once the visitor decides, and **`unknown`**
+before that, which is always the case at the very first landing because GTM
+loads after hydration. `unknown` is written to the email as-is and must not be
+exported as `Granted`, because nobody granted anything. Rows carrying a gclid
+match on the click anyway; the consent columns matter for rows matched on a
+hashed email or phone.
 
-Once a CMP is wired into GTM, the same function starts returning
-`granted` / `denied` with no changes anywhere else — but **its domains have to
-be added to the CSP** in `next.config.mjs` (`script-src`, `connect-src`,
-`frame-src`), or the banner is silently blocked. See the CSP section below.
+CookieYes's domains are in the CSP in `next.config.mjs`; any other CMP would
+need its own, or the banner is silently blocked. See the CSP section below.
 
 ### Not in this repo
 
