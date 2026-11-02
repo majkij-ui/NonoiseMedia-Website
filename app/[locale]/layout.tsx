@@ -85,6 +85,11 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale)
   const messages = await getMessages()
+  // The privacy policy renders on the server only; keep its long copy out of
+  // the message bundle every page ships to the client.
+  const clientMessages = Object.fromEntries(
+    Object.entries(messages).filter(([namespace]) => namespace !== 'privacy'),
+  )
 
   return (
     <html
@@ -92,7 +97,7 @@ export default async function LocaleLayout({
       className={cn(geistSans.variable, geistMono.variable, bebasNeue.variable)}
     >
       <body className="font-sans antialiased">
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={clientMessages}>
           {children}
         </NextIntlClientProvider>
         <AttributionCapture />

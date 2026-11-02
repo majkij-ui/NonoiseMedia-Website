@@ -1,6 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
+import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 /** Homepage footer strip — split for lazy hydration separate from hero. */
 export function HomePageFooter({ className }: { className?: string }) {
@@ -9,9 +10,10 @@ export function HomePageFooter({ className }: { className?: string }) {
     <footer
       className={
         className ??
-        "flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12"
+        "flex flex-wrap items-center justify-end gap-x-6 gap-y-2 px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12"
       }
     >
+      <FooterLegalLinks />
       <span>{tFooter("copyright")}</span>
     </footer>
   )

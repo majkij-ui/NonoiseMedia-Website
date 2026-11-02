@@ -9,6 +9,7 @@ import { Link } from "@/i18n/navigation"
 import { sendGTMEvent } from "@/lib/gtm"
 import { newLeadId, normalizeEmail, readAttribution } from "@/lib/attribution"
 import { getAdStorageConsent } from "@/lib/consent"
+import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 type FormStatus = "idle" | "sending" | "sent" | "error"
 
@@ -346,7 +347,8 @@ export default function ContactPage() {
 
       {/* Footer */}
       <footer className="flex-shrink-0 border-t border-white/10 px-6 py-2.5 text-xs tracking-widest text-muted-foreground md:px-12">
-        <div className="flex items-center justify-end">
+        <div className="flex flex-wrap items-center justify-end gap-x-6 gap-y-1">
+          <FooterLegalLinks />
           <span>© 2026 NONOISE MEDIA</span>
         </div>
       </footer>

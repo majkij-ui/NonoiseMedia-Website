@@ -9,6 +9,7 @@ import { BtsFilmStripe } from "@/components/bts-film-stripe"
 import { ProjectVideoModal } from "@/components/project-video-modal"
 import { TrustedByLogos } from "@/components/trusted-by-logos"
 import { projects } from "@/lib/projects"
+import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 export default function WorkPage() {
   const [activeProjectId, setActiveProjectId] = useState<number | null>(null)
@@ -243,7 +244,8 @@ export default function WorkPage() {
             })}
           </section>
 
-          <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+          <footer className="flex flex-wrap items-center justify-end gap-x-6 gap-y-2 px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+            <FooterLegalLinks />
             <span>© 2026 NONOISE MEDIA</span>
           </footer>
         </div>

@@ -9,6 +9,7 @@ import { ProjectThumbnailGrid } from "@/components/lp/project-thumbnail-grid"
 import { LpLeadStrip } from "@/components/lp/lp-lead-strip"
 import { LpHero } from "@/components/lp/lp-hero"
 import { LpServicesGrid } from "@/components/lp/lp-services-grid"
+import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 export default function KampaniaLpPage() {
   return (
@@ -25,7 +26,8 @@ export default function KampaniaLpPage() {
       <OfferPricingTiers showCta={false} tightFooter />
       <LpLeadStrip />
 
-      <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+      <footer className="flex flex-wrap items-center justify-end gap-x-6 gap-y-2 px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+        <FooterLegalLinks />
         <span>&copy; 2026 NONOISE MEDIA</span>
       </footer>
     </main>
