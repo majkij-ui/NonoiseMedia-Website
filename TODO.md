@@ -37,7 +37,7 @@ Co jeszcze jest pewne:
 
 **Zastrzeżenie.** Susza zaczęła się 21.10, dwanaście dni przed banerem. Te 72 kliknięcia bez zapytania mieszczą się jeszcze w zwykłym rozrzucie (szansa ok. 15–20%). Baner jest najmocniejszym podejrzanym, ale nie jest udowodnione, że jedynym. Rozstrzygnie to tydzień ruchu po wdrożeniu nowego banera (punkt 1.4).
 
-### 1.2 Zrobione 2026-11-20 w kodzie (jeszcze nie wdrożone)
+### 1.2 Zrobione 2026-11-20 w kodzie (wdrożone tego samego dnia, PR #12)
 
 - [x] Własny baner cookies zamiast CookieYes: `components/cookie-consent.tsx`, `lib/consent.ts`, `app/api/consent/route.ts`.
   - Wąski pasek na dole, w stylu strony. Zmierzone: 78 px na ekranie 390×664 (12%), 73 px na desktopie. CookieYes: 460 px.
@@ -60,8 +60,8 @@ Znane ograniczenia:
 
 ### 1.3 Wdrożenie — w tej kolejności
 
-- [ ] **[C]** Commit, PR, wdrożenie na produkcję (po zgodzie Michała).
-- [ ] **[M]** Zaraz po wdrożeniu, w GTM (kontener `GTM-PQ7D5LSC`). Nie wcześniej: stara wersja strony nie ustawia sama domyślnej zgody.
+- [x] **[C]** Commit, PR #12, wdrożenie na produkcję: 2026-11-20 ok. 18:25. Sprawdzone na żywej stronie: pasek 78 px w szerokości telefonu, przycisk „Wyślij wiadomość" wolny, baner CookieYes się nie pojawia, `/api/consent` ustawia cookie na 180 dni.
+- [ ] **[M]** Teraz, w GTM (kontener `GTM-PQ7D5LSC`). Do czasu tych zmian pomiar w Ads i GA4 pozostaje ślepy, tak jak przed wdrożeniem; formularz i maile działają niezależnie od tego.
   1. Usuń albo wstrzymaj tag „CookieYes CMP". Jego kod w GTM nadal resetuje ustawienia zgody przy każdym załadowaniu strony, mimo że sam skrypt banera jest już zablokowany.
   2. W tagach „Google Tag", GA4, „Conversion Linker" i czterech tagach konwersji: Ustawienia zaawansowane → Ustawienia zgody → „Nie jest wymagana dodatkowa zgoda". To tryb zaawansowany: tagi ładują się zawsze, bez zgody nie zapisują cookies, a po „Akceptuj" od razu mierzą normalnie. Alternatywa (tryb podstawowy): zostaw wymóg zgody i dodaj tym tagom wyzwalacz na zdarzenie niestandardowe `nnm_consent_update`.
   3. Opublikuj kontener.
