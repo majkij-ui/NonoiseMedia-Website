@@ -9,13 +9,13 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
 ### How it loads
 
 - **Package:** `@next/third-parties` — `GoogleTagManager` from `@next/third-parties/google`.
-- **Root layout:** `app/[locale]/layout.tsx` renders [`components/deferred-third-parties.tsx`](components/deferred-third-parties.tsx), which **lazy-loads** GTM (and Vercel Analytics / Speed Insights) with `next/dynamic` and `ssr: false` so those scripts are **not** on the critical path for first paint.
+- **Root layout:** `app/[locale]/layout.tsx` renders [`components/deferred-third-parties.tsx`](../components/deferred-third-parties.tsx), which **lazy-loads** GTM (and Vercel Analytics / Speed Insights) with `next/dynamic` and `ssr: false` so those scripts are **not** on the critical path for first paint.
 - **Container ID:** `NEXT_PUBLIC_GTM_ID` (e.g. `GTM-XXXXXXX`). Set it in Vercel **Environment Variables** for Production (and Preview if you want tags there). If unset, GTM does not render.
 
 ### dataLayer and custom events
 
-- Helper: [`lib/gtm.ts`](lib/gtm.ts) — `sendGTMEvent(eventName, params?)` pushes `{ event, ...params }` to `window.dataLayer` and initializes `dataLayer` if needed (safe before GTM finishes loading).
-- **Kampania landing page** [`app/[locale]/lp/kampania/page.tsx`](app/[locale]/lp/kampania/page.tsx) and [`components/lp/lp-lead-strip.tsx`](components/lp/lp-lead-strip.tsx) fire events such as `lp_portfolio_click`, `lp_quote_click`, `lp_contact_click`. Configure **triggers and tags** for these event names inside the GTM UI (and map them to Google Ads conversion actions as needed).
+- Helper: [`lib/gtm.ts`](../lib/gtm.ts) — `sendGTMEvent(eventName, params?)` pushes `{ event, ...params }` to `window.dataLayer` and initializes `dataLayer` if needed (safe before GTM finishes loading).
+- **Kampania landing page** [`app/[locale]/lp/kampania/page.tsx`](../app/[locale]/lp/kampania/page.tsx) and [`components/lp/lp-lead-strip.tsx`](../components/lp/lp-lead-strip.tsx) fire events such as `lp_portfolio_click`, `lp_quote_click`, `lp_contact_click`. Configure **triggers and tags** for these event names inside the GTM UI (and map them to Google Ads conversion actions as needed).
 
 ### Google Analytics vs Vercel Analytics
 
@@ -54,7 +54,9 @@ back to Google. Full rollout plan, including the GTM / Google Ads steps:
 | File | Role |
 |---|---|
 | `lib/attribution.ts` | Capture / read attribution, `newLeadId()`, `normalizeEmail()`, `normalizePhoneE164()`. |
-| `lib/consent.ts` | `getAdStorageConsent()` → `granted` / `denied` / `unknown`. |
+| `lib/consent.ts` | Our own cookie consent: the `nnm_consent` cookie, the Consent Mode bootstrap script, `saveConsentChoice()`, `getAdStorageConsent()` → `granted` / `denied` / `unknown`. |
+| `components/cookie-consent.tsx` | The banner. |
+| `app/api/consent/route.ts` | Re-sets the consent cookie from an HTTP response (Safari caps script-written cookies). |
 | `lib/lead-source.ts` | Server-side sanitizer, „Źródło" renderer, subject builder. |
 | `lib/html.ts` | Shared `escapeHtml` for email HTML. |
 | `components/attribution-capture.tsx` | Mounts the capture in the locale layout. |
@@ -67,8 +69,8 @@ Two details that are easy to undo by accident:
   every page as `●` (SSG).
 - Storage is `sessionStorage` until the visitor accepts advertising cookies.
   `localStorage` with a **90-day** expiry (counted from the click) is used
-  only when `ad_storage` is `granted`: either already at landing (returning
-  visitor) or after a `cookieyes_consent_update` event, which
+  only when ad consent is `granted`: either already at landing (returning
+  visitor) or after the banner fires the `nnm:consent` DOM event, which
   `applyAdStorageConsent()` handles in both directions. This matches the
   privacy policy. Key: `nnm_attr_v1`. Every read and write is wrapped in
   `try/catch` (private mode, blocked storage).
@@ -115,19 +117,76 @@ Rows with no value are omitted. Everything is clamped and escaped in
 `lib/lead-source.ts` before it reaches the email — the whole block arrives in
 the request body, so it is untrusted input.
 
-### Consent, before and after the cookie banner
+### Cookie consent (first-party banner)
 
-CookieYes is installed through GTM (Consent Initialization trigger, basic
-consent mode: Google tags fire only after consent). `getAdStorageConsent()`
-returns `granted` / `denied` once the visitor decides, and **`unknown`**
-before that, which is always the case at the very first landing because GTM
-loads after hydration. `unknown` is written to the email as-is and must not be
-exported as `Granted`, because nobody granted anything. Rows carrying a gclid
-match on the click anyway; the consent columns matter for rows matched on a
-hashed email or phone.
+Since 2026-11-20 the site has its own banner. The CookieYes tool that used to
+be injected through GTM is gone from the code: it covered about 55% of a phone
+screen, sat on top of the contact form's submit button, and, in basic consent
+mode with no consent-update trigger, left Google Ads and GA4 blind.
 
-CookieYes's domains are in the CSP in `next.config.mjs`; any other CMP would
-need its own, or the banner is silently blocked. See the CSP section below.
+How it works:
+
+- **Bootstrap** (`CONSENT_BOOTSTRAP_SCRIPT`, first child of `<body>` in
+  `app/[locale]/layout.tsx`): pushes `consent default` with everything
+  optional denied, before GTM loads, and replays a returning visitor's stored
+  choice as `consent update`. It also expires the old `cookieyes-consent`
+  cookie.
+- **Choice** (`saveConsentChoice()`): writes `nnm_consent`
+  (`v1.a<0|1>.m<0|1>.t<unix>`, 180 days), pushes `consent update`, pushes the
+  dataLayer event `nnm_consent_update`, fires the DOM event `nnm:consent`, and
+  POSTs to `/api/consent` so the cookie is also set by an HTTP response.
+- **Mapping**: analytics → `analytics_storage`; ads → `ad_storage` and
+  `ad_user_data`. `ad_personalization` is always `denied`: the banner asks for
+  ad measurement, not personalised ads. Change both the code and the banner
+  copy together if remarketing is ever switched on.
+- **Withdrawal**: Google's first-party cookies (`_ga*`, `_gcl_*`, `_gac_*`)
+  are expired when their category is switched off.
+- **Layout**: the bar publishes its height as `--consent-offset`. `body` uses
+  it as bottom padding, the contact page subtracts it from its viewport lock,
+  and fixed bottom controls (floating CTA, reel controls) sit above it.
+
+`getAdStorageConsent()` returns `granted` / `denied` once the visitor decides
+and **`unknown`** before that. `unknown` is written to the lead email as-is and
+must not be exported as `Granted`, because nobody granted anything. Rows
+carrying a gclid match on the click anyway; the consent columns matter for
+rows matched on a hashed email or phone.
+
+#### Required GTM changes (manual, container `GTM-PQ7D5LSC`)
+
+Do these right after the site deploy that ships the banner, never before it
+(the old site has no consent defaults of its own).
+
+1. **Delete or pause the tag "CookieYes CMP"** (Consent Initialization
+   trigger). Its script is already blocked by the CSP, but the template's own
+   code still runs inside GTM on every page load and resets the consent
+   defaults and `ads_data_redaction`.
+2. **Make the Google tags fire after consent.** Today "Google Tag", the GA4
+   tag, "Conversion Linker" and the four conversion tags have *Require
+   additional consent* set and fire only on page-load triggers, so a visitor
+   who clicks Accept is still not measured: the tags were blocked at load and
+   nothing re-triggers them (the site navigates client-side, so there is no
+   second page load). Pick one:
+   - **Advanced consent mode (recommended).** In each of those tags: Advanced
+     Settings → Consent Settings → *No additional consent required*. The tags
+     then load for everyone, read and write no cookies until consent is
+     granted, and adapt the moment the visitor accepts. Before consent they
+     send cookieless pings, which Google uses to model conversions. The
+     privacy policy already says so.
+   - **Basic consent mode.** Keep *Require additional consent* and add a
+     Custom Event trigger on `nnm_consent_update` to "Google Tag", the GA4 tag
+     and "Conversion Linker", so they start right after Accept. No data at all
+     from visitors who reject or ignore the banner.
+3. **Publish**, then check in Tag Assistant on `/lp/kampania`: the Consent tab
+   shows the on-page default (all denied), Accept flips `ad_storage`,
+   `ad_user_data` and `analytics_storage` to granted, and the Google tag, GA4
+   and Conversion Linker have fired on that same page.
+
+Still open from the 2026-10-31 audit: switch the "Click Tel" trigger to the
+custom event `phone_click`; wire `user_data` and `transaction_id` into the two
+lead conversion tags.
+
+No consent tool's hosts are in the CSP any more. A third-party CMP would need
+its own hosts added in `next.config.mjs`, or its banner is silently blocked.
 
 ### Not in this repo
 
@@ -142,7 +201,7 @@ id — those get marked as ad leads by hand and matched on contact details only.
 
 ### Where it lives
 
-- **File:** [`next.config.mjs`](next.config.mjs) — a single `Content-Security-Policy` header is sent for `/:path*` via `headers()`.
+- **File:** [`next.config.mjs`](../next.config.mjs) — a single `Content-Security-Policy` header is sent for `/:path*` via `headers()`.
 
 There was **no** CSP in the repo initially; it was added so browser security rules and **third-party scripts** (GTM, GA, Google Ads pixels) align with what the page actually loads.
 
@@ -158,7 +217,7 @@ So the “error” from Google’s tools is often a **CSP violation** (browser s
 
 ### What we allow (high level)
 
-[`next.config.mjs`](next.config.mjs) centralizes a shared **`GOOGLE_HTTPS`** host list for **`script-src`** and **`worker-src`** so tag workers stay aligned with script loads.
+[`next.config.mjs`](../next.config.mjs) centralizes a shared **`GOOGLE_HTTPS`** host list for **`script-src`** and **`worker-src`** so tag workers stay aligned with script loads.
 
 - **`script-src`:** `'self'`, `'unsafe-inline'`, `'unsafe-eval'`, shared Google hosts, Vercel analytics hosts, and **`blob:`** (some GTM/tag flows inject scripts via blob URLs — without it, DevTools often reports **`script-src` blocked** even when HTTPS hosts are listed).
 - **`worker-src`:** `'self'`, **`blob:`**, same Google + Vercel hosts as scripts. Dedicated workers do **not** always fall back cleanly for **`blob:`** workers; omitting this is a common source of “blocked” after fixing `script-src` alone ([CSP directive fallbacks](https://web.dev/articles/csp) — `worker-src` is separate from `script-src` in modern browsers).
@@ -185,7 +244,7 @@ If CSP is set **both** in `next.config.mjs` **and** in the Vercel project (**Sec
 
 ## SEO and indexing (Kampania LP)
 
-- **File:** [`app/[locale]/lp/kampania/layout.tsx`](app/[locale]/lp/kampania/layout.tsx)
+- **File:** [`app/[locale]/lp/kampania/layout.tsx`](../app/[locale]/lp/kampania/layout.tsx)
 - **`robots` metadata** (Next.js Metadata API): **`noindex, nofollow`** on all environments (production, preview, local). This page is for **paid campaigns** only; we intentionally keep it **out of organic search** so PageSpeed / Lighthouse “SEO” scores for this URL are expected to be poor (e.g. no indexing signals)—that is by design.
 - **Google Ads:** Final URLs for ads **do not** require `index`; `noindex` applies to **organic** crawlers. The destination must still load with a normal HTTP 200 for users and for Ads policy checks.
 
@@ -197,10 +256,10 @@ These reduce main-thread and network contention; they help **Core Web Vitals** a
 
 | Area | What we did |
 |------|----------------|
-| **Third-party scripts** | GTM, Vercel Analytics, Speed Insights loaded via [`DeferredThirdParties`](components/deferred-third-parties.tsx) (`dynamic`, `ssr: false`). |
-| **Homepage** | Footer and “reel playing” UI split into dynamic imports where appropriate ([`HomeClient`](app/[locale]/HomeClient.tsx)). |
-| **Navigation** | Full-screen menu overlay loaded on demand ([`navigation-menu-overlay.tsx`](components/navigation-menu-overlay.tsx)). |
-| **Images** | `next/image` + `images.formats` (AVIF/WebP) in [`next.config.mjs`](next.config.mjs); remote asset host `assets.nonoise.media`. |
+| **Third-party scripts** | GTM, Vercel Analytics, Speed Insights loaded via [`DeferredThirdParties`](../components/deferred-third-parties.tsx) (`dynamic`, `ssr: false`). |
+| **Homepage** | Footer and “reel playing” UI split into dynamic imports where appropriate ([`HomeClient`](../app/[locale]/HomeClient.tsx)). |
+| **Navigation** | Full-screen menu overlay loaded on demand ([`navigation-menu-overlay.tsx`](../components/navigation-menu-overlay.tsx)). |
+| **Images** | `next/image` + `images.formats` (AVIF/WebP) in [`next.config.mjs`](../next.config.mjs); remote asset host `assets.nonoise.media`. |
 | **Fonts** | `next/font/google` in `app/[locale]/layout.tsx` with `display: 'swap'`, CSS variables, **preload only** on primary Geist sans. |
 
 ### CSS bundle slimming (if PageSpeed or UI regress — check this)
@@ -209,9 +268,9 @@ A dedicated pass reduced **first-party CSS** weight (fewer render-blocking bytes
 
 | Change | What to suspect if something breaks |
 |--------|-------------------------------------|
-| Removed **`app/tw-animate.css`** import from [`app/globals.css`](app/globals.css) | Missing **enter/exit** animations only if you reintroduce **shadcn/Radix-style** `animate-in`, `fade-in-*`, `slide-in-from-*` classes. The current marketing pages do not use those utilities. |
+| Removed **`app/tw-animate.css`** import from [`app/globals.css`](../app/globals.css) | Missing **enter/exit** animations only if you reintroduce **shadcn/Radix-style** `animate-in`, `fade-in-*`, `slide-in-from-*` classes. The current marketing pages do not use those utilities. |
 | Dropped **`--chart-*` / `--sidebar-*`** tokens | Styling that referenced **`chart-*`** or **`sidebar-*`** Tailwind/theme tokens (e.g. a future chart or app shell). The shipped site did not use them. |
-| Deleted **`components/ui/`** (entire shadcn scaffold) | Any future import from `@/components/ui/...` will fail until you run **shadcn** again and restore components. **`PhoneNumber`** is now [`components/phone-number.tsx`](components/phone-number.tsx). |
+| Deleted **`components/ui/`** (entire shadcn scaffold) | Any future import from `@/components/ui/...` will fail until you run **shadcn** again and restore components. **`PhoneNumber`** is now [`components/phone-number.tsx`](../components/phone-number.tsx). |
 | Removed Radix / **`recharts`** / etc. from `package.json` | Build errors if new code imports those packages without adding them back. |
 
 **Revert strategy:** Use git history for the commit that introduced the slimming; restoring `components/ui` and previous `globals.css` + `package.json` brings back the old CSS/JS surface (at the cost of larger bundles and PageSpeed warnings).
@@ -223,7 +282,7 @@ A dedicated pass reduced **first-party CSS** weight (fewer render-blocking bytes
 1. **Confirm `NEXT_PUBLIC_GTM_ID`** in the environment that matches the URL you’re testing.
 2. **Open DevTools → Console** and filter for **CSP** or **Refused**.
 3. **Compare** `Content-Security-Policy` response headers — only one policy, and directives include the host your tag needs.
-4. **GTM Preview mode** — verify container loads, then triggers for custom events from [`lib/gtm.ts`](lib/gtm.ts).
+4. **GTM Preview mode** — verify container loads, then triggers for custom events from [`lib/gtm.ts`](../lib/gtm.ts).
 5. **Kampania robots** — expect **`noindex, nofollow`** on the LP; ignore organic SEO scores for that URL in PageSpeed / PageSpeed Insights.
 
 ---
@@ -232,15 +291,15 @@ A dedicated pass reduced **first-party CSS** weight (fewer render-blocking bytes
 
 | Topic | File |
 |--------|------|
-| CSP header | [`next.config.mjs`](next.config.mjs) |
-| GTM + deferred analytics | [`components/deferred-third-parties.tsx`](components/deferred-third-parties.tsx), `app/[locale]/layout.tsx` |
-| dataLayer helper | [`lib/gtm.ts`](lib/gtm.ts) |
-| gclid / utm capture | [`lib/attribution.ts`](lib/attribution.ts), [`components/attribution-capture.tsx`](components/attribution-capture.tsx) |
-| Consent signal | [`lib/consent.ts`](lib/consent.ts) |
-| „Źródło" block in lead emails | [`lib/lead-source.ts`](lib/lead-source.ts), [`lib/html.ts`](lib/html.ts) |
-| Lead APIs | [`app/api/send-contact/route.ts`](app/api/send-contact/route.ts), [`app/api/send-quote/route.ts`](app/api/send-quote/route.ts) |
+| CSP header | [`next.config.mjs`](../next.config.mjs) |
+| GTM + deferred analytics | [`components/deferred-third-parties.tsx`](../components/deferred-third-parties.tsx), `app/[locale]/layout.tsx` |
+| dataLayer helper | [`lib/gtm.ts`](../lib/gtm.ts) |
+| gclid / utm capture | [`lib/attribution.ts`](../lib/attribution.ts), [`components/attribution-capture.tsx`](../components/attribution-capture.tsx) |
+| Cookie consent | [`lib/consent.ts`](../lib/consent.ts), [`components/cookie-consent.tsx`](../components/cookie-consent.tsx), [`app/api/consent/route.ts`](../app/api/consent/route.ts) |
+| „Źródło" block in lead emails | [`lib/lead-source.ts`](../lib/lead-source.ts), [`lib/html.ts`](../lib/html.ts) |
+| Lead APIs | [`app/api/send-contact/route.ts`](../app/api/send-contact/route.ts), [`app/api/send-quote/route.ts`](../app/api/send-quote/route.ts) |
 | Offline lead rollout plan | [`google-ads-offline-plan.md`](google-ads-offline-plan.md) |
-| LP events | [`app/[locale]/lp/kampania/page.tsx`](app/[locale]/lp/kampania/page.tsx), [`components/lp/lp-lead-strip.tsx`](components/lp/lp-lead-strip.tsx) |
-| Kampania SEO / robots | [`app/[locale]/lp/kampania/layout.tsx`](app/[locale]/lp/kampania/layout.tsx) |
+| LP events | [`app/[locale]/lp/kampania/page.tsx`](../app/[locale]/lp/kampania/page.tsx), [`components/lp/lp-lead-strip.tsx`](../components/lp/lp-lead-strip.tsx) |
+| Kampania SEO / robots | [`app/[locale]/lp/kampania/layout.tsx`](../app/[locale]/lp/kampania/layout.tsx) |
 
 This file is documentation only; it is not imported by the application.

@@ -1,4 +1,10 @@
-# SEO TODO — Nonoise Media
+# SEO backlog — Nonoise Media
+
+> **Status (2026-11-20): backlog, not current work.** The current plan is `TODO.md` in the repo root.
+> Statuses below were re-checked against the code on 2026-11-20. Still open: Sortlist profile,
+> case study pages at `/work/[slug]`, a standalone `/faq`, blog posts, and the homepage / About H1
+> (the homepage currently has no `<h1>` at all). URLs in this file predate the switch to unprefixed
+> Polish URLs and the `www` canonical host.
 
 **Goal:** Direct lead gen from Polish clients searching for video production in Warsaw
 **Primary keywords:** `produkcja filmowa Warszawa`, `filmy korporacyjne Warszawa`, `film reklamowy Warszawa`
@@ -51,8 +57,8 @@
 | ✅ | **Claim Google Business Profile** — create/verify listing for Nonoise Media in Warsaw | High | 1 hr | Essential for local `produkcja filmowa Warszawa` map pack results |
 | ✅ | **Create Clutch.co profile** — competitors (Solvo Film, BeeProduction) appear in "Top Video Production Warsaw" rankings | High | 1 hr | Free listing; Clutch results appear on page 1 for agency searches |
 | ☐ | **Create Sortlist profile** — same rationale as Clutch | Medium | 30 min | Secondary but low effort |
-| ☐ | **Make pricing public** — move `OfferPricingTiers` from noindex `/lp/kampania` to `/offer` or a new `/cennik` page | High | 1–2 hr | Captures `ile kosztuje film korporacyjny` + `produkcja wideo cena` queries |
-| ☐ | **Verify hreflang tags in live HTML** — confirm `next-intl` is generating correct `<link rel="alternate" hreflang="...">` tags | Medium | 30 min | Open DevTools on `/pl/` and `/en/`, check `<head>` for alternate links |
+| ✅ | **Make pricing public** (done: `OfferPricingTiers` renders on `/offer`) — move `OfferPricingTiers` from noindex `/lp/kampania` to `/offer` or a new `/cennik` page | High | 1–2 hr | Captures `ile kosztuje film korporacyjny` + `produkcja wideo cena` queries |
+| ✅ | **Verify hreflang tags in live HTML** (done: `pl` / `en` / `x-default` on all indexable routes) — confirm `next-intl` is generating correct `<link rel="alternate" hreflang="...">` tags | Medium | 30 min | Open DevTools on `/pl/` and `/en/`, check `<head>` for alternate links |
 
 ---
 
@@ -69,7 +75,7 @@
 | ✅ | `/offer/filmy-reklamowe` | `film reklamowy Warszawa` | **High** | Half day — live, SSG, PL+EN |
 | ✅ | `/offer/filmy-wizerunkowe` | `film wizerunkowy Warszawa` | **High** | Half day — PHH case study embedded |
 | ✅ | `/offer/filmy-produktowe` | `filmy produktowe Warszawa` | **Medium** | Half day — Rondo case study embedded |
-| ☐ | `/offer/reportaz-eventowy` | `reportaż eventowy Warszawa` | **Medium** | Half day — add entry to `lib/service-pages.ts`, embed CIONET + Kunzek |
+| ✅ | `/offer/reportaz-eventowy` | `reportaż eventowy Warszawa` | **Medium** | Half day — add entry to `lib/service-pages.ts`, embed CIONET + Kunzek |
 
 ### Case Study Detail Pages
 *6 case studies currently trapped as grid items with no indexable URL.*
@@ -86,8 +92,8 @@
 ### Structured Data
 | # | Action | Impact | Effort |
 |---|--------|--------|--------|
-| ☐ | **VideoObject schema** on `/work` and individual case study pages | High | 3–4 hr | Enables Google Video rich results in SERPs |
-| ☐ | **BreadcrumbList schema** on all sub-pages | Low | 1 hr | Improves SERP display of URLs |
+| ✅ | **VideoObject schema** on `/work` (done; case study pages do not exist yet) | High | 3–4 hr | Enables Google Video rich results in SERPs |
+| ✅ | **BreadcrumbList schema** on all sub-pages | Low | 1 hr | Improves SERP display of URLs |
 
 ### Content
 | # | Action | Target Keyword | Priority | Effort |

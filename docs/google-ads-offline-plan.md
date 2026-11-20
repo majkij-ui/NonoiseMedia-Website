@@ -1,5 +1,10 @@
 # Leady offline do Google Ads — plan wdrożenia w kodzie
 
+> **Stan na 2026-11-20:** Etap 2 (kod) jest wdrożony. Etap 1 poszedł inaczej, niż opisano niżej:
+> zamiast zewnętrznego CMP strona ma własny baner cookies (`lib/consent.ts`,
+> `components/cookie-consent.tsx`), więc fragmenty o CookieYes/Cookiebot i o domenach CMP w CSP
+> są nieaktualne. Aktualny opis zgód i kroki w GTM: `docs/google-ads.md`. Bieżące zadania: `TODO.md`.
+
 Plan techniczny dla repo `NonoiseMedia-Website`, wynikający z dokumentu
 „Leady offline do Google Ads: plan wdrożenia" (31.10.2026).
 Dokument źródłowy ma 7 etapów; **tylko Etap 2 jest pracą w kodzie**.
