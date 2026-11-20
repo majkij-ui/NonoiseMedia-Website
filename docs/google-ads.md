@@ -188,9 +188,12 @@ Do these right after the site deploy that ships the banner, never before it
    `ad_user_data` and `analytics_storage` to granted, and the Google tag, GA4
    and Conversion Linker have fired on that same page.
 
-Still open from the 2026-10-31 audit: switch the "Click Tel" trigger to the
-custom event `phone_click`; wire `user_data` and `transaction_id` into the two
-lead conversion tags.
+Checked in the GTM UI on 2026-11-20 and already in place since early November:
+the "Click Tel" trigger is the custom event `phone_click`; both lead conversion
+tags carry Transaction ID `{{DLV - transaction_id}}` and a `user_data` parameter
+from the User-Provided Data variable "UPD - lead contact"; their triggers listen
+for `contact_form_success` and `questionnaire_success`. Not checked: whether
+enhanced conversions are switched on in the Google Ads account itself.
 
 No consent tool's hosts are in the CSP any more. A third-party CMP would need
 its own hosts added in `next.config.mjs`, or its banner is silently blocked.

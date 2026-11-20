@@ -4,6 +4,8 @@
 > zamiast zewnętrznego CMP strona ma własny baner cookies (`lib/consent.ts`,
 > `components/cookie-consent.tsx`), więc fragmenty o CookieYes/Cookiebot i o domenach CMP w CSP
 > są nieaktualne. Aktualny opis zgód i kroki w GTM: `docs/google-ads.md`. Bieżące zadania: `TODO.md`.
+> Lista 7.9 też jest nieaktualna: wyzwalacz telefonu, `user_data` i `transaction_id` są w kontenerze
+> od początku listopada (sprawdzone 2026-11-20), a kontener ma opublikowaną wersję 16.
 
 Plan techniczny dla repo `NonoiseMedia-Website`, wynikający z dokumentu
 „Leady offline do Google Ads: plan wdrożenia" (31.10.2026).

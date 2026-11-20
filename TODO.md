@@ -84,11 +84,19 @@ Znane ograniczenia:
 - [ ] Dopisać pozostałe nazwy konkurencji do wykluczeń.
 - [ ] Podać teksty reklamy (nagłówki i opisy): potrzebne, żeby nagłówek landing page odpowiadał obietnicy z reklamy.
 
-### 1.6 Pomiar — zaległe z audytu 31.10 — **[M]**, w GTM
+### 1.6 Pomiar — stan po sprawdzeniu w GTM 2026-11-20
 
-- [ ] Wyzwalacz telefonu „Click Tel" przełączyć na zdarzenie niestandardowe `phone_click`.
-- [ ] `user_data` i `transaction_id` w tagach konwersji formularza i kwestionariusza.
-- [ ] Wyłączyć cel „Page views" na poziomie konta.
+Lista „zaległych" zmian z audytu 31.10 była nieaktualna. Te ustawienia są w kontenerze od 1–2.11, sprawdzone w interfejsie GTM:
+
+- [x] Wyzwalacz „Click Tel" to zdarzenie niestandardowe `phone_click`.
+- [x] Tagi „Send a Message" i „Click send Questionnaire" mają ID transakcji `{{DLV - transaction_id}}` i parametr `user_data` ze zmiennej „UPD - lead contact" (dane przekazywane przez użytkownika, źródło: `user_data` z dataLayer).
+- [x] Wyzwalacze tych tagów nasłuchują na `contact_form_success` i `questionnaire_success`, a etykiety konwersji zgadzają się z akcjami „Lead: contact form" i „Lead: questionnaire" w Google Ads.
+
+Zostaje po stronie Google Ads (nie GTM), niesprawdzone, bo limit API jest wyczerpany do 1.12:
+
+- [ ] **[M]** Czy konwersje rozszerzone są włączone i warunki dotyczące danych klientów zaakceptowane (Cele → Ustawienia). Bez tego Google ignoruje `user_data` z tagów.
+- [ ] **[M]** Cel „Page views" na poziomie konta. Przy ręcznym CPC nie ma wpływu na nic; wyłączyć przed przejściem na strategię opartą na konwersjach.
+- [ ] **[M]** Po pierwszym prawdziwym lub testowym formularzu: czy konwersja „Lead: contact form" pojawia się w Ads.
 
 ### 1.7 Kod — pozostałe — **[C]**
 
