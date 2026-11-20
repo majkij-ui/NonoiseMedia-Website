@@ -99,10 +99,14 @@
       "ctaQuote": "Free quote",
       "portfolioLabel": "Selected work",
       "portfolioTitle": "FEATURED PROJECTS",
-      "moreWork": "See full portfolio",
+      "portfolioCta": "Get a quote for a similar project",
       "playVideoAria": "Play video: {title}",
       "leadLabel": "Next step",
-      "leadCta": "Let's talk about your project"
+      "leadCta": "Let's talk about your project",
+      "leadBody": "Tell us what you need: what kind of film, by when and what for. We will come back with questions or a first estimate.",
+      "leadPrivacy": "We use the form data to answer your enquiry. Details:",
+      "stickyCall": "Call",
+      "stickyQuote": "Get a quote"
     }
   },
   "privacy": {
@@ -130,7 +134,7 @@
           "We process the data you give us and the technical data needed to run the site and measure how our ads perform."
         ],
         "items": [
-          "Contact form: your name, email address and message.",
+          "Contact form: your name or company name, email address, message and, if you give it, your phone number.",
           "Questionnaire: your answers about the project, your name or company name and the contact method you choose, either an email address or a phone number.",
           "Direct contact: whatever you share when you email or call us.",
           "Technical data: IP address, browser and device type, pages visited, referring page and time of visit.",
@@ -144,7 +148,7 @@
           "We run Google Ads campaigns. When you arrive from an ad, the page address carries a click identifier (gclid, gbraid or wbraid) and campaign parameters (utm_source, utm_medium, utm_campaign, utm_term).",
           "The site stores these values, together with the click time and landing page, in your browser's session storage (sessionStorage), where they are cleared when you close the tab. Only after you consent to advertising cookies are they kept in persistent storage (localStorage) for 90 days from the ad click.",
           "When you send the contact form or the questionnaire, this information reaches our inbox together with your enquiry. It tells us which ad brought the enquiry and lets us later report to Google Ads which enquiries turned into work. We then send the click identifier or, when there is none, a hashed email address or phone number.",
-          "When you send a form, we also pass your email address or phone number to Google Ads for enhanced conversions. The Google tag hashes this data with SHA-256 in your browser before it is sent, so Google receives a hash, not the plain value. Google uses it to match the enquiry to the ad click.",
+          "When you send a form, we also pass the contact details you entered in it (your email address, your phone number, or both) to Google Ads for enhanced conversions. The Google tag hashes this data with SHA-256 in your browser before it is sent, so Google receives a hash, not the plain value. Google uses it to match the enquiry to the ad click.",
           "Google tags run through Google Tag Manager, within the limits set by your cookie settings."
         ]
       },

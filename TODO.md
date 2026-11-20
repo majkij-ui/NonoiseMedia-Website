@@ -101,14 +101,15 @@ Zostaje po stronie Google Ads (nie GTM), niesprawdzone, bo limit API jest wyczer
 ### 1.7 Kod — pozostałe — **[C]**
 
 - [ ] Trwały zapis każdej wysyłki formularza (lead ID, czas, status). Vercel trzyma logi 1 godzinę, więc dziś nie da się sprawdzić po fakcie, czy ktoś próbował wysłać i dostał błąd.
-- [ ] Zdarzenie GTM na przycisku „Wyceń projekt" w hero (dziś klik jest niewidoczny w pomiarze).
-- [ ] Pola formularza: czcionka 16 px (Safari na iPhonie przybliża stronę przy 14 px), widoczne etykiety, `autocomplete`.
+- [x] Zdarzenie GTM na przycisku „Wyceń projekt" w hero: `lp_quote_click` (etap A).
+- [x] Pola formularza: czcionka 16 px na telefonie i `autocomplete` w obu formularzach; widoczne etykiety w formularzu na LP (etap A). Na `/contact` zostały same podpowiedzi w polach, żeby nie zmieniać układu strony.
 
 ### 1.8 Do decyzji Michała i prawnika
 
 - Źródło wizyty (gclid) jest zapisywane w pamięci sesji przed wyborem w banerze i zostaje tam także po „Odrzuć"; trafia do maila z dopiskiem „zgoda: denied". Tak było już wcześniej i polityka to opisuje, ale prawnik powinien ocenić, czy to do utrzymania. Zmiana kosztowałaby atrybucję zapytań od osób, które nie klikną banera.
 - Baner nie prowadzi rejestru zgód po stronie serwera (CookieYes prowadził). Dowodem jest wersjonowany kod i stan zgody w mailu z zapytaniem.
 - Pierwsza warstwa banera to jedno zdanie z linkiem do polityki i ustawień. Krótko, żeby baner był mały; prawnik może chcieć dopisać „Google".
+- Linijka pod formularzem na LP mówi tylko o odpowiedzi na zapytanie i odsyła do polityki. To samo wysłanie zasila też pomiar reklam (opisany w polityce). Prawnik może chcieć to dopisać wprost.
 - Polityka prywatności nadal ma status szkicu do przeglądu.
 
 ---
@@ -157,13 +158,18 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 
 ### 2.4 Kolejność prac — **[C]**, każdy etap osobnym PR
 
-**Etap A: droga do kontaktu** (największy efekt, najmniej pracy)
-- [ ] Wydzielić formularz z `/contact` do wspólnego komponentu. Zachować lead ID, atrybucję, zgodę i zdarzenie `contact_form_success`.
-- [ ] Sekcja formularza na dole LP: nazwa firmy, e-mail lub telefon, krótki opis. Obok numer telefonu, mail, obietnica czasu odpowiedzi, linijka o prywatności.
-- [ ] Wszystkie przyciski na LP przewijają do formularza.
-- [ ] Dolny pasek na telefonie („Zadzwoń" / „Wyceń projekt").
-- [ ] Usunąć progi cenowe, sekcję filozofii i link „Więcej w portfolio".
-- [ ] Nagłówek LP bez menu i przełącznika języka.
+**Etap A: droga do kontaktu** — zrobione 2026-11-20, czeka na przegląd i wdrożenie (PR)
+- [x] Formularz wydzielony z `/contact` do wspólnego komponentu `components/lead-form.tsx`. Lead ID, atrybucja, zgoda i zdarzenie `contact_form_success` bez zmian; zdarzenie niesie teraz `form_location`.
+- [x] Sekcja formularza na dole LP (`components/lp/lp-lead-section.tsx`): firma lub imię, e-mail (wymagany), telefon (opcjonalny), wiadomość. Obok numer telefonu i mail, pod spodem linijka o prywatności. Na telefonie formularz jest przed danymi kontaktowymi.
+- [x] Wszystkie przyciski na LP przewijają do formularza: „Wyceń projekt" w hero (teraz mierzony zdarzeniem `lp_quote_click`), „Wyceń podobny projekt" pod realizacjami, dolny pasek.
+- [x] Dolny pasek na telefonie („Zadzwoń" / „Wyceń projekt"). Schowany na pierwszym ekranie, przy formularzu, podczas odtwarzania reela i dopóki baner cookies czeka na odpowiedź.
+- [x] Usunięte z LP: progi cenowe, sekcja filozofii, link „Więcej w portfolio".
+- [x] Nagłówek LP bez menu i przełącznika języka: logo (nieklikalne) i telefon.
+- [x] Tytuł karty: „Produkcja filmowa i wideo dla firm — wycena projektu" zamiast „Kampania".
+
+Świadomie odłożone:
+- Obietnica czasu odpowiedzi przy formularzu: czeka na Twoją odpowiedź w punkcie 2.5. Do tego czasu jest neutralne „Odezwiemy się najszybciej jak to możliwe".
+- Angielska wersja formularza: teksty pól i komunikatów są po polsku, tak jak wcześniej na `/contact`. Do zrobienia razem z nowym hero (etap B) albo przy decyzji o EN.
 
 **Etap B: pierwszy ekran i dowód**
 - [ ] Nowy hero: nagłówek z usługą i miastem, jedno zdanie, jedna linijka dowodu, główny przycisk pod nagłówkiem, „Play reel" jako cichy link. Na telefonie pełna szerokość.

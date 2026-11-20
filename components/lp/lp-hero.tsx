@@ -11,6 +11,7 @@ import {
 } from "@/components/animated-home-button"
 import { cinematicEase } from "@/components/about/constants"
 import { sendGTMEvent } from "@/lib/gtm"
+import { scrollToLead } from "@/components/lp/scroll-to-lead"
 
 const HomeReelPlayingUI = dynamic(
   () =>
@@ -25,7 +26,12 @@ const LABEL = "Produkcja Filmowa i Wideo Dla Biznesu"
 const BODY =
   "Jesteśmy polskim studiem produkcyjnym, realizującym projekty wideo od A do Z. Tworzymy wysokiej klasy filmy korporacyjne, wideo produktowe oraz angażujące spoty do kampanii reklamowych. Odpowiadamy również na dzisiejsze tempo rynku, dostarczając dynamiczny, krótki kontent na social media, który realnie wspiera sprzedaż."
 
-export function LpHero() {
+type LpHeroProps = {
+  /** Tells the page when the reel takes over the screen, so nothing else sits on its controls. */
+  onPlayingChange?: (playing: boolean) => void
+}
+
+export function LpHero({ onPlayingChange }: LpHeroProps) {
   const tCta = useTranslations("cta")
   const tReel = useTranslations("reel")
 
@@ -34,6 +40,10 @@ export function LpHero() {
   const [isMuted, setIsMuted] = useState(true)
   const [currentTime, setCurrentTime] = useState(0)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    onPlayingChange?.(isPlaying)
+  }, [isPlaying, onPlayingChange])
 
   const formatTime = (seconds: number) => {
     const hrs = Math.floor(seconds / 3600)
@@ -191,7 +201,10 @@ export function LpHero() {
                   <div className="absolute bottom-full right-full m-0 p-0">
                     <AnimatedHomeButton
                       text={tCta("quote")}
-                      href="/contact"
+                      onClick={() => {
+                        sendGTMEvent("lp_quote_click")
+                        scrollToLead()
+                      }}
                       entranceDelay={0.05}
                       entranceFrom="left"
                       className={`!text-[1.85rem] md:!text-[2.33rem] ${LANDSCAPE_MOBILE_HERO}:!text-[1.28rem]`}

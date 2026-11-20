@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 import { Navigation } from "@/components/navigation"
 import { CookieSettingsLink } from "@/components/cookie-settings-link"
 import { FooterLegalLinks } from "@/components/footer-legal-links"
+import { CONTACT_EMAIL } from "@/lib/contact-info"
 
 /*
  * DRAFT FOR LEGAL REVIEW. The copy in messages/{pl,en}.json under `privacy`
@@ -14,7 +15,6 @@ import { FooterLegalLinks } from "@/components/footer-legal-links"
  * the `privacy` namespace out of the client message bundle.
  */
 
-const CONTACT_EMAIL = "contact@nonoise.media"
 
 type PrivacySection = {
   id: string

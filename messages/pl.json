@@ -99,10 +99,14 @@
       "ctaQuote": "Darmowa Wycena",
       "portfolioLabel": "Realizacje",
       "portfolioTitle": "WYBRANE PROJEKTY",
-      "moreWork": "Więcej w portfolio",
+      "portfolioCta": "Wyceń podobny projekt",
       "playVideoAria": "Odtwórz wideo: {title}",
       "leadLabel": "Następny krok",
-      "leadCta": "Porozmawiajmy o Twoim Projekcie"
+      "leadCta": "Porozmawiajmy o Twoim Projekcie",
+      "leadBody": "Napisz, czego potrzebujesz: jaki film, na kiedy i w jakim celu. Wrócimy z pytaniami albo ze wstępną wyceną.",
+      "leadPrivacy": "Dane z formularza wykorzystujemy do odpowiedzi na Twoje zapytanie. Szczegóły:",
+      "stickyCall": "Zadzwoń",
+      "stickyQuote": "Wyceń projekt"
     }
   },
   "privacy": {
@@ -130,7 +134,7 @@
           "Przetwarzamy dane, które sam nam przekazujesz, oraz dane techniczne potrzebne do działania strony i pomiaru skuteczności reklam."
         ],
         "items": [
-          "Formularz kontaktowy: imię i nazwisko, adres e-mail i treść wiadomości.",
+          "Formularz kontaktowy: imię i nazwisko lub nazwa firmy, adres e-mail, treść wiadomości oraz, jeśli go podasz, numer telefonu.",
           "Kwestionariusz: odpowiedzi dotyczące projektu, imię lub nazwa firmy oraz wybrany sposób kontaktu, czyli adres e-mail albo numer telefonu.",
           "Kontakt bezpośredni: dane, które podajesz, pisząc do nas lub dzwoniąc.",
           "Dane techniczne: adres IP, typ przeglądarki i urządzenia, odwiedzane podstrony, strona odsyłająca i czas wizyty.",
@@ -144,7 +148,7 @@
           "Prowadzimy kampanie w Google Ads. Jeśli trafiasz na stronę z reklamy, jej adres zawiera identyfikator kliknięcia (gclid, gbraid lub wbraid) i parametry kampanii (utm_source, utm_medium, utm_campaign, utm_term).",
           "Strona zapisuje te wartości, razem z czasem kliknięcia i adresem strony wejścia, w pamięci sesji Twojej przeglądarki (sessionStorage), skąd znikają po zamknięciu karty. Dopiero gdy zgodzisz się na pliki cookies reklamowe, zapis trafia do pamięci trwałej (localStorage) na 90 dni od kliknięcia reklamy.",
           "Gdy wysyłasz formularz kontaktowy lub kwestionariusz, te informacje trafiają razem ze zgłoszeniem do naszej skrzynki e-mail. Dzięki temu wiemy, która reklama przyniosła zapytanie, i możemy później przekazać do Google Ads informację o zapytaniach, które zakończyły się współpracą. Przekazujemy wtedy identyfikator kliknięcia, a gdy go brak, zahaszowany adres e-mail lub numer telefonu.",
-          "Przy wysłaniu formularza przekazujemy też do Google Ads Twój adres e-mail albo numer telefonu w ramach konwersji rozszerzonych (enhanced conversions). Tag Google haszuje te dane algorytmem SHA-256 w Twojej przeglądarce, zanim zostaną wysłane, więc Google otrzymuje skrót, a nie dane w postaci jawnej. Google używa go do powiązania zgłoszenia z kliknięciem reklamy.",
+          "Przy wysłaniu formularza przekazujemy też do Google Ads podane w nim dane kontaktowe (adres e-mail, numer telefonu albo oba, zależnie od tego, co wpiszesz) w ramach konwersji rozszerzonych (enhanced conversions). Tag Google haszuje te dane algorytmem SHA-256 w Twojej przeglądarce, zanim zostaną wysłane, więc Google otrzymuje skrót, a nie dane w postaci jawnej. Google używa go do powiązania zgłoszenia z kliknięciem reklamy.",
           "Tagi Google uruchamiamy przez Google Tag Manager, w zakresie, na który pozwalają Twoje ustawienia cookies."
         ]
       },

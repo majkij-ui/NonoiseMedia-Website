@@ -7,6 +7,13 @@ import {
   sanitizeLeadSource,
 } from '@/lib/lead-source';
 
+/** Which form the message came from, as shown in the email. Anything unknown counts as the contact page. */
+const DEFAULT_FORM_LABEL = 'strona kontaktowa';
+const FORM_LABELS = new Map<string, string>([
+  ['contact', DEFAULT_FORM_LABEL],
+  ['lp-kampania', 'landing page kampanii'],
+]);
+
 export async function POST(request: Request) {
   try {
     if (!process.env.RESEND_API_KEY) {
@@ -22,6 +29,9 @@ export async function POST(request: Request) {
     const name = String(body.name ?? '').trim().slice(0, 200);
     const email = String(body.email ?? '').trim().slice(0, 320);
     const message = String(body.message ?? '').trim().slice(0, 10000);
+    // Optional. The landing page form offers it; the contact page does not.
+    const phone = String(body.phone ?? '').trim().slice(0, 40);
+    const formLabel = FORM_LABELS.get(String(body.source ?? '')) ?? DEFAULT_FORM_LABEL;
 
     if (!name) {
       return NextResponse.json(
@@ -44,7 +54,7 @@ export async function POST(request: Request) {
 
     // Ad attribution is optional: an older cached bundle may post without it,
     // and a lead must never fail to send over a missing marketing field.
-    const leadSource = sanitizeLeadSource(body, { email });
+    const leadSource = sanitizeLeadSource(body, { email, phone });
 
     const data = await resend.emails.send({
       from: 'Nonoise Website <hello@nonoise.media>',
@@ -67,10 +77,15 @@ export async function POST(request: Request) {
           <a href="mailto:${escapeHtml(email)}" style="color: #000;">${escapeHtml(email)}</a>
         </p>
       </div>
+      ${phone ? `<div style="margin-bottom: 20px; border-left: 2px solid #000; padding-left: 15px;">
+        <p style="margin: 0; font-size: 14px; text-transform: uppercase; color: #666;">Telefon</p>
+        <p style="margin: 5px 0 0 0; font-size: 18px; color: #000;">${escapeHtml(phone)}</p>
+      </div>` : ''}
       <div style="margin-bottom: 20px; border-left: 2px solid #000; padding-left: 15px;">
         <p style="margin: 0; font-size: 14px; text-transform: uppercase; color: #666;">Wiadomość</p>
         <p style="margin: 5px 0 0 0; font-size: 16px; color: #000; white-space: pre-wrap;">${escapeHtml(message)}</p>
       </div>
+      <p style="margin: 0; font-size: 12px; text-transform: uppercase; color: #666;">Formularz: ${escapeHtml(formLabel)}</p>
     </div>
     ${renderLeadSourceHtml(leadSource)}
   </div>

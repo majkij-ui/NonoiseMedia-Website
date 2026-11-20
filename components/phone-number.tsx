@@ -53,7 +53,7 @@ export function PhoneNumber({
 
   return (
     <a
-      href={`tel:${phoneNumber}`}
+      href={`tel:${phoneNumber.replace(/\s/g, "")}`}
       onClick={handleClick}
       className={cn("cursor-pointer", className)}
       {...props}

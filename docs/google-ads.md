@@ -15,7 +15,17 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
 ### dataLayer and custom events
 
 - Helper: [`lib/gtm.ts`](../lib/gtm.ts) — `sendGTMEvent(eventName, params?)` pushes `{ event, ...params }` to `window.dataLayer` and initializes `dataLayer` if needed (safe before GTM finishes loading).
-- **Kampania landing page** [`app/[locale]/lp/kampania/page.tsx`](../app/[locale]/lp/kampania/page.tsx) and [`components/lp/lp-lead-strip.tsx`](../components/lp/lp-lead-strip.tsx) fire events such as `lp_portfolio_click`, `lp_quote_click`, `lp_contact_click`. Configure **triggers and tags** for these event names inside the GTM UI (and map them to Google Ads conversion actions as needed).
+- **Kampania landing page** (`/lp/kampania`): every call-to-action scrolls to the form on the page itself and pushes an event first. Configure **triggers and tags** for these names inside the GTM UI if you want to see them (none of them is a conversion; the conversion is `contact_form_success`):
+
+  | Event | Fired by | Where |
+  |---|---|---|
+  | `lp_quote_click` | "Wyceń projekt" in the hero | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx) |
+  | `lp_reel_click` | "Play reel" in the hero | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx) |
+  | `lp_portfolio_cta_click` | "Wyceń podobny projekt" under the films | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
+  | `lp_sticky_quote_click` | "Wyceń projekt" in the phone bottom bar | [`components/lp/lp-sticky-cta.tsx`](../components/lp/lp-sticky-cta.tsx) |
+  | `phone_click` | header call icon, bottom bar "Zadzwoń", number in the form section | `components/navigation.tsx`, `lp-sticky-cta.tsx`, `components/phone-number.tsx` |
+
+  `lp_contact_click` no longer exists: the bottom strip that linked to `/contact` was replaced by the form.
 
 ### Google Analytics vs Vercel Analytics
 
@@ -39,7 +49,7 @@ back to Google. Full rollout plan, including the GTM / Google Ads steps:
 1. Visitor lands on any route with `gclid` / `gbraid` / `wbraid` / `utm_*`.
    `AttributionCapture` (mounted in `app/[locale]/layout.tsx`) stores those
    plus `clickedAt` and the landing path.
-2. Visitor submits the contact form or the questionnaire. The client mints a
+2. Visitor submits the contact form (on `/contact` or on the landing page itself; one shared component, `components/lead-form.tsx`) or the questionnaire. The client mints a
    `leadId` and posts it with the stored attribution and the current consent
    state.
 3. The API route appends a **„Źródło"** block to the Resend email and prefixes
@@ -81,8 +91,10 @@ Two details that are easy to undo by accident:
 dataLayer.push({
   event: "contact_form_success",     // or "questionnaire_success"
   transaction_id: "K7Q2M9XA",        // leadId
-  user_data: { email: "anna@firma.pl" },         // contact form
-  // user_data: { phone_number: "+48600100200" }, // questionnaire, phone
+  form_location: "lp-kampania",      // or "contact"; contact form only
+  user_data: { email: "anna@firma.pl" },         // contact form on /contact
+  // user_data: { email: "anna@firma.pl", phone_number: "+48600100200" }, // landing page form, phone given
+  // user_data: { phone_number: "+48600100200" }, // questionnaire, phone chosen
 })
 ```
 
@@ -309,7 +321,7 @@ A dedicated pass reduced **first-party CSS** weight (fewer render-blocking bytes
 | „Źródło" block in lead emails | [`lib/lead-source.ts`](../lib/lead-source.ts), [`lib/html.ts`](../lib/html.ts) |
 | Lead APIs | [`app/api/send-contact/route.ts`](../app/api/send-contact/route.ts), [`app/api/send-quote/route.ts`](../app/api/send-quote/route.ts) |
 | Offline lead rollout plan | [`google-ads-offline-plan.md`](google-ads-offline-plan.md) |
-| LP events | [`app/[locale]/lp/kampania/page.tsx`](../app/[locale]/lp/kampania/page.tsx), [`components/lp/lp-lead-strip.tsx`](../components/lp/lp-lead-strip.tsx) |
+| LP events and form | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx), [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx), [`components/lp/lp-sticky-cta.tsx`](../components/lp/lp-sticky-cta.tsx), [`components/lp/lp-lead-section.tsx`](../components/lp/lp-lead-section.tsx), [`components/lead-form.tsx`](../components/lead-form.tsx) |
 | Kampania SEO / robots | [`app/[locale]/lp/kampania/layout.tsx`](../app/[locale]/lp/kampania/layout.tsx) |
 
 This file is documentation only; it is not imported by the application.

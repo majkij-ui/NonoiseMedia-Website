@@ -11,8 +11,12 @@ import dynamic from "next/dynamic"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { AnimatePresence, motion } from "framer-motion"
+import { Phone } from "lucide-react"
 import { Link, usePathname } from "@/i18n/navigation"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { PhoneNumber } from "@/components/phone-number"
+import { CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact-info"
+import { sendGTMEvent } from "@/lib/gtm"
 
 const NavigationMenuOverlay = dynamic(
   () =>
@@ -72,13 +76,18 @@ function useScrollCtaVisible() {
 
 type NavigationProps = {
   fixed?: boolean
+  /**
+   * Landing-page header: logo and phone number only. No menu, no language
+   * switcher and no link home, so a paid visitor has nowhere to wander off to.
+   */
+  minimal?: boolean
 }
 
-export function Navigation({ fixed = false }: NavigationProps) {
+export function Navigation({ fixed = false, minimal = false }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
   const showCta =
-    pathname === "/work" || pathname === "/offer" || pathname === "/about"
+    !minimal && (pathname === "/work" || pathname === "/offer" || pathname === "/about")
 
   const ctaKey = showCta ? pathname : "off"
 
@@ -86,6 +95,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
     <ScrollCtaProvider key={ctaKey} enabled={showCta}>
       <NavigationShell
         fixed={fixed}
+        minimal={minimal}
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         showCta={showCta}
@@ -96,16 +106,51 @@ export function Navigation({ fixed = false }: NavigationProps) {
 
 function NavigationShell({
   fixed,
+  minimal,
   isMenuOpen,
   setIsMenuOpen,
   showCta,
 }: {
   fixed: boolean
+  minimal: boolean
   isMenuOpen: boolean
   setIsMenuOpen: (open: boolean) => void
   showCta: boolean
 }) {
   const ctaVisible = useScrollCtaVisible()
+  const tLp = useTranslations("lp.kampania")
+
+  if (minimal) {
+    return (
+      <header
+        className={`${fixed ? "fixed left-0 right-0 top-0 z-40" : ""} flex items-center justify-between px-6 py-6 md:px-12`}
+      >
+        <div className="flex items-center gap-2.5">
+          <Image
+            src="https://assets.nonoise.media/logos/logo-orb.png"
+            alt=""
+            width={20}
+            height={20}
+            className="h-5 w-5"
+          />
+          <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
+        </div>
+        {/* Desktop shows the number (click copies it); a phone gets a tap-to-call icon. */}
+        <PhoneNumber
+          phoneNumber={CONTACT_PHONE}
+          className="hidden text-sm font-light tracking-[0.2em] text-foreground transition-opacity hover:opacity-70 md:block"
+        />
+        <a
+          href={CONTACT_PHONE_HREF}
+          onClick={() => sendGTMEvent("phone_click")}
+          aria-label={`${tLp("stickyCall")}: ${CONTACT_PHONE}`}
+          className="flex h-10 w-10 items-center justify-center text-foreground transition-opacity hover:opacity-70 md:hidden"
+        >
+          <Phone size={18} strokeWidth={1.5} />
+        </a>
+      </header>
+    )
+  }
 
   return (
     <>
