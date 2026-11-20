@@ -2,13 +2,11 @@
 
 import { useState, useRef, useEffect } from "react"
 import dynamic from "next/dynamic"
+import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
-import {
-  AnimatedHomeButton,
-  LANDSCAPE_MOBILE_HERO,
-} from "@/components/animated-home-button"
+import { AnimatedHomeButton } from "@/components/animated-home-button"
 import { cinematicEase } from "@/components/about/constants"
 import { sendGTMEvent } from "@/lib/gtm"
 import { scrollToLead } from "@/components/lp/scroll-to-lead"
@@ -21,10 +19,13 @@ const HomeReelPlayingUI = dynamic(
   { ssr: false }
 )
 
-// Same copy as the original LP hero (AboutHero defaults)
-const LABEL = "Produkcja Filmowa i Wideo Dla Biznesu"
-const BODY =
-  "Jesteśmy polskim studiem produkcyjnym, realizującym projekty wideo od A do Z. Tworzymy wysokiej klasy filmy korporacyjne, wideo produktowe oraz angażujące spoty do kampanii reklamowych. Odpowiadamy również na dzisiejsze tempo rynku, dostarczając dynamiczny, krótki kontent na social media, który realnie wspiera sprzedaż."
+/**
+ * First thing painted, before the reel has loaded: a still that is already on
+ * the CDN. The reel fades in over it once it can play, so a slow connection
+ * sees a picture instead of a black screen. (A frame of the reel itself would
+ * make the hand-over seamless; swap this URL when one is uploaded.)
+ */
+const HERO_POSTER = "https://assets.nonoise.media/videos/PHH.webp"
 
 type LpHeroProps = {
   /** Tells the page when the reel takes over the screen, so nothing else sits on its controls. */
@@ -32,6 +33,7 @@ type LpHeroProps = {
 }
 
 export function LpHero({ onPlayingChange }: LpHeroProps) {
+  const t = useTranslations("lp.kampania")
   const tCta = useTranslations("cta")
   const tReel = useTranslations("reel")
 
@@ -39,6 +41,8 @@ export function LpHero({ onPlayingChange }: LpHeroProps) {
   const [progress, setProgress] = useState(0)
   const [isMuted, setIsMuted] = useState(true)
   const [currentTime, setCurrentTime] = useState(0)
+  /** False until the reel has a frame to show; the poster covers the wait. */
+  const [videoReady, setVideoReady] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -81,6 +85,11 @@ export function LpHero({ onPlayingChange }: LpHeroProps) {
       video.currentTime = 0
     }
 
+    // The video is in the server HTML, so it may already have data before this runs.
+    const markReady = () => setVideoReady(true)
+    video.addEventListener("loadeddata", markReady)
+    if (video.readyState >= 2) markReady()
+
     video.addEventListener("play", handlePlay)
     video.addEventListener("pause", handlePause)
     video.addEventListener("ended", handleEnded)
@@ -91,6 +100,7 @@ export function LpHero({ onPlayingChange }: LpHeroProps) {
 
     return () => {
       cancelAnimationFrame(animationId)
+      video.removeEventListener("loadeddata", markReady)
       video.removeEventListener("play", handlePlay)
       video.removeEventListener("pause", handlePause)
       video.removeEventListener("ended", handleEnded)
@@ -129,11 +139,22 @@ export function LpHero({ onPlayingChange }: LpHeroProps) {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
+      {/* Poster — painted first, fades out once the reel has a frame */}
+      <Image
+        src={HERO_POSTER}
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover transition-opacity duration-700"
+        style={{ opacity: videoReady ? 0 : 0.55 }}
+      />
+
       {/* Background video — ambient low opacity; goes full when reel is open */}
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
-        style={{ opacity: isPlaying ? 1 : 0.55 }}
+        style={{ opacity: !videoReady ? 0 : isPlaying ? 1 : 0.55 }}
         src="https://assets.nonoise.media/videos/my-reel.mp4"
         loop
         muted={isMuted}
@@ -158,19 +179,19 @@ export function LpHero({ onPlayingChange }: LpHeroProps) {
             transition={{ duration: 0.5 }}
             className="relative z-10 flex h-full min-h-screen flex-col"
           >
-            {/* Center content — anchored at 50% from left; slight top inset for more headroom */}
+            {/* Content — full width on a phone, anchored at 50% from the left on desktop */}
             <div
-              className={`flex flex-1 items-center pt-10 md:pt-14 ${LANDSCAPE_MOBILE_HERO}:!pt-6`}
+              className={`flex flex-1 items-center pt-16 md:pt-14 landscape-phone:!pt-6`}
             >
-              <div className="w-full pl-[50%] pr-6 md:pr-12">
-                {/* Label */}
+              <div className="w-full px-6 md:pl-[50%] md:pr-12">
+                {/* What and where, in the words people search for */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.1 }}
-                  className={`mb-3 w-48 font-mono text-[11px] uppercase leading-snug tracking-[0.2em] text-muted-foreground md:mb-4 md:w-56 ${LANDSCAPE_MOBILE_HERO}:!mb-2 ${LANDSCAPE_MOBILE_HERO}:!w-40 ${LANDSCAPE_MOBILE_HERO}:!text-[8px]`}
+                  className={`mb-3 font-mono text-[11px] uppercase leading-snug tracking-[0.2em] text-foreground/70 md:mb-4 landscape-phone:!mb-2 landscape-phone:!text-[10px]`}
                 >
-                  {LABEL}
+                  {t("label")}
                 </motion.p>
 
                 {/* Headline — exactly two lines; fluid size so neither line wraps to a third */}
@@ -178,63 +199,70 @@ export function LpHero({ onPlayingChange }: LpHeroProps) {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: cinematicEase }}
-                  className={`w-full max-w-[min(100%,22rem)] text-left font-[family-name:var(--font-display)] text-[clamp(1.65rem,7vw+0.85rem,4.48rem)] uppercase leading-[0.92] tracking-[0.02em] text-foreground md:max-w-[24rem] md:text-[clamp(3.35rem,4.2vw+2rem,6.23rem)] ${LANDSCAPE_MOBILE_HERO}:!max-w-[11rem] ${LANDSCAPE_MOBILE_HERO}:!text-[clamp(1.35rem,5vh,2.18rem)]`}
+                  className={`w-full max-w-[min(100%,22rem)] text-left font-[family-name:var(--font-display)] text-[clamp(2.6rem,7vw+0.85rem,4.48rem)] uppercase leading-[0.92] tracking-[0.02em] text-foreground landscape-phone:!text-[clamp(1.2rem,4.2vw+0.35rem,2.05rem)]`}
                 >
                   <span className="block whitespace-nowrap">WYBIJ SIĘ</span>
                   <span className="block whitespace-nowrap">PONAD&nbsp;SZUM</span>
                 </motion.h1>
 
-                {/* Body — compact narrow column */}
+                {/* One sentence: who we are, where, what we make */}
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
-                  className={`mt-4 max-w-xs text-pretty font-sans text-sm leading-relaxed text-foreground/60 md:mt-5 md:text-base ${LANDSCAPE_MOBILE_HERO}:!mt-2 ${LANDSCAPE_MOBILE_HERO}:!text-[10px]`}
+                  className={`mt-4 max-w-sm text-pretty font-sans text-base leading-relaxed text-foreground/85 md:mt-5 md:text-lg landscape-phone:!mt-2 landscape-phone:!text-sm`}
                 >
-                  {BODY}
+                  {t("body")}
                 </motion.p>
 
-                {/* Diagonal button pair — compact vs home; extra top margin vs body */}
-                <div
-                  className={`relative mt-24 flex w-fit md:mt-20 ${LANDSCAPE_MOBILE_HERO}:!mt-6`}
-                >
-                  <div className="absolute bottom-full right-full m-0 p-0">
-                    <AnimatedHomeButton
-                      text={tCta("quote")}
-                      onClick={() => {
-                        sendGTMEvent("lp_quote_click")
-                        scrollToLead()
-                      }}
-                      entranceDelay={0.05}
-                      entranceFrom="left"
-                      className={`!text-[1.85rem] md:!text-[2.33rem] ${LANDSCAPE_MOBILE_HERO}:!text-[1.28rem]`}
-                    />
-                  </div>
-                  <AnimatedHomeButton
-                    text={tCta("playReel")}
-                    onClick={handlePlayReel}
-                    entranceDelay={0.45}
-                    entranceFrom="right"
-                    hoverFrom="right"
-                    className={`!text-[1.85rem] md:!text-[2.33rem] ${LANDSCAPE_MOBILE_HERO}:!text-[1.28rem]`}
-                  />
-                </div>
-
-                {/* Timecode */}
-                <motion.div
+                {/* One line of proof */}
+                <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                  className={`mt-0.5 flex items-center gap-2 font-[family-name:var(--font-display)] text-lg uppercase tracking-[0.02em] text-foreground/50 ${LANDSCAPE_MOBILE_HERO}:!text-sm`}
+                  transition={{ duration: 0.8, delay: 0.35 }}
+                  className={`mt-4 max-w-sm font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-foreground/60 landscape-phone:hidden`}
                 >
-                  <span>{formatTime(currentTime)}</span>
-                  <span className="text-xs">▶</span>
-                </motion.div>
+                  {t("proof")}
+                </motion.p>
+
+                {/* One primary action; the reel is a quiet second choice */}
+                <div
+                  className={`mt-7 flex flex-wrap items-center gap-x-6 gap-y-4 md:mt-8 landscape-phone:!mt-4`}
+                >
+                  <AnimatedHomeButton
+                    text={tCta("quote")}
+                    onClick={() => {
+                      sendGTMEvent("lp_quote_click")
+                      scrollToLead()
+                    }}
+                    entranceDelay={0.05}
+                    entranceFrom="left"
+                    className={`!text-[1.85rem] md:!text-[2.33rem] landscape-phone:!text-[1.28rem]`}
+                  />
+                  <motion.button
+                    type="button"
+                    onClick={handlePlayReel}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.45 }}
+                    className="group flex items-center gap-2 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/70 transition-colors hover:text-foreground"
+                  >
+                    <span aria-hidden className="text-[10px]">
+                      ▶
+                    </span>
+                    <span className="underline decoration-white/30 underline-offset-4 transition-colors group-hover:decoration-foreground">
+                      {tCta("playReel")}
+                    </span>
+                    <span aria-hidden className="text-foreground/40">
+                      {formatTime(currentTime)}
+                    </span>
+                  </motion.button>
+                </div>
               </div>
             </div>
 
             {/* Scroll cue — label + double chevron stacked (bounce) */}
-            <div className={`pointer-events-none flex justify-center pb-6 md:pb-8 ${LANDSCAPE_MOBILE_HERO}:!pb-3`}>
+            <div className={`pointer-events-none flex justify-center pb-6 md:pb-8 landscape-phone:!pb-3`}>
               <div
                 aria-label="Przewiń niżej"
                 className="inline-flex items-center gap-3 text-foreground/50"

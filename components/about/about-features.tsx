@@ -307,7 +307,7 @@ function CursorScheduler() {
         Media nastawione na konwersję
       </h3>
       <p className="mb-6 font-sans text-sm leading-relaxed text-foreground/60">
-        Cyfrowe materiały, które zatrzymują scroll — zaprojektowane by angażować, budować zaufanie i maksymalizować ROI z marketingu.
+        Cyfrowe materiały, które zatrzymują scroll — zaprojektowane, by angażować, budować zaufanie i maksymalizować ROI z marketingu.
       </p>
 
       <div ref={gridRef} className="relative min-h-[160px] flex-1">

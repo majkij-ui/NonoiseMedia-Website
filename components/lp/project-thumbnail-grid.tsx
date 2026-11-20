@@ -5,6 +5,7 @@ import Image from "next/image"
 import { LayoutGroup, motion } from "framer-motion"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { sendGTMEvent } from "@/lib/gtm"
 import { scrollToLead } from "@/components/lp/scroll-to-lead"
 import { ProjectVideoModal } from "@/components/project-video-modal"
@@ -148,6 +149,20 @@ export function ProjectThumbnailGrid({ projectsList = projects }: ProjectThumbna
           >
             {t("portfolioCta")}
           </button>
+        </p>
+        {/* The one deliberate way to the rest of the site. A new tab keeps this page and
+            its form open; rel="opener" makes the browser copy sessionStorage into that tab,
+            so the ad click travels with the visitor even without advertising consent. */}
+        <p className="mt-2 text-center">
+          <Link
+            href="/work"
+            target="_blank"
+            rel="opener"
+            onClick={() => sendGTMEvent("lp_portfolio_link_click")}
+            className="inline-block py-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground underline decoration-white/20 underline-offset-4 transition-colors hover:text-foreground"
+          >
+            {t("moreWork")}
+          </Link>
         </p>
       </section>
 

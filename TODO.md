@@ -158,31 +158,46 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 
 ### 2.4 Kolejność prac — **[C]**, każdy etap osobnym PR
 
-**Etap A: droga do kontaktu** — zrobione 2026-11-20, czeka na przegląd i wdrożenie (PR)
+**Etap A: droga do kontaktu** — zrobione 2026-11-20, PR #13, czeka na wdrożenie
 - [x] Formularz wydzielony z `/contact` do wspólnego komponentu `components/lead-form.tsx`. Lead ID, atrybucja, zgoda i zdarzenie `contact_form_success` bez zmian; zdarzenie niesie teraz `form_location`.
 - [x] Sekcja formularza na dole LP (`components/lp/lp-lead-section.tsx`): firma lub imię, e-mail (wymagany), telefon (opcjonalny), wiadomość. Obok numer telefonu i mail, pod spodem linijka o prywatności. Na telefonie formularz jest przed danymi kontaktowymi.
 - [x] Wszystkie przyciski na LP przewijają do formularza: „Wyceń projekt" w hero (teraz mierzony zdarzeniem `lp_quote_click`), „Wyceń podobny projekt" pod realizacjami, dolny pasek.
 - [x] Dolny pasek na telefonie („Zadzwoń" / „Wyceń projekt"). Schowany na pierwszym ekranie, przy formularzu, podczas odtwarzania reela i dopóki baner cookies czeka na odpowiedź.
-- [x] Usunięte z LP: progi cenowe, sekcja filozofii, link „Więcej w portfolio".
-- [x] Nagłówek LP bez menu i przełącznika języka: logo (nieklikalne) i telefon.
+- [x] Usunięte z LP: progi cenowe, sekcja filozofii, link „Więcej w portfolio" (w etapie B wrócił jako „Zobacz pełne portfolio" w nowej karcie).
+- [x] Nagłówek LP bez menu i przełącznika języka: logo (nieklikalne) i kontakt (od etapu B e-mail zamiast telefonu).
 - [x] Tytuł karty: „Produkcja filmowa i wideo dla firm — wycena projektu" zamiast „Kampania".
 
 Świadomie odłożone:
 - Obietnica czasu odpowiedzi przy formularzu: czeka na Twoją odpowiedź w punkcie 2.5. Do tego czasu jest neutralne „Odezwiemy się najszybciej jak to możliwe".
 - Angielska wersja formularza: teksty pól i komunikatów są po polsku, tak jak wcześniej na `/contact`. Do zrobienia razem z nowym hero (etap B) albo przy decyzji o EN.
 
-**Uwagi Michała po etapie A (2026-11-20), do rozstrzygnięcia przed etapem B**
-- [ ] Wyjście na resztę strony: Michał nie chce całkiem odcinać odwiedzającego. Propozycja Claude: nie przywracać menu w nagłówku, tylko dodać świadome, drugorzędne wyjścia otwierane w nowej karcie (link „Zobacz pełne portfolio" pod realizacjami, linki do Portfolio / Oferty / O nas w stopce), z pomiarem kliknięć. Formularz zostaje wtedy w otwartej karcie.
-- [ ] E-mail w nagłówku na desktopie obok numeru telefonu (dziś jest tylko telefon).
+**Uwagi Michała po etapie A (2026-11-20)** — rozstrzygnięte tego samego dnia
+- [x] Wyjście na resztę strony: bez menu w nagłówku; pod realizacjami link „Zobacz pełne portfolio", który otwiera `/work` w nowej karcie (zdarzenie `lp_portfolio_link_click`). Landing page z formularzem zostaje w otwartej karcie.
+- [x] Nagłówek: e-mail zamiast telefonu (decyzja Michała: ludzie piszą, prawie nikt nie dzwoni). Na desktopie adres tekstem, na telefonie ikona koperty.
 
-**Etap B: pierwszy ekran i dowód**
-- [ ] Nowy hero: nagłówek z usługą i miastem (wymaga tekstów reklamy), „Wybij się ponad szum" jako hasło nad nim, jedno zdanie zamiast 46-wyrazowego akapitu, jedna linijka dowodu, główny przycisk „Wyceń projekt" bezpośrednio pod nagłówkiem, „Play reel" jako cichy link. Na telefonie pełna szerokość zamiast prawej połowy ekranu.
-- [ ] Plakat hero z R2 (kadr z reela) jako pierwszy obraz; reel startuje po nim. Bez kompresji reela i bez usuwania wejścia z przenikaniem.
-- [ ] Pasek logo bezpośrednio pod hero. Nowe loga: **Tchibo (jako pierwsze), JHJ, Morris & Lloyd Broker**. Potrzebne pliki logo (najlepiej SVG albo PNG z przezroczystym tłem, w wersji na ciemne tło) wgrane na R2 oraz zgoda każdego z klientów na użycie logo.
-- [ ] Trzy statyczne opinie zamiast pięciu pełnoekranowych slajdów. Nowa opinia: **Morris & Lloyd Broker**, na podstawie maila z podziękowaniem od Anny Kłodzińskiej z 28.07.2026 (wątek „Morris LLoyd | Podziękowanie za wspólną realizację"). Najmocniejsze fragmenty: nagrano znacznie więcej materiałów, niż zakładano; ekipa szybko zrozumiała produkt; doradzała rozwiązania. Wymaga pisemnej zgody autorki na cytat z imieniem, nazwiskiem, stanowiskiem i firmą (mail ma stopkę o poufności) oraz jej stanowiska.
-- [ ] Przy okazji opinii: poprawić „Micheal" i zdecydować, co z opinią po angielsku.
-- [ ] Trzy proste kroki procesu z typowym czasem realizacji zamiast animowanych kart z fikcyjnym interfejsem.
-- [ ] Dane firmy w stopce LP (nazwa, NIP, adres).
+**Etap B: pierwszy ekran i dowód** — zrobione 2026-11-20, w tym samym PR co etap A (#13), czeka na wdrożenie
+- [x] Nowy hero: etykieta „Produkcja filmowa i wideo dla firm · Warszawa", hasło „Wybij się ponad szum", jedno-dwa zdania o studiu, linijka dowodu („Zaufali nam m.in.: Tchibo · PHH · Danone · CIONET"), główny przycisk „Wyceń projekt" od razu pod tekstem, „Play reel" jako cichy link. Na telefonie pełna szerokość; wszystko mieści się na pierwszym ekranie (390×664).
+- [x] Plakat pod reelem jako pierwszy obraz, reel przenika na niego po załadowaniu. Bez kompresji reela, wejście z przenikaniem zostaje. Plakat to istniejący kadr PHH (`videos/PHH.webp`).
+- [x] Pasek sześciu logo pod hero: Tchibo, PHH, Danone, CIONET, JHJ, Morris & Lloyd Broker. Te same trzy nowe loga doszły na `/work` i `/about`.
+- [x] Trzy statyczne opinie na LP zamiast pełnoekranowych slajdów. Opinie mają teraz jedno źródło: `lib/testimonials.ts` (używa go też `/about`).
+- [x] Miejsce na szkic opinii Morris & Lloyd z oznaczeniem „Szkic · czeka na zgodę autorki". Sam tekst szkicu nie jest w repozytorium (jest publiczne): siedzi w zmiennej `DRAFT_TESTIMONIALS` w pliku `.env.local`, opis w `lib/testimonials.ts`. Widać go tylko lokalnie i, po dodaniu zmiennej w Vercel dla środowiska Preview, na podglądach; w buildzie produkcyjnym nie ma go ani na stronie, ani w kodzie JS (sprawdzone). Na produkcji LP pokazuje CIONET, OmniOffice i PHH.
+- [x] Trzy kroki procesu (teksty z kart na `/about`, bez animowanego interfejsu).
+- [x] Dane firmy w stopce LP: nazwa z rejestru, adres studia, NIP.
+- [x] Lint i build przechodzą. Zmiany przeszły niezależny przegląd w czterech obszarach; potwierdzone uwagi poprawione: szkic opinii poza repozytorium, hero na telefonie trzymanym poziomo (przycisk „Wyceń projekt" znów na pierwszym ekranie), kontrast drobnego tekstu w stopce i przy opiniach.
+
+Do zrobienia przed wdrożeniem etapu B:
+- [ ] **[M]** Wgrać trzy pliki z `temp/logos/` na R2 do katalogu `logos/`: `tchibo.png`, `jhj.png`, `morris-lloyd.png`. Bez tego w ich miejscu będą puste obrazki (na LP, `/work` i `/about`).
+
+Otwarte po etapie B:
+- [ ] **[M]** Zgoda autorki opinii Morris & Lloyd na cytat (treść, imię i nazwisko, stanowisko, firma) i jej stanowisko. Po zgodzie: przenieść wpis z `.env.local` do zatwierdzonych w `lib/testimonials.ts`.
+- [ ] **[M]** Repozytorium na GitHubie jest publiczne. Wcześniejsza wersja tego pliku (commit `3e48154`) wymienia autorkę opinii z nazwiska; zostaje to w historii, dopóki repozytorium nie będzie prywatne albo historia gałęzi nie zostanie przepisana.
+- [ ] **[M]** Zgody klientów na loga: Michał świadomie pominął (Tchibo, JHJ, Morris & Lloyd); zdejmie logo, jeśli ktoś zgłosi zastrzeżenie.
+- [ ] **[M]** Typowe czasy realizacji do kroków procesu (dziś ich nie ma, żeby niczego nie zmyślać).
+- [ ] **[M]** Plakat hero: zostaje kadr PHH czy konkretna klatka reela? Klatkę trzeba wyeksportować i wgrać na R2 pod nową nazwą.
+- [ ] **[M]** Dolny pasek na telefonie nadal ma „Zadzwoń". Zostawić, czy też zamienić na e-mail?
+- [ ] **[M]** „Micheal MacDonald" w opinii BAKL: czy to literówka („Michael")? Nie zmienione bez potwierdzenia.
+- [ ] **[M]** Adres w stopce LP to studio w Podolszynie Nowym; polityka prywatności podaje adres rejestrowy w Kielcach. Potwierdzić, który ma być widoczny.
+- [ ] Angielska wersja formularza i komunikatów (nadal po polsku).
 
 **Etap C: oferta i obiekcje**
 - [ ] Rozwijane kafelki oferty: na desktopie kafelek rośnie w panel wielkości całej siatki, na telefonie rozwija się w miejscu. W panelu: trzy konkrety o formacie, 1–2 realizacje do odtworzenia, przycisk „Wyceń ten format", który przewija do formularza i wstępnie zaznacza usługę (nowe pole „usługa" w formularzu, API i mailu).
@@ -198,12 +213,12 @@ Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → ofe
 
 ### 2.5 Potrzebne od Michała
 
-- [ ] Teksty reklamy (nagłówki i opisy), patrz punkt 1.5.
+- [ ] Teksty reklamy z Google Ads (nagłówki i opisy), patrz punkt 1.5. Hero stoi bez nich; przydadzą się, żeby dopasować etykietę nad hasłem do tego, co obiecuje reklama.
 - [ ] Prawdziwe kwoty „od" dla 2–3 typowych projektów.
 - [ ] Realny czas odpowiedzi na zapytanie (np. „odpowiadamy w 24 godziny").
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
 - [ ] Decyzja: które usługi zostają na kafelkach.
-- [ ] Decyzja: która nazwa i adres firmy mają być widoczne.
+- [ ] Decyzja: która nazwa i adres firmy mają być widoczne (w stopce LP jest na razie nazwa z rejestru i adres studia).
 
 ---
 
@@ -231,6 +246,8 @@ Dziś 30 małych kadrów (6 kolumn × 5 rzędów) z mniejszych produkcji.
 ---
 
 ## 5. Później (niski priorytet)
+
+- [ ] Strona główna na telefonie trzymanym poziomo: reguły dopasowujące hero (stała `LANDSCAPE_MOBILE_HERO` w `components/animated-home-button.tsx` i `app/[locale]/HomeClient.tsx`) nie generują żadnego CSS. Na LP naprawione wariantem `landscape-phone:`; na stronie głównej do zrobienia tak samo, z obejrzeniem efektu, bo te reguły nigdy dotąd nie działały.
 
 - Ochrona formularzy przed spamem (limit zapytań lub honeypot). Wraca do gry, gdy reklamy zaczną działać.
 - Angielska wersja `/work` i LP (dziś treści tylko po polsku) albo rezygnacja z EN.

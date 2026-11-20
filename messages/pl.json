@@ -92,11 +92,8 @@
   },
   "lp": {
     "kampania": {
-      "label": "Produkcja Filmowa i Wideo Dla Biznesu",
-      "headline": "TWORZYMY WIDEO\nKTÓRE SPRZEDAJE",
-      "body": "Odrzucamy to, co zbędne, by skupić się na czystym, wizualnym storytellingu. Dzięki optymalizacji procesów dostarczamy jakość zarezerwowaną dotąd dla dużych domów produkcyjnych, zachowując zwinność i elastyczność. Tworzymy z myślą o Twoich celach marketingowych.",
-      "ctaPortfolio": "Portfolio",
-      "ctaQuote": "Darmowa Wycena",
+      "label": "Produkcja filmowa i wideo dla firm · Warszawa",
+      "body": "Nonoise Media to niezależne studio produkcji wideo z Warszawy. Tworzymy filmy korporacyjne, reklamowe i produktowe dla firm.",
       "portfolioLabel": "Realizacje",
       "portfolioTitle": "WYBRANE PROJEKTY",
       "portfolioCta": "Wyceń podobny projekt",
@@ -106,7 +103,33 @@
       "leadBody": "Napisz, czego potrzebujesz: jaki film, na kiedy i w jakim celu. Wrócimy z pytaniami albo ze wstępną wyceną.",
       "leadPrivacy": "Dane z formularza wykorzystujemy do odpowiedzi na Twoje zapytanie. Szczegóły:",
       "stickyCall": "Zadzwoń",
-      "stickyQuote": "Wyceń projekt"
+      "stickyQuote": "Wyceń projekt",
+      "proof": "Zaufali nam m.in.: Tchibo · PHH · Danone · CIONET",
+      "logosLabel": "Zaufali nam",
+      "moreWork": "Zobacz pełne portfolio",
+      "headerEmail": "Napisz e-mail",
+      "testimonialsLabel": "Referencje",
+      "testimonialsTitle": "CO MÓWIĄ KLIENCI",
+      "testimonialDraft": "Szkic · czeka na zgodę autorki",
+      "processLabel": "Jak pracujemy",
+      "processTitle": "PRZEKUWAMY WIZJĘ W REALNE WYNIKI",
+      "process": [
+        {
+          "step": "01 / Zrozumienie klienta",
+          "title": "Odkrywamy Twoje potrzeby",
+          "text": "Analizujemy Twoją markę, grupę docelową i cele, zanim zaplanujemy choćby jedną klatkę. Strategia zawsze na pierwszym miejscu."
+        },
+        {
+          "step": "02 / Produkcja od A do Z",
+          "title": "Kompletny pipeline produkcyjny",
+          "text": "Bezproblemowa realizacja od koncepcji kreatywnej, przez profesjonalną produkcję, aż po finalne dostarczenie materiałów."
+        },
+        {
+          "step": "03 / Strategiczna dystrybucja",
+          "title": "Media nastawione na konwersję",
+          "text": "Cyfrowe materiały, które zatrzymują scroll — zaprojektowane, by angażować, budować zaufanie i maksymalizować ROI z marketingu."
+        }
+      ]
     }
   },
   "privacy": {

@@ -93,8 +93,16 @@ const CONTENT_SECURITY_POLICY = [
   "form-action 'self'",
 ].join("; ")
 
+const SHOW_DRAFTS = process.env.NODE_ENV !== "production" || process.env.VERCEL_ENV === "preview"
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    // Unapproved testimonial drafts (see lib/testimonials.ts). Passed through
+    // only in local development and on Vercel previews; in a production build
+    // this is always "", so the bundler drops the draft branch entirely.
+    NEXT_PUBLIC_DRAFT_TESTIMONIALS: SHOW_DRAFTS ? (process.env.DRAFT_TESTIMONIALS ?? "") : "",
+  },
   images: {
     // Serve pre-generated WebP straight from R2; no Vercel image optimization.
     unoptimized: true,

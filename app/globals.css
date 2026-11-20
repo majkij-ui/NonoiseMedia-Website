@@ -11,6 +11,15 @@
   }
 }
 
+/* A phone held sideways: short and not wider than a tablet. Written as a named
+   variant because Tailwind only emits classes it finds as literal text; the
+   same media query spliced into class names from a JS constant produces no CSS. */
+@custom-variant landscape-phone {
+  @media (orientation: landscape) and (max-height: 500px) and (max-width: 1024px) {
+    @slot;
+  }
+}
+
 :root {
   --background: oklch(0.08 0 0);
   --foreground: oklch(0.98 0 0);

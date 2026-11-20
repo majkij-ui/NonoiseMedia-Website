@@ -16,10 +16,10 @@ const CONTACT_LINK_CLASS =
 function ContactLinks({ className }: { className: string }) {
   return (
     <div className={className}>
-      <PhoneNumber phoneNumber={CONTACT_PHONE} data-gaw-contact="phone-lp" className={CONTACT_LINK_CLASS} />
       <a href={`mailto:${CONTACT_EMAIL}`} data-gaw-contact="email-lp" className={CONTACT_LINK_CLASS}>
         {CONTACT_EMAIL}
       </a>
+      <PhoneNumber phoneNumber={CONTACT_PHONE} data-gaw-contact="phone-lp" className={CONTACT_LINK_CLASS} />
     </div>
   )
 }

@@ -23,9 +23,14 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
   | `lp_reel_click` | "Play reel" in the hero | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx) |
   | `lp_portfolio_cta_click` | "Wyceń podobny projekt" under the films | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
   | `lp_sticky_quote_click` | "Wyceń projekt" in the phone bottom bar | [`components/lp/lp-sticky-cta.tsx`](../components/lp/lp-sticky-cta.tsx) |
-  | `phone_click` | header call icon, bottom bar "Zadzwoń", number in the form section | `components/navigation.tsx`, `lp-sticky-cta.tsx`, `components/phone-number.tsx` |
+  | `lp_portfolio_link_click` | "Zobacz pełne portfolio" under the films (opens `/work` in a new tab) | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
+  | `phone_click` | bottom bar "Zadzwoń", number in the form section | `lp-sticky-cta.tsx`, `components/phone-number.tsx` |
 
   `lp_contact_click` no longer exists: the bottom strip that linked to `/contact` was replaced by the form.
+
+  The landing page header shows the e-mail address instead of the phone (owner's decision, 2026-11-20). The link carries `data-gaw-contact="email-header"`; it pushes no dataLayer event.
+
+  The portfolio link uses `target="_blank" rel="opener"` on purpose. Before ad consent the ad-click record lives in `sessionStorage`, which a new tab only inherits when it is opened with an opener; with the default `noopener` a visitor who went on to `/contact` from the portfolio would lose the `gclid`.
 
 ### Google Analytics vs Vercel Analytics
 

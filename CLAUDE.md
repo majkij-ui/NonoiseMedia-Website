@@ -47,6 +47,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | Video modal | `components/project-video-modal.tsx` |
 | About section components | `components/about/*` |
 | Trusted-by logos | `components/trusted-by-logos.tsx` |
+| Testimonials (shared by `/about` and the landing page). Drafts awaiting consent live in `DRAFT_TESTIMONIALS` in `.env.local`, never in the repo (it is public) and never in production | `lib/testimonials.ts` |
 | Pricing tiers | `components/offer/pricing-tiers.tsx` |
 | Contact form (shared by `/contact` and the landing page) | `components/lead-form.tsx` |
 | Contact details (phone, email) | `lib/contact-info.ts` |
@@ -69,7 +70,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | `/[locale]/offer` | Offer overview: nine service cards + pricing tiers |
 | `/[locale]/offer/[slug]` | Nine service landing pages (SSG, PL+EN). Data in `lib/services-content/*`, registry in `lib/service-pages.ts` |
 | `/[locale]/privacy` | Privacy policy |
-| `/[locale]/lp/kampania` | Paid ads landing page. **noindex**. Self-contained: its own contact form (`components/lp/lp-lead-section.tsx`), header without menu, every CTA scrolls to the form. Never add links out of it. Rebuild in progress — see `TODO.md` |
+| `/[locale]/lp/kampania` | Paid ads landing page. **noindex**. Self-contained: its own contact form (`components/lp/lp-lead-section.tsx`), header without menu (logo + e-mail), every CTA scrolls to the form. The only links out are the owner-approved "Zobacz pełne portfolio" (opens `/work` in a new tab) and the privacy policy — add no others. Rebuild in progress — see `TODO.md` |
 
 URLs: Polish is unprefixed (`/`, `/about`), English lives under `/en`. Legacy `/pl/*` 308-redirects to the unprefixed path. Canonical host is `https://www.nonoise.media`.
 

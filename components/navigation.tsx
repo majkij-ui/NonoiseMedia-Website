@@ -11,12 +11,10 @@ import dynamic from "next/dynamic"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { AnimatePresence, motion } from "framer-motion"
-import { Phone } from "lucide-react"
+import { Mail } from "lucide-react"
 import { Link, usePathname } from "@/i18n/navigation"
 import { LanguageSwitcher } from "@/components/language-switcher"
-import { PhoneNumber } from "@/components/phone-number"
-import { CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact-info"
-import { sendGTMEvent } from "@/lib/gtm"
+import { CONTACT_EMAIL } from "@/lib/contact-info"
 
 const NavigationMenuOverlay = dynamic(
   () =>
@@ -77,8 +75,9 @@ function useScrollCtaVisible() {
 type NavigationProps = {
   fixed?: boolean
   /**
-   * Landing-page header: logo and phone number only. No menu, no language
-   * switcher and no link home, so a paid visitor has nowhere to wander off to.
+   * Landing-page header: logo and email address only. No menu, no language
+   * switcher and no link home; the page offers its own deliberate way to the
+   * rest of the site (the portfolio link under the films).
    */
   minimal?: boolean
 }
@@ -135,18 +134,21 @@ function NavigationShell({
           />
           <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
         </div>
-        {/* Desktop shows the number (click copies it); a phone gets a tap-to-call icon. */}
-        <PhoneNumber
-          phoneNumber={CONTACT_PHONE}
-          className="hidden text-sm font-light tracking-[0.2em] text-foreground transition-opacity hover:opacity-70 md:block"
-        />
+        {/* Email, not phone: enquiries to this studio come by email. A phone gets an icon. */}
         <a
-          href={CONTACT_PHONE_HREF}
-          onClick={() => sendGTMEvent("phone_click")}
-          aria-label={`${tLp("stickyCall")}: ${CONTACT_PHONE}`}
+          href={`mailto:${CONTACT_EMAIL}`}
+          data-gaw-contact="email-header"
+          className="hidden text-sm font-light tracking-[0.2em] text-foreground transition-opacity hover:opacity-70 md:block"
+        >
+          {CONTACT_EMAIL}
+        </a>
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          data-gaw-contact="email-header"
+          aria-label={`${tLp("headerEmail")}: ${CONTACT_EMAIL}`}
           className="flex h-10 w-10 items-center justify-center text-foreground transition-opacity hover:opacity-70 md:hidden"
         >
-          <Phone size={18} strokeWidth={1.5} />
+          <Mail size={18} strokeWidth={1.5} />
         </a>
       </header>
     )

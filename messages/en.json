@@ -92,11 +92,8 @@
   },
   "lp": {
     "kampania": {
-      "label": "Film & Video Production for Business",
-      "headline": "VIDEO THAT\nCONVERTS",
-      "body": "We strip away the noise to focus on pure visual storytelling. Through streamlined production we deliver big-studio quality with boutique agility — built around your marketing goals.",
-      "ctaPortfolio": "Portfolio",
-      "ctaQuote": "Free quote",
+      "label": "Film and video production for business · Warsaw",
+      "body": "Nonoise Media is an independent video production studio from Warsaw. We make corporate, advertising and product films for companies.",
       "portfolioLabel": "Selected work",
       "portfolioTitle": "FEATURED PROJECTS",
       "portfolioCta": "Get a quote for a similar project",
@@ -106,7 +103,33 @@
       "leadBody": "Tell us what you need: what kind of film, by when and what for. We will come back with questions or a first estimate.",
       "leadPrivacy": "We use the form data to answer your enquiry. Details:",
       "stickyCall": "Call",
-      "stickyQuote": "Get a quote"
+      "stickyQuote": "Get a quote",
+      "proof": "Trusted by, among others: Tchibo · PHH · Danone · CIONET",
+      "logosLabel": "Trusted by",
+      "moreWork": "See the full portfolio",
+      "headerEmail": "Send an email",
+      "testimonialsLabel": "References",
+      "testimonialsTitle": "WHAT CLIENTS SAY",
+      "testimonialDraft": "Draft · awaiting the author's consent",
+      "processLabel": "How we work",
+      "processTitle": "TURNING VISION INTO REAL RESULTS",
+      "process": [
+        {
+          "step": "01 / Understanding the client",
+          "title": "We find out what you need",
+          "text": "We look at your brand, your audience and your goals before planning a single frame. Strategy always comes first."
+        },
+        {
+          "step": "02 / Production from A to Z",
+          "title": "A complete production pipeline",
+          "text": "A smooth run from the creative concept, through professional production, to the final delivery of the materials."
+        },
+        {
+          "step": "03 / Strategic distribution",
+          "title": "Media built to convert",
+          "text": "Digital materials that stop the scroll, designed to engage, build trust and get the most out of your marketing spend."
+        }
+      ]
     }
   },
   "privacy": {
