@@ -171,17 +171,28 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 - Obietnica czasu odpowiedzi przy formularzu: czeka na Twoją odpowiedź w punkcie 2.5. Do tego czasu jest neutralne „Odezwiemy się najszybciej jak to możliwe".
 - Angielska wersja formularza: teksty pól i komunikatów są po polsku, tak jak wcześniej na `/contact`. Do zrobienia razem z nowym hero (etap B) albo przy decyzji o EN.
 
+**Uwagi Michała po etapie A (2026-11-20), do rozstrzygnięcia przed etapem B**
+- [ ] Wyjście na resztę strony: Michał nie chce całkiem odcinać odwiedzającego. Propozycja Claude: nie przywracać menu w nagłówku, tylko dodać świadome, drugorzędne wyjścia otwierane w nowej karcie (link „Zobacz pełne portfolio" pod realizacjami, linki do Portfolio / Oferty / O nas w stopce), z pomiarem kliknięć. Formularz zostaje wtedy w otwartej karcie.
+- [ ] E-mail w nagłówku na desktopie obok numeru telefonu (dziś jest tylko telefon).
+
 **Etap B: pierwszy ekran i dowód**
-- [ ] Nowy hero: nagłówek z usługą i miastem, jedno zdanie, jedna linijka dowodu, główny przycisk pod nagłówkiem, „Play reel" jako cichy link. Na telefonie pełna szerokość.
-- [ ] Plakat hero z R2.
-- [ ] Pasek logo pod hero.
-- [ ] Trzy statyczne opinie.
-- [ ] Trzy kroki procesu zamiast animowanych kart.
+- [ ] Nowy hero: nagłówek z usługą i miastem (wymaga tekstów reklamy), „Wybij się ponad szum" jako hasło nad nim, jedno zdanie zamiast 46-wyrazowego akapitu, jedna linijka dowodu, główny przycisk „Wyceń projekt" bezpośrednio pod nagłówkiem, „Play reel" jako cichy link. Na telefonie pełna szerokość zamiast prawej połowy ekranu.
+- [ ] Plakat hero z R2 (kadr z reela) jako pierwszy obraz; reel startuje po nim. Bez kompresji reela i bez usuwania wejścia z przenikaniem.
+- [ ] Pasek logo bezpośrednio pod hero. Nowe loga: **Tchibo (jako pierwsze), JHJ, Morris & Lloyd Broker**. Potrzebne pliki logo (najlepiej SVG albo PNG z przezroczystym tłem, w wersji na ciemne tło) wgrane na R2 oraz zgoda każdego z klientów na użycie logo.
+- [ ] Trzy statyczne opinie zamiast pięciu pełnoekranowych slajdów. Nowa opinia: **Morris & Lloyd Broker**, na podstawie maila z podziękowaniem od Anny Kłodzińskiej z 28.07.2026 (wątek „Morris LLoyd | Podziękowanie za wspólną realizację"). Najmocniejsze fragmenty: nagrano znacznie więcej materiałów, niż zakładano; ekipa szybko zrozumiała produkt; doradzała rozwiązania. Wymaga pisemnej zgody autorki na cytat z imieniem, nazwiskiem, stanowiskiem i firmą (mail ma stopkę o poufności) oraz jej stanowiska.
+- [ ] Przy okazji opinii: poprawić „Micheal" i zdecydować, co z opinią po angielsku.
+- [ ] Trzy proste kroki procesu z typowym czasem realizacji zamiast animowanych kart z fikcyjnym interfejsem.
+- [ ] Dane firmy w stopce LP (nazwa, NIP, adres).
 
 **Etap C: oferta i obiekcje**
-- [ ] Rozwijane kafelki oferty z przykładami i przyciskiem „Wyceń ten format", który wstępnie zaznacza usługę w formularzu.
-- [ ] Scenariusze cenowe nad formularzem.
-- [ ] FAQ.
+- [ ] Rozwijane kafelki oferty: na desktopie kafelek rośnie w panel wielkości całej siatki, na telefonie rozwija się w miejscu. W panelu: trzy konkrety o formacie, 1–2 realizacje do odtworzenia, przycisk „Wyceń ten format", który przewija do formularza i wstępnie zaznacza usługę (nowe pole „usługa" w formularzu, API i mailu).
+- [ ] Przypisanie realizacji do usług w `lib/projects.ts`. Zależy od punktu 3 (JHJ, rolki): dziś LinkedIn, case study i wywiady nie mają przykładu, więc albo dochodzą nowe realizacje, albo zostaje 5–6 kafelków.
+- [ ] Scenariusze cenowe nad formularzem: 2–3 typowe projekty z kwotą „od" i tym, co wpływa na cenę. Dziś na stronie nie ma żadnej kwoty (spadek w ocenie z 3 do 0 punktów na 6).
+- [ ] FAQ: 4–6 pytań (proces, terminy, prawa do materiału, poprawki, budżet).
+- [ ] Obietnica czasu odpowiedzi przy formularzu.
+- [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po zmianach w hero.
+
+Ocena według tej samej punktacji (2026-11-20): przed zmianami 31,5–35/100, po etapie A 49,5–57/100. Etapy B i C celują w braki warte razem ok. 30 punktów.
 
 Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → oferta → opinie → proces → ceny → FAQ → formularz → stopka.
 
