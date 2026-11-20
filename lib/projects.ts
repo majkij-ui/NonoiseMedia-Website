@@ -156,9 +156,9 @@ export const projects: Project[] = [
 export type TrustedBrand = { id: number; name: string; src: string }
 
 /**
- * Client logos, in display order. The first six are the short strip under the
- * landing page hero (components/lp/lp-logo-strip.tsx), so keep the strongest
- * names at the top. Files live on R2 under /logos and are light-on-transparent.
+ * Client logos, in display order: the same strip on /work, /about and under the
+ * landing page hero, so keep the strongest names at the top. Files live on R2
+ * under /logos and are light-on-transparent.
  */
 export const trustedBy: TrustedBrand[] = [
   { id: 14, name: "Tchibo", src: "https://assets.nonoise.media/logos/tchibo.png" },

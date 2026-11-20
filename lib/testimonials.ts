@@ -68,7 +68,7 @@ const APPROVED_TESTIMONIALS: Testimonial[] = [
   {
     company: "BIG AIR KITE CENTER - BAKL",
     text: "Nonoise Media completely excels at capturing dynamic sports action in highly demanding outdoor conditions. Their technical excellence, creativity, and high professionalism significantly supported our marketing activities and social media campaigns. They are a truly reliable and highly creative business partner.",
-    author: "Micheal MacDonald",
+    author: "Michael MacDonald",
     role: "Founder",
     brand: "BAKL",
     lang: "en",

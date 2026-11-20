@@ -16,7 +16,7 @@ export default function AboutOldPage() {
     },
     {
       text: "Nasza branża wymagała pracy w trudnych warunkach plenerowych i uchwycenia dynamicznej akcji. Nonoise Media wykazało się najwyższym profesjonalizmem, kreatywnością i perfekcją techniczną.",
-      author: "Micheal MacDonald, Właściciel, Big Air Kite Center",
+      author: "Michael MacDonald, Właściciel, Big Air Kite Center",
     },
     {
       text: "Zrealizowali dla nas szereg spotów reklamowych oraz produkcji wizerunkowych. Wszystkie projekty zostały wykonane z najwyższą starannością, terminowo i wysoce profesjonalnie.",

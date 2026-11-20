@@ -30,13 +30,10 @@ type TrustedByLogosProps = {
   /** When false, only the logo row is rendered (e.g. below an existing “ZAUFALI NAM” heading). */
   withLabel?: boolean
   className?: string
-  /** Show only the first N logos (the landing page strip under the hero). */
-  limit?: number
 }
 
 /** Same logo strip pattern as the Work page trusted-by block. */
-export function TrustedByLogos({ withLabel = true, className = "", limit }: TrustedByLogosProps) {
-  const brands = limit ? trustedBy.slice(0, limit) : trustedBy
+export function TrustedByLogos({ withLabel = true, className = "" }: TrustedByLogosProps) {
 
   return (
     <motion.div
@@ -55,7 +52,7 @@ export function TrustedByLogos({ withLabel = true, className = "", limit }: Trus
         </motion.p>
       ) : null}
       <motion.div variants={staggerContainer} className="flex flex-wrap items-center gap-8 md:gap-12 lg:gap-16">
-        {brands.map((company) => (
+        {trustedBy.map((company) => (
           <motion.div key={company.id} variants={staggerItem} className="group cursor-default">
             <Image
               src={company.src}

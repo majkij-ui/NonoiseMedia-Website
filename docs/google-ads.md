@@ -24,11 +24,11 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
   | `lp_portfolio_cta_click` | "Wyceń podobny projekt" under the films | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
   | `lp_sticky_quote_click` | "Wyceń projekt" in the phone bottom bar | [`components/lp/lp-sticky-cta.tsx`](../components/lp/lp-sticky-cta.tsx) |
   | `lp_portfolio_link_click` | "Zobacz pełne portfolio" under the films (opens `/work` in a new tab) | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
-  | `phone_click` | bottom bar "Zadzwoń", number in the form section | `lp-sticky-cta.tsx`, `components/phone-number.tsx` |
+  | `phone_click` | number in the form section | `components/phone-number.tsx` |
 
   `lp_contact_click` no longer exists: the bottom strip that linked to `/contact` was replaced by the form.
 
-  The landing page header shows the e-mail address instead of the phone (owner's decision, 2026-11-20). The link carries `data-gaw-contact="email-header"`; it pushes no dataLayer event.
+  The landing page header and the phone bottom bar show e-mail instead of the phone (owner's decision, 2026-11-20: leads write, almost nobody calls). The links carry `data-gaw-contact="email-header"` and `data-gaw-contact="email-sticky"`; like every other `mailto:` link on the site they push no dataLayer event.
 
   The portfolio link uses `target="_blank" rel="opener"` on purpose. Before ad consent the ad-click record lives in `sessionStorage`, which a new tab only inherits when it is opened with an opener; with the default `noopener` a visitor who went on to `/contact` from the portfolio would lose the `gclid`.
 

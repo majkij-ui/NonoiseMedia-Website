@@ -51,6 +51,7 @@ Co jeszcze jest pewne:
 - [x] CookieYes usunięty z CSP i z kodu; stare cookie `cookieyes-consent` jest kasowane.
 - [x] Polityka prywatności: sekcja o cookies opisuje nowy baner (PL i EN). Wymaga przeglądu prawnika, jak cała polityka.
 - [x] Niepotrzebne cookie `NEXT_LOCALE` wyłączone.
+- [x] Poprawki po uwagach Michała (2026-11-20 wieczorem): opis w hero bez „z Warszawy" i bez drugiego „dla firm" (miasto i „dla firm" są już w etykiecie nad hasłem), pasek logo pokazuje wszystkich klientów zamiast sześciu, dolny pasek na telefonie ma „Napisz e-mail" zamiast „Zadzwoń", „Michael MacDonald" w opinii BAKL, w stopce zostaje adres studia w Podolszynie Nowym.
 - [x] Lint i build przechodzą. Zmiany przeszły niezależny przegląd w czterech obszarach; potwierdzone uwagi są poprawione.
 
 Znane ograniczenia:
@@ -162,7 +163,7 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 - [x] Formularz wydzielony z `/contact` do wspólnego komponentu `components/lead-form.tsx`. Lead ID, atrybucja, zgoda i zdarzenie `contact_form_success` bez zmian; zdarzenie niesie teraz `form_location`.
 - [x] Sekcja formularza na dole LP (`components/lp/lp-lead-section.tsx`): firma lub imię, e-mail (wymagany), telefon (opcjonalny), wiadomość. Obok numer telefonu i mail, pod spodem linijka o prywatności. Na telefonie formularz jest przed danymi kontaktowymi.
 - [x] Wszystkie przyciski na LP przewijają do formularza: „Wyceń projekt" w hero (teraz mierzony zdarzeniem `lp_quote_click`), „Wyceń podobny projekt" pod realizacjami, dolny pasek.
-- [x] Dolny pasek na telefonie („Zadzwoń" / „Wyceń projekt"). Schowany na pierwszym ekranie, przy formularzu, podczas odtwarzania reela i dopóki baner cookies czeka na odpowiedź.
+- [x] Dolny pasek na telefonie („Zadzwoń" / „Wyceń projekt"; od etapu B „Napisz e-mail" / „Wyceń projekt"). Schowany na pierwszym ekranie, przy formularzu, podczas odtwarzania reela i dopóki baner cookies czeka na odpowiedź.
 - [x] Usunięte z LP: progi cenowe, sekcja filozofii, link „Więcej w portfolio" (w etapie B wrócił jako „Zobacz pełne portfolio" w nowej karcie).
 - [x] Nagłówek LP bez menu i przełącznika języka: logo (nieklikalne) i kontakt (od etapu B e-mail zamiast telefonu).
 - [x] Tytuł karty: „Produkcja filmowa i wideo dla firm — wycena projektu" zamiast „Kampania".
@@ -178,7 +179,7 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 **Etap B: pierwszy ekran i dowód** — zrobione 2026-11-20, w tym samym PR co etap A (#13), czeka na wdrożenie
 - [x] Nowy hero: etykieta „Produkcja filmowa i wideo dla firm · Warszawa", hasło „Wybij się ponad szum", jedno-dwa zdania o studiu, linijka dowodu („Zaufali nam m.in.: Tchibo · PHH · Danone · CIONET"), główny przycisk „Wyceń projekt" od razu pod tekstem, „Play reel" jako cichy link. Na telefonie pełna szerokość; wszystko mieści się na pierwszym ekranie (390×664).
 - [x] Plakat pod reelem jako pierwszy obraz, reel przenika na niego po załadowaniu. Bez kompresji reela, wejście z przenikaniem zostaje. Plakat to istniejący kadr PHH (`videos/PHH.webp`).
-- [x] Pasek sześciu logo pod hero: Tchibo, PHH, Danone, CIONET, JHJ, Morris & Lloyd Broker. Te same trzy nowe loga doszły na `/work` i `/about`.
+- [x] Pasek logo pod hero (wszyscy klienci, Tchibo jako pierwsze). Trzy nowe loga — Tchibo, JHJ, Morris & Lloyd Broker — doszły też na `/work` i `/about`.
 - [x] Trzy statyczne opinie na LP zamiast pełnoekranowych slajdów. Opinie mają teraz jedno źródło: `lib/testimonials.ts` (używa go też `/about`).
 - [x] Miejsce na szkic opinii Morris & Lloyd z oznaczeniem „Szkic · czeka na zgodę autorki". Sam tekst szkicu nie jest w repozytorium (jest publiczne): siedzi w zmiennej `DRAFT_TESTIMONIALS` w pliku `.env.local`, opis w `lib/testimonials.ts`. Widać go tylko lokalnie i, po dodaniu zmiennej w Vercel dla środowiska Preview, na podglądach; w buildzie produkcyjnym nie ma go ani na stronie, ani w kodzie JS (sprawdzone). Na produkcji LP pokazuje CIONET, OmniOffice i PHH.
 - [x] Trzy kroki procesu (teksty z kart na `/about`, bez animowanego interfejsu).
@@ -189,14 +190,11 @@ Do zrobienia przed wdrożeniem etapu B:
 - [ ] **[M]** Wgrać trzy pliki z `temp/logos/` na R2 do katalogu `logos/`: `tchibo.png`, `jhj.png`, `morris-lloyd.png`. Bez tego w ich miejscu będą puste obrazki (na LP, `/work` i `/about`).
 
 Otwarte po etapie B:
-- [ ] **[M]** Zgoda autorki opinii Morris & Lloyd na cytat (treść, imię i nazwisko, stanowisko, firma) i jej stanowisko. Po zgodzie: przenieść wpis z `.env.local` do zatwierdzonych w `lib/testimonials.ts`.
+- [ ] **[M]** Zgoda autorki opinii Morris & Lloyd na cytat (treść, imię i nazwisko, stanowisko, firma) i jej stanowisko (w szkicu jest robocze „Marketing"). Po zgodzie: przenieść wpis z `.env.local` do zatwierdzonych w `lib/testimonials.ts`.
 - [ ] **[M]** Repozytorium na GitHubie jest publiczne. Wcześniejsza wersja tego pliku (commit `3e48154`) wymienia autorkę opinii z nazwiska; zostaje to w historii, dopóki repozytorium nie będzie prywatne albo historia gałęzi nie zostanie przepisana.
 - [ ] **[M]** Zgody klientów na loga: Michał świadomie pominął (Tchibo, JHJ, Morris & Lloyd); zdejmie logo, jeśli ktoś zgłosi zastrzeżenie.
-- [ ] **[M]** Typowe czasy realizacji do kroków procesu (dziś ich nie ma, żeby niczego nie zmyślać).
+- [ ] **[M]** Typowe czasy do kroków procesu. Potrzebne trzy liczby: (1) ile trwa od pierwszego kontaktu do wyceny i ustalonego planu, (2) ile zwykle trwają zdjęcia, (3) ile od zdjęć do pierwszej wersji montażu i ile rund poprawek jest w cenie. Wystarczą widełki dla typowego projektu.
 - [ ] **[M]** Plakat hero: zostaje kadr PHH czy konkretna klatka reela? Klatkę trzeba wyeksportować i wgrać na R2 pod nową nazwą.
-- [ ] **[M]** Dolny pasek na telefonie nadal ma „Zadzwoń". Zostawić, czy też zamienić na e-mail?
-- [ ] **[M]** „Micheal MacDonald" w opinii BAKL: czy to literówka („Michael")? Nie zmienione bez potwierdzenia.
-- [ ] **[M]** Adres w stopce LP to studio w Podolszynie Nowym; polityka prywatności podaje adres rejestrowy w Kielcach. Potwierdzić, który ma być widoczny.
 - [ ] Angielska wersja formularza i komunikatów (nadal po polsku).
 
 **Etap C: oferta i obiekcje**

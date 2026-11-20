@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useState, useSyncExternalStore } from "react"
-import { Phone } from "lucide-react"
+import { Mail } from "lucide-react"
 import { useTranslations } from "next-intl"
-import { CONTACT_PHONE, CONTACT_PHONE_HREF } from "@/lib/contact-info"
+import { CONTACT_EMAIL } from "@/lib/contact-info"
 import { readConsentRaw, subscribeConsent } from "@/lib/consent"
 import { sendGTMEvent } from "@/lib/gtm"
 import { LEAD_SECTION_ID, scrollToLead } from "@/components/lp/scroll-to-lead"
@@ -12,8 +12,9 @@ const NOT_MOUNTED = "ssr"
 const getServerSnapshot = () => NOT_MOUNTED
 
 /**
- * Phone-only bar that keeps "call" and "get a quote" one tap away for the
- * whole scroll.
+ * Phone-only bar that keeps "write to us" and "get a quote" one tap away for
+ * the whole scroll. E-mail, not a call: the owner's leads come by e-mail and
+ * almost nobody phones.
  *
  * It stays out of the way whenever something else needs the bottom of the
  * screen: on the first screen (the hero has its own button), while the form
@@ -52,13 +53,13 @@ export function LpStickyCta({ hidden = false }: { hidden?: boolean }) {
   return (
     <div className="fixed inset-x-0 bottom-[var(--consent-offset,0px)] z-50 grid grid-cols-2 gap-2 border-t border-white/20 bg-background/95 px-4 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 backdrop-blur-sm md:hidden">
       <a
-        href={CONTACT_PHONE_HREF}
-        onClick={() => sendGTMEvent("phone_click")}
-        aria-label={`${t("stickyCall")}: ${CONTACT_PHONE}`}
+        href={`mailto:${CONTACT_EMAIL}`}
+        data-gaw-contact="email-sticky"
+        aria-label={`${t("stickyEmail")}: ${CONTACT_EMAIL}`}
         className="flex h-11 items-center justify-center gap-2 border border-white/40 font-mono text-[11px] uppercase tracking-[0.18em] text-foreground"
       >
-        <Phone size={15} strokeWidth={1.5} />
-        {t("stickyCall")}
+        <Mail size={15} strokeWidth={1.5} />
+        {t("stickyEmail")}
       </a>
       <button
         type="button"
