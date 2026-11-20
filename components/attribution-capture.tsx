@@ -2,22 +2,7 @@
 
 import { useEffect } from "react"
 import { applyAdStorageConsent, captureAttribution } from "@/lib/attribution"
-import { getAdStorageConsent, type ConsentValue } from "@/lib/consent"
-
-/** CookieYes fires this on `document` when the visitor accepts or rejects. */
-const CONSENT_UPDATE_EVENT = "cookieyes_consent_update"
-
-/**
- * Reads the advertisement decision from the event payload
- * (`detail.accepted` / `detail.rejected`, per CookieYes docs), falling back to
- * the cookie and Consent Mode state when the payload has no answer.
- */
-function adConsentFrom(event: Event): ConsentValue {
-  const detail = (event as CustomEvent<{ accepted?: unknown; rejected?: unknown }>).detail
-  if (Array.isArray(detail?.accepted) && detail.accepted.includes("advertisement")) return "granted"
-  if (Array.isArray(detail?.rejected) && detail.rejected.includes("advertisement")) return "denied"
-  return getAdStorageConsent()
-}
+import { CONSENT_EVENT, getAdStorageConsent, type ConsentChoice } from "@/lib/consent"
 
 /**
  * Stores gclid / utm parameters on the landing hit so a form submitted later
@@ -31,9 +16,16 @@ export function AttributionCapture() {
   useEffect(() => {
     captureAttribution()
 
-    const onConsentUpdate = (event: Event) => applyAdStorageConsent(adConsentFrom(event))
-    document.addEventListener(CONSENT_UPDATE_EVENT, onConsentUpdate)
-    return () => document.removeEventListener(CONSENT_UPDATE_EVENT, onConsentUpdate)
+    const onConsent = (event: Event) => {
+      const detail = (event as CustomEvent<ConsentChoice | undefined>).detail
+      if (typeof detail?.ads === "boolean") {
+        applyAdStorageConsent(detail.ads ? "granted" : "denied")
+        return
+      }
+      applyAdStorageConsent(getAdStorageConsent())
+    }
+    document.addEventListener(CONSENT_EVENT, onConsent)
+    return () => document.removeEventListener(CONSENT_EVENT, onConsent)
   }, [])
 
   return null

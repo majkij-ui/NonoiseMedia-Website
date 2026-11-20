@@ -121,7 +121,7 @@ function row(label: string, value: string): string {
 /**
  * The "Źródło" block appended to every lead email. These are the fields the
  * lead app copies into a record and exports to Google Ads — see
- * google-ads.md for the field contract.
+ * docs/google-ads.md for the field contract.
  */
 export function renderLeadSourceHtml(source: SanitizedLeadSource): string {
   const rows = [

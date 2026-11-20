@@ -145,7 +145,7 @@ function NavigationShell({
       </AnimatePresence>
 
       {showCta && ctaVisible && (
-        <div className="pointer-events-none fixed inset-x-0 bottom-8 z-50 flex justify-center px-3 md:hidden">
+        <div className="pointer-events-none fixed inset-x-0 bottom-[calc(2rem+var(--consent-offset,0px))] z-50 flex justify-center px-3 md:hidden">
           <div className="pointer-events-auto w-max shrink-0">
             <HeaderCtaButton />
           </div>

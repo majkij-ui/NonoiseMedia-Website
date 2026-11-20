@@ -5,6 +5,7 @@ import { hasLocale } from "next-intl"
 import { routing } from "@/i18n/routing"
 import { buildAlternates } from "@/lib/seo"
 import { Navigation } from "@/components/navigation"
+import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 export async function generateMetadata({
   params,
@@ -49,6 +50,9 @@ export default async function QuestionnairePage({ params }: PageProps) {
     <main className="relative min-h-screen w-full bg-background text-foreground">
       <Navigation fixed />
       <QuestionnaireForm questionnaire={questionnaire} />
+      <footer className="flex flex-wrap items-center justify-end gap-x-6 gap-y-2 border-t border-white/10 px-6 py-6 text-xs tracking-widest text-muted-foreground md:px-12">
+        <FooterLegalLinks />
+      </footer>
     </main>
   )
 }

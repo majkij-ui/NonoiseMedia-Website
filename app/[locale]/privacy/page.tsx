@@ -7,7 +7,7 @@ import { FooterLegalLinks } from "@/components/footer-legal-links"
 /*
  * DRAFT FOR LEGAL REVIEW. The copy in messages/{pl,en}.json under `privacy`
  * is an honest description of what the code does today (lib/attribution.ts,
- * lib/consent.ts, lib/lead-source.ts, google-ads.md), not an approved legal
+ * lib/consent.ts, lib/lead-source.ts, docs/google-ads.md), not an approved legal
  * document. A lawyer must review it before it is treated as final.
  *
  * The copy lives only in server-rendered output: app/[locale]/layout.tsx keeps
@@ -110,7 +110,7 @@ export default async function PrivacyPage({
 
               <Paragraphs items={section.after} />
 
-              {/* The cookie list lives in the CookieYes panel ("Dostosuj"), kept current by its scans. */}
+              {/* Reopens our own banner (components/cookie-consent.tsx) in settings mode. */}
               {section.id === "cookies" ? (
                 <CookieSettingsLink className="font-mono text-xs uppercase tracking-[0.2em] text-foreground underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-foreground" />
               ) : null}
