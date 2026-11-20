@@ -186,8 +186,7 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 - [x] Dane firmy w stopce LP: nazwa z rejestru, adres studia, NIP.
 - [x] Lint i build przechodzą. Zmiany przeszły niezależny przegląd w czterech obszarach; potwierdzone uwagi poprawione: szkic opinii poza repozytorium, hero na telefonie trzymanym poziomo (przycisk „Wyceń projekt" znów na pierwszym ekranie), kontrast drobnego tekstu w stopce i przy opiniach.
 
-Do zrobienia przed wdrożeniem etapu B:
-- [ ] **[M]** Wgrać trzy pliki z `temp/logos/` na R2 do katalogu `logos/`: `tchibo.png`, `jhj.png`, `morris-lloyd.png`. Bez tego w ich miejscu będą puste obrazki (na LP, `/work` i `/about`).
+- [x] Trzy nowe loga wgrane na R2 (2026-11-20, przez panel Cloudflare): `logos/tchibo-logo.png`, `logos/jhj-logo.png`, `logos/morris-lloyd-logo.png`. Sprawdzone pod adresem CDN: odpowiedź 200, pliki identyczne z lokalnymi. Nazwy z końcówką `-logo`, bo adresy bez niej zostały zapytane, zanim pliki istniały, i CDN zapamiętał dla nich „404" na rok. W buckecie leżą też nieużywane kopie pod starymi nazwami (`tchibo.png`, `jhj.png`, `morris-lloyd.png`); można je usunąć.
 
 Otwarte po etapie B:
 - [ ] **[M]** Zgoda autorki opinii Morris & Lloyd na cytat (treść, imię i nazwisko, stanowisko, firma) i jej stanowisko (w szkicu jest robocze „Marketing"). Po zgodzie: przenieść wpis z `.env.local` do zatwierdzonych w `lib/testimonials.ts`.

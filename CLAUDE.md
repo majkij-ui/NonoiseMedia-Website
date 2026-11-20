@@ -95,6 +95,7 @@ URLs: Polish is unprefixed (`/`, `/about`), English lives under `/en`. Legacy `/
 - **The reel is never re-encoded or compressed.** Image quality is the product. Fix delivery, not pixels.
 - **The reel stays `preload="auto"`.** `preload="none"` was tried and rejected.
 - **Changed media gets a new filename.** Assets are cached for one year in browsers; a file replaced at the same URL strands returning visitors on the old copy.
+- **A missing file is cached for a year too.** The CDN and browsers keep the 404 for a URL that was requested before the file existed. Upload first, then reference; if a URL was already requested while empty, upload under a different name (this is why the logos are `tchibo-logo.png`, not `tchibo.png`).
 - **Check caching with GET, not HEAD:** `curl -s -o /dev/null -D - <url>`. `curl -I` always reports `DYNAMIC`.
 - **The cookie banner is ours and stays small.** CookieYes was removed on 2026-11-20 because it covered the phone screen and the contact form. Do not bring back a third-party consent tool, a modal, or an overlay. Anything fixed to the bottom of the screen must respect `--consent-offset`.
 - **Lead events fire only after the API returns 200** (`contact_form_success`, `questionnaire_success`). Never move them to a click.

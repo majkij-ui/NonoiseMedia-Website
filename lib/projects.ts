@@ -161,12 +161,12 @@ export type TrustedBrand = { id: number; name: string; src: string }
  * under /logos and are light-on-transparent.
  */
 export const trustedBy: TrustedBrand[] = [
-  { id: 14, name: "Tchibo", src: "https://assets.nonoise.media/logos/tchibo.png" },
+  { id: 14, name: "Tchibo", src: "https://assets.nonoise.media/logos/tchibo-logo.png" },
   { id: 1, name: "PHH", src: "https://assets.nonoise.media/logos/phhlogo.png" },
   { id: 2, name: "Danone", src: "https://assets.nonoise.media/logos/danone.png" },
   { id: 3, name: "CIONET", src: "https://assets.nonoise.media/logos/CIONET.png" },
-  { id: 15, name: "JHJ", src: "https://assets.nonoise.media/logos/jhj.png" },
-  { id: 16, name: "Morris & Lloyd", src: "https://assets.nonoise.media/logos/morris-lloyd.png" },
+  { id: 15, name: "JHJ", src: "https://assets.nonoise.media/logos/jhj-logo.png" },
+  { id: 16, name: "Morris & Lloyd", src: "https://assets.nonoise.media/logos/morris-lloyd-logo.png" },
   { id: 4, name: "Rondo", src: "https://assets.nonoise.media/logos/Rondo%2520Logo.png" },
   { id: 5, name: "FIRE", src: "https://assets.nonoise.media/logos/fire.png" },
   { id: 6, name: "North", src: "https://assets.nonoise.media/logos/north.png" },
