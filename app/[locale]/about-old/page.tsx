@@ -4,6 +4,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 export default function AboutOldPage() {
   const gridImages = Array.from({ length: 30 }, (_, i) => `https://assets.nonoise.media/about/collage${i + 1}.webp`)
@@ -252,7 +253,8 @@ export default function AboutOldPage() {
       </section>
 
       {/* Footer */}
-      <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+      <footer className="flex flex-wrap items-center justify-end gap-x-6 gap-y-2 px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
+        <FooterLegalLinks />
         <span>© 2026 NONOISE MEDIA</span>
       </footer>
     </main>

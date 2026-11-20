@@ -66,7 +66,7 @@ export function HomeReelPlayingUI({
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ delay: 0.3 }}
-        className="pointer-events-auto fixed bottom-8 left-1/2 z-20 flex -translate-x-1/2 items-center gap-6"
+        className="pointer-events-auto fixed bottom-[calc(2rem+var(--consent-offset,0px))] left-1/2 z-20 flex -translate-x-1/2 items-center gap-6"
       >
         <button
           type="button"

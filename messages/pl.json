@@ -70,6 +70,26 @@
     "privacy": "Polityka prywatności",
     "cookieSettings": "Ustawienia cookies"
   },
+  "consent": {
+    "ariaLabel": "Zgoda na pliki cookies",
+    "text": "Używamy cookies do analityki i pomiaru reklam.",
+    "policy": "Polityka prywatności",
+    "policyShort": "Polityka",
+    "settings": "Ustawienia",
+    "accept": "Akceptuj",
+    "reject": "Odrzuć",
+    "settingsTitle": "Ustawienia cookies",
+    "necessary": "Niezbędne",
+    "necessaryDesc": "Zapamiętują Twój wybór w tym banerze. Bez nich strona nie wie, o co już pytała.",
+    "alwaysOn": "Zawsze włączone",
+    "analytics": "Analityczne",
+    "analyticsDesc": "Google Analytics: jak odwiedzający korzystają ze strony.",
+    "ads": "Reklamowe",
+    "adsDesc": "Google Ads: pomiar skuteczności reklam i zapamiętanie kliknięcia reklamy na 90 dni.",
+    "save": "Zapisz wybór",
+    "acceptAll": "Akceptuj wszystkie",
+    "close": "Zamknij bez zmian"
+  },
   "lp": {
     "kampania": {
       "label": "Produkcja Filmowa i Wideo Dla Biznesu",
@@ -92,7 +112,7 @@
     },
     "label": "Informacje prawne",
     "title": "Polityka prywatności",
-    "updated": "Wersja z 1 listopada 2026",
+    "updated": "Wersja z 20 listopada 2026",
     "intro": "Ten dokument wyjaśnia, jakie dane osobowe zbieramy, gdy korzystasz ze strony nonoise.media, w jakim celu to robimy, komu je powierzamy i jakie przysługują Ci prawa.",
     "sections": [
       {
@@ -122,7 +142,7 @@
         "title": "Reklamy Google i pomiar konwersji",
         "paragraphs": [
           "Prowadzimy kampanie w Google Ads. Jeśli trafiasz na stronę z reklamy, jej adres zawiera identyfikator kliknięcia (gclid, gbraid lub wbraid) i parametry kampanii (utm_source, utm_medium, utm_campaign, utm_term).",
-          "Strona zapisuje te wartości, razem z czasem kliknięcia i adresem strony wejścia, w pamięci Twojej przeglądarki (localStorage) na 90 dni. Jeśli nie zgodzisz się na pliki cookies reklamowe, zapis trafia tylko do pamięci sesji (sessionStorage) i znika po zamknięciu karty przeglądarki.",
+          "Strona zapisuje te wartości, razem z czasem kliknięcia i adresem strony wejścia, w pamięci sesji Twojej przeglądarki (sessionStorage), skąd znikają po zamknięciu karty. Dopiero gdy zgodzisz się na pliki cookies reklamowe, zapis trafia do pamięci trwałej (localStorage) na 90 dni od kliknięcia reklamy.",
           "Gdy wysyłasz formularz kontaktowy lub kwestionariusz, te informacje trafiają razem ze zgłoszeniem do naszej skrzynki e-mail. Dzięki temu wiemy, która reklama przyniosła zapytanie, i możemy później przekazać do Google Ads informację o zapytaniach, które zakończyły się współpracą. Przekazujemy wtedy identyfikator kliknięcia, a gdy go brak, zahaszowany adres e-mail lub numer telefonu.",
           "Przy wysłaniu formularza przekazujemy też do Google Ads Twój adres e-mail albo numer telefonu w ramach konwersji rozszerzonych (enhanced conversions). Tag Google haszuje te dane algorytmem SHA-256 w Twojej przeglądarce, zanim zostaną wysłane, więc Google otrzymuje skrót, a nie dane w postaci jawnej. Google używa go do powiązania zgłoszenia z kliknięciem reklamy.",
           "Tagi Google uruchamiamy przez Google Tag Manager, w zakresie, na który pozwalają Twoje ustawienia cookies."
@@ -208,8 +228,19 @@
         "id": "cookies",
         "title": "Pliki cookies",
         "paragraphs": [
-          "Strona korzysta z plików cookies i podobnych technologii (localStorage, sessionStorage). Te niezbędne do działania strony są używane zawsze, a analityczne i reklamowe dopiero po wyrażeniu zgody w banerze cookies.",
-          "Szczegółowy wykaz plików cookies, ich dostawców i okresów przechowywania znajdziesz po kliknięciu „Ustawienia cookies” w stopce strony. Tam też możesz w każdej chwili zmienić lub wycofać zgodę."
+          "Strona korzysta z plików cookies i podobnych technologii (localStorage, sessionStorage). Te niezbędne do działania strony są używane zawsze, a analityczne i reklamowe dopiero po wyrażeniu zgody w banerze cookies. Baner jest naszym własnym narzędziem: Twój wybór zapisujemy w Twojej przeglądarce i przekazujemy tagom Google jako stan zgody.",
+          "Używamy między innymi następujących plików cookies i zapisów w przeglądarce:"
+        ],
+        "items": [
+          "Niezbędne: nnm_consent (nasz plik cookie, do 6 miesięcy) zapamiętuje Twój wybór w banerze.",
+          "Bez zgody na cookies reklamowe: nnm_attr_v1 w pamięci sesji (sessionStorage) przechowuje źródło wizyty tylko do zamknięcia karty przeglądarki.",
+          "Analityczne, po zgodzie: _ga oraz _ga_<identyfikator> (Google Analytics, do 2 lat).",
+          "Reklamowe, po zgodzie: pliki Google Ads o nazwach zaczynających się od _gcl_ i _gac_ (do 90 dni) oraz nnm_attr_v1 w localStorage (źródło wizyty, 90 dni od kliknięcia reklamy)."
+        ],
+        "after": [
+          "Po zgodzie na cookies reklamowe Google może też zapisywać własne pliki cookies w domenie doubleclick.net (do 13 miesięcy). Aktualną listę plików cookies Google znajdziesz na stronie business.safety.google/adscookies. Zgoda dotyczy pomiaru skuteczności reklam: nie przekazujemy do Google zgody na personalizację reklam.",
+          "Bez Twojej zgody tagi Google nie zapisują ani nie odczytują plików cookies. Mogą natomiast wysyłać do Google sygnały bez plików cookies i bez identyfikatorów reklamowych, na przykład informację o odsłonie strony i stanie zgody, zgodnie z trybem uzyskiwania zgody Google (Consent Mode).",
+          "Zgodę możesz w każdej chwili zmienić lub wycofać, klikając „Ustawienia cookies” poniżej albo w stopce strony. Po wycofaniu zgody usuwamy pliki cookies Google zapisane w naszej domenie. Plików zapisanych przez Google w domenie doubleclick.net nasza strona nie może usunąć; zrobisz to w ustawieniach przeglądarki."
         ]
       },
       {

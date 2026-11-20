@@ -9,4 +9,7 @@ export const routing = defineRouting({
   // crawlers alike (Googlebot sends English headers and would otherwise
   // get bounced to /en). EN is reachable via the language switcher.
   localeDetection: false,
+  // With detection off the NEXT_LOCALE cookie is never read, so do not set it:
+  // every cookie we set has to be listed in the privacy policy.
+  localeCookie: false,
 })

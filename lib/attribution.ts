@@ -132,9 +132,8 @@ export function captureAttribution(): Attribution | null {
   }
 
   // Only granted ad_storage may keep the record past the session. On a first
-  // visit CookieYes loads after this runs (GTM is deferred), so "unknown" means
-  // the visitor has not decided yet; applyAdStorageConsent() persists the
-  // record once they accept.
+  // visit nobody has decided yet ("unknown"); applyAdStorageConsent() persists
+  // the record once they accept in the cookie banner.
   const persist = getAdStorageConsent() === "granted"
   write({ data: next, expiresAt: persist ? Date.now() + TTL_MS : undefined }, persist)
 

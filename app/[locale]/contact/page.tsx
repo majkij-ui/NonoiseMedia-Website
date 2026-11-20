@@ -110,7 +110,7 @@ export default function ContactPage() {
   )
 
   return (
-    <main className="flex min-h-dvh w-full flex-col bg-background text-foreground md:h-dvh md:overflow-hidden">
+    <main className="flex min-h-dvh w-full flex-col bg-background text-foreground md-tall:h-[calc(100dvh-var(--consent-offset,0px))] md-tall:min-h-0 md-tall:overflow-hidden">
       <Navigation fixed />
 
       {/* Hero — brutalist header */}

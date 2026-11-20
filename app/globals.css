@@ -2,6 +2,15 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Desktop layouts that lock themselves to one viewport (the contact page) may
+   only do so when the window is tall enough to show everything, including the
+   cookie bar. Below this height they scroll like any other page. */
+@custom-variant md-tall {
+  @media (min-width: 48rem) and (min-height: 49rem) {
+    @slot;
+  }
+}
+
 :root {
   --background: oklch(0.08 0 0);
   --foreground: oklch(0.98 0 0);
@@ -85,8 +94,15 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Keyboard focus and anchor jumps stop above the cookie bar, not under it. */
+    scroll-padding-bottom: var(--consent-offset, 0px);
+  }
   body {
     @apply bg-background text-foreground;
+    /* While the cookie banner is open it reserves its own height, so the last
+       thing on any page (a CTA, a submit button) can scroll clear of it. */
+    padding-bottom: var(--consent-offset, 0px);
   }
 }
 

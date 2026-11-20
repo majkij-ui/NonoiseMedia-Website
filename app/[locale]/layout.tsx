@@ -6,7 +6,9 @@ import { hasLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { AttributionCapture } from '@/components/attribution-capture'
+import { CookieConsent } from '@/components/cookie-consent'
 import { DeferredThirdParties } from '@/components/deferred-third-parties'
+import { CONSENT_BOOTSTRAP_SCRIPT } from '@/lib/consent'
 import { SAME_AS } from '@/lib/structured-data'
 import { OG_IMAGE } from '@/lib/seo'
 import { cn } from '@/lib/utils'
@@ -97,8 +99,11 @@ export default async function LocaleLayout({
       className={cn(geistSans.variable, geistMono.variable, bebasNeue.variable)}
     >
       <body className="font-sans antialiased">
+        {/* Consent Mode defaults. Must stay first: it has to be in the dataLayer before GTM loads. */}
+        <script dangerouslySetInnerHTML={{ __html: CONSENT_BOOTSTRAP_SCRIPT }} />
         <NextIntlClientProvider messages={clientMessages}>
           {children}
+          <CookieConsent />
         </NextIntlClientProvider>
         <AttributionCapture />
         <DeferredThirdParties gtmId={gtmId} />
