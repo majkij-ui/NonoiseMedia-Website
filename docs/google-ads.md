@@ -153,6 +153,13 @@ rows matched on a hashed email or phone.
 
 #### Required GTM changes (manual, container `GTM-PQ7D5LSC`)
 
+> **Done on 2026-11-20, container version 16** ("Own cookie banner: CookieYes paused,
+> advanced consent mode"): the CookieYes CMP tag is paused and the seven Google tags are set
+> to *No additional consent required* (advanced consent mode). Verified on the live site:
+> `gcs=G100` pings and no Google cookies before a choice; `gcs=G111`, `_ga`, `_gcl_au` and
+> `_gcl_aw` right after Accept, on the same page. The steps below stay as the reference for
+> why the container is set up this way and what to redo if it is ever rebuilt.
+
 Do these right after the site deploy that ships the banner, never before it
 (the old site has no consent defaults of its own).
 

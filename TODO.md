@@ -61,12 +61,13 @@ Znane ograniczenia:
 ### 1.3 Wdrożenie — w tej kolejności
 
 - [x] **[C]** Commit, PR #12, wdrożenie na produkcję: 2026-11-20 ok. 18:25. Sprawdzone na żywej stronie: pasek 78 px w szerokości telefonu, przycisk „Wyślij wiadomość" wolny, baner CookieYes się nie pojawia, `/api/consent` ustawia cookie na 180 dni.
-- [ ] **[M]** Teraz, w GTM (kontener `GTM-PQ7D5LSC`). Do czasu tych zmian pomiar w Ads i GA4 pozostaje ślepy, tak jak przed wdrożeniem; formularz i maile działają niezależnie od tego.
-  1. Usuń albo wstrzymaj tag „CookieYes CMP". Jego kod w GTM nadal resetuje ustawienia zgody przy każdym załadowaniu strony, mimo że sam skrypt banera jest już zablokowany.
-  2. W tagach „Google Tag", GA4, „Conversion Linker" i czterech tagach konwersji: Ustawienia zaawansowane → Ustawienia zgody → „Nie jest wymagana dodatkowa zgoda". To tryb zaawansowany: tagi ładują się zawsze, bez zgody nie zapisują cookies, a po „Akceptuj" od razu mierzą normalnie. Alternatywa (tryb podstawowy): zostaw wymóg zgody i dodaj tym tagom wyzwalacz na zdarzenie niestandardowe `nnm_consent_update`.
-  3. Opublikuj kontener.
-  4. Szczegóły i uzasadnienie: `docs/google-ads.md`, sekcja „Required GTM changes".
-- [ ] **[M]** Test po publikacji: telefon, zwykłe okno, `www.nonoise.media/lp/kampania`. Baner mały, formularz na `/contact` wysyła się bez klikania banera. W Tag Assistant: po „Akceptuj" tag Google, GA4 i Conversion Linker odpalają się na tej samej stronie.
+- [x] **[C]** GTM, kontener `GTM-PQ7D5LSC`, wersja 16 opublikowana 2026-11-20 o 18:37 (na prośbę Michała, przez jego przeglądarkę):
+  1. Tag „CookieYes CMP" wstrzymany (nie usunięty, da się go przywrócić).
+  2. „Google Tag", „Google Anal" (GA4), „Conversion Linker" oraz cztery tagi konwersji („Send a Message", „Click send Questionnaire", „Click on email", „Click on Phone"): dodatkowa zgoda zmieniona z „wymagana" na „nie jest wymagana" (tryb zaawansowany). Tag „Page View Trigger" zostaje wstrzymany, bez zmian.
+- [x] **[C]** Sprawdzone na żywej stronie po publikacji, w szerokości telefonu:
+  - przed wyborem w banerze tagi Google ładują się i wysyłają sygnały bez cookies (`gcs=G100`), żadne cookie Google nie jest zapisane, CookieYes nie wysyła niczego;
+  - po „Akceptuj", na tej samej stronie i bez przeładowania: sygnały ze zgodą (`gcs=G111`), zapisane `_ga`, `_ga_JHHX635GZP`, `_gcl_au` i `_gcl_aw` (kliknięcie reklamy zapamiętane przez Conversion Linker).
+- [ ] **[M]** Własny test na telefonie: zwykłe okno, `www.nonoise.media/lp/kampania`, wysłanie wiadomości testowej bez klikania banera. Tego nie dało się sprawdzić zdalnie.
 - [ ] **[M]** Przed zamknięciem konta CookieYes wyeksportuj z panelu log zgód za 2–20.11 (dowód zgód z tego okresu).
 
 ### 1.4 Jak sprawdzimy, czy pomogło
