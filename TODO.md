@@ -216,7 +216,19 @@ Otwarte po etapie B:
 - [ ] Reklama AI do kafelka „Wideo AI", gdy będzie gotowa.
 - [ ] **[M]** Dwie rolki (`morris-lloyd-rolka1B.mp4`, `morris-lloyd-rolka2B.mp4`) nie mają optymalizacji pod sieć: indeks pliku leży na końcu, więc film startuje z opóźnieniem. Wyeksportować ponownie z opcją „Network optimization" i wgrać pod nowymi nazwami; potem podmienić dwie linie w `lib/lp-services.ts`.
 
-Ocena według tej samej punktacji (2026-11-20): przed zmianami 31,5–35/100, po etapie A 49,5–57/100. Etapy B i C celują w braki warte razem ok. 30 punktów.
+Ocena według tej samej punktacji: przed zmianami 31,5–35/100, po etapie A 49,5–57/100, **po etapach B i C (2026-11-21) 63,5–71,5/100** (surowy i życzliwy audytor, lekki model, na podstawie pomiarów z żywej strony).
+
+Gdzie zostały punkty po etapie C:
+
+| Kryterium | Wynik | Czego brakuje |
+|---|---|---|
+| Zgodność z reklamą | 4–5/10 | Teksty reklam nigdy nie zostały porównane ze stroną; nagłówek to hasło, usługa jest w małej etykiecie |
+| Wydajność mobilna | 2,5–3/8 | Brak pomiaru LCP i INP po przebudowie; reel 53 MB zostaje (decyzja właściciela) |
+| Dowód społeczny | 5–6,5/10 | Brak liczb i mierzalnych wyników, brak twarzy; opinia Morris & Lloyd czeka na zgodę |
+| Stały przycisk i kontakt jednym kliknięciem | 4,5–5,5/8 | Brak „zadzwoń" w dolnym pasku (decyzja właściciela), brak stałego przycisku na desktopie |
+| Pomiar | 2,5–3/4 | Brak potwierdzonej testowej konwersji w Google Ads po zmianach; import offline niezbudowany |
+
+Pozostałe kryteria są blisko maksimum: droga do kontaktu 10,5–11/12, pierwszy ekran 8–8,5/12, formularz 6–6,5/8, realizacje 5,5–6/8, ceny 4,5–5/6, nawigacja 3,5–4/5, zaufanie 4,5–5/6, FAQ 2,5/3.
 
 Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → oferta → opinie → proces → ceny → FAQ → formularz → stopka.
 
