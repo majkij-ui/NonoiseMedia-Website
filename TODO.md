@@ -212,7 +212,18 @@ Otwarte po etapie B:
 - [x] Lint i build przechodzą; sprawdzone w Chrome na 390, 800, 1024, 1280 i 1440 px; niezależny przegląd w czterech obszarach, potwierdzone uwagi poprawione.
 - [x] Wdrożenie 2026-11-21 ok. 14:20, sprawdzone na żywej stronie: sześć kafelków z cenami, panel otwiera się i mieści, miniatury i filmy ładują się z R2, FAQ, pole usługi w formularzu, obietnice czasowe; szkicu opinii nie ma w HTML ani w JS.
 - [x] Link do kwestionariusza pod formularzem na LP (PR #15, wdrożony 2026-11-21 ok. 14:45, sprawdzony na żywej stronie): dwóch z największych klientów z reklam zaczęło od kwestionariusza, a po etapie A landing page do niego nie prowadził. Otwiera `/questionnaire` w nowej karcie, zdarzenie `lp_questionnaire_click`.
-- [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po wdrożeniu.
+- [x] Pomiar szybkości 2026-11-21 (PageSpeed Insights, test laboratoryjny; danych od prawdziwych użytkowników Google nie ma, bo ruch jest za mały):
+
+  | Strona | Wynik | FCP | LCP | TBT | CLS |
+  |---|---|---|---|---|---|
+  | `/lp/kampania`, telefon | 70 | 1,7 s | 11,4 s | 40 ms | 0 |
+  | `/lp/kampania`, desktop | 88 | 0,5 s | 2,3 s | 20 ms | 0 |
+  | strona główna, telefon | 73 | 1,7 s | 7,4 s | 140 ms | 0 |
+
+  Największym elementem pierwszego ekranu (LCP) jest plakat hero (`videos/PHH.webp`, 110 KB, ładowany z wyprzedzeniem). W zwykłym Chrome na szybkim łączu pojawia się po 0,4 s. Wynik 11,4 s to symulacja wolnej sieci 4G, w której plakat, skrypty i obrazki pod hero dzielą łącze z reelem 53 MB pobieranym od pierwszej chwili. Stabilność układu i responsywność są bardzo dobre.
+- [ ] Do decyzji Michała: na LP zacząć pobieranie reela dopiero po załadowaniu plakatu (ułamek sekundy później na szybkim łączu; bez kompresji i bez zmiany `preload`). To jedyna zmiana, która realnie obniży LCP na wolnej sieci; dotyka ustalenia o reelu, więc nie robimy bez zgody.
+- [ ] Odchudzić loga pod hero: kilka plików PNG ma 2 000–3 500 px szerokości i 55–190 KB przy wyświetlaniu na ok. 150 px (nowe nazwy plików). Mały zysk, zero ryzyka.
+- [ ] Prawdziwe czasy ładowania u odwiedzających: Vercel → projekt → Speed Insights (pakiet jest zainstalowany na stronie).
 - [ ] Reklama AI do kafelka „Wideo AI", gdy będzie gotowa.
 - [ ] **[M]** Dwie rolki (`morris-lloyd-rolka1B.mp4`, `morris-lloyd-rolka2B.mp4`) nie mają optymalizacji pod sieć: indeks pliku leży na końcu, więc film startuje z opóźnieniem. Wyeksportować ponownie z opcją „Network optimization" i wgrać pod nowymi nazwami; potem podmienić dwie linie w `lib/lp-services.ts`.
 
@@ -289,7 +300,9 @@ Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby
 **Nadal potrzebne od Michała:**
 - [x] Pliki wideo wgrane przez Michała 2026-11-21 (H.264, 1080p, ok. 8–10 Mb/s). Na przyszłość ten sam eksport: MP4, H.264 High, 1920×1080 (rolki 1080×1920), 25 kl./s, 8–10 Mb/s, AAC 192 kb/s, optymalizacja pod sieć; panel Cloudflare przyjmuje pliki do 300 MB.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
-- [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
+- [x] Tekst reklamy (zrzut z wyszukiwarki, 2026-11-21): nagłówek „Produkcja Filmowa B2B - Filmy Korporacyjne - Wid…"; opis: filmy korporacyjne i spoty reklamowe B2B, „kinowa jakość, która napędza sprzedaż", „od A do Z", „transparentne koszty", „darmowa wycena B2B". Linki do podstron: Oferta, Kontakt, O Nas, Portfolio; przycisk „Call us".
+- [ ] Do decyzji: dopasować etykietę nad hasłem i przycisk do reklamy („B2B", „filmy korporacyjne", „bezpłatna wycena").
+- [ ] **[M]** W Google Ads (Kampanie → Zasoby): linki do podstron prowadzą na zwykłe strony serwisu, z pominięciem landing page'a (a `/offer` podaje inne ceny); w opisie reklamy jest podwójna kropka po „Social Media"; obrazek przy reklamie ma oznaczenie „AI", czyli wygenerował go Google — lepiej wgrać własny kadr.
 
 ---
 
