@@ -11,8 +11,10 @@ import dynamic from "next/dynamic"
 import Image from "next/image"
 import { useTranslations } from "next-intl"
 import { AnimatePresence, motion } from "framer-motion"
+import { Mail } from "lucide-react"
 import { Link, usePathname } from "@/i18n/navigation"
 import { LanguageSwitcher } from "@/components/language-switcher"
+import { CONTACT_EMAIL } from "@/lib/contact-info"
 
 const NavigationMenuOverlay = dynamic(
   () =>
@@ -72,13 +74,19 @@ function useScrollCtaVisible() {
 
 type NavigationProps = {
   fixed?: boolean
+  /**
+   * Landing-page header: logo and email address only. No menu, no language
+   * switcher and no link home; the page offers its own deliberate way to the
+   * rest of the site (the portfolio link under the films).
+   */
+  minimal?: boolean
 }
 
-export function Navigation({ fixed = false }: NavigationProps) {
+export function Navigation({ fixed = false, minimal = false }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
   const showCta =
-    pathname === "/work" || pathname === "/offer" || pathname === "/about"
+    !minimal && (pathname === "/work" || pathname === "/offer" || pathname === "/about")
 
   const ctaKey = showCta ? pathname : "off"
 
@@ -86,6 +94,7 @@ export function Navigation({ fixed = false }: NavigationProps) {
     <ScrollCtaProvider key={ctaKey} enabled={showCta}>
       <NavigationShell
         fixed={fixed}
+        minimal={minimal}
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         showCta={showCta}
@@ -96,16 +105,54 @@ export function Navigation({ fixed = false }: NavigationProps) {
 
 function NavigationShell({
   fixed,
+  minimal,
   isMenuOpen,
   setIsMenuOpen,
   showCta,
 }: {
   fixed: boolean
+  minimal: boolean
   isMenuOpen: boolean
   setIsMenuOpen: (open: boolean) => void
   showCta: boolean
 }) {
   const ctaVisible = useScrollCtaVisible()
+  const tLp = useTranslations("lp.kampania")
+
+  if (minimal) {
+    return (
+      <header
+        className={`${fixed ? "fixed left-0 right-0 top-0 z-40" : ""} flex items-center justify-between px-6 py-6 md:px-12`}
+      >
+        <div className="flex items-center gap-2.5">
+          <Image
+            src="https://assets.nonoise.media/logos/logo-orb.png"
+            alt=""
+            width={20}
+            height={20}
+            className="h-5 w-5"
+          />
+          <span className="text-sm font-light tracking-[0.3em] text-foreground">NONOISE MEDIA</span>
+        </div>
+        {/* Email, not phone: enquiries to this studio come by email. A phone gets an icon. */}
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          data-gaw-contact="email-header"
+          className="hidden text-sm font-light tracking-[0.2em] text-foreground transition-opacity hover:opacity-70 md:block"
+        >
+          {CONTACT_EMAIL}
+        </a>
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          data-gaw-contact="email-header"
+          aria-label={`${tLp("headerEmail")}: ${CONTACT_EMAIL}`}
+          className="flex h-10 w-10 items-center justify-center text-foreground transition-opacity hover:opacity-70 md:hidden"
+        >
+          <Mail size={18} strokeWidth={1.5} />
+        </a>
+      </header>
+    )
+  }
 
   return (
     <>

@@ -91,7 +91,7 @@ export function LpServicesGrid() {
       >
         <div className="md:col-span-8 lg:col-span-6">
           <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-            02 / CO MOŻEMY DLA CIEBIE ZROBIĆ
+            CO MOŻEMY DLA CIEBIE ZROBIĆ
           </p>
           <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-5xl md:text-6xl">
             PEŁNA OFERTA

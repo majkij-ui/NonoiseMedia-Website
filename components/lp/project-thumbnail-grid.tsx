@@ -6,6 +6,8 @@ import { LayoutGroup, motion } from "framer-motion"
 import { Play } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
+import { sendGTMEvent } from "@/lib/gtm"
+import { scrollToLead } from "@/components/lp/scroll-to-lead"
 import { ProjectVideoModal } from "@/components/project-video-modal"
 import type { Project } from "@/lib/projects"
 import { projects } from "@/lib/projects"
@@ -136,10 +138,28 @@ export function ProjectThumbnailGrid({ projectsList = projects }: ProjectThumbna
           ))}
         </div>
 
-        <p className="mt-8 text-center md:mt-10">
+        <p className="mt-8 flex justify-center md:mt-10">
+          <button
+            type="button"
+            onClick={() => {
+              sendGTMEvent("lp_portfolio_cta_click")
+              scrollToLead()
+            }}
+            className="border border-foreground px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-foreground hover:text-background"
+          >
+            {t("portfolioCta")}
+          </button>
+        </p>
+        {/* The one deliberate way to the rest of the site. A new tab keeps this page and
+            its form open; rel="opener" makes the browser copy sessionStorage into that tab,
+            so the ad click travels with the visitor even without advertising consent. */}
+        <p className="mt-2 text-center">
           <Link
             href="/work"
-            className="font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline py-2"
+            target="_blank"
+            rel="opener"
+            onClick={() => sendGTMEvent("lp_portfolio_link_click")}
+            className="inline-block py-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground underline decoration-white/20 underline-offset-4 transition-colors hover:text-foreground"
           >
             {t("moreWork")}
           </Link>

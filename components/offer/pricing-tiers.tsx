@@ -64,22 +64,9 @@ const TIERS = [
   },
 ] as const
 
-type OfferPricingTiersProps = {
-  /** When false, tier footer CTAs are hidden (e.g. landing page uses one global CTA). */
-  showCta?: boolean
-  /** Less padding below the grid (e.g. LP CTA sits directly under). */
-  tightFooter?: boolean
-}
-
-export function OfferPricingTiers({ showCta = true, tightFooter = false }: OfferPricingTiersProps) {
+export function OfferPricingTiers() {
   return (
-    <section
-      className={
-        tightFooter
-          ? "bg-surface-raised px-6 pb-8 pt-24 md:px-12 md:pb-10 md:pt-40"
-          : "px-6 py-24 md:px-12 md:py-40"
-      }
-    >
+    <section className="px-6 py-24 md:px-12 md:py-40">
       <div className="mb-12 text-center md:mb-20">
         <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           02 / Zainwestuj w swoją markę
@@ -129,7 +116,7 @@ export function OfferPricingTiers({ showCta = true, tightFooter = false }: Offer
               {tier.price}
             </p>
 
-            <ul className={`flex-1 space-y-3 ${showCta ? "mb-10" : ""}`}>
+            <ul className="mb-10 flex-1 space-y-3">
               {tier.features.map((feature) => (
                 <li key={feature} className="flex items-start gap-3">
                   <Check
@@ -149,18 +136,16 @@ export function OfferPricingTiers({ showCta = true, tightFooter = false }: Offer
               ))}
             </ul>
 
-            {showCta ? (
-              <Link
-                href={tier.href}
-                className={`block w-full border py-4 text-center font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.1em] transition-colors duration-300 ${
-                  tier.highlighted
-                    ? "border-background/30 text-background hover:bg-background/10"
-                    : "border-foreground/20 text-foreground hover:bg-foreground hover:text-background"
-                }`}
-              >
-                {tier.cta}
-              </Link>
-            ) : null}
+            <Link
+              href={tier.href}
+              className={`block w-full border py-4 text-center font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.1em] transition-colors duration-300 ${
+                tier.highlighted
+                  ? "border-background/30 text-background hover:bg-background/10"
+                  : "border-foreground/20 text-foreground hover:bg-foreground hover:text-background"
+              }`}
+            >
+              {tier.cta}
+            </Link>
           </motion.div>
         ))}
       </motion.div>

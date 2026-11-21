@@ -34,6 +34,7 @@ type TrustedByLogosProps = {
 
 /** Same logo strip pattern as the Work page trusted-by block. */
 export function TrustedByLogos({ withLabel = true, className = "" }: TrustedByLogosProps) {
+
   return (
     <motion.div
       initial="hidden"

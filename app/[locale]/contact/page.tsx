@@ -1,30 +1,18 @@
 "use client"
 
-import { type FormEvent, useState, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Mail, ClipboardList, Check, MapPin } from "lucide-react"
+import { motion } from "framer-motion"
+import { Mail, ClipboardList, MapPin } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PhoneNumber } from "@/components/phone-number"
+import { LeadForm } from "@/components/lead-form"
 import { Link } from "@/i18n/navigation"
-import { sendGTMEvent } from "@/lib/gtm"
-import { newLeadId, normalizeEmail, readAttribution } from "@/lib/attribution"
-import { getAdStorageConsent } from "@/lib/consent"
+import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact-info"
 import { FooterLegalLinks } from "@/components/footer-legal-links"
 
-type FormStatus = "idle" | "sending" | "sent" | "error"
-
 export default function ContactPage() {
-  const contactEmail = "contact@nonoise.media"
+  const contactEmail = CONTACT_EMAIL
   const mapsHref =
     "https://www.google.com/maps/search/?api=1&query=Za+olszyn%C4%85+13B%2F2+05-090+Podolszyn+Nowy"
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-  const [status, setStatus] = useState<FormStatus>("idle")
-  const [errorMsg, setErrorMsg] = useState("")
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -46,68 +34,6 @@ export default function ContactPage() {
       transition: { duration: 0.7, ease: revealEase },
     },
   }
-
-  const validate = useCallback(() => {
-    if (!formData.name.trim()) return "Podaj nazwę firmy lub swoje imię."
-    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
-      return "Podaj prawidłowy adres e-mail."
-    if (!formData.message.trim()) return "Wpisz treść wiadomości."
-    return null
-  }, [formData])
-
-  const handleSubmit = useCallback(
-    async (e: FormEvent) => {
-      e.preventDefault()
-      const validationError = validate()
-      if (validationError) {
-        setErrorMsg(validationError)
-        setStatus("error")
-        return
-      }
-
-      setStatus("sending")
-      setErrorMsg("")
-
-      // One id per submission: goes to the email subject, to the dataLayer as
-      // transaction_id, and later to Google as Order ID.
-      const leadId = newLeadId()
-      const email = normalizeEmail(formData.email)
-
-      try {
-        const res = await fetch("/api/send-contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...formData,
-            leadId,
-            attribution: readAttribution(),
-            consent: getAdStorageConsent(),
-          }),
-        })
-        const data = await res.json()
-
-        if (!res.ok) {
-          setErrorMsg(data.error || "Nie udało się wysłać wiadomości.")
-          setStatus("error")
-          return
-        }
-
-        setStatus("sent")
-        setFormData({ name: "", email: "", message: "" })
-        // Conversion signal: fires only on confirmed send (API 200), so GTM
-        // counts real leads, not submit attempts. user_data feeds enhanced
-        // conversions — GTM hashes it, we only hand over the plain value.
-        sendGTMEvent("contact_form_success", {
-          transaction_id: leadId,
-          ...(email ? { user_data: { email } } : {}),
-        })
-      } catch {
-        setErrorMsg("Błąd połączenia. Sprawdź internet i spróbuj ponownie.")
-        setStatus("error")
-      }
-    },
-    [formData, validate],
-  )
 
   return (
     <main className="flex min-h-dvh w-full flex-col bg-background text-foreground md-tall:h-[calc(100dvh-var(--consent-offset,0px))] md-tall:min-h-0 md-tall:overflow-hidden">
@@ -137,7 +63,7 @@ export default function ContactPage() {
               {contactEmail}
             </a>
             <PhoneNumber
-              phoneNumber="+48 882 111 288"
+              phoneNumber={CONTACT_PHONE}
               data-gaw-contact="phone-hero"
               className="mt-1 block w-fit font-[family-name:var(--font-display)] text-[2.4rem] uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 sm:text-[3rem] md:text-[3.4rem]"
             />
@@ -185,110 +111,7 @@ export default function ContactPage() {
               o swoim projekcie
             </h2>
 
-            <AnimatePresence mode="wait">
-              {status === "sent" ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex flex-1 flex-col items-start justify-center gap-3"
-                >
-                  <div className="flex items-center gap-2 text-foreground">
-                    <Check size={20} strokeWidth={2} />
-                    <span className="font-mono text-sm uppercase tracking-wider">
-                      Wiadomość wysłana
-                    </span>
-                  </div>
-                  <p className="text-sm text-foreground/60">
-                    Dziękujemy! Odezwiemy się najszybciej jak to możliwe.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setStatus("idle")}
-                    className="mt-1 text-sm text-foreground/40 underline underline-offset-4 transition-colors hover:text-foreground/70"
-                  >
-                    Wyślij kolejną wiadomość
-                  </button>
-                </motion.div>
-              ) : (
-                <motion.form
-                  key="form"
-                  onSubmit={handleSubmit}
-                  className="flex flex-1 flex-col gap-3"
-                >
-                  <input
-                    id="name"
-                    type="text"
-                    aria-label="Nazwa firmy"
-                    value={formData.name}
-                    onChange={(e) => {
-                      setFormData({ ...formData, name: e.target.value })
-                      if (status === "error") setStatus("idle")
-                    }}
-                    className="border-b border-white/20 bg-transparent py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-white"
-                    placeholder="Nazwa Twojej Firmy"
-                  />
-
-                  <input
-                    id="email"
-                    type="email"
-                    aria-label="Email"
-                    value={formData.email}
-                    onChange={(e) => {
-                      setFormData({ ...formData, email: e.target.value })
-                      if (status === "error") setStatus("idle")
-                    }}
-                    className="border-b border-white/20 bg-transparent py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-white"
-                    placeholder="twoj@email.pl"
-                  />
-
-                  <textarea
-                    id="message"
-                    aria-label="Wiadomość"
-                    value={formData.message}
-                    onChange={(e) => {
-                      setFormData({ ...formData, message: e.target.value })
-                      if (status === "error") setStatus("idle")
-                    }}
-                    rows={2}
-                    className="flex-1 resize-none border-b border-white/20 bg-transparent py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-white"
-                    placeholder="Treść Twojej wiadomości"
-                  />
-
-                  {status === "error" && errorMsg && (
-                    <motion.p
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="text-xs text-red-400"
-                    >
-                      {errorMsg}
-                    </motion.p>
-                  )}
-
-                  <div className="mt-auto pt-2">
-                    <motion.button
-                      type="submit"
-                      disabled={status === "sending"}
-                      className="group relative w-fit overflow-hidden bg-foreground px-2 py-0.5 font-[family-name:var(--font-display)] text-[1.75rem] uppercase leading-none tracking-[0.02em] text-background disabled:opacity-50 md:text-[2rem]"
-                      whileHover={status !== "sending" ? "hover" : undefined}
-                      initial="initial"
-                    >
-                      <motion.div
-                        className="absolute inset-0 bg-background"
-                        variants={{
-                          initial: { x: "-100%" },
-                          hover: { x: 0 },
-                        }}
-                        transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
-                      />
-                      <span className="relative z-10 transition-colors duration-300 group-hover:text-foreground">
-                        {status === "sending" ? "Wysyłanie..." : "Wyślij wiadomość"}
-                      </span>
-                    </motion.button>
-                  </div>
-                </motion.form>
-              )}
-            </AnimatePresence>
+            <LeadForm source="contact" />
           </motion.div>
 
           {/* Card 2 — Questionnaire CTA */}

@@ -37,7 +37,7 @@ Co jeszcze jest pewne:
 
 **Zastrzeżenie.** Susza zaczęła się 21.10, dwanaście dni przed banerem. Te 72 kliknięcia bez zapytania mieszczą się jeszcze w zwykłym rozrzucie (szansa ok. 15–20%). Baner jest najmocniejszym podejrzanym, ale nie jest udowodnione, że jedynym. Rozstrzygnie to tydzień ruchu po wdrożeniu nowego banera (punkt 1.4).
 
-### 1.2 Zrobione 2026-11-20 w kodzie (jeszcze nie wdrożone)
+### 1.2 Zrobione 2026-11-20 w kodzie (wdrożone tego samego dnia, PR #12)
 
 - [x] Własny baner cookies zamiast CookieYes: `components/cookie-consent.tsx`, `lib/consent.ts`, `app/api/consent/route.ts`.
   - Wąski pasek na dole, w stylu strony. Zmierzone: 78 px na ekranie 390×664 (12%), 73 px na desktopie. CookieYes: 460 px.
@@ -51,6 +51,7 @@ Co jeszcze jest pewne:
 - [x] CookieYes usunięty z CSP i z kodu; stare cookie `cookieyes-consent` jest kasowane.
 - [x] Polityka prywatności: sekcja o cookies opisuje nowy baner (PL i EN). Wymaga przeglądu prawnika, jak cała polityka.
 - [x] Niepotrzebne cookie `NEXT_LOCALE` wyłączone.
+- [x] Poprawki po uwagach Michała (2026-11-20 wieczorem): opis w hero bez „z Warszawy" i bez drugiego „dla firm" (miasto i „dla firm" są już w etykiecie nad hasłem), pasek logo pokazuje wszystkich klientów zamiast sześciu, dolny pasek na telefonie ma „Napisz e-mail" zamiast „Zadzwoń", „Michael MacDonald" w opinii BAKL, w stopce zostaje adres studia w Podolszynie Nowym.
 - [x] Lint i build przechodzą. Zmiany przeszły niezależny przegląd w czterech obszarach; potwierdzone uwagi są poprawione.
 
 Znane ograniczenia:
@@ -60,13 +61,14 @@ Znane ograniczenia:
 
 ### 1.3 Wdrożenie — w tej kolejności
 
-- [ ] **[C]** Commit, PR, wdrożenie na produkcję (po zgodzie Michała).
-- [ ] **[M]** Zaraz po wdrożeniu, w GTM (kontener `GTM-PQ7D5LSC`). Nie wcześniej: stara wersja strony nie ustawia sama domyślnej zgody.
-  1. Usuń albo wstrzymaj tag „CookieYes CMP". Jego kod w GTM nadal resetuje ustawienia zgody przy każdym załadowaniu strony, mimo że sam skrypt banera jest już zablokowany.
-  2. W tagach „Google Tag", GA4, „Conversion Linker" i czterech tagach konwersji: Ustawienia zaawansowane → Ustawienia zgody → „Nie jest wymagana dodatkowa zgoda". To tryb zaawansowany: tagi ładują się zawsze, bez zgody nie zapisują cookies, a po „Akceptuj" od razu mierzą normalnie. Alternatywa (tryb podstawowy): zostaw wymóg zgody i dodaj tym tagom wyzwalacz na zdarzenie niestandardowe `nnm_consent_update`.
-  3. Opublikuj kontener.
-  4. Szczegóły i uzasadnienie: `docs/google-ads.md`, sekcja „Required GTM changes".
-- [ ] **[M]** Test po publikacji: telefon, zwykłe okno, `www.nonoise.media/lp/kampania`. Baner mały, formularz na `/contact` wysyła się bez klikania banera. W Tag Assistant: po „Akceptuj" tag Google, GA4 i Conversion Linker odpalają się na tej samej stronie.
+- [x] **[C]** Commit, PR #12, wdrożenie na produkcję: 2026-11-20 ok. 18:25. Sprawdzone na żywej stronie: pasek 78 px w szerokości telefonu, przycisk „Wyślij wiadomość" wolny, baner CookieYes się nie pojawia, `/api/consent` ustawia cookie na 180 dni.
+- [x] **[C]** GTM, kontener `GTM-PQ7D5LSC`, wersja 16 opublikowana 2026-11-20 o 18:37 (na prośbę Michała, przez jego przeglądarkę):
+  1. Tag „CookieYes CMP" wstrzymany (nie usunięty, da się go przywrócić).
+  2. „Google Tag", „Google Anal" (GA4), „Conversion Linker" oraz cztery tagi konwersji („Send a Message", „Click send Questionnaire", „Click on email", „Click on Phone"): dodatkowa zgoda zmieniona z „wymagana" na „nie jest wymagana" (tryb zaawansowany). Tag „Page View Trigger" zostaje wstrzymany, bez zmian.
+- [x] **[C]** Sprawdzone na żywej stronie po publikacji, w szerokości telefonu:
+  - przed wyborem w banerze tagi Google ładują się i wysyłają sygnały bez cookies (`gcs=G100`), żadne cookie Google nie jest zapisane, CookieYes nie wysyła niczego;
+  - po „Akceptuj", na tej samej stronie i bez przeładowania: sygnały ze zgodą (`gcs=G111`), zapisane `_ga`, `_ga_JHHX635GZP`, `_gcl_au` i `_gcl_aw` (kliknięcie reklamy zapamiętane przez Conversion Linker).
+- [ ] **[M]** Własny test na telefonie: zwykłe okno, `www.nonoise.media/lp/kampania`, wysłanie wiadomości testowej bez klikania banera. Tego nie dało się sprawdzić zdalnie.
 - [ ] **[M]** Przed zamknięciem konta CookieYes wyeksportuj z panelu log zgód za 2–20.11 (dowód zgód z tego okresu).
 
 ### 1.4 Jak sprawdzimy, czy pomogło
@@ -83,23 +85,32 @@ Znane ograniczenia:
 - [ ] Dopisać pozostałe nazwy konkurencji do wykluczeń.
 - [ ] Podać teksty reklamy (nagłówki i opisy): potrzebne, żeby nagłówek landing page odpowiadał obietnicy z reklamy.
 
-### 1.6 Pomiar — zaległe z audytu 31.10 — **[M]**, w GTM
+### 1.6 Pomiar — stan po sprawdzeniu w GTM 2026-11-20
 
-- [ ] Wyzwalacz telefonu „Click Tel" przełączyć na zdarzenie niestandardowe `phone_click`.
-- [ ] `user_data` i `transaction_id` w tagach konwersji formularza i kwestionariusza.
-- [ ] Wyłączyć cel „Page views" na poziomie konta.
+Lista „zaległych" zmian z audytu 31.10 była nieaktualna. Te ustawienia są w kontenerze od 1–2.11, sprawdzone w interfejsie GTM:
+
+- [x] Wyzwalacz „Click Tel" to zdarzenie niestandardowe `phone_click`.
+- [x] Tagi „Send a Message" i „Click send Questionnaire" mają ID transakcji `{{DLV - transaction_id}}` i parametr `user_data` ze zmiennej „UPD - lead contact" (dane przekazywane przez użytkownika, źródło: `user_data` z dataLayer).
+- [x] Wyzwalacze tych tagów nasłuchują na `contact_form_success` i `questionnaire_success`, a etykiety konwersji zgadzają się z akcjami „Lead: contact form" i „Lead: questionnaire" w Google Ads.
+
+Zostaje po stronie Google Ads (nie GTM), niesprawdzone, bo limit API jest wyczerpany do 1.12:
+
+- [ ] **[M]** Czy konwersje rozszerzone są włączone i warunki dotyczące danych klientów zaakceptowane (Cele → Ustawienia). Bez tego Google ignoruje `user_data` z tagów.
+- [ ] **[M]** Cel „Page views" na poziomie konta. Przy ręcznym CPC nie ma wpływu na nic; wyłączyć przed przejściem na strategię opartą na konwersjach.
+- [ ] **[M]** Po pierwszym prawdziwym lub testowym formularzu: czy konwersja „Lead: contact form" pojawia się w Ads.
 
 ### 1.7 Kod — pozostałe — **[C]**
 
 - [ ] Trwały zapis każdej wysyłki formularza (lead ID, czas, status). Vercel trzyma logi 1 godzinę, więc dziś nie da się sprawdzić po fakcie, czy ktoś próbował wysłać i dostał błąd.
-- [ ] Zdarzenie GTM na przycisku „Wyceń projekt" w hero (dziś klik jest niewidoczny w pomiarze).
-- [ ] Pola formularza: czcionka 16 px (Safari na iPhonie przybliża stronę przy 14 px), widoczne etykiety, `autocomplete`.
+- [x] Zdarzenie GTM na przycisku „Wyceń projekt" w hero: `lp_quote_click` (etap A).
+- [x] Pola formularza: czcionka 16 px na telefonie i `autocomplete` w obu formularzach; widoczne etykiety w formularzu na LP (etap A). Na `/contact` zostały same podpowiedzi w polach, żeby nie zmieniać układu strony.
 
 ### 1.8 Do decyzji Michała i prawnika
 
 - Źródło wizyty (gclid) jest zapisywane w pamięci sesji przed wyborem w banerze i zostaje tam także po „Odrzuć"; trafia do maila z dopiskiem „zgoda: denied". Tak było już wcześniej i polityka to opisuje, ale prawnik powinien ocenić, czy to do utrzymania. Zmiana kosztowałaby atrybucję zapytań od osób, które nie klikną banera.
 - Baner nie prowadzi rejestru zgód po stronie serwera (CookieYes prowadził). Dowodem jest wersjonowany kod i stan zgody w mailu z zapytaniem.
 - Pierwsza warstwa banera to jedno zdanie z linkiem do polityki i ustawień. Krótko, żeby baner był mały; prawnik może chcieć dopisać „Google".
+- Linijka pod formularzem na LP mówi tylko o odpowiedzi na zapytanie i odsyła do polityki. To samo wysłanie zasila też pomiar reklam (opisany w polityce). Prawnik może chcieć to dopisać wprost.
 - Polityka prywatności nadal ma status szkicu do przeglądu.
 
 ---
@@ -148,36 +159,63 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 
 ### 2.4 Kolejność prac — **[C]**, każdy etap osobnym PR
 
-**Etap A: droga do kontaktu** (największy efekt, najmniej pracy)
-- [ ] Wydzielić formularz z `/contact` do wspólnego komponentu. Zachować lead ID, atrybucję, zgodę i zdarzenie `contact_form_success`.
-- [ ] Sekcja formularza na dole LP: nazwa firmy, e-mail lub telefon, krótki opis. Obok numer telefonu, mail, obietnica czasu odpowiedzi, linijka o prywatności.
-- [ ] Wszystkie przyciski na LP przewijają do formularza.
-- [ ] Dolny pasek na telefonie („Zadzwoń" / „Wyceń projekt").
-- [ ] Usunąć progi cenowe, sekcję filozofii i link „Więcej w portfolio".
-- [ ] Nagłówek LP bez menu i przełącznika języka.
+**Etap A: droga do kontaktu** — zrobione 2026-11-20, PR #13, czeka na wdrożenie
+- [x] Formularz wydzielony z `/contact` do wspólnego komponentu `components/lead-form.tsx`. Lead ID, atrybucja, zgoda i zdarzenie `contact_form_success` bez zmian; zdarzenie niesie teraz `form_location`.
+- [x] Sekcja formularza na dole LP (`components/lp/lp-lead-section.tsx`): firma lub imię, e-mail (wymagany), telefon (opcjonalny), wiadomość. Obok numer telefonu i mail, pod spodem linijka o prywatności. Na telefonie formularz jest przed danymi kontaktowymi.
+- [x] Wszystkie przyciski na LP przewijają do formularza: „Wyceń projekt" w hero (teraz mierzony zdarzeniem `lp_quote_click`), „Wyceń podobny projekt" pod realizacjami, dolny pasek.
+- [x] Dolny pasek na telefonie („Zadzwoń" / „Wyceń projekt"; od etapu B „Napisz e-mail" / „Wyceń projekt"). Schowany na pierwszym ekranie, przy formularzu, podczas odtwarzania reela i dopóki baner cookies czeka na odpowiedź.
+- [x] Usunięte z LP: progi cenowe, sekcja filozofii, link „Więcej w portfolio" (w etapie B wrócił jako „Zobacz pełne portfolio" w nowej karcie).
+- [x] Nagłówek LP bez menu i przełącznika języka: logo (nieklikalne) i kontakt (od etapu B e-mail zamiast telefonu).
+- [x] Tytuł karty: „Produkcja filmowa i wideo dla firm — wycena projektu" zamiast „Kampania".
 
-**Etap B: pierwszy ekran i dowód**
-- [ ] Nowy hero: nagłówek z usługą i miastem, jedno zdanie, jedna linijka dowodu, główny przycisk pod nagłówkiem, „Play reel" jako cichy link. Na telefonie pełna szerokość.
-- [ ] Plakat hero z R2.
-- [ ] Pasek logo pod hero.
-- [ ] Trzy statyczne opinie.
-- [ ] Trzy kroki procesu zamiast animowanych kart.
+Świadomie odłożone:
+- Obietnica czasu odpowiedzi przy formularzu: czeka na Twoją odpowiedź w punkcie 2.5. Do tego czasu jest neutralne „Odezwiemy się najszybciej jak to możliwe".
+- Angielska wersja formularza: teksty pól i komunikatów są po polsku, tak jak wcześniej na `/contact`. Do zrobienia razem z nowym hero (etap B) albo przy decyzji o EN.
+
+**Uwagi Michała po etapie A (2026-11-20)** — rozstrzygnięte tego samego dnia
+- [x] Wyjście na resztę strony: bez menu w nagłówku; pod realizacjami link „Zobacz pełne portfolio", który otwiera `/work` w nowej karcie (zdarzenie `lp_portfolio_link_click`). Landing page z formularzem zostaje w otwartej karcie.
+- [x] Nagłówek: e-mail zamiast telefonu (decyzja Michała: ludzie piszą, prawie nikt nie dzwoni). Na desktopie adres tekstem, na telefonie ikona koperty.
+
+**Etap B: pierwszy ekran i dowód** — zrobione 2026-11-20, w tym samym PR co etap A (#13), czeka na wdrożenie
+- [x] Nowy hero: etykieta „Produkcja filmowa i wideo dla firm · Warszawa", hasło „Wybij się ponad szum", jedno-dwa zdania o studiu, linijka dowodu („Zaufali nam m.in.: Tchibo · PHH · Danone · CIONET"), główny przycisk „Wyceń projekt" od razu pod tekstem, „Play reel" jako cichy link. Na telefonie pełna szerokość; wszystko mieści się na pierwszym ekranie (390×664).
+- [x] Plakat pod reelem jako pierwszy obraz, reel przenika na niego po załadowaniu. Bez kompresji reela, wejście z przenikaniem zostaje. Plakat to istniejący kadr PHH (`videos/PHH.webp`).
+- [x] Pasek logo pod hero (wszyscy klienci, Tchibo jako pierwsze). Trzy nowe loga — Tchibo, JHJ, Morris & Lloyd Broker — doszły też na `/work` i `/about`.
+- [x] Trzy statyczne opinie na LP zamiast pełnoekranowych slajdów. Opinie mają teraz jedno źródło: `lib/testimonials.ts` (używa go też `/about`).
+- [x] Miejsce na szkic opinii Morris & Lloyd z oznaczeniem „Szkic · czeka na zgodę autorki". Sam tekst szkicu nie jest w repozytorium (jest publiczne): siedzi w zmiennej `DRAFT_TESTIMONIALS` w pliku `.env.local`, opis w `lib/testimonials.ts`. Widać go tylko lokalnie i, po dodaniu zmiennej w Vercel dla środowiska Preview, na podglądach; w buildzie produkcyjnym nie ma go ani na stronie, ani w kodzie JS (sprawdzone). Na produkcji LP pokazuje CIONET, OmniOffice i PHH.
+- [x] Trzy kroki procesu (teksty z kart na `/about`, bez animowanego interfejsu).
+- [x] Dane firmy w stopce LP: nazwa z rejestru, adres studia, NIP.
+- [x] Lint i build przechodzą. Zmiany przeszły niezależny przegląd w czterech obszarach; potwierdzone uwagi poprawione: szkic opinii poza repozytorium, hero na telefonie trzymanym poziomo (przycisk „Wyceń projekt" znów na pierwszym ekranie), kontrast drobnego tekstu w stopce i przy opiniach.
+
+- [x] Trzy nowe loga wgrane na R2 (2026-11-20, przez panel Cloudflare): `logos/tchibo-logo.png`, `logos/jhj-logo.png`, `logos/morris-lloyd-logo.png`. Sprawdzone pod adresem CDN: odpowiedź 200, pliki identyczne z lokalnymi. Nazwy z końcówką `-logo`, bo adresy bez niej zostały zapytane, zanim pliki istniały, i CDN zapamiętał dla nich „404" na rok. W buckecie leżą też nieużywane kopie pod starymi nazwami (`tchibo.png`, `jhj.png`, `morris-lloyd.png`); można je usunąć.
+
+Otwarte po etapie B:
+- [ ] **[M]** Zgoda autorki opinii Morris & Lloyd na cytat (treść, imię i nazwisko, stanowisko, firma) i jej stanowisko (w szkicu jest robocze „Marketing"). Po zgodzie: przenieść wpis z `.env.local` do zatwierdzonych w `lib/testimonials.ts`.
+- [ ] **[M]** Repozytorium na GitHubie jest publiczne. Wcześniejsza wersja tego pliku (commit `3e48154`) wymienia autorkę opinii z nazwiska; zostaje to w historii, dopóki repozytorium nie będzie prywatne albo historia gałęzi nie zostanie przepisana.
+- [ ] **[M]** Zgody klientów na loga: Michał świadomie pominął (Tchibo, JHJ, Morris & Lloyd); zdejmie logo, jeśli ktoś zgłosi zastrzeżenie.
+- [ ] **[M]** Typowe czasy do kroków procesu. Potrzebne trzy liczby: (1) ile trwa od pierwszego kontaktu do wyceny i ustalonego planu, (2) ile zwykle trwają zdjęcia, (3) ile od zdjęć do pierwszej wersji montażu i ile rund poprawek jest w cenie. Wystarczą widełki dla typowego projektu.
+- [ ] **[M]** Plakat hero: zostaje kadr PHH czy konkretna klatka reela? Klatkę trzeba wyeksportować i wgrać na R2 pod nową nazwą.
+- [ ] Angielska wersja formularza i komunikatów (nadal po polsku).
 
 **Etap C: oferta i obiekcje**
-- [ ] Rozwijane kafelki oferty z przykładami i przyciskiem „Wyceń ten format", który wstępnie zaznacza usługę w formularzu.
-- [ ] Scenariusze cenowe nad formularzem.
-- [ ] FAQ.
+- [ ] Rozwijane kafelki oferty: na desktopie kafelek rośnie w panel wielkości całej siatki, na telefonie rozwija się w miejscu. W panelu: trzy konkrety o formacie, 1–2 realizacje do odtworzenia, przycisk „Wyceń ten format", który przewija do formularza i wstępnie zaznacza usługę (nowe pole „usługa" w formularzu, API i mailu).
+- [ ] Przypisanie realizacji do usług w `lib/projects.ts`. Zależy od punktu 3 (JHJ, rolki): dziś LinkedIn, case study i wywiady nie mają przykładu, więc albo dochodzą nowe realizacje, albo zostaje 5–6 kafelków.
+- [ ] Scenariusze cenowe nad formularzem: 2–3 typowe projekty z kwotą „od" i tym, co wpływa na cenę. Dziś na stronie nie ma żadnej kwoty (spadek w ocenie z 3 do 0 punktów na 6).
+- [ ] FAQ: 4–6 pytań (proces, terminy, prawa do materiału, poprawki, budżet).
+- [ ] Obietnica czasu odpowiedzi przy formularzu.
+- [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po zmianach w hero.
+
+Ocena według tej samej punktacji (2026-11-20): przed zmianami 31,5–35/100, po etapie A 49,5–57/100. Etapy B i C celują w braki warte razem ok. 30 punktów.
 
 Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → oferta → opinie → proces → ceny → FAQ → formularz → stopka.
 
 ### 2.5 Potrzebne od Michała
 
-- [ ] Teksty reklamy (nagłówki i opisy), patrz punkt 1.5.
+- [ ] Teksty reklamy z Google Ads (nagłówki i opisy), patrz punkt 1.5. Hero stoi bez nich; przydadzą się, żeby dopasować etykietę nad hasłem do tego, co obiecuje reklama.
 - [ ] Prawdziwe kwoty „od" dla 2–3 typowych projektów.
 - [ ] Realny czas odpowiedzi na zapytanie (np. „odpowiadamy w 24 godziny").
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
 - [ ] Decyzja: które usługi zostają na kafelkach.
-- [ ] Decyzja: która nazwa i adres firmy mają być widoczne.
+- [ ] Decyzja: która nazwa i adres firmy mają być widoczne (w stopce LP jest na razie nazwa z rejestru i adres studia).
 
 ---
 
@@ -205,6 +243,8 @@ Dziś 30 małych kadrów (6 kolumn × 5 rzędów) z mniejszych produkcji.
 ---
 
 ## 5. Później (niski priorytet)
+
+- [ ] Strona główna na telefonie trzymanym poziomo: reguły dopasowujące hero (stała `LANDSCAPE_MOBILE_HERO` w `components/animated-home-button.tsx` i `app/[locale]/HomeClient.tsx`) nie generują żadnego CSS. Na LP naprawione wariantem `landscape-phone:`; na stronie głównej do zrobienia tak samo, z obejrzeniem efektu, bo te reguły nigdy dotąd nie działały.
 
 - Ochrona formularzy przed spamem (limit zapytań lub honeypot). Wraca do gry, gdy reklamy zaczną działać.
 - Angielska wersja `/work` i LP (dziś treści tylko po polsku) albo rezygnacja z EN.

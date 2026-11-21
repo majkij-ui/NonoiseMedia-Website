@@ -155,10 +155,18 @@ export const projects: Project[] = [
 
 export type TrustedBrand = { id: number; name: string; src: string }
 
+/**
+ * Client logos, in display order: the same strip on /work, /about and under the
+ * landing page hero, so keep the strongest names at the top. Files live on R2
+ * under /logos and are light-on-transparent.
+ */
 export const trustedBy: TrustedBrand[] = [
+  { id: 14, name: "Tchibo", src: "https://assets.nonoise.media/logos/tchibo-logo.png" },
   { id: 1, name: "PHH", src: "https://assets.nonoise.media/logos/phhlogo.png" },
   { id: 2, name: "Danone", src: "https://assets.nonoise.media/logos/danone.png" },
   { id: 3, name: "CIONET", src: "https://assets.nonoise.media/logos/CIONET.png" },
+  { id: 15, name: "JHJ", src: "https://assets.nonoise.media/logos/jhj-logo.png" },
+  { id: 16, name: "Morris & Lloyd", src: "https://assets.nonoise.media/logos/morris-lloyd-logo.png" },
   { id: 4, name: "Rondo", src: "https://assets.nonoise.media/logos/Rondo%2520Logo.png" },
   { id: 5, name: "FIRE", src: "https://assets.nonoise.media/logos/fire.png" },
   { id: 6, name: "North", src: "https://assets.nonoise.media/logos/north.png" },
@@ -172,6 +180,9 @@ export const trustedBy: TrustedBrand[] = [
 ]
 
 export function logoSizeClass(name: string): string {
+  if (name === "Tchibo") return "h-[26px] max-w-[120px] md:h-[34px] md:max-w-[150px]"
+  if (name === "JHJ") return "h-[42px] max-w-[70px] md:h-[54px] md:max-w-[90px]"
+  if (name === "Morris & Lloyd") return "h-[34px] max-w-[170px] md:h-[44px] md:max-w-[220px]"
   if (name === "Danone") return "h-6 max-w-[105px] md:h-[30px] md:max-w-[135px]"
   if (name === "PHH") return "h-[38px] max-w-[168px] md:h-12 md:max-w-[216px]"
   if (name === "CIONET") return "h-[25px] max-w-[113px] md:h-[32px] md:max-w-[146px]"

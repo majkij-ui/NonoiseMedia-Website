@@ -15,7 +15,22 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
 ### dataLayer and custom events
 
 - Helper: [`lib/gtm.ts`](../lib/gtm.ts) — `sendGTMEvent(eventName, params?)` pushes `{ event, ...params }` to `window.dataLayer` and initializes `dataLayer` if needed (safe before GTM finishes loading).
-- **Kampania landing page** [`app/[locale]/lp/kampania/page.tsx`](../app/[locale]/lp/kampania/page.tsx) and [`components/lp/lp-lead-strip.tsx`](../components/lp/lp-lead-strip.tsx) fire events such as `lp_portfolio_click`, `lp_quote_click`, `lp_contact_click`. Configure **triggers and tags** for these event names inside the GTM UI (and map them to Google Ads conversion actions as needed).
+- **Kampania landing page** (`/lp/kampania`): every call-to-action scrolls to the form on the page itself and pushes an event first. Configure **triggers and tags** for these names inside the GTM UI if you want to see them (none of them is a conversion; the conversion is `contact_form_success`):
+
+  | Event | Fired by | Where |
+  |---|---|---|
+  | `lp_quote_click` | "Wyceń projekt" in the hero | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx) |
+  | `lp_reel_click` | "Play reel" in the hero | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx) |
+  | `lp_portfolio_cta_click` | "Wyceń podobny projekt" under the films | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
+  | `lp_sticky_quote_click` | "Wyceń projekt" in the phone bottom bar | [`components/lp/lp-sticky-cta.tsx`](../components/lp/lp-sticky-cta.tsx) |
+  | `lp_portfolio_link_click` | "Zobacz pełne portfolio" under the films (opens `/work` in a new tab) | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
+  | `phone_click` | number in the form section | `components/phone-number.tsx` |
+
+  `lp_contact_click` no longer exists: the bottom strip that linked to `/contact` was replaced by the form.
+
+  The landing page header and the phone bottom bar show e-mail instead of the phone (owner's decision, 2026-11-20: leads write, almost nobody calls). The links carry `data-gaw-contact="email-header"` and `data-gaw-contact="email-sticky"`; like every other `mailto:` link on the site they push no dataLayer event.
+
+  The portfolio link uses `target="_blank" rel="opener"` on purpose. Before ad consent the ad-click record lives in `sessionStorage`, which a new tab only inherits when it is opened with an opener; with the default `noopener` a visitor who went on to `/contact` from the portfolio would lose the `gclid`.
 
 ### Google Analytics vs Vercel Analytics
 
@@ -39,7 +54,7 @@ back to Google. Full rollout plan, including the GTM / Google Ads steps:
 1. Visitor lands on any route with `gclid` / `gbraid` / `wbraid` / `utm_*`.
    `AttributionCapture` (mounted in `app/[locale]/layout.tsx`) stores those
    plus `clickedAt` and the landing path.
-2. Visitor submits the contact form or the questionnaire. The client mints a
+2. Visitor submits the contact form (on `/contact` or on the landing page itself; one shared component, `components/lead-form.tsx`) or the questionnaire. The client mints a
    `leadId` and posts it with the stored attribution and the current consent
    state.
 3. The API route appends a **„Źródło"** block to the Resend email and prefixes
@@ -81,8 +96,10 @@ Two details that are easy to undo by accident:
 dataLayer.push({
   event: "contact_form_success",     // or "questionnaire_success"
   transaction_id: "K7Q2M9XA",        // leadId
-  user_data: { email: "anna@firma.pl" },         // contact form
-  // user_data: { phone_number: "+48600100200" }, // questionnaire, phone
+  form_location: "lp-kampania",      // or "contact"; contact form only
+  user_data: { email: "anna@firma.pl" },         // contact form on /contact
+  // user_data: { email: "anna@firma.pl", phone_number: "+48600100200" }, // landing page form, phone given
+  // user_data: { phone_number: "+48600100200" }, // questionnaire, phone chosen
 })
 ```
 
@@ -153,6 +170,13 @@ rows matched on a hashed email or phone.
 
 #### Required GTM changes (manual, container `GTM-PQ7D5LSC`)
 
+> **Done on 2026-11-20, container version 16** ("Own cookie banner: CookieYes paused,
+> advanced consent mode"): the CookieYes CMP tag is paused and the seven Google tags are set
+> to *No additional consent required* (advanced consent mode). Verified on the live site:
+> `gcs=G100` pings and no Google cookies before a choice; `gcs=G111`, `_ga`, `_gcl_au` and
+> `_gcl_aw` right after Accept, on the same page. The steps below stay as the reference for
+> why the container is set up this way and what to redo if it is ever rebuilt.
+
 Do these right after the site deploy that ships the banner, never before it
 (the old site has no consent defaults of its own).
 
@@ -181,9 +205,12 @@ Do these right after the site deploy that ships the banner, never before it
    `ad_user_data` and `analytics_storage` to granted, and the Google tag, GA4
    and Conversion Linker have fired on that same page.
 
-Still open from the 2026-10-31 audit: switch the "Click Tel" trigger to the
-custom event `phone_click`; wire `user_data` and `transaction_id` into the two
-lead conversion tags.
+Checked in the GTM UI on 2026-11-20 and already in place since early November:
+the "Click Tel" trigger is the custom event `phone_click`; both lead conversion
+tags carry Transaction ID `{{DLV - transaction_id}}` and a `user_data` parameter
+from the User-Provided Data variable "UPD - lead contact"; their triggers listen
+for `contact_form_success` and `questionnaire_success`. Not checked: whether
+enhanced conversions are switched on in the Google Ads account itself.
 
 No consent tool's hosts are in the CSP any more. A third-party CMP would need
 its own hosts added in `next.config.mjs`, or its banner is silently blocked.
@@ -299,7 +326,7 @@ A dedicated pass reduced **first-party CSS** weight (fewer render-blocking bytes
 | „Źródło" block in lead emails | [`lib/lead-source.ts`](../lib/lead-source.ts), [`lib/html.ts`](../lib/html.ts) |
 | Lead APIs | [`app/api/send-contact/route.ts`](../app/api/send-contact/route.ts), [`app/api/send-quote/route.ts`](../app/api/send-quote/route.ts) |
 | Offline lead rollout plan | [`google-ads-offline-plan.md`](google-ads-offline-plan.md) |
-| LP events | [`app/[locale]/lp/kampania/page.tsx`](../app/[locale]/lp/kampania/page.tsx), [`components/lp/lp-lead-strip.tsx`](../components/lp/lp-lead-strip.tsx) |
+| LP events and form | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx), [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx), [`components/lp/lp-sticky-cta.tsx`](../components/lp/lp-sticky-cta.tsx), [`components/lp/lp-lead-section.tsx`](../components/lp/lp-lead-section.tsx), [`components/lead-form.tsx`](../components/lead-form.tsx) |
 | Kampania SEO / robots | [`app/[locale]/lp/kampania/layout.tsx`](../app/[locale]/lp/kampania/layout.tsx) |
 
 This file is documentation only; it is not imported by the application.

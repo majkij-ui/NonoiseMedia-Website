@@ -92,17 +92,44 @@
   },
   "lp": {
     "kampania": {
-      "label": "Film & Video Production for Business",
-      "headline": "VIDEO THAT\nCONVERTS",
-      "body": "We strip away the noise to focus on pure visual storytelling. Through streamlined production we deliver big-studio quality with boutique agility — built around your marketing goals.",
-      "ctaPortfolio": "Portfolio",
-      "ctaQuote": "Free quote",
+      "label": "Film and video production for business · Warsaw",
+      "body": "Nonoise Media is an independent video production studio. We make corporate, advertising and product films — from concept to finished piece.",
       "portfolioLabel": "Selected work",
       "portfolioTitle": "FEATURED PROJECTS",
-      "moreWork": "See full portfolio",
+      "portfolioCta": "Get a quote for a similar project",
       "playVideoAria": "Play video: {title}",
       "leadLabel": "Next step",
-      "leadCta": "Let's talk about your project"
+      "leadCta": "Let's talk about your project",
+      "leadBody": "Tell us what you need: what kind of film, by when and what for. We will come back with questions or a first estimate.",
+      "leadPrivacy": "We use the form data to answer your enquiry. Details:",
+      "stickyEmail": "Email us",
+      "stickyQuote": "Get a quote",
+      "proof": "Trusted by, among others: Tchibo · PHH · Danone · CIONET",
+      "logosLabel": "Trusted by",
+      "moreWork": "See the full portfolio",
+      "headerEmail": "Send an email",
+      "testimonialsLabel": "References",
+      "testimonialsTitle": "WHAT CLIENTS SAY",
+      "testimonialDraft": "Draft · awaiting the author's consent",
+      "processLabel": "How we work",
+      "processTitle": "TURNING VISION INTO REAL RESULTS",
+      "process": [
+        {
+          "step": "01 / Understanding the client",
+          "title": "We find out what you need",
+          "text": "We look at your brand, your audience and your goals before planning a single frame. Strategy always comes first."
+        },
+        {
+          "step": "02 / Production from A to Z",
+          "title": "A complete production pipeline",
+          "text": "A smooth run from the creative concept, through professional production, to the final delivery of the materials."
+        },
+        {
+          "step": "03 / Strategic distribution",
+          "title": "Media built to convert",
+          "text": "Digital materials that stop the scroll, designed to engage, build trust and get the most out of your marketing spend."
+        }
+      ]
     }
   },
   "privacy": {
@@ -130,7 +157,7 @@
           "We process the data you give us and the technical data needed to run the site and measure how our ads perform."
         ],
         "items": [
-          "Contact form: your name, email address and message.",
+          "Contact form: your name or company name, email address, message and, if you give it, your phone number.",
           "Questionnaire: your answers about the project, your name or company name and the contact method you choose, either an email address or a phone number.",
           "Direct contact: whatever you share when you email or call us.",
           "Technical data: IP address, browser and device type, pages visited, referring page and time of visit.",
@@ -144,7 +171,7 @@
           "We run Google Ads campaigns. When you arrive from an ad, the page address carries a click identifier (gclid, gbraid or wbraid) and campaign parameters (utm_source, utm_medium, utm_campaign, utm_term).",
           "The site stores these values, together with the click time and landing page, in your browser's session storage (sessionStorage), where they are cleared when you close the tab. Only after you consent to advertising cookies are they kept in persistent storage (localStorage) for 90 days from the ad click.",
           "When you send the contact form or the questionnaire, this information reaches our inbox together with your enquiry. It tells us which ad brought the enquiry and lets us later report to Google Ads which enquiries turned into work. We then send the click identifier or, when there is none, a hashed email address or phone number.",
-          "When you send a form, we also pass your email address or phone number to Google Ads for enhanced conversions. The Google tag hashes this data with SHA-256 in your browser before it is sent, so Google receives a hash, not the plain value. Google uses it to match the enquiry to the ad click.",
+          "When you send a form, we also pass the contact details you entered in it (your email address, your phone number, or both) to Google Ads for enhanced conversions. The Google tag hashes this data with SHA-256 in your browser before it is sent, so Google receives a hash, not the plain value. Google uses it to match the enquiry to the ad click.",
           "Google tags run through Google Tag Manager, within the limits set by your cookie settings."
         ]
       },
