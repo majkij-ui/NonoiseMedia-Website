@@ -49,11 +49,32 @@ function fromProject(projectId: number): LpExample {
  * then reference them here. A URL requested before the file exists is cached
  * as "missing" for a year (see CLAUDE.md, Settled Decisions).
  */
+const LP_MEDIA = "https://assets.nonoise.media/videos/lp"
+
+/**
+ * Films shown only on the landing page (not portfolio projects yet). Ids start
+ * at 100 so they can never collide with a project id from lib/projects.ts.
+ */
+function lpFilm(
+  id: number,
+  client: string,
+  title: string,
+  file: string,
+  poster: string,
+  vertical = false,
+): LpExample {
+  return { id, client, title, video: `${LP_MEDIA}/${file}`, image: `${LP_MEDIA}/${poster}`, vertical }
+}
+
 export const LP_SERVICE_EXAMPLES: Record<LpServiceId, LpExample[]> = {
-  corporate: [fromProject(1)],
+  corporate: [lpFilm(101, "JHJ", "Film na 25-lecie firmy", "JHJ-bezAI-fullHD.mp4", "jhj-film-poster.webp"), fromProject(1)],
   commercial: [fromProject(2), fromProject(3)],
   ai: [],
-  social: [],
-  podcast: [],
+  social: [
+    lpFilm(111, "Morris & Lloyd Broker", "Rolka 01", "morris-lloyd-rolka1.mp4", "morris-lloyd-rolka1-poster.webp", true),
+    lpFilm(112, "Morris & Lloyd Broker", "Rolka 02", "morris-lloyd-rolka1B.mp4", "morris-lloyd-rolka1B-poster.webp", true),
+    lpFilm(113, "Morris & Lloyd Broker", "Rolka 03", "morris-lloyd-rolka2B.mp4", "morris-lloyd-rolka2B-poster.webp", true),
+  ],
+  podcast: [lpFilm(121, "CIONET", "Wywiad na trzy kamery", "podcast-sample-cionet.mp4", "podcast-sample-cionet-poster.webp")],
   event: [fromProject(4), fromProject(6)],
 }

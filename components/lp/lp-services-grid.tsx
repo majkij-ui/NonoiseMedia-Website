@@ -135,12 +135,19 @@ function ExampleThumb({
       </motion.div>
       <span className="absolute inset-0 bg-black/25 transition-colors duration-300 group-hover/thumb:bg-black/45" />
       <span className="absolute inset-x-0 bottom-0 flex flex-col p-3 md:p-4">
-        <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/70">{example.client}</span>
-        <span className="mt-1 font-[family-name:var(--font-display)] text-base uppercase leading-tight tracking-[0.02em] text-white md:text-lg">
+        {/* A reel still is too narrow for the client's name; the tile already says whose it is. */}
+        {example.vertical ? null : (
+          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/70">{example.client}</span>
+        )}
+        <span
+          className={`mt-1 font-[family-name:var(--font-display)] uppercase leading-tight tracking-[0.02em] text-white ${
+            example.vertical ? "text-sm" : "text-base md:text-lg"
+          }`}
+        >
           {example.title}
         </span>
       </span>
-      <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-black/40 text-white backdrop-blur-sm transition-transform duration-300 group-hover/thumb:scale-110">
+      <span className={`absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center ${example.vertical ? "h-9 w-9" : "h-12 w-12"} justify-center rounded-full border border-white/60 bg-black/40 text-white backdrop-blur-sm transition-transform duration-300 group-hover/thumb:scale-110`}>
         <Play size={18} fill="currentColor" />
       </span>
     </motion.button>
@@ -480,7 +487,7 @@ export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
                           </ul>
 
                           {examples.length ? (
-                            <div className={`mb-7 grid gap-2 ${examples.some((e) => e.vertical) ? "grid-cols-2" : "grid-cols-1"}`}>
+                            <div className={`mb-7 grid gap-2 ${examples.some((e) => e.vertical) ? "grid-cols-3" : "grid-cols-1"}`}>
                               {examples.map((example, i) => (
                                 <ExampleThumb
                                   key={example.id}
@@ -663,10 +670,10 @@ export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
                         <div
                           className={`grid gap-3 ${
                             openExamples.some((e) => e.vertical)
-                              ? "max-w-md grid-cols-3"
+                              ? "max-w-xs grid-cols-3"
                               : openExamples.length > 1
                                 ? "grid-cols-2"
-                                : "max-w-xs grid-cols-1 lg:max-w-sm"
+                                : "max-w-[17rem] grid-cols-1 lg:max-w-[21rem]"
                           }`}
                         >
                           {openExamples.map((example, i) => (

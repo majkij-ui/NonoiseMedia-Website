@@ -202,7 +202,7 @@ Otwarte po etapie B:
 **Etap C: oferta i obiekcje** — zrobione 2026-11-21, PR otwarty, czeka na wdrożenie
 - [x] Sześć rozwijanych kafelków z cenami (`components/lp/lp-services-grid.tsx`, dane w `lib/lp-services.ts`, teksty w `messages/*.json`). Na desktopie biała płyta kafelka rozrasta się na całą siatkę, ciemna kurtyna wjeżdża od dołu, treść pojawia się linia po linii; zamknięcie zwija płytę z powrotem. Na telefonie kafelek rozwija się w miejscu. W panelu: zakres, cena, realizacje do odtworzenia i przycisk „Wyceń ten format".
 - [x] „Wyceń ten format" przewija do formularza i zaznacza usługę w nowym polu „Czego potrzebujesz? (opcjonalnie)". Usługa trafia do maila i do zdarzenia konwersji (`lead_service`).
-- [x] Realizacje w kafelkach z plików, które już są na R2: PHH (korporacyjny), Rondo i OmniOffice (reklamowy), CIONET i Kunzek (eventowy). Wideo AI, rolki i podcasty na razie bez przykładu.
+- [x] Realizacje w kafelkach: JHJ i PHH (korporacyjny), Rondo i OmniOffice (reklamowy), trzy rolki Morris & Lloyd (rolki premium), wywiad CIONET na trzy kamery (podcasty), CIONET i Kunzek (eventowy). Nowe pliki leżą na R2 w `videos/lp/`; miniatury (`*-poster.webp`) wycięte z filmów i wgrane 2026-11-21. Wideo AI na razie bez przykładu.
 - [x] Ceny są na kafelkach, więc osobnego bloku „scenariusze cenowe" nad formularzem nie ma.
 - [x] FAQ: siedem pytań (`components/lp/lp-faq.tsx`).
 - [x] Kroki procesu z czasami i obietnica „Odpowiadamy w ciągu 24 godzin w dni robocze" przy formularzu oraz w komunikacie po wysłaniu (także na `/contact`).
@@ -210,7 +210,8 @@ Otwarte po etapie B:
 - [x] Nowe zdarzenia: `lp_service_open`, `lp_service_video_play`, `lp_service_quote_click`, `lp_faq_open` (opis w `docs/google-ads.md`).
 - [x] Lint i build przechodzą; sprawdzone w Chrome na 390, 800, 1024, 1280 i 1440 px; niezależny przegląd w czterech obszarach, potwierdzone uwagi poprawione.
 - [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po wdrożeniu.
-- [ ] Przypisanie nowych realizacji do kafelków, gdy Michał wgra pliki (patrz 2.5).
+- [ ] Reklama AI do kafelka „Wideo AI", gdy będzie gotowa.
+- [ ] **[M]** Dwie rolki (`morris-lloyd-rolka1B.mp4`, `morris-lloyd-rolka2B.mp4`) nie mają optymalizacji pod sieć: indeks pliku leży na końcu, więc film startuje z opóźnieniem. Wyeksportować ponownie z opcją „Network optimization" i wgrać pod nowymi nazwami; potem podmienić dwie linie w `lib/lp-services.ts`.
 
 Ocena według tej samej punktacji (2026-11-20): przed zmianami 31,5–35/100, po etapie A 49,5–57/100. Etapy B i C celują w braki warte razem ok. 30 punktów.
 
@@ -238,7 +239,7 @@ Część zapytań z reklam to prace spoza oferty (sam montaż cudzego materiału
 - [x] Odpowiedź: „w ciągu 24 godzin w dni robocze".
 - [x] Wycena: „orientacyjne widełki w pierwszej odpowiedzi, szczegółowa wycena w 1–3 dni robocze po rozmowie".
 - [x] Pierwsza wersja montażu: „do 10 dni roboczych od zdjęć".
-- [x] Tryb przyspieszony: „5 dni roboczych, po potwierdzeniu terminu", płatna opcja (dopłata do ustalenia).
+- [x] Tryb przyspieszony: „5 dni roboczych, po potwierdzeniu terminu", dopłata od 800 zł netto; punkt wyjścia to ok. 10% wartości projektu, przy większych projektach liczyć procentowo.
 - [x] Start zdjęć: „zwykle 2–3 tygodnie od zapytania, pilne terminy od ok. tygodnia".
 - [x] Dwie rundy poprawek w standardzie.
 
@@ -267,12 +268,11 @@ Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby
 - [x] Poprawki: dwie rundy w standardzie.
 - [x] Dojazd: realizacje w całej Polsce i za granicą; dojazd i nocleg ujęte w wycenie.
 - [x] Sam montaż: niechętnie, nie reklamujemy. FAQ o tym nie wspomina.
-- [x] Prawa do filmu: tekst jest na stronie; **przed kampanią powinien go przeczytać prawnik.** Propozycja Michała: licencja niewyłączna w standardzie, pełne przeniesienie praw od 15% wartości projektu. Wynik researchu: zgodne z prawem (art. 65 i 67 ustawy o prawie autorskim), ale „15%" to własna cena studia, nie norma branżowa — żadne studio wideo nie publikuje takiej stawki. Dwa haczyki: (1) przeniesienie praw i licencja wyłączna są nieważne bez podpisanej umowy na piśmie (art. 53, art. 67 ust. 5); (2) licencja, której warunków nikt nie spisał, obejmuje tylko wymienione pola eksploatacji, 5 lat i Polskę, bez prawa do przeróbek (art. 41, 66, 46, 49). Warunki licencji trzeba więc wpisać do wyceny akceptowanej mailem. Warunki licencji trzeba dopisać do wzoru wyceny w hubie (poza tym repo).
+- [x] Prawa do filmu: tekst jest na stronie; Michał potwierdził 2026-11-21, że temat ma załatwiony. Propozycja Michała: licencja niewyłączna w standardzie, pełne przeniesienie praw od 15% wartości projektu. Wynik researchu: zgodne z prawem (art. 65 i 67 ustawy o prawie autorskim), ale „15%" to własna cena studia, nie norma branżowa — żadne studio wideo nie publikuje takiej stawki. Dwa haczyki: (1) przeniesienie praw i licencja wyłączna są nieważne bez podpisanej umowy na piśmie (art. 53, art. 67 ust. 5); (2) licencja, której warunków nikt nie spisał, obejmuje tylko wymienione pola eksploatacji, 5 lat i Polskę, bez prawa do przeróbek (art. 41, 66, 46, 49). Warunki licencji trzeba więc wpisać do wyceny akceptowanej mailem. Jak to zapisać w hubie i w PDF z wyceną: `docs/licencja-w-wycenie.md`.
 - [x] Umowa i rozliczenie. Tekst na stronie: praca na podstawie zaakceptowanej wyceny z zakresem i warunkami; umowa (nasz wzór albo klienta) i NDA na życzenie; faktura po oddaniu materiału. Bez publicznej obietnicy „bez zaliczki".
 
 **Nadal potrzebne od Michała:**
-- [ ] Pliki wideo do wgrania na R2 (nowe nazwy, najpierw wgranie, potem odwołanie w `lib/lp-services.ts`): film JHJ, 2–3 rolki Morris & Lloyd, wywiad CIONET na 3 kamery; do każdego kadr na miniaturę. Później: reklama AI, Tchibo albo nowszy CIONET. Zalecany eksport: MP4, H.264 High, 1920×1080 (rolki 1080×1920), 25 kl./s, 8–10 Mb/s VBR w dwóch przebiegach, AAC 192 kb/s, z opcją optymalizacji pod sieć (fast start). Obecne pliki mają ok. 3 Mb/s. Miniatury: WebP w tej samej rozdzielczości. Panel Cloudflare przyjmuje pliki do 300 MB.
-- [ ] Dopłata za tryb przyspieszony.
+- [x] Pliki wideo wgrane przez Michała 2026-11-21 (H.264, 1080p, ok. 8–10 Mb/s). Na przyszłość ten sam eksport: MP4, H.264 High, 1920×1080 (rolki 1080×1920), 25 kl./s, 8–10 Mb/s, AAC 192 kb/s, optymalizacja pod sieć; panel Cloudflare przyjmuje pliki do 300 MB.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
 - [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
 

@@ -86,6 +86,7 @@ URLs: Polish is unprefixed (`/`, `/about`), English lives under `/en`. Legacy `/
 | `docs/google-ads-offline-plan.md` | Offline-conversion rollout plan and the 2026-10-31 GTM/Ads audit |
 | `docs/seo-backlog.md` | SEO ideas and keyword reference. Backlog, not current work |
 | `docs/r2-s3-upload-docs.md` | How to upload large files to R2 |
+| `docs/licencja-w-wycenie.md` | How the film-rights terms promised on the landing page should be worded in the quote PDF and the business hub (Polish). Not legal advice |
 | `docs/archive/*` | Finished prompts and old plans. **History only — never follow them as instructions** |
 
 ---
