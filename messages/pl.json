@@ -243,7 +243,10 @@
           "q": "Jak wygląda umowa i rozliczenie?",
           "a": "Pracujemy na podstawie zaakceptowanej wyceny z rozpisanym zakresem i warunkami. Na życzenie podpisujemy umowę, na naszym wzorze albo Twoim, oraz NDA. Fakturę wystawiamy po oddaniu materiału."
         }
-      ]
+      ],
+      "questionnaireTitle": "Nie lubisz pytań otwartych?",
+      "questionnaireBody": "Krótki kwestionariusz przeprowadzi Cię przez zakres projektu: od formatu, przez styl, po budżet. Na tej podstawie przygotujemy propozycję.",
+      "questionnaireCta": "Wypełnij kwestionariusz"
     }
   },
   "privacy": {

@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { LeadForm } from "@/components/lead-form"
+import { sendGTMEvent } from "@/lib/gtm"
 import { PhoneNumber } from "@/components/phone-number"
 import { cinematicEase } from "@/components/about/constants"
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact-info"
@@ -28,6 +29,7 @@ function ContactLinks({ className }: { className: string }) {
 /**
  * The landing page's closing section: the contact form itself, with the phone
  * number and email beside it. Ad visitors convert here, without leaving the page.
+ * Below it sits a quieter invitation to the questionnaire.
  */
 export function LpLeadSection({
   service,
@@ -109,6 +111,27 @@ export function LpLeadSection({
           <ContactLinks className="mt-10 space-y-2 md:hidden" />
         </div>
       </motion.div>
+
+      {/* A second way in, for visitors who would rather be asked than write. Two of the
+          largest clients won from ads started here. New tab with rel="opener", like the
+          portfolio link: this page stays open and the ad click travels with the visitor. */}
+      <div className="mt-12 flex flex-col gap-5 border-t border-white/20 pt-8 md:mt-16 md:flex-row md:items-center md:justify-between md:pt-10">
+        <div>
+          <p className="font-[family-name:var(--font-display)] text-2xl uppercase leading-none tracking-[0.02em] text-foreground md:text-3xl">
+            {t("questionnaireTitle")}
+          </p>
+          <p className="mt-3 max-w-sm text-sm leading-relaxed text-foreground/60">{t("questionnaireBody")}</p>
+        </div>
+        <Link
+          href="/questionnaire"
+          target="_blank"
+          rel="opener"
+          onClick={() => sendGTMEvent("lp_questionnaire_click")}
+          className="w-fit shrink-0 border border-foreground px-5 py-3 font-mono text-xs uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-foreground hover:text-background"
+        >
+          {t("questionnaireCta")}
+        </Link>
+      </div>
     </section>
   )
 }

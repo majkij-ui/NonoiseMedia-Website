@@ -27,6 +27,7 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
   | `lp_service_video_play` | a sample film is played inside an opened tile; params `service`, `video` | same |
   | `lp_service_quote_click` | "Wyceń ten format" inside an opened tile; param `service`. Scrolls to the form with that service preselected | same |
   | `lp_faq_open` | a question in the FAQ is opened; param `question` (1-based position) | [`components/lp/lp-faq.tsx`](../components/lp/lp-faq.tsx) |
+  | `lp_questionnaire_click` | "Wypełnij kwestionariusz" under the form (opens `/questionnaire` in a new tab; the conversion there is `questionnaire_success`) | [`components/lp/lp-lead-section.tsx`](../components/lp/lp-lead-section.tsx) |
   | `lp_portfolio_link_click` | "Zobacz pełne portfolio" under the films (opens `/work` in a new tab) | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
   | `phone_click` | number in the form section | `components/phone-number.tsx` |
 
@@ -34,7 +35,7 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
 
   The landing page header and the phone bottom bar show e-mail instead of the phone (owner's decision, 2026-11-20: leads write, almost nobody calls). The links carry `data-gaw-contact="email-header"` and `data-gaw-contact="email-sticky"`; like every other `mailto:` link on the site they push no dataLayer event.
 
-  The portfolio link uses `target="_blank" rel="opener"` on purpose. Before ad consent the ad-click record lives in `sessionStorage`, which a new tab only inherits when it is opened with an opener; with the default `noopener` a visitor who went on to `/contact` from the portfolio would lose the `gclid`.
+  The portfolio link and the questionnaire link use `target="_blank" rel="opener"` on purpose. Before ad consent the ad-click record lives in `sessionStorage`, which a new tab only inherits when it is opened with an opener; with the default `noopener` a visitor who went on to `/contact` from the portfolio would lose the `gclid`.
 
 ### Google Analytics vs Vercel Analytics
 

@@ -243,7 +243,10 @@
           "q": "What about the contract and payment?",
           "a": "We work on the basis of an accepted quote with the scope and terms itemised. On request we sign a contract, on our template or yours, and an NDA. We invoice after delivery."
         }
-      ]
+      ],
+      "questionnaireTitle": "Not a fan of open questions?",
+      "questionnaireBody": "A short questionnaire walks you through the scope of the project: format, style and budget. We prepare a proposal based on your answers.",
+      "questionnaireCta": "Fill in the questionnaire"
     }
   },
   "privacy": {
