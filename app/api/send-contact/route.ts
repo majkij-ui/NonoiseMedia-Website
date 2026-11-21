@@ -6,6 +6,7 @@ import {
   renderLeadSourceHtml,
   sanitizeLeadSource,
 } from '@/lib/lead-source';
+import { LP_SERVICE_EMAIL_LABELS } from '@/lib/lp-services';
 
 /** Which form the message came from, as shown in the email. Anything unknown counts as the contact page. */
 const DEFAULT_FORM_LABEL = 'strona kontaktowa';
@@ -13,6 +14,9 @@ const FORM_LABELS = new Map<string, string>([
   ['contact', DEFAULT_FORM_LABEL],
   ['lp-kampania', 'landing page kampanii'],
 ]);
+
+/** The landing page's optional "what do you need" choice. Only known values reach the email. */
+const SERVICE_LABELS = new Map<string, string>(Object.entries(LP_SERVICE_EMAIL_LABELS));
 
 export async function POST(request: Request) {
   try {
@@ -32,6 +36,7 @@ export async function POST(request: Request) {
     // Optional. The landing page form offers it; the contact page does not.
     const phone = String(body.phone ?? '').trim().slice(0, 40);
     const formLabel = FORM_LABELS.get(String(body.source ?? '')) ?? DEFAULT_FORM_LABEL;
+    const serviceLabel = SERVICE_LABELS.get(String(body.service ?? '')) ?? '';
 
     if (!name) {
       return NextResponse.json(
@@ -80,6 +85,10 @@ export async function POST(request: Request) {
       ${phone ? `<div style="margin-bottom: 20px; border-left: 2px solid #000; padding-left: 15px;">
         <p style="margin: 0; font-size: 14px; text-transform: uppercase; color: #666;">Telefon</p>
         <p style="margin: 5px 0 0 0; font-size: 18px; color: #000;">${escapeHtml(phone)}</p>
+      </div>` : ''}
+      ${serviceLabel ? `<div style="margin-bottom: 20px; border-left: 2px solid #000; padding-left: 15px;">
+        <p style="margin: 0; font-size: 14px; text-transform: uppercase; color: #666;">Usługa</p>
+        <p style="margin: 5px 0 0 0; font-size: 18px; color: #000;">${escapeHtml(serviceLabel)}</p>
       </div>` : ''}
       <div style="margin-bottom: 20px; border-left: 2px solid #000; padding-left: 15px;">
         <p style="margin: 0; font-size: 14px; text-transform: uppercase; color: #666;">Wiadomość</p>

@@ -8,6 +8,7 @@ import { PhoneNumber } from "@/components/phone-number"
 import { cinematicEase } from "@/components/about/constants"
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact-info"
 import { LEAD_HEADING_ID, LEAD_SECTION_ID } from "@/components/lp/scroll-to-lead"
+import { LP_SERVICE_IDS, LP_SERVICE_OTHER } from "@/lib/lp-services"
 
 const CONTACT_LINK_CLASS =
   "block w-fit font-[family-name:var(--font-display)] text-3xl uppercase leading-none tracking-[0.02em] text-foreground transition-opacity hover:opacity-70 md:text-4xl"
@@ -28,9 +29,21 @@ function ContactLinks({ className }: { className: string }) {
  * The landing page's closing section: the contact form itself, with the phone
  * number and email beside it. Ad visitors convert here, without leaving the page.
  */
-export function LpLeadSection() {
+export function LpLeadSection({
+  service,
+  onServiceChange,
+}: {
+  /** The format chosen on a service tile, or "" when none. */
+  service: string
+  onServiceChange: (service: string) => void
+}) {
   const t = useTranslations("lp.kampania")
   const tFooter = useTranslations("footer")
+
+  const serviceOptions = [
+    ...LP_SERVICE_IDS.map((id) => ({ value: id, label: t(`services.${id}.title`) })),
+    { value: LP_SERVICE_OTHER, label: t("formServiceOther") },
+  ]
 
   return (
     <section
@@ -56,6 +69,9 @@ export function LpLeadSection() {
             {t("leadCta")}
           </h2>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-foreground/60 md:mt-6">{t("leadBody")}</p>
+          <p className="mt-4 max-w-sm border-l border-foreground/40 pl-3 font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-foreground/85">
+            {t("leadPromise")}
+          </p>
 
           {/* Desktop: beside the form. On a phone the form comes first; see below. */}
           <ContactLinks className="mt-8 hidden space-y-2 md:block" />
@@ -63,7 +79,19 @@ export function LpLeadSection() {
 
         <div className="md:col-span-6 md:col-start-7">
           <div className="flex min-h-[22rem] flex-col border border-white/20 bg-background p-5 md:p-7">
-            <LeadForm source="lp-kampania" withPhone withLabels messageRows={3} />
+            <LeadForm
+              source="lp-kampania"
+              withPhone
+              withLabels
+              messageRows={3}
+              serviceField={{
+                label: t("formServiceLabel"),
+                placeholder: t("formServicePlaceholder"),
+                options: serviceOptions,
+                value: service,
+                onChange: onServiceChange,
+              }}
+            />
           </div>
           <p className="mt-3 max-w-sm text-xs leading-relaxed text-foreground/50">
             {t("leadPrivacy")}{" "}

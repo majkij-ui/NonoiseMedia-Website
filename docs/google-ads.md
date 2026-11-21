@@ -23,6 +23,10 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
   | `lp_reel_click` | "Play reel" in the hero | [`components/lp/lp-hero.tsx`](../components/lp/lp-hero.tsx) |
   | `lp_portfolio_cta_click` | "Wyceń podobny projekt" under the films | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
   | `lp_sticky_quote_click` | "Wyceń projekt" in the phone bottom bar | [`components/lp/lp-sticky-cta.tsx`](../components/lp/lp-sticky-cta.tsx) |
+  | `lp_service_open` | a service tile is opened; param `service` (`corporate`, `commercial`, `ai`, `social`, `podcast`, `event`) | [`components/lp/lp-services-grid.tsx`](../components/lp/lp-services-grid.tsx) |
+  | `lp_service_video_play` | a sample film is played inside an opened tile; params `service`, `video` | same |
+  | `lp_service_quote_click` | "Wyceń ten format" inside an opened tile; param `service`. Scrolls to the form with that service preselected | same |
+  | `lp_faq_open` | a question in the FAQ is opened; param `question` (1-based position) | [`components/lp/lp-faq.tsx`](../components/lp/lp-faq.tsx) |
   | `lp_portfolio_link_click` | "Zobacz pełne portfolio" under the films (opens `/work` in a new tab) | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
   | `phone_click` | number in the form section | `components/phone-number.tsx` |
 
@@ -97,6 +101,7 @@ dataLayer.push({
   event: "contact_form_success",     // or "questionnaire_success"
   transaction_id: "K7Q2M9XA",        // leadId
   form_location: "lp-kampania",      // or "contact"; contact form only
+  lead_service: "podcast",           // landing page form only: corporate | commercial | ai | social | podcast | event | other; undefined when nothing was chosen
   user_data: { email: "anna@firma.pl" },         // contact form on /contact
   // user_data: { email: "anna@firma.pl", phone_number: "+48600100200" }, // landing page form, phone given
   // user_data: { phone_number: "+48600100200" }, // questionnaire, phone chosen

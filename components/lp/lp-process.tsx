@@ -7,9 +7,9 @@ import { cinematicEase } from "@/components/about/constants"
 type ProcessStep = { step: string; title: string; text: string }
 
 /**
- * How the studio works, as three plain steps. The /about page tells the same
- * story with animated demo cards; a paid visitor gets the content without the
- * mock interface.
+ * From enquiry to finished film in three steps, each with the time it
+ * usually takes. The times are the owner's approved promises (TODO.md 2.5),
+ * based on his 2026 project data: change them there first.
  */
 export function LpProcess() {
   const t = useTranslations("lp.kampania")
