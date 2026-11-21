@@ -229,31 +229,49 @@ Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → ofe
 
 Część zapytań z reklam to prace spoza oferty (sam montaż cudzego materiału, pojedyncze drobne zlecenia). FAQ i kwoty „od" mają je odsiewać.
 
-**Obietnice czasowe — propozycja do zatwierdzenia przez Michała:**
-- [ ] Odpowiedź: „w ciągu 24 godzin w dni robocze" (zgodne z danymi: mediana ok. 21 h, opóźnienia to głównie weekendy).
-- [ ] Wycena: „orientacyjne widełki w pierwszej odpowiedzi, szczegółowa wycena w 1–3 dni robocze po rozmowie" (mediana wyceny to 3 dni; samo „wycena w 24 h" byłoby obietnicą na wyrost).
-- [ ] Pierwsza wersja montażu: „do 10 dni roboczych od zdjęć" (mediana 7 dni kalendarzowych, większość projektów mieści się w 15).
-- [ ] Tryb przyspieszony: „5 dni roboczych, po potwierdzeniu terminu" jako płatna opcja.
-- [ ] Start zdjęć: „zwykle 2–3 tygodnie od zapytania, pilne terminy od ok. tygodnia" (mediana 20 dni, najszybciej 8).
+**Obietnice czasowe — zatwierdzone przez Michała 2026-11-21:**
+- [x] Odpowiedź: „w ciągu 24 godzin w dni robocze".
+- [x] Wycena: „orientacyjne widełki w pierwszej odpowiedzi, szczegółowa wycena w 1–3 dni robocze po rozmowie".
+- [x] Pierwsza wersja montażu: „do 10 dni roboczych od zdjęć".
+- [x] Tryb przyspieszony: „5 dni roboczych, po potwierdzeniu terminu", płatna opcja (dopłata do ustalenia).
+- [x] Start zdjęć: „zwykle 2–3 tygodnie od zapytania, pilne terminy od ok. tygodnia".
+- [x] Dwie rundy poprawek w standardzie.
 
-**Scenariusze cenowe (kwoty netto) — do decyzji:**
-- [ ] Pakiet rolek z jednego dnia zdjęciowego: „od 10 000 zł" (10 rolek, 1 lokacja).
-- [ ] Film firmowy lub wizerunkowy: dwa progi zamiast jednego — mniejsza produkcja (1–2 dni zdjęciowe) i pełna produkcja ze scenariuszem i ekipą „od 25 000 zł". Jeden próg 25 000 odcinałby filmy, które faktycznie realizujemy taniej.
-- [ ] Relacja z wydarzenia: „od 3 500 zł" tylko dla prostego zakresu (1 operator, 1 krótki film); wersja z wywiadami to osobna, wyższa kwota. Do rozważenia, czy tani próg w ogóle pokazywać na stronie z reklam.
+**Kafelki oferty — propozycja po uwagach Michała (czeka na jego „tak"):** sześć zamiast dziewięciu.
 
-**Odpowiedzi do FAQ, których brakuje (Michał):**
-- [ ] Prawa do filmu: co jest standardem (licencja, jaka), a co opcją (wyłączność, przeniesienie praw) i czy za dopłatą.
-- [ ] Co dokładnie jest w cenie: koncepcja lub scenariusz, muzyka z licencją, napisy, korekcja koloru, wersje pionowe.
-- [ ] Liczba rund poprawek w cenie (w wycenach pojawiały się 2).
-- [ ] Dojazd i nocleg poza Warszawą: jak liczone.
-- [ ] Umowa i faktura: czy zawsze umowa, faktura VAT, zaliczka.
-- [ ] Czy przyjmujemy sam montaż i jakie jest minimalne zlecenie.
+| # | Kafelek | Cena na kafelku (netto) | Realizacja w panelu | Plik na R2 |
+|---|---|---|---|---|
+| 1 | Film korporacyjny i wizerunkowy | od 25 000 zł | JHJ (film na 25-lecie), PHH | PHH jest; JHJ do wgrania |
+| 2 | Film reklamowy | od 15 000 zł | Rondo IOON, OmniOffice; Stylbud opcjonalnie | Rondo i OmniOffice są |
+| 3 | Wideo AI | do decyzji (Michał: od 20 000 zł) | reklama spekulatywna w przygotowaniu | brak |
+| 4 | Wideo do social mediów | pakiet 10 rolek od 10 000 zł | Morris & Lloyd (piony) | do wgrania |
+| 5 | Podcasty i wywiady na 3 kamery | 1 dzień zdjęciowy, do 5 odcinków, postprodukcja — od 8 000 zł | wywiady CIONET | do wgrania |
+| 6 | Reportaż eventowy | od 4 000 zł | CIONET (obecny); później Tchibo albo nowszy CIONET | CIONET jest |
 
-**Kafelki oferty:**
-- [ ] Które usługi zostają (dziś 9). Dla każdej: trzy konkrety i 1–2 realizacje do odtworzenia. Claude może naszkicować całość z istniejących podstron `/offer/*` i portfolio; Michał tylko poprawia.
+Znikają osobne kafelki: film wizerunkowy (łączy się z korporacyjnym, ta sama cena), filmy produktowe (Rondo przechodzi do reklamowego), wideo na LinkedIn, video case studies, wywiady eksperckie (łączą się z podcastami). Bez osobnego progu „kampania dla małych firm od 10 000 zł".
+
+Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby są orientacyjne):
+- Film korporacyjny od 25 000 zł: wysoko jako próg, typowo jako cena warszawskiego projektu. Odsiewa małych klientów, zapytań będzie mniej.
+- Film reklamowy od 15 000 zł i reportaż od 4 000 zł: typowe. Przy reportażu podać zakres (1 operator, ok. 4 godziny, jeden film).
+- 10 rolek od 10 000 zł: ok. dwa razy powyżej opublikowanych pakietów. Do obrony tylko jako produkt premium — kafelek musi wymienić, co jest w cenie (scenariusze, światło i dźwięk, napisy, licencja na muzykę, dwie rundy poprawek).
+- Podcast od 8 000 zł: mieści się w rynku. Próg trzeba zdefiniować (odcinki ok. 20–30 min); napisy do całych odcinków i piony jako osobno wyceniane dodatki albo mała stała liczba w cenie.
+- Wideo AI od 20 000 zł: powyżej wszystkich opublikowanych polskich cen startowych (800–9 000 zł). Bez własnego przykładu trudne do obrony; rozważyć „od 15 000 zł" albo brak ceny do czasu pierwszej realizacji.
+
+**FAQ — ustalenia:**
+- [x] Co jest w cenie: kompleksowo — koncepcja, scenariusz, zdjęcia, montaż, muzyka z licencją, napisy, wersje pionowe, efekty AI; dokładny zakres zawsze w wycenie.
+- [x] Poprawki: dwie rundy w standardzie.
+- [x] Dojazd: realizacje w całej Polsce i za granicą; dojazd i nocleg ujęte w wycenie.
+- [x] Sam montaż: niechętnie, nie reklamujemy. FAQ o tym nie wspomina.
+- [ ] Prawa do filmu. Propozycja Michała: licencja niewyłączna w standardzie, pełne przeniesienie praw od 15% wartości projektu. Wynik researchu: zgodne z prawem (art. 65 i 67 ustawy o prawie autorskim), ale „15%" to własna cena studia, nie norma branżowa — żadne studio wideo nie publikuje takiej stawki. Dwa haczyki: (1) przeniesienie praw i licencja wyłączna są nieważne bez podpisanej umowy na piśmie (art. 53, art. 67 ust. 5); (2) licencja, której warunków nikt nie spisał, obejmuje tylko wymienione pola eksploatacji, 5 lat i Polskę, bez prawa do przeróbek (art. 41, 66, 46, 49). Warunki licencji trzeba więc wpisać do wyceny akceptowanej mailem. Tekst odpowiedzi do FAQ czeka na akceptację Michała i sprawdzenie przez prawnika.
+- [ ] Umowa i rozliczenie. Propozycja tekstu: praca na podstawie zaakceptowanej wyceny z zakresem i warunkami; umowa (nasz wzór albo klienta) i NDA na życzenie; faktura po oddaniu materiału. Bez publicznej obietnicy „bez zaliczki".
+
+**Nadal potrzebne od Michała:**
+- [ ] „Tak" dla układu sześciu kafelków albo poprawki.
+- [ ] Pliki wideo do wgrania na R2 (nowe nazwy, najpierw wgranie, potem odwołanie w kodzie): film JHJ, 2–3 rolki Morris & Lloyd, wywiad CIONET na 3 kamery; do każdego kadr na miniaturę. Później: reklama AI, Tchibo albo nowszy CIONET.
+- [ ] Cena na kafelku Wideo AI.
+- [ ] Dopłata za tryb przyspieszony.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
 - [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
-- [ ] Decyzja: która nazwa i adres firmy mają być widoczne — rozstrzygnięte: adres studia w Podolszynie Nowym.
 
 ---
 
