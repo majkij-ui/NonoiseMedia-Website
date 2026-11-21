@@ -2,14 +2,14 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 import { X } from "lucide-react"
-import type { Project } from "@/lib/projects"
 
 const cinematicEase = [0.25, 0.1, 0.25, 1] as const
 const layoutSpring = { type: "spring" as const, stiffness: 250, damping: 25 }
 
 type ProjectVideoModalProps = {
   isOpen: boolean
-  activeProject: Project | null | undefined
+  /** Anything with a video to play: a portfolio project or a landing page sample. */
+  activeProject: { id: number; video: string } | null | undefined
   useSharedLayout: boolean
   onClose: () => void
   onExitComplete: () => void
@@ -42,6 +42,8 @@ export function ProjectVideoModal({
             <button
               type="button"
               onClick={onClose}
+              // Focus comes here so Space and Enter no longer reach the button that opened the film.
+              autoFocus
               className="absolute right-6 top-6 z-[71] flex h-12 w-12 items-center justify-center text-white/80 transition-colors hover:text-white"
               aria-label="Close video"
             >

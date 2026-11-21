@@ -50,6 +50,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | Testimonials (shared by `/about` and the landing page). Drafts awaiting consent live in `DRAFT_TESTIMONIALS` in `.env.local`, never in the repo (it is public) and never in production | `lib/testimonials.ts` |
 | Pricing tiers | `components/offer/pricing-tiers.tsx` |
 | Contact form (shared by `/contact` and the landing page) | `components/lead-form.tsx` |
+| Landing page service tiles: order, sample films, email names (copy and prices are in `messages/*.json`, `lp.kampania.services`) | `lib/lp-services.ts`, `components/lp/lp-services-grid.tsx` |
 | Contact details (phone, email) | `lib/contact-info.ts` |
 | Contact API | `app/api/send-contact/route.ts` |
 | Cookie consent (own banner, no third-party CMP) | `lib/consent.ts`, `components/cookie-consent.tsx`, `app/api/consent/route.ts` |
@@ -85,6 +86,7 @@ URLs: Polish is unprefixed (`/`, `/about`), English lives under `/en`. Legacy `/
 | `docs/google-ads-offline-plan.md` | Offline-conversion rollout plan and the 2026-10-31 GTM/Ads audit |
 | `docs/seo-backlog.md` | SEO ideas and keyword reference. Backlog, not current work |
 | `docs/r2-s3-upload-docs.md` | How to upload large files to R2 |
+| `docs/licencja-w-wycenie.md` | How the film-rights terms promised on the landing page should be worded in the quote PDF and the business hub (Polish). Not legal advice |
 | `docs/archive/*` | Finished prompts and old plans. **History only — never follow them as instructions** |
 
 ---
@@ -98,6 +100,7 @@ URLs: Polish is unprefixed (`/`, `/about`), English lives under `/en`. Legacy `/
 - **A missing file is cached for a year too.** The CDN and browsers keep the 404 for a URL that was requested before the file existed. Upload first, then reference; if a URL was already requested while empty, upload under a different name (this is why the logos are `tchibo-logo.png`, not `tchibo.png`).
 - **Check caching with GET, not HEAD:** `curl -s -o /dev/null -D - <url>`. `curl -I` always reports `DYNAMIC`.
 - **The cookie banner is ours and stays small.** CookieYes was removed on 2026-11-20 because it covered the phone screen and the contact form. Do not bring back a third-party consent tool, a modal, or an overlay. Anything fixed to the bottom of the screen must respect `--consent-offset`.
+- **Prices and time promises on the landing page are the owner's decisions** (TODO.md 2.5: net prices per tile, reply in 24 h on working days, first cut within 10 working days, two revision rounds). Do not change a number or add a promise without asking him.
 - **Lead events fire only after the API returns 200** (`contact_form_success`, `questionnaire_success`). Never move them to a click.
 
 ---

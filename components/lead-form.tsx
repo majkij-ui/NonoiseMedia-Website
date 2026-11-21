@@ -2,7 +2,7 @@
 
 import { type FormEvent, useCallback, useId, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
-import { Check } from "lucide-react"
+import { Check, ChevronDown } from "lucide-react"
 import { sendGTMEvent } from "@/lib/gtm"
 import {
   newLeadId,
@@ -24,6 +24,17 @@ type LeadFormProps = {
   /** Shows a small label above each field instead of relying on placeholders alone. */
   withLabels?: boolean
   messageRows?: number
+  /**
+   * Adds an optional "what do you need" choice. Controlled by the caller, so a
+   * button elsewhere on the page can preselect it before scrolling here.
+   */
+  serviceField?: {
+    label: string
+    placeholder: string
+    options: { value: string; label: string }[]
+    value: string
+    onChange: (value: string) => void
+  }
 }
 
 // 16px on phones: iOS Safari zooms the page when a focused field is smaller.
@@ -46,7 +57,13 @@ const EMPTY = { name: "", email: "", phone: "", message: "" }
  * Renders a fragment so the form (or the success message) is a direct flex
  * child of whatever card the caller puts it in.
  */
-export function LeadForm({ source, withPhone = false, withLabels = false, messageRows = 2 }: LeadFormProps) {
+export function LeadForm({
+  source,
+  withPhone = false,
+  withLabels = false,
+  messageRows = 2,
+  serviceField,
+}: LeadFormProps) {
   const id = useId()
   const [formData, setFormData] = useState(EMPTY)
   const [status, setStatus] = useState<FormStatus>("idle")
@@ -83,6 +100,7 @@ export function LeadForm({ source, withPhone = false, withLabels = false, messag
       const leadId = newLeadId()
       const email = normalizeEmail(formData.email)
       const phone = withPhone ? normalizePhoneE164(formData.phone) : ""
+      const service = serviceField?.value ?? ""
 
       try {
         const res = await fetch("/api/send-contact", {
@@ -93,6 +111,7 @@ export function LeadForm({ source, withPhone = false, withLabels = false, messag
             email: formData.email,
             message: formData.message,
             ...(withPhone ? { phone: formData.phone } : {}),
+            ...(service ? { service } : {}),
             source,
             leadId,
             attribution: readAttribution(),
@@ -116,6 +135,7 @@ export function LeadForm({ source, withPhone = false, withLabels = false, messag
 
       setStatus("sent")
       setFormData(EMPTY)
+      serviceField?.onChange("")
 
       // The message is already delivered at this point: a failure in the
       // tracking push must never turn a sent lead into an error on screen.
@@ -129,13 +149,16 @@ export function LeadForm({ source, withPhone = false, withLabels = false, messag
         sendGTMEvent("contact_form_success", {
           transaction_id: leadId,
           form_location: source,
+          // Always present on the landing page form, even when empty: GTM's data layer
+          // keeps the last value, so a second send would otherwise inherit the first one's.
+          ...(serviceField ? { lead_service: service || undefined } : {}),
           ...(Object.keys(userData).length ? { user_data: userData } : {}),
         })
       } catch {
         // Nothing to do.
       }
     },
-    [formData, source, validate, withPhone],
+    [formData, source, validate, withPhone, serviceField],
   )
 
   const field = (name: keyof typeof EMPTY) => `${id}-${name}`
@@ -154,7 +177,7 @@ export function LeadForm({ source, withPhone = false, withLabels = false, messag
             <Check size={20} strokeWidth={2} />
             <span className="font-mono text-sm uppercase tracking-wider">Wiadomość wysłana</span>
           </div>
-          <p className="text-sm text-foreground/60">Dziękujemy! Odezwiemy się najszybciej jak to możliwe.</p>
+          <p className="text-sm text-foreground/60">Dziękujemy! Odpowiadamy w ciągu 24 godzin w dni robocze.</p>
           <button
             type="button"
             onClick={() => setStatus("idle")}
@@ -223,6 +246,40 @@ export function LeadForm({ source, withPhone = false, withLabels = false, messag
                 className={FIELD_CLASS}
                 placeholder="+48 600 100 200"
               />
+            </div>
+          ) : null}
+
+          {serviceField ? (
+            <div>
+              <label htmlFor={`${id}-service`} className={LABEL_CLASS}>
+                {serviceField.label}
+              </label>
+              <div className="relative">
+              <select
+                id={`${id}-service`}
+                name="service"
+                value={serviceField.value}
+                onChange={(e) => serviceField.onChange(e.target.value)}
+                className={`${FIELD_CLASS} cursor-pointer appearance-none rounded-none pr-8 ${
+                  serviceField.value ? "" : "text-muted-foreground"
+                }`}
+              >
+                <option value="" className="bg-background text-foreground">
+                  {serviceField.placeholder}
+                </option>
+                {serviceField.options.map((option) => (
+                  <option key={option.value} value={option.value} className="bg-background text-foreground">
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                aria-hidden
+                size={16}
+                strokeWidth={1.5}
+                className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 text-foreground/60"
+              />
+              </div>
             </div>
           ) : null}
 

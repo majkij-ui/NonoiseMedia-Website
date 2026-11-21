@@ -112,22 +112,136 @@
       "testimonialsTitle": "CO MÓWIĄ KLIENCI",
       "testimonialDraft": "Szkic · czeka na zgodę autorki",
       "processLabel": "Jak pracujemy",
-      "processTitle": "PRZEKUWAMY WIZJĘ W REALNE WYNIKI",
+      "processTitle": "OD ZAPYTANIA DO GOTOWEGO FILMU",
       "process": [
         {
-          "step": "01 / Zrozumienie klienta",
-          "title": "Odkrywamy Twoje potrzeby",
-          "text": "Analizujemy Twoją markę, grupę docelową i cele, zanim zaplanujemy choćby jedną klatkę. Strategia zawsze na pierwszym miejscu."
+          "step": "01 / Rozmowa i wycena",
+          "title": "Odpowiedź w 24 godziny",
+          "text": "Odpowiadamy w ciągu 24 godzin w dni robocze, od razu z orientacyjnymi widełkami. Szczegółową wycenę z rozpisanym zakresem wysyłamy w 1–3 dni robocze po rozmowie."
         },
         {
-          "step": "02 / Produkcja od A do Z",
-          "title": "Kompletny pipeline produkcyjny",
-          "text": "Bezproblemowa realizacja od koncepcji kreatywnej, przez profesjonalną produkcję, aż po finalne dostarczenie materiałów."
+          "step": "02 / Zdjęcia",
+          "title": "Plan zdjęciowy w 2–3 tygodnie",
+          "text": "Przygotowujemy koncepcję, scenariusz i logistykę. Zdjęcia odbywają się zwykle 2–3 tygodnie od zapytania, pilne terminy od około tygodnia. Pracujemy w całej Polsce i za granicą."
         },
         {
-          "step": "03 / Strategiczna dystrybucja",
-          "title": "Media nastawione na konwersję",
-          "text": "Cyfrowe materiały, które zatrzymują scroll — zaprojektowane, by angażować, budować zaufanie i maksymalizować ROI z marketingu."
+          "step": "03 / Montaż i poprawki",
+          "title": "Pierwsza wersja do 10 dni roboczych",
+          "text": "Pierwszą wersję montażu dostajesz do 10 dni roboczych od zdjęć. Dwie rundy poprawek są w cenie. Tryb przyspieszony: 5 dni roboczych, dopłata od 800 zł netto, po potwierdzeniu terminu."
+        }
+      ],
+      "servicesLabel": "Co możemy dla Ciebie zrobić",
+      "servicesTitle": "OFERTA I CENY",
+      "servicesBody": "Sześć formatów, które realizujemy najczęściej. Kliknij kafelek, żeby zobaczyć zakres, cenę i przykładowe realizacje.",
+      "servicesNet": "Ceny netto. Dokładną kwotę podajemy w wycenie.",
+      "serviceOpen": "Szczegóły",
+      "serviceClose": "Zamknij",
+      "serviceIncluded": "W zakresie",
+      "serviceExamples": "Realizacje",
+      "serviceCta": "Wyceń ten format",
+      "servicePlayAria": "Odtwórz wideo: {title}",
+      "services": {
+        "corporate": {
+          "title": "Film korporacyjny i wizerunkowy",
+          "body": "Film o firmie, ludziach i marce: na stronę, targi, galę i do rekrutacji.",
+          "price": "od 20 000 zł",
+          "priceNote": "netto",
+          "points": [
+            "Koncepcja, scenariusz i plan zdjęć po naszej stronie",
+            "Skala produkcji, ekipa i sprzęt dobrane do oczekiwanego efektu, budżetu i czasu, jaki możesz nam dać",
+            "Film główny, wersje skrócone i pionowe oraz pliki przygotowane pod miejsce emisji: ekran LED na gali, telewizor na targach, projektor kinowy"
+          ]
+        },
+        "commercial": {
+          "title": "Film reklamowy",
+          "body": "Spot do kampanii online i wideo produktowe: od pomysłu po gotowe formaty reklamowe.",
+          "price": "od 15 000 zł",
+          "priceNote": "netto",
+          "points": [
+            "Koncepcja kreatywna, scenariusz i casting",
+            "Plan zdjęciowy z ekipą i światłem, w studiu lub na lokacji; regularnie pracujemy z operatorami dronów FPV",
+            "Wersje 15, 30 i 60 s w formatach 16:9 i 9:16"
+          ]
+        },
+        "ai": {
+          "title": "Wideo AI",
+          "body": "Reklamy i ujęcia generowane przez AI, prowadzone jak zwykła produkcja: z koncepcją, montażem i dźwiękiem.",
+          "price": "wycena indywidualna",
+          "priceNote": "",
+          "points": [
+            "Koncepcja, scenariusz i spójny wygląd marki w każdym ujęciu",
+            "Ujęcia AI łączone z prawdziwymi zdjęciami i grafiką",
+            "Udźwiękowienie, muzyka z licencją i formaty do kampanii"
+          ]
+        },
+        "social": {
+          "title": "Rolki premium do social mediów",
+          "body": "Sprawnie produkujemy pakiet pionowych materiałów, który zasili Twój marketing na wiele tygodni.",
+          "price": "pakiet 10 rolek od 10 000 zł",
+          "priceNote": "netto · inne wielkości pakietu wyceniamy indywidualnie",
+          "points": [
+            "Nawet 10 rolek premium w jeden dzień zdjęciowy: dwuosobowa ekipa, światło, dźwięk, dron, także realizacja na green screenie",
+            "Piszemy scenariusze albo konsultujemy Twoje i dopasowujemy je do realiów planu",
+            "Montaż premium: animowana typografia, przejścia AI, napisy i muzyka z licencją"
+          ]
+        },
+        "podcast": {
+          "title": "Podcasty i wywiady na 3 kamery",
+          "body": "Rozmowy eksperckie i podcasty wideo nagrywane u Ciebie w firmie albo w studiu.",
+          "price": "od 5 000 zł",
+          "priceNote": "netto · jedna sesja nagraniowa, do 3 odcinków po 30 min, z postprodukcją",
+          "points": [
+            "Trzy kamery, dźwięk i światło",
+            "Do 3 odcinków po 30 minut w jednej sesji; większe pakiety wyceniamy indywidualnie",
+            "Montaż wielokamerowy, kolor, dźwięk, czołówka i podpisy; rolki z odcinków jako opcja"
+          ]
+        },
+        "event": {
+          "title": "Reportaż eventowy",
+          "body": "Relacja z konferencji, targów i wydarzeń firmowych.",
+          "price": "od 4 000 zł",
+          "priceNote": "netto",
+          "points": [
+            "Jeden operator, do 4 godzin na wydarzeniu",
+            "Aftermovie do 2 minut",
+            "Wywiady z gośćmi, drugi operator i zdjęcia jako opcja"
+          ]
+        }
+      },
+      "formServiceLabel": "Czego potrzebujesz? (opcjonalnie)",
+      "formServicePlaceholder": "Wybierz format",
+      "formServiceOther": "Coś innego / jeszcze nie wiem",
+      "leadPromise": "Odpowiadamy w ciągu 24 godzin w dni robocze.",
+      "faqLabel": "Zanim napiszesz",
+      "faqTitle": "NAJCZĘSTSZE PYTANIA",
+      "faq": [
+        {
+          "q": "Ile kosztuje film dla firmy?",
+          "a": "Reportaż z wydarzenia zaczyna się od 4 000 zł, pakiet 10 rolek premium od 10 000 zł, film reklamowy od 15 000 zł, a film korporacyjny od 20 000 zł netto. Ostateczna kwota zależy od liczby dni zdjęciowych, wielkości ekipy i zakresu postprodukcji. Orientacyjne widełki podajemy już w pierwszej odpowiedzi."
+        },
+        {
+          "q": "Co jest w cenie?",
+          "a": "Prowadzimy projekt od początku do końca: koncepcja i scenariusz, zdjęcia, montaż, kolor, dźwięk, muzyka z licencją, napisy i wersje pionowe do social mediów. Dokładny zakres jest zawsze rozpisany w wycenie. Dwie rundy poprawek są w standardzie."
+        },
+        {
+          "q": "Jak szybko dostanę wycenę i gotowy film?",
+          "a": "Odpowiadamy w ciągu 24 godzin w dni robocze. Szczegółową wycenę wysyłamy w 1–3 dni robocze po rozmowie. Zdjęcia odbywają się zwykle 2–3 tygodnie od zapytania, a pilne terminy od około tygodnia. Pierwszą wersję montażu dostajesz do 10 dni roboczych od zdjęć; w trybie przyspieszonym w 5 dni roboczych, za dopłatą od 800 zł netto, po potwierdzeniu terminu."
+        },
+        {
+          "q": "Czy pomagacie przy scenariuszu?",
+          "a": "Tak. Możemy przygotować koncepcję i scenariusz od zera albo dopracować Twoje pomysły i teksty. Przed zdjęciami dostajesz plan: sceny, harmonogram i listę rzeczy do przygotowania."
+        },
+        {
+          "q": "Kto ma prawa do filmu?",
+          "a": "W cenie każdej realizacji dostajesz licencję bez limitu czasu i terytorium: film możesz publikować na stronie, w social mediach, w płatnych kampaniach online, na eventach i w komunikacji wewnętrznej. Film powstaje dla Twojej marki i nie sprzedajemy go nikomu innemu; zostawiamy sobie tylko prawo pokazania go w portfolio. Pełne przeniesienie autorskich praw majątkowych robimy na podstawie pisemnej umowy, za dopłatą od 15% wartości projektu."
+        },
+        {
+          "q": "Czy nagrywacie poza Warszawą?",
+          "a": "Tak, realizujemy zdjęcia w całej Polsce i za granicą. Koszt dojazdu i noclegu jest ujęty w wycenie, bez niespodzianek na fakturze."
+        },
+        {
+          "q": "Jak wygląda umowa i rozliczenie?",
+          "a": "Pracujemy na podstawie zaakceptowanej wyceny z rozpisanym zakresem i warunkami. Na życzenie podpisujemy umowę, na naszym wzorze albo Twoim, oraz NDA. Fakturę wystawiamy po oddaniu materiału."
         }
       ]
     }

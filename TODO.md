@@ -159,7 +159,7 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 
 ### 2.4 Kolejność prac — **[C]**, każdy etap osobnym PR
 
-**Etap A: droga do kontaktu** — zrobione 2026-11-20, PR #13, czeka na wdrożenie
+**Etap A: droga do kontaktu** — wdrożone na produkcję 2026-11-21 (PR #13)
 - [x] Formularz wydzielony z `/contact` do wspólnego komponentu `components/lead-form.tsx`. Lead ID, atrybucja, zgoda i zdarzenie `contact_form_success` bez zmian; zdarzenie niesie teraz `form_location`.
 - [x] Sekcja formularza na dole LP (`components/lp/lp-lead-section.tsx`): firma lub imię, e-mail (wymagany), telefon (opcjonalny), wiadomość. Obok numer telefonu i mail, pod spodem linijka o prywatności. Na telefonie formularz jest przed danymi kontaktowymi.
 - [x] Wszystkie przyciski na LP przewijają do formularza: „Wyceń projekt" w hero (teraz mierzony zdarzeniem `lp_quote_click`), „Wyceń podobny projekt" pod realizacjami, dolny pasek.
@@ -176,7 +176,7 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 - [x] Wyjście na resztę strony: bez menu w nagłówku; pod realizacjami link „Zobacz pełne portfolio", który otwiera `/work` w nowej karcie (zdarzenie `lp_portfolio_link_click`). Landing page z formularzem zostaje w otwartej karcie.
 - [x] Nagłówek: e-mail zamiast telefonu (decyzja Michała: ludzie piszą, prawie nikt nie dzwoni). Na desktopie adres tekstem, na telefonie ikona koperty.
 
-**Etap B: pierwszy ekran i dowód** — zrobione 2026-11-20, w tym samym PR co etap A (#13), czeka na wdrożenie
+**Etap B: pierwszy ekran i dowód** — wdrożone na produkcję 2026-11-21 (PR #13)
 - [x] Nowy hero: etykieta „Produkcja filmowa i wideo dla firm · Warszawa", hasło „Wybij się ponad szum", jedno-dwa zdania o studiu, linijka dowodu („Zaufali nam m.in.: Tchibo · PHH · Danone · CIONET"), główny przycisk „Wyceń projekt" od razu pod tekstem, „Play reel" jako cichy link. Na telefonie pełna szerokość; wszystko mieści się na pierwszym ekranie (390×664).
 - [x] Plakat pod reelem jako pierwszy obraz, reel przenika na niego po załadowaniu. Bez kompresji reela, wejście z przenikaniem zostaje. Plakat to istniejący kadr PHH (`videos/PHH.webp`).
 - [x] Pasek logo pod hero (wszyscy klienci, Tchibo jako pierwsze). Trzy nowe loga — Tchibo, JHJ, Morris & Lloyd Broker — doszły też na `/work` i `/about`.
@@ -188,6 +188,9 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 
 - [x] Trzy nowe loga wgrane na R2 (2026-11-20, przez panel Cloudflare): `logos/tchibo-logo.png`, `logos/jhj-logo.png`, `logos/morris-lloyd-logo.png`. Sprawdzone pod adresem CDN: odpowiedź 200, pliki identyczne z lokalnymi. Nazwy z końcówką `-logo`, bo adresy bez niej zostały zapytane, zanim pliki istniały, i CDN zapamiętał dla nich „404" na rok. W buckecie leżą też nieużywane kopie pod starymi nazwami (`tchibo.png`, `jhj.png`, `morris-lloyd.png`); można je usunąć.
 
+- [x] Wdrożenie 2026-11-21 ok. 08:20, sprawdzone na żywej stronie w szerokości telefonu: nowy hero z przyciskiem „Wyceń projekt" na pierwszym ekranie, 16 logo (żadne nie jest puste), opinie CIONET / OmniOffice / PHH, kroki procesu, formularz, stopka z danymi firmy, strona nadal `noindex`. Szkicu opinii nie ma ani w HTML, ani w plikach JS. `/`, `/work`, `/about`, `/contact` odpowiadają poprawnie.
+- [ ] **[M]** Nie sprawdzone po wdrożeniu: prawdziwa wysyłka z nowego formularza na LP (mail przez Resend i konwersja w Google Ads). Najlepiej z telefonu, w zwykłym oknie.
+
 Otwarte po etapie B:
 - [ ] **[M]** Zgoda autorki opinii Morris & Lloyd na cytat (treść, imię i nazwisko, stanowisko, firma) i jej stanowisko (w szkicu jest robocze „Marketing"). Po zgodzie: przenieść wpis z `.env.local` do zatwierdzonych w `lib/testimonials.ts`.
 - [ ] **[M]** Repozytorium na GitHubie jest publiczne. Wcześniejsza wersja tego pliku (commit `3e48154`) wymienia autorkę opinii z nazwiska; zostaje to w historii, dopóki repozytorium nie będzie prywatne albo historia gałęzi nie zostanie przepisana.
@@ -196,26 +199,84 @@ Otwarte po etapie B:
 - [ ] **[M]** Plakat hero: zostaje kadr PHH czy konkretna klatka reela? Klatkę trzeba wyeksportować i wgrać na R2 pod nową nazwą.
 - [ ] Angielska wersja formularza i komunikatów (nadal po polsku).
 
-**Etap C: oferta i obiekcje**
-- [ ] Rozwijane kafelki oferty: na desktopie kafelek rośnie w panel wielkości całej siatki, na telefonie rozwija się w miejscu. W panelu: trzy konkrety o formacie, 1–2 realizacje do odtworzenia, przycisk „Wyceń ten format", który przewija do formularza i wstępnie zaznacza usługę (nowe pole „usługa" w formularzu, API i mailu).
-- [ ] Przypisanie realizacji do usług w `lib/projects.ts`. Zależy od punktu 3 (JHJ, rolki): dziś LinkedIn, case study i wywiady nie mają przykładu, więc albo dochodzą nowe realizacje, albo zostaje 5–6 kafelków.
-- [ ] Scenariusze cenowe nad formularzem: 2–3 typowe projekty z kwotą „od" i tym, co wpływa na cenę. Dziś na stronie nie ma żadnej kwoty (spadek w ocenie z 3 do 0 punktów na 6).
-- [ ] FAQ: 4–6 pytań (proces, terminy, prawa do materiału, poprawki, budżet).
-- [ ] Obietnica czasu odpowiedzi przy formularzu.
-- [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po zmianach w hero.
+**Etap C: oferta i obiekcje** — zrobione 2026-11-21, PR otwarty, czeka na wdrożenie
+- [x] Sześć rozwijanych kafelków z cenami (`components/lp/lp-services-grid.tsx`, dane w `lib/lp-services.ts`, teksty w `messages/*.json`). Na desktopie biała płyta kafelka rozrasta się na całą siatkę, ciemna kurtyna wjeżdża od dołu, treść pojawia się linia po linii; zamknięcie zwija płytę z powrotem. Na telefonie kafelek rozwija się w miejscu. W panelu: zakres, cena, realizacje do odtworzenia i przycisk „Wyceń ten format".
+- [x] „Wyceń ten format" przewija do formularza i zaznacza usługę w nowym polu „Czego potrzebujesz? (opcjonalnie)". Usługa trafia do maila i do zdarzenia konwersji (`lead_service`).
+- [x] Realizacje w kafelkach: JHJ i PHH (korporacyjny), Rondo i OmniOffice (reklamowy), trzy rolki Morris & Lloyd (rolki premium), dwa wywiady CIONET (podcasty), CIONET i Kunzek (eventowy). Nowe pliki leżą na R2 w `videos/lp/`; miniatury (`*-poster.webp`) wycięte z filmów i wgrane 2026-11-21. Wideo AI na razie bez przykładu.
+- [x] Ceny są na kafelkach, więc osobnego bloku „scenariusze cenowe" nad formularzem nie ma.
+- [x] FAQ: siedem pytań (`components/lp/lp-faq.tsx`).
+- [x] Kroki procesu z czasami i obietnica „Odpowiadamy w ciągu 24 godzin w dni robocze" przy formularzu oraz w komunikacie po wysłaniu (także na `/contact`).
+- [x] Usunięte tło z Unsplash w sekcji oferty (zasada „media tylko z R2").
+- [x] Nowe zdarzenia: `lp_service_open`, `lp_service_video_play`, `lp_service_quote_click`, `lp_faq_open` (opis w `docs/google-ads.md`).
+- [x] Teksty kafelków po uwagach Michała (2026-11-21): korporacyjny bez sztywnego „1–3 dni zdjęciowe" (skala dobierana do efektu, budżetu i czasu klienta) i z plikami pod miejsce emisji (LED, telewizor, projektor); reklamowy z castingiem i dronami FPV; rolki jako „nawet 10 rolek premium w jeden dzień", z dopiskiem, że inne pakiety wyceniamy indywidualnie.
+- [x] Lint i build przechodzą; sprawdzone w Chrome na 390, 800, 1024, 1280 i 1440 px; niezależny przegląd w czterech obszarach, potwierdzone uwagi poprawione.
+- [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po wdrożeniu.
+- [ ] Reklama AI do kafelka „Wideo AI", gdy będzie gotowa.
+- [ ] **[M]** Dwie rolki (`morris-lloyd-rolka1B.mp4`, `morris-lloyd-rolka2B.mp4`) nie mają optymalizacji pod sieć: indeks pliku leży na końcu, więc film startuje z opóźnieniem. Wyeksportować ponownie z opcją „Network optimization" i wgrać pod nowymi nazwami; potem podmienić dwie linie w `lib/lp-services.ts`.
 
 Ocena według tej samej punktacji (2026-11-20): przed zmianami 31,5–35/100, po etapie A 49,5–57/100. Etapy B i C celują w braki warte razem ok. 30 punktów.
 
 Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → oferta → opinie → proces → ceny → FAQ → formularz → stopka.
 
-### 2.5 Potrzebne od Michała
+### 2.5 Etap C: co jest ustalone, a czego brakuje (stan 2026-11-21)
 
-- [ ] Teksty reklamy z Google Ads (nagłówki i opisy), patrz punkt 1.5. Hero stoi bez nich; przydadzą się, żeby dopasować etykietę nad hasłem do tego, co obiecuje reklama.
-- [ ] Prawdziwe kwoty „od" dla 2–3 typowych projektów.
-- [ ] Realny czas odpowiedzi na zapytanie (np. „odpowiadamy w 24 godziny").
+Źródła: analiza czasów i cen z huba biznesowego (plik `ANALIZA-2026-CZASY-I-CENNIK.md` w repozytorium QuoteGen, poza tym repo) oraz przegląd pierwszych wiadomości od klientów i zapytań z formularza z 2026 r. Kwot poszczególnych klientów tu nie wpisujemy: repozytorium jest publiczne.
+
+**O co pytają klienci w pierwszym kontakcie** (kolejność według częstości):
+1. Orientacyjny koszt i widełki.
+2. Co obejmuje wycena; prośby o rozbicie na pozycje (koncepcja, zdjęcia, montaż, dojazd).
+3. Czy scenariusz albo pomoc przy scenariuszu jest w cenie.
+4. Terminy: dostępność w konkretnym dniu, harmonogram, kiedy pierwsza wersja.
+5. Prawa do filmu, licencja na muzykę.
+6. Ile rund poprawek jest w cenie.
+7. Sprzęt i ekipa: dron, prompter, oświetlenie.
+8. Zdjęcia poza Warszawą, dojazd i nocleg.
+9. Umowa (wzór do edycji, NDA).
+10. Wersje na social media, napisy, surowe materiały.
+
+Część zapytań z reklam to prace spoza oferty (sam montaż cudzego materiału, pojedyncze drobne zlecenia). FAQ i kwoty „od" mają je odsiewać.
+
+**Obietnice czasowe — zatwierdzone przez Michała 2026-11-21:**
+- [x] Odpowiedź: „w ciągu 24 godzin w dni robocze".
+- [x] Wycena: „orientacyjne widełki w pierwszej odpowiedzi, szczegółowa wycena w 1–3 dni robocze po rozmowie".
+- [x] Pierwsza wersja montażu: „do 10 dni roboczych od zdjęć".
+- [x] Tryb przyspieszony: „5 dni roboczych, po potwierdzeniu terminu", dopłata od 800 zł netto; punkt wyjścia to ok. 10% wartości projektu, przy większych projektach liczyć procentowo.
+- [x] Start zdjęć: „zwykle 2–3 tygodnie od zapytania, pilne terminy od ok. tygodnia".
+- [x] Dwie rundy poprawek w standardzie.
+
+**Kafelki oferty — zatwierdzone przez Michała 2026-11-21:** sześć zamiast dziewięciu.
+
+| # | Kafelek | Cena na kafelku (netto) | Realizacja w panelu | Plik na R2 |
+|---|---|---|---|---|
+| 1 | Film korporacyjny i wizerunkowy | od 20 000 zł | JHJ (film na 25-lecie), PHH | są |
+| 2 | Film reklamowy | od 15 000 zł | Rondo IOON, OmniOffice; Stylbud opcjonalnie | Rondo i OmniOffice są |
+| 3 | Wideo AI | wycena indywidualna (bez ceny do pierwszej realizacji) | reklama spekulatywna w przygotowaniu | brak |
+| 4 | Rolki premium do social mediów | pakiet 10 rolek od 10 000 zł | Morris & Lloyd (piony) | są (dwie rolki do ponownego eksportu z optymalizacją pod sieć, patrz Etap C) |
+| 5 | Podcasty i wywiady na 3 kamery | jedna sesja nagraniowa, do 3 odcinków po 30 min, postprodukcja — od 5 000 zł | dwa wywiady CIONET | są |
+| 6 | Reportaż eventowy | od 4 000 zł (1 operator, do 4 godzin, aftermovie do 2 minut) | CIONET i Kunzek (obecne); później Tchibo albo nowszy CIONET | są |
+
+Znikają osobne kafelki: film wizerunkowy (łączy się z korporacyjnym, ta sama cena), filmy produktowe (Rondo przechodzi do reklamowego), wideo na LinkedIn, video case studies, wywiady eksperckie (łączą się z podcastami). Bez osobnego progu „kampania dla małych firm od 10 000 zł".
+
+Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby są orientacyjne):
+- Film korporacyjny: research dotyczył progu 25 000 zł (wysoko jako próg, typowo jako cena warszawskiego projektu). Michał obniżył próg do 20 000 zł.
+- Film reklamowy od 15 000 zł i reportaż od 4 000 zł: typowe. Przy reportażu podać zakres (1 operator, ok. 4 godziny, jeden film).
+- 10 rolek od 10 000 zł: ok. dwa razy powyżej opublikowanych pakietów. Do obrony tylko jako produkt premium — kafelek musi wymienić, co jest w cenie (scenariusze, światło i dźwięk, napisy, licencja na muzykę, dwie rundy poprawek).
+- Podcast: research dotyczył progu 8 000 zł za 5 odcinków (mieści się w rynku). Michał uznał 8 000 zł za zaporowe i obniżył próg do 5 000 zł (2026-11-21); zakres progu zmniejszony do 3 odcinków po 30 min w jednej sesji, bo tyle odpowiada dotychczasowej praktyce. **Do powrotu:** sprawdzić po pierwszych zapytaniach, czy 5 000 zł za 3 odcinki się spina i czy wracać do pakietu 5 odcinków. Nadal otwarte: napisy do całych odcinków i piony jako osobno wyceniane dodatki albo mała stała liczba w cenie (na kafelku: „rolki z odcinków jako opcja").
+- Wideo AI od 20 000 zł: powyżej wszystkich opublikowanych polskich cen startowych (800–9 000 zł). Bez własnego przykładu trudne do obrony; rozważyć „od 15 000 zł" albo brak ceny do czasu pierwszej realizacji.
+
+**FAQ — ustalenia:**
+- [x] Co jest w cenie: kompleksowo — koncepcja, scenariusz, zdjęcia, montaż, muzyka z licencją, napisy, wersje pionowe, efekty AI; dokładny zakres zawsze w wycenie.
+- [x] Poprawki: dwie rundy w standardzie.
+- [x] Dojazd: realizacje w całej Polsce i za granicą; dojazd i nocleg ujęte w wycenie.
+- [x] Sam montaż: niechętnie, nie reklamujemy. FAQ o tym nie wspomina.
+- [x] Prawa do filmu: tekst jest na stronie; Michał potwierdził 2026-11-21, że temat ma załatwiony. Propozycja Michała: licencja niewyłączna w standardzie, pełne przeniesienie praw od 15% wartości projektu. Wynik researchu: zgodne z prawem (art. 65 i 67 ustawy o prawie autorskim), ale „15%" to własna cena studia, nie norma branżowa — żadne studio wideo nie publikuje takiej stawki. Dwa haczyki: (1) przeniesienie praw i licencja wyłączna są nieważne bez podpisanej umowy na piśmie (art. 53, art. 67 ust. 5); (2) licencja, której warunków nikt nie spisał, obejmuje tylko wymienione pola eksploatacji, 5 lat i Polskę, bez prawa do przeróbek (art. 41, 66, 46, 49). Warunki licencji trzeba więc wpisać do wyceny akceptowanej mailem. Jak to zapisać w hubie i w PDF z wyceną: `docs/licencja-w-wycenie.md`.
+- [x] Umowa i rozliczenie. Tekst na stronie: praca na podstawie zaakceptowanej wyceny z zakresem i warunkami; umowa (nasz wzór albo klienta) i NDA na życzenie; faktura po oddaniu materiału. Bez publicznej obietnicy „bez zaliczki".
+
+**Nadal potrzebne od Michała:**
+- [x] Pliki wideo wgrane przez Michała 2026-11-21 (H.264, 1080p, ok. 8–10 Mb/s). Na przyszłość ten sam eksport: MP4, H.264 High, 1920×1080 (rolki 1080×1920), 25 kl./s, 8–10 Mb/s, AAC 192 kb/s, optymalizacja pod sieć; panel Cloudflare przyjmuje pliki do 300 MB.
+- [ ] **[M]** Strony `/offer/filmy-korporacyjne` i `/offer/filmy-wizerunkowe` podają „od 8 000 PLN", a kafelek na LP „od 20 000 zł". Zdecydować, czy wyrównać.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
-- [ ] Decyzja: które usługi zostają na kafelkach.
-- [ ] Decyzja: która nazwa i adres firmy mają być widoczne (w stopce LP jest na razie nazwa z rejestru i adres studia).
+- [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
 
 ---
 

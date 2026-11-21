@@ -112,22 +112,136 @@
       "testimonialsTitle": "WHAT CLIENTS SAY",
       "testimonialDraft": "Draft · awaiting the author's consent",
       "processLabel": "How we work",
-      "processTitle": "TURNING VISION INTO REAL RESULTS",
+      "processTitle": "FROM ENQUIRY TO FINISHED FILM",
       "process": [
         {
-          "step": "01 / Understanding the client",
-          "title": "We find out what you need",
-          "text": "We look at your brand, your audience and your goals before planning a single frame. Strategy always comes first."
+          "step": "01 / Call and quote",
+          "title": "A reply within 24 hours",
+          "text": "We reply within 24 hours on working days, with a rough price range straight away. A detailed quote with the scope itemised follows within 1–3 working days of our call."
         },
         {
-          "step": "02 / Production from A to Z",
-          "title": "A complete production pipeline",
-          "text": "A smooth run from the creative concept, through professional production, to the final delivery of the materials."
+          "step": "02 / The shoot",
+          "title": "On set in 2–3 weeks",
+          "text": "We prepare the concept, the script and the logistics. Shoots usually take place 2–3 weeks after the enquiry, urgent ones from about a week. We work across Poland and abroad."
         },
         {
-          "step": "03 / Strategic distribution",
-          "title": "Media built to convert",
-          "text": "Digital materials that stop the scroll, designed to engage, build trust and get the most out of your marketing spend."
+          "step": "03 / Editing and revisions",
+          "title": "First cut within 10 working days",
+          "text": "You get the first cut within 10 working days of the shoot. Two rounds of revisions are included. Express mode: 5 working days, surcharge from PLN 800 net, once the date is confirmed."
+        }
+      ],
+      "servicesLabel": "What we can do for you",
+      "servicesTitle": "SERVICES AND PRICES",
+      "servicesBody": "The six formats we produce most often. Click a tile to see the scope, the price and sample work.",
+      "servicesNet": "Prices are net of VAT. The exact amount comes with the quote.",
+      "serviceOpen": "Details",
+      "serviceClose": "Close",
+      "serviceIncluded": "Scope",
+      "serviceExamples": "Sample work",
+      "serviceCta": "Get a quote for this format",
+      "servicePlayAria": "Play video: {title}",
+      "services": {
+        "corporate": {
+          "title": "Corporate and brand film",
+          "body": "A film about the company, its people and the brand: for the website, trade shows, galas and recruitment.",
+          "price": "from PLN 20,000",
+          "priceNote": "net",
+          "points": [
+            "Concept, script and shooting plan handled by us",
+            "Production scale, crew and equipment matched to the result you expect, your budget and the time you can give us",
+            "Main film, shorter and vertical cuts, and files prepared for where it will be shown: an LED wall at a gala, a TV at a trade show, a cinema projector"
+          ]
+        },
+        "commercial": {
+          "title": "Advertising film",
+          "body": "Spots for online campaigns and product videos: from the idea to ready ad formats.",
+          "price": "from PLN 15,000",
+          "priceNote": "net",
+          "points": [
+            "Creative concept, script and casting",
+            "A shoot with crew and lighting, in a studio or on location; we regularly work with FPV drone operators",
+            "15, 30 and 60 s versions in 16:9 and 9:16"
+          ]
+        },
+        "ai": {
+          "title": "AI video",
+          "body": "Ads and shots generated with AI, run like any production: with a concept, editing and sound.",
+          "price": "individual quote",
+          "priceNote": "",
+          "points": [
+            "Concept, script and a consistent brand look in every shot",
+            "AI shots combined with real footage and graphics",
+            "Sound design, licensed music and campaign formats"
+          ]
+        },
+        "social": {
+          "title": "Premium reels for social media",
+          "body": "We efficiently produce a package of vertical videos that will feed your marketing for many weeks.",
+          "price": "package of 10 reels from PLN 10,000",
+          "priceNote": "net · other package sizes are quoted individually",
+          "points": [
+            "Up to 10 premium reels in one shooting day: a two-person crew, lighting, sound, a drone, green screen shoots available",
+            "We write the scripts, or review yours and adapt them to what works on set",
+            "Premium editing: animated typography, AI transitions, subtitles and licensed music"
+          ]
+        },
+        "podcast": {
+          "title": "Podcasts and three-camera interviews",
+          "body": "Expert conversations and video podcasts recorded at your office or in a studio.",
+          "price": "from PLN 5,000",
+          "priceNote": "net · one recording session, up to 3 episodes of 30 min, with post-production",
+          "points": [
+            "Three cameras, sound and lighting",
+            "Up to 3 episodes of 30 minutes in one session; larger packages are quoted individually",
+            "Multicam edit, colour, sound, intro and name captions; reels cut from episodes as an option"
+          ]
+        },
+        "event": {
+          "title": "Event video",
+          "body": "Coverage of conferences, trade shows and company events.",
+          "price": "from PLN 4,000",
+          "priceNote": "net",
+          "points": [
+            "One camera operator, up to 4 hours at the event",
+            "An aftermovie of up to 2 minutes",
+            "Guest interviews, a second operator and photos as options"
+          ]
+        }
+      },
+      "formServiceLabel": "What do you need? (optional)",
+      "formServicePlaceholder": "Choose a format",
+      "formServiceOther": "Something else / not sure yet",
+      "leadPromise": "We reply within 24 hours on working days.",
+      "faqLabel": "Before you write",
+      "faqTitle": "FREQUENT QUESTIONS",
+      "faq": [
+        {
+          "q": "How much does a company film cost?",
+          "a": "Event coverage starts at PLN 4,000, a package of 10 premium reels at PLN 10,000, an advertising film at PLN 15,000 and a corporate film at PLN 20,000, all net of VAT. The final amount depends on the number of shooting days, the size of the crew and the amount of post-production. You get a rough range in our first reply."
+        },
+        {
+          "q": "What is included in the price?",
+          "a": "We run the project from start to finish: concept and script, the shoot, editing, colour, sound, licensed music, subtitles and vertical versions for social media. The exact scope is always itemised in the quote. Two rounds of revisions are standard."
+        },
+        {
+          "q": "How quickly will I get a quote and the finished film?",
+          "a": "We reply within 24 hours on working days. A detailed quote follows within 1–3 working days of our call. Shoots usually take place 2–3 weeks after the enquiry, urgent ones from about a week. You get the first cut within 10 working days of the shoot, or within 5 working days in express mode, for a surcharge from PLN 800 net, once the date is confirmed."
+        },
+        {
+          "q": "Do you help with the script?",
+          "a": "Yes. We can write the concept and script from scratch or refine your ideas and texts. Before the shoot you get a plan: scenes, a schedule and a list of things to prepare."
+        },
+        {
+          "q": "Who owns the rights to the film?",
+          "a": "Every project includes a licence with no time or territory limit: you can publish the film on your website, on social media, in paid online campaigns, at events and in internal communication. The film is made for your brand and we do not sell it to anyone else; we only keep the right to show it in our portfolio. A full transfer of copyright is done under a written contract, for a surcharge from 15% of the project value."
+        },
+        {
+          "q": "Do you shoot outside Warsaw?",
+          "a": "Yes, we shoot across Poland and abroad. Travel and accommodation are included in the quote, with no surprises on the invoice."
+        },
+        {
+          "q": "What about the contract and payment?",
+          "a": "We work on the basis of an accepted quote with the scope and terms itemised. On request we sign a contract, on our template or yours, and an NDA. We invoice after delivery."
         }
       ]
     }
