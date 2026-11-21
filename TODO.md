@@ -199,7 +199,7 @@ Otwarte po etapie B:
 - [ ] **[M]** Plakat hero: zostaje kadr PHH czy konkretna klatka reela? Klatkę trzeba wyeksportować i wgrać na R2 pod nową nazwą.
 - [ ] Angielska wersja formularza i komunikatów (nadal po polsku).
 
-**Etap C: oferta i obiekcje** — zrobione 2026-11-21, PR otwarty, czeka na wdrożenie
+**Etap C: oferta i obiekcje** — wdrożone na produkcję 2026-11-21 (PR #14)
 - [x] Sześć rozwijanych kafelków z cenami (`components/lp/lp-services-grid.tsx`, dane w `lib/lp-services.ts`, teksty w `messages/*.json`). Na desktopie biała płyta kafelka rozrasta się na całą siatkę, ciemna kurtyna wjeżdża od dołu, treść pojawia się linia po linii; zamknięcie zwija płytę z powrotem. Na telefonie kafelek rozwija się w miejscu. W panelu: zakres, cena, realizacje do odtworzenia i przycisk „Wyceń ten format".
 - [x] „Wyceń ten format" przewija do formularza i zaznacza usługę w nowym polu „Czego potrzebujesz? (opcjonalnie)". Usługa trafia do maila i do zdarzenia konwersji (`lead_service`).
 - [x] Realizacje w kafelkach: JHJ i PHH (korporacyjny), Rondo i OmniOffice (reklamowy), trzy rolki Morris & Lloyd (rolki premium), dwa wywiady CIONET (podcasty), CIONET i Kunzek (eventowy). Nowe pliki leżą na R2 w `videos/lp/`; miniatury (`*-poster.webp`) wycięte z filmów i wgrane 2026-11-21. Wideo AI na razie bez przykładu.
@@ -210,6 +210,8 @@ Otwarte po etapie B:
 - [x] Nowe zdarzenia: `lp_service_open`, `lp_service_video_play`, `lp_service_quote_click`, `lp_faq_open` (opis w `docs/google-ads.md`).
 - [x] Teksty kafelków po uwagach Michała (2026-11-21): korporacyjny bez sztywnego „1–3 dni zdjęciowe" (skala dobierana do efektu, budżetu i czasu klienta) i z plikami pod miejsce emisji (LED, telewizor, projektor); reklamowy z castingiem i dronami FPV; rolki jako „nawet 10 rolek premium w jeden dzień", z dopiskiem, że inne pakiety wyceniamy indywidualnie.
 - [x] Lint i build przechodzą; sprawdzone w Chrome na 390, 800, 1024, 1280 i 1440 px; niezależny przegląd w czterech obszarach, potwierdzone uwagi poprawione.
+- [x] Wdrożenie 2026-11-21 ok. 14:20, sprawdzone na żywej stronie: sześć kafelków z cenami, panel otwiera się i mieści, miniatury i filmy ładują się z R2, FAQ, pole usługi w formularzu, obietnice czasowe; szkicu opinii nie ma w HTML ani w JS.
+- [ ] Link do kwestionariusza pod formularzem na LP (osobny PR, czeka na wdrożenie): dwóch z największych klientów z reklam zaczęło od kwestionariusza, a po etapie A landing page do niego nie prowadził. Otwiera `/questionnaire` w nowej karcie, zdarzenie `lp_questionnaire_click`.
 - [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po wdrożeniu.
 - [ ] Reklama AI do kafelka „Wideo AI", gdy będzie gotowa.
 - [ ] **[M]** Dwie rolki (`morris-lloyd-rolka1B.mp4`, `morris-lloyd-rolka2B.mp4`) nie mają optymalizacji pod sieć: indeks pliku leży na końcu, więc film startuje z opóźnieniem. Wyeksportować ponownie z opcją „Network optimization" i wgrać pod nowymi nazwami; potem podmienić dwie linie w `lib/lp-services.ts`.
@@ -274,7 +276,6 @@ Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby
 
 **Nadal potrzebne od Michała:**
 - [x] Pliki wideo wgrane przez Michała 2026-11-21 (H.264, 1080p, ok. 8–10 Mb/s). Na przyszłość ten sam eksport: MP4, H.264 High, 1920×1080 (rolki 1080×1920), 25 kl./s, 8–10 Mb/s, AAC 192 kb/s, optymalizacja pod sieć; panel Cloudflare przyjmuje pliki do 300 MB.
-- [ ] **[M]** Strony `/offer/filmy-korporacyjne` i `/offer/filmy-wizerunkowe` podają „od 8 000 PLN", a kafelek na LP „od 20 000 zł". Zdecydować, czy wyrównać.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
 - [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
 
@@ -303,7 +304,22 @@ Dziś 30 małych kadrów (6 kolumn × 5 rzędów) z mniejszych produkcji.
 
 ---
 
-## 5. Później (niski priorytet)
+## 5. Następny duży krok: przebudowa reszty strony
+
+Pomysł Michała z 2026-11-21, do rozpisania przed startem; nic z tego nie jest jeszcze zrobione.
+
+- **Strona główna przejmuje układ landing page'a.** Te same sekcje co `/lp/kampania` (hero, loga, realizacje, oferta z cenami, opinie, proces, FAQ, formularz), ale z normalnym menu: O nas, Portfolio, Kontakt.
+- **Ceny na podstronach oferty do wyrównania.** `/offer/filmy-korporacyjne` i `/offer/filmy-wizerunkowe` podają „od 8 000 PLN", a kafelek na LP „od 20 000 zł". Do rozstrzygnięcia przy przebudowie: wyrównać, czy przebudować całą sekcję `/offer` (dziś dziewięć usług, na LP sześć).
+
+Do ustalenia przed startem:
+- [ ] Co zostaje z obecnej strony głównej (pełnoekranowy reel z przenikaniem zostaje — patrz „Settled Decisions" w `CLAUDE.md`).
+- [ ] Czy `/lp/kampania` zostaje osobną stroną dla reklam (bez menu, `noindex`), a strona główna jest jej wersją z menu i indeksowaną. Rekomendacja Claude: tak — reklamy potrzebują strony bez wyjść, a wyszukiwarka nie powinna widzieć dwóch kopii tej samej treści.
+- [ ] Co z `/offer` i dziewięcioma podstronami usług: zostają pod SEO, czy kurczą się do sześciu formatów z LP.
+- [ ] Wspólne źródło treści dla strony głównej i LP, żeby ceny i obietnice zmieniać w jednym miejscu.
+
+---
+
+## 6. Później (niski priorytet)
 
 - [ ] Strona główna na telefonie trzymanym poziomo: reguły dopasowujące hero (stała `LANDSCAPE_MOBILE_HERO` w `components/animated-home-button.tsx` i `app/[locale]/HomeClient.tsx`) nie generują żadnego CSS. Na LP naprawione wariantem `landscape-phone:`; na stronie głównej do zrobienia tak samo, z obejrzeniem efektu, bo te reguły nigdy dotąd nie działały.
 

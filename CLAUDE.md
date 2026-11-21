@@ -71,7 +71,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | `/[locale]/offer` | Offer overview: nine service cards + pricing tiers |
 | `/[locale]/offer/[slug]` | Nine service landing pages (SSG, PL+EN). Data in `lib/services-content/*`, registry in `lib/service-pages.ts` |
 | `/[locale]/privacy` | Privacy policy |
-| `/[locale]/lp/kampania` | Paid ads landing page. **noindex**. Self-contained: its own contact form (`components/lp/lp-lead-section.tsx`), header without menu (logo + e-mail), every CTA scrolls to the form. The only links out are the owner-approved "Zobacz pełne portfolio" (opens `/work` in a new tab) and the privacy policy — add no others. Rebuild in progress — see `TODO.md` |
+| `/[locale]/lp/kampania` | Paid ads landing page. **noindex**. Self-contained: its own contact form (`components/lp/lp-lead-section.tsx`), header without menu (logo + e-mail), every CTA scrolls to the form. The only links out are the owner-approved "Zobacz pełne portfolio" (`/work`) and "Wypełnij kwestionariusz" (`/questionnaire`), both opened in a new tab, and the privacy policy — add no others. Stages A–C of the rebuild are live — see `TODO.md` |
 
 URLs: Polish is unprefixed (`/`, `/about`), English lives under `/en`. Legacy `/pl/*` 308-redirects to the unprefixed path. Canonical host is `https://www.nonoise.media`.
 
