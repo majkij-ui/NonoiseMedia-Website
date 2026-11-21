@@ -159,7 +159,7 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 
 ### 2.4 Kolejność prac — **[C]**, każdy etap osobnym PR
 
-**Etap A: droga do kontaktu** — zrobione 2026-11-20, PR #13, czeka na wdrożenie
+**Etap A: droga do kontaktu** — wdrożone na produkcję 2026-11-21 (PR #13)
 - [x] Formularz wydzielony z `/contact` do wspólnego komponentu `components/lead-form.tsx`. Lead ID, atrybucja, zgoda i zdarzenie `contact_form_success` bez zmian; zdarzenie niesie teraz `form_location`.
 - [x] Sekcja formularza na dole LP (`components/lp/lp-lead-section.tsx`): firma lub imię, e-mail (wymagany), telefon (opcjonalny), wiadomość. Obok numer telefonu i mail, pod spodem linijka o prywatności. Na telefonie formularz jest przed danymi kontaktowymi.
 - [x] Wszystkie przyciski na LP przewijają do formularza: „Wyceń projekt" w hero (teraz mierzony zdarzeniem `lp_quote_click`), „Wyceń podobny projekt" pod realizacjami, dolny pasek.
@@ -176,7 +176,7 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 - [x] Wyjście na resztę strony: bez menu w nagłówku; pod realizacjami link „Zobacz pełne portfolio", który otwiera `/work` w nowej karcie (zdarzenie `lp_portfolio_link_click`). Landing page z formularzem zostaje w otwartej karcie.
 - [x] Nagłówek: e-mail zamiast telefonu (decyzja Michała: ludzie piszą, prawie nikt nie dzwoni). Na desktopie adres tekstem, na telefonie ikona koperty.
 
-**Etap B: pierwszy ekran i dowód** — zrobione 2026-11-20, w tym samym PR co etap A (#13), czeka na wdrożenie
+**Etap B: pierwszy ekran i dowód** — wdrożone na produkcję 2026-11-21 (PR #13)
 - [x] Nowy hero: etykieta „Produkcja filmowa i wideo dla firm · Warszawa", hasło „Wybij się ponad szum", jedno-dwa zdania o studiu, linijka dowodu („Zaufali nam m.in.: Tchibo · PHH · Danone · CIONET"), główny przycisk „Wyceń projekt" od razu pod tekstem, „Play reel" jako cichy link. Na telefonie pełna szerokość; wszystko mieści się na pierwszym ekranie (390×664).
 - [x] Plakat pod reelem jako pierwszy obraz, reel przenika na niego po załadowaniu. Bez kompresji reela, wejście z przenikaniem zostaje. Plakat to istniejący kadr PHH (`videos/PHH.webp`).
 - [x] Pasek logo pod hero (wszyscy klienci, Tchibo jako pierwsze). Trzy nowe loga — Tchibo, JHJ, Morris & Lloyd Broker — doszły też na `/work` i `/about`.
@@ -187,6 +187,9 @@ Dwa niezależne audyty według tej samej punktacji (100 = hipotetycznie idealny 
 - [x] Lint i build przechodzą. Zmiany przeszły niezależny przegląd w czterech obszarach; potwierdzone uwagi poprawione: szkic opinii poza repozytorium, hero na telefonie trzymanym poziomo (przycisk „Wyceń projekt" znów na pierwszym ekranie), kontrast drobnego tekstu w stopce i przy opiniach.
 
 - [x] Trzy nowe loga wgrane na R2 (2026-11-20, przez panel Cloudflare): `logos/tchibo-logo.png`, `logos/jhj-logo.png`, `logos/morris-lloyd-logo.png`. Sprawdzone pod adresem CDN: odpowiedź 200, pliki identyczne z lokalnymi. Nazwy z końcówką `-logo`, bo adresy bez niej zostały zapytane, zanim pliki istniały, i CDN zapamiętał dla nich „404" na rok. W buckecie leżą też nieużywane kopie pod starymi nazwami (`tchibo.png`, `jhj.png`, `morris-lloyd.png`); można je usunąć.
+
+- [x] Wdrożenie 2026-11-21 ok. 08:20, sprawdzone na żywej stronie w szerokości telefonu: nowy hero z przyciskiem „Wyceń projekt" na pierwszym ekranie, 16 logo (żadne nie jest puste), opinie CIONET / OmniOffice / PHH, kroki procesu, formularz, stopka z danymi firmy, strona nadal `noindex`. Szkicu opinii nie ma ani w HTML, ani w plikach JS. `/`, `/work`, `/about`, `/contact` odpowiadają poprawnie.
+- [ ] **[M]** Nie sprawdzone po wdrożeniu: prawdziwa wysyłka z nowego formularza na LP (mail przez Resend i konwersja w Google Ads). Najlepiej z telefonu, w zwykłym oknie.
 
 Otwarte po etapie B:
 - [ ] **[M]** Zgoda autorki opinii Morris & Lloyd na cytat (treść, imię i nazwisko, stanowisko, firma) i jej stanowisko (w szkicu jest robocze „Marketing"). Po zgodzie: przenieść wpis z `.env.local` do zatwierdzonych w `lib/testimonials.ts`.
