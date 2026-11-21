@@ -211,14 +211,49 @@ Ocena według tej samej punktacji (2026-11-20): przed zmianami 31,5–35/100, po
 
 Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → oferta → opinie → proces → ceny → FAQ → formularz → stopka.
 
-### 2.5 Potrzebne od Michała
+### 2.5 Etap C: co jest ustalone, a czego brakuje (stan 2026-11-21)
 
-- [ ] Teksty reklamy z Google Ads (nagłówki i opisy), patrz punkt 1.5. Hero stoi bez nich; przydadzą się, żeby dopasować etykietę nad hasłem do tego, co obiecuje reklama.
-- [ ] Prawdziwe kwoty „od" dla 2–3 typowych projektów.
-- [ ] Realny czas odpowiedzi na zapytanie (np. „odpowiadamy w 24 godziny").
+Źródła: analiza czasów i cen z huba biznesowego (plik `ANALIZA-2026-CZASY-I-CENNIK.md` w repozytorium QuoteGen, poza tym repo) oraz przegląd pierwszych wiadomości od klientów i zapytań z formularza z 2026 r. Kwot poszczególnych klientów tu nie wpisujemy: repozytorium jest publiczne.
+
+**O co pytają klienci w pierwszym kontakcie** (kolejność według częstości):
+1. Orientacyjny koszt i widełki.
+2. Co obejmuje wycena; prośby o rozbicie na pozycje (koncepcja, zdjęcia, montaż, dojazd).
+3. Czy scenariusz albo pomoc przy scenariuszu jest w cenie.
+4. Terminy: dostępność w konkretnym dniu, harmonogram, kiedy pierwsza wersja.
+5. Prawa do filmu, licencja na muzykę.
+6. Ile rund poprawek jest w cenie.
+7. Sprzęt i ekipa: dron, prompter, oświetlenie.
+8. Zdjęcia poza Warszawą, dojazd i nocleg.
+9. Umowa (wzór do edycji, NDA).
+10. Wersje na social media, napisy, surowe materiały.
+
+Część zapytań z reklam to prace spoza oferty (sam montaż cudzego materiału, pojedyncze drobne zlecenia). FAQ i kwoty „od" mają je odsiewać.
+
+**Obietnice czasowe — propozycja do zatwierdzenia przez Michała:**
+- [ ] Odpowiedź: „w ciągu 24 godzin w dni robocze" (zgodne z danymi: mediana ok. 21 h, opóźnienia to głównie weekendy).
+- [ ] Wycena: „orientacyjne widełki w pierwszej odpowiedzi, szczegółowa wycena w 1–3 dni robocze po rozmowie" (mediana wyceny to 3 dni; samo „wycena w 24 h" byłoby obietnicą na wyrost).
+- [ ] Pierwsza wersja montażu: „do 10 dni roboczych od zdjęć" (mediana 7 dni kalendarzowych, większość projektów mieści się w 15).
+- [ ] Tryb przyspieszony: „5 dni roboczych, po potwierdzeniu terminu" jako płatna opcja.
+- [ ] Start zdjęć: „zwykle 2–3 tygodnie od zapytania, pilne terminy od ok. tygodnia" (mediana 20 dni, najszybciej 8).
+
+**Scenariusze cenowe (kwoty netto) — do decyzji:**
+- [ ] Pakiet rolek z jednego dnia zdjęciowego: „od 10 000 zł" (10 rolek, 1 lokacja).
+- [ ] Film firmowy lub wizerunkowy: dwa progi zamiast jednego — mniejsza produkcja (1–2 dni zdjęciowe) i pełna produkcja ze scenariuszem i ekipą „od 25 000 zł". Jeden próg 25 000 odcinałby filmy, które faktycznie realizujemy taniej.
+- [ ] Relacja z wydarzenia: „od 3 500 zł" tylko dla prostego zakresu (1 operator, 1 krótki film); wersja z wywiadami to osobna, wyższa kwota. Do rozważenia, czy tani próg w ogóle pokazywać na stronie z reklam.
+
+**Odpowiedzi do FAQ, których brakuje (Michał):**
+- [ ] Prawa do filmu: co jest standardem (licencja, jaka), a co opcją (wyłączność, przeniesienie praw) i czy za dopłatą.
+- [ ] Co dokładnie jest w cenie: koncepcja lub scenariusz, muzyka z licencją, napisy, korekcja koloru, wersje pionowe.
+- [ ] Liczba rund poprawek w cenie (w wycenach pojawiały się 2).
+- [ ] Dojazd i nocleg poza Warszawą: jak liczone.
+- [ ] Umowa i faktura: czy zawsze umowa, faktura VAT, zaliczka.
+- [ ] Czy przyjmujemy sam montaż i jakie jest minimalne zlecenie.
+
+**Kafelki oferty:**
+- [ ] Które usługi zostają (dziś 9). Dla każdej: trzy konkrety i 1–2 realizacje do odtworzenia. Claude może naszkicować całość z istniejących podstron `/offer/*` i portfolio; Michał tylko poprawia.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
-- [ ] Decyzja: które usługi zostają na kafelkach.
-- [ ] Decyzja: która nazwa i adres firmy mają być widoczne (w stopce LP jest na razie nazwa z rejestru i adres studia).
+- [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
+- [ ] Decyzja: która nazwa i adres firmy mają być widoczne — rozstrzygnięte: adres studia w Podolszynie Nowym.
 
 ---
 
