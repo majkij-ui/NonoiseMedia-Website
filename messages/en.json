@@ -148,8 +148,8 @@
           "priceNote": "net",
           "points": [
             "Concept, script and shooting plan handled by us",
-            "One to three shooting days, with a crew sized to the project",
-            "Main film plus shorter and vertical cuts for social media"
+            "Production scale, crew and equipment matched to the result you expect, your budget and the time you can give us",
+            "Main film, shorter and vertical cuts, and files prepared for where it will be shown: an LED wall at a gala, a TV at a trade show, a cinema projector"
           ]
         },
         "commercial": {
@@ -158,8 +158,8 @@
           "price": "from PLN 15,000",
           "priceNote": "net",
           "points": [
-            "Creative concept and script",
-            "A shoot with crew and lighting, with a drone when needed",
+            "Creative concept, script and casting",
+            "A shoot with crew and lighting, in a studio or on location; we regularly work with FPV drone operators",
             "15, 30 and 60 s versions in 16:9 and 9:16"
           ]
         },
@@ -176,23 +176,23 @@
         },
         "social": {
           "title": "Premium reels for social media",
-          "body": "Polished reels for Instagram, TikTok and LinkedIn, recorded in one shooting day.",
+          "body": "We efficiently produce a package of vertical videos that will feed your marketing for many weeks.",
           "price": "package of 10 reels from PLN 10,000",
-          "priceNote": "net",
+          "priceNote": "net · other package sizes are quoted individually",
           "points": [
-            "One shooting day, a two-person crew, lighting and sound",
-            "Help with refining the scripts, green screen shoots available",
+            "Up to 10 premium reels in one shooting day: a two-person crew, lighting, sound, a drone, green screen shoots available",
+            "We write the scripts, or review yours and adapt them to what works on set",
             "Premium editing: animated typography, AI transitions, subtitles and licensed music"
           ]
         },
         "podcast": {
           "title": "Podcasts and three-camera interviews",
           "body": "Expert conversations and video podcasts recorded at your office or in a studio.",
-          "price": "from PLN 8,000",
-          "priceNote": "net · one shooting day, up to 5 episodes of 30 min, with post-production",
+          "price": "from PLN 5,000",
+          "priceNote": "net · one recording session, up to 3 episodes of 30 min, with post-production",
           "points": [
             "Three cameras, sound and lighting",
-            "Up to 5 episodes of 30 minutes in one shooting day",
+            "Up to 3 episodes of 30 minutes in one session; larger packages are quoted individually",
             "Multicam edit, colour, sound, intro and name captions; reels cut from episodes as an option"
           ]
         },

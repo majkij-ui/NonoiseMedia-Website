@@ -570,7 +570,7 @@ export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
                   {String(openIndex + 1).padStart(2, "0")}
                 </motion.span>
 
-                <div className="relative grid h-full grid-cols-12 content-start gap-x-8 gap-y-6 overflow-y-auto p-8 [scrollbar-color:rgba(255,255,255,0.25)_transparent] [scrollbar-width:thin] lg:content-stretch lg:p-10 xl:p-12">
+                <div className="relative grid h-full grid-cols-12 content-start gap-x-8 gap-y-4 overflow-y-auto p-8 [scrollbar-color:rgba(255,255,255,0.25)_transparent] [scrollbar-width:thin] lg:content-stretch lg:p-10 xl:p-12">
                   <div className="col-span-12 flex items-start justify-between">
                     <FadeUp delay={CONTENT_DELAY} className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
                       {String(openIndex + 1).padStart(2, "0")} / {String(LP_SERVICE_IDS.length).padStart(2, "0")}
@@ -601,7 +601,7 @@ export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
 
                     <motion.span
                       aria-hidden
-                      className="my-6 block h-px origin-left bg-foreground/30"
+                      className="my-5 block h-px origin-left bg-foreground/30"
                       initial={reduceMotion ? false : { scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: 0.9, delay: CONTENT_DELAY + 0.15, ease: curtainEase }}
@@ -623,7 +623,7 @@ export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
                       {openCopy.body}
                     </FadeUp>
 
-                    <FadeUp delay={CONTENT_DELAY + 0.55} className="mt-auto pt-8">
+                    <FadeUp delay={CONTENT_DELAY + 0.55} className="mt-auto pt-6">
                       <button
                         type="button"
                         onClick={() => {
@@ -645,7 +645,7 @@ export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
                         {t("serviceIncluded")}
                       </p>
                     </FadeUp>
-                    <ul className={openExamples.length ? "mb-7 grid grid-cols-1 gap-x-8 gap-y-3 xl:grid-cols-3" : "space-y-5"}>
+                    <ul className={openExamples.length ? "mb-5 grid grid-cols-1 gap-x-8 gap-y-3 xl:grid-cols-3" : "space-y-5"}>
                       {openCopy.points.map((point, i) => (
                         <li key={point}>
                           <FadeUp

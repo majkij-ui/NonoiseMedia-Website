@@ -148,8 +148,8 @@
           "priceNote": "netto",
           "points": [
             "Koncepcja, scenariusz i plan zdjęć po naszej stronie",
-            "Od 1 do 3 dni zdjęciowych, ekipa dobrana do skali projektu",
-            "Film główny oraz wersje skrócone i pionowe do social mediów"
+            "Skala produkcji, ekipa i sprzęt dobrane do oczekiwanego efektu, budżetu i czasu, jaki możesz nam dać",
+            "Film główny, wersje skrócone i pionowe oraz pliki przygotowane pod miejsce emisji: ekran LED na gali, telewizor na targach, projektor kinowy"
           ]
         },
         "commercial": {
@@ -158,8 +158,8 @@
           "price": "od 15 000 zł",
           "priceNote": "netto",
           "points": [
-            "Koncepcja kreatywna i scenariusz",
-            "Plan zdjęciowy z ekipą i światłem, w razie potrzeby z dronem",
+            "Koncepcja kreatywna, scenariusz i casting",
+            "Plan zdjęciowy z ekipą i światłem, w studiu lub na lokacji; regularnie pracujemy z operatorami dronów FPV",
             "Wersje 15, 30 i 60 s w formatach 16:9 i 9:16"
           ]
         },
@@ -176,23 +176,23 @@
         },
         "social": {
           "title": "Rolki premium do social mediów",
-          "body": "Dopracowane rolki na Instagram, TikTok i LinkedIn, nagrane w jeden dzień zdjęciowy.",
+          "body": "Sprawnie produkujemy pakiet pionowych materiałów, który zasili Twój marketing na wiele tygodni.",
           "price": "pakiet 10 rolek od 10 000 zł",
-          "priceNote": "netto",
+          "priceNote": "netto · inne wielkości pakietu wyceniamy indywidualnie",
           "points": [
-            "Jeden dzień zdjęciowy, dwuosobowa ekipa, światło i dźwięk",
-            "Pomoc w dopracowaniu scenariuszy, zdjęcia także na green screenie",
+            "Nawet 10 rolek premium w jeden dzień zdjęciowy: dwuosobowa ekipa, światło, dźwięk, dron, także realizacja na green screenie",
+            "Piszemy scenariusze albo konsultujemy Twoje i dopasowujemy je do realiów planu",
             "Montaż premium: animowana typografia, przejścia AI, napisy i muzyka z licencją"
           ]
         },
         "podcast": {
           "title": "Podcasty i wywiady na 3 kamery",
           "body": "Rozmowy eksperckie i podcasty wideo nagrywane u Ciebie w firmie albo w studiu.",
-          "price": "od 8 000 zł",
-          "priceNote": "netto · 1 dzień zdjęciowy, do 5 odcinków po 30 min, z postprodukcją",
+          "price": "od 5 000 zł",
+          "priceNote": "netto · jedna sesja nagraniowa, do 3 odcinków po 30 min, z postprodukcją",
           "points": [
             "Trzy kamery, dźwięk i światło",
-            "Do 5 odcinków po 30 minut w jeden dzień zdjęciowy",
+            "Do 3 odcinków po 30 minut w jednej sesji; większe pakiety wyceniamy indywidualnie",
             "Montaż wielokamerowy, kolor, dźwięk, czołówka i podpisy; rolki z odcinków jako opcja"
           ]
         },

@@ -75,6 +75,9 @@ export const LP_SERVICE_EXAMPLES: Record<LpServiceId, LpExample[]> = {
     lpFilm(112, "Morris & Lloyd Broker", "Rolka 02", "morris-lloyd-rolka1B.mp4", "morris-lloyd-rolka1B-poster.webp", true),
     lpFilm(113, "Morris & Lloyd Broker", "Rolka 03", "morris-lloyd-rolka2B.mp4", "morris-lloyd-rolka2B-poster.webp", true),
   ],
-  podcast: [lpFilm(121, "CIONET", "Wywiad na trzy kamery", "podcast-sample-cionet.mp4", "podcast-sample-cionet-poster.webp")],
+  podcast: [
+    lpFilm(121, "CIONET", "Wywiad na trzy kamery", "podcast-sample-cionet.mp4", "podcast-sample-cionet-poster.webp"),
+    lpFilm(122, "CIONET", "Wypowiedzi ekspertów", "wywiady-sample2-cionet.mp4", "wywiady-sample2-cionet-poster.webp"),
+  ],
   event: [fromProject(4), fromProject(6)],
 }

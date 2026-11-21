@@ -202,12 +202,13 @@ Otwarte po etapie B:
 **Etap C: oferta i obiekcje** — zrobione 2026-11-21, PR otwarty, czeka na wdrożenie
 - [x] Sześć rozwijanych kafelków z cenami (`components/lp/lp-services-grid.tsx`, dane w `lib/lp-services.ts`, teksty w `messages/*.json`). Na desktopie biała płyta kafelka rozrasta się na całą siatkę, ciemna kurtyna wjeżdża od dołu, treść pojawia się linia po linii; zamknięcie zwija płytę z powrotem. Na telefonie kafelek rozwija się w miejscu. W panelu: zakres, cena, realizacje do odtworzenia i przycisk „Wyceń ten format".
 - [x] „Wyceń ten format" przewija do formularza i zaznacza usługę w nowym polu „Czego potrzebujesz? (opcjonalnie)". Usługa trafia do maila i do zdarzenia konwersji (`lead_service`).
-- [x] Realizacje w kafelkach: JHJ i PHH (korporacyjny), Rondo i OmniOffice (reklamowy), trzy rolki Morris & Lloyd (rolki premium), wywiad CIONET na trzy kamery (podcasty), CIONET i Kunzek (eventowy). Nowe pliki leżą na R2 w `videos/lp/`; miniatury (`*-poster.webp`) wycięte z filmów i wgrane 2026-11-21. Wideo AI na razie bez przykładu.
+- [x] Realizacje w kafelkach: JHJ i PHH (korporacyjny), Rondo i OmniOffice (reklamowy), trzy rolki Morris & Lloyd (rolki premium), dwa wywiady CIONET (podcasty), CIONET i Kunzek (eventowy). Nowe pliki leżą na R2 w `videos/lp/`; miniatury (`*-poster.webp`) wycięte z filmów i wgrane 2026-11-21. Wideo AI na razie bez przykładu.
 - [x] Ceny są na kafelkach, więc osobnego bloku „scenariusze cenowe" nad formularzem nie ma.
 - [x] FAQ: siedem pytań (`components/lp/lp-faq.tsx`).
 - [x] Kroki procesu z czasami i obietnica „Odpowiadamy w ciągu 24 godzin w dni robocze" przy formularzu oraz w komunikacie po wysłaniu (także na `/contact`).
 - [x] Usunięte tło z Unsplash w sekcji oferty (zasada „media tylko z R2").
 - [x] Nowe zdarzenia: `lp_service_open`, `lp_service_video_play`, `lp_service_quote_click`, `lp_faq_open` (opis w `docs/google-ads.md`).
+- [x] Teksty kafelków po uwagach Michała (2026-11-21): korporacyjny bez sztywnego „1–3 dni zdjęciowe" (skala dobierana do efektu, budżetu i czasu klienta) i z plikami pod miejsce emisji (LED, telewizor, projektor); reklamowy z castingiem i dronami FPV; rolki jako „nawet 10 rolek premium w jeden dzień", z dopiskiem, że inne pakiety wyceniamy indywidualnie.
 - [x] Lint i build przechodzą; sprawdzone w Chrome na 390, 800, 1024, 1280 i 1440 px; niezależny przegląd w czterech obszarach, potwierdzone uwagi poprawione.
 - [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po wdrożeniu.
 - [ ] Reklama AI do kafelka „Wideo AI", gdy będzie gotowa.
@@ -247,11 +248,11 @@ Część zapytań z reklam to prace spoza oferty (sam montaż cudzego materiału
 
 | # | Kafelek | Cena na kafelku (netto) | Realizacja w panelu | Plik na R2 |
 |---|---|---|---|---|
-| 1 | Film korporacyjny i wizerunkowy | od 20 000 zł | JHJ (film na 25-lecie), PHH | PHH jest; JHJ do wgrania |
+| 1 | Film korporacyjny i wizerunkowy | od 20 000 zł | JHJ (film na 25-lecie), PHH | są |
 | 2 | Film reklamowy | od 15 000 zł | Rondo IOON, OmniOffice; Stylbud opcjonalnie | Rondo i OmniOffice są |
 | 3 | Wideo AI | wycena indywidualna (bez ceny do pierwszej realizacji) | reklama spekulatywna w przygotowaniu | brak |
-| 4 | Rolki premium do social mediów | pakiet 10 rolek od 10 000 zł | Morris & Lloyd (piony) | do wgrania |
-| 5 | Podcasty i wywiady na 3 kamery | 1 dzień zdjęciowy, do 5 odcinków po 30 min, postprodukcja — od 8 000 zł | wywiady CIONET | do wgrania |
+| 4 | Rolki premium do social mediów | pakiet 10 rolek od 10 000 zł | Morris & Lloyd (piony) | są (dwie rolki do ponownego eksportu z optymalizacją pod sieć, patrz Etap C) |
+| 5 | Podcasty i wywiady na 3 kamery | jedna sesja nagraniowa, do 3 odcinków po 30 min, postprodukcja — od 5 000 zł | dwa wywiady CIONET | są |
 | 6 | Reportaż eventowy | od 4 000 zł (1 operator, do 4 godzin, aftermovie do 2 minut) | CIONET i Kunzek (obecne); później Tchibo albo nowszy CIONET | są |
 
 Znikają osobne kafelki: film wizerunkowy (łączy się z korporacyjnym, ta sama cena), filmy produktowe (Rondo przechodzi do reklamowego), wideo na LinkedIn, video case studies, wywiady eksperckie (łączą się z podcastami). Bez osobnego progu „kampania dla małych firm od 10 000 zł".
@@ -260,7 +261,7 @@ Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby
 - Film korporacyjny: research dotyczył progu 25 000 zł (wysoko jako próg, typowo jako cena warszawskiego projektu). Michał obniżył próg do 20 000 zł.
 - Film reklamowy od 15 000 zł i reportaż od 4 000 zł: typowe. Przy reportażu podać zakres (1 operator, ok. 4 godziny, jeden film).
 - 10 rolek od 10 000 zł: ok. dwa razy powyżej opublikowanych pakietów. Do obrony tylko jako produkt premium — kafelek musi wymienić, co jest w cenie (scenariusze, światło i dźwięk, napisy, licencja na muzykę, dwie rundy poprawek).
-- Podcast od 8 000 zł: mieści się w rynku. Próg trzeba zdefiniować (odcinki ok. 20–30 min); napisy do całych odcinków i piony jako osobno wyceniane dodatki albo mała stała liczba w cenie.
+- Podcast: research dotyczył progu 8 000 zł za 5 odcinków (mieści się w rynku). Michał uznał 8 000 zł za zaporowe i obniżył próg do 5 000 zł (2026-11-21); zakres progu zmniejszony do 3 odcinków po 30 min w jednej sesji, bo tyle odpowiada dotychczasowej praktyce. **Do powrotu:** sprawdzić po pierwszych zapytaniach, czy 5 000 zł za 3 odcinki się spina i czy wracać do pakietu 5 odcinków. Nadal otwarte: napisy do całych odcinków i piony jako osobno wyceniane dodatki albo mała stała liczba w cenie (na kafelku: „rolki z odcinków jako opcja").
 - Wideo AI od 20 000 zł: powyżej wszystkich opublikowanych polskich cen startowych (800–9 000 zł). Bez własnego przykładu trudne do obrony; rozważyć „od 15 000 zł" albo brak ceny do czasu pierwszej realizacji.
 
 **FAQ — ustalenia:**
@@ -273,6 +274,7 @@ Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby
 
 **Nadal potrzebne od Michała:**
 - [x] Pliki wideo wgrane przez Michała 2026-11-21 (H.264, 1080p, ok. 8–10 Mb/s). Na przyszłość ten sam eksport: MP4, H.264 High, 1920×1080 (rolki 1080×1920), 25 kl./s, 8–10 Mb/s, AAC 192 kb/s, optymalizacja pod sieć; panel Cloudflare przyjmuje pliki do 300 MB.
+- [ ] **[M]** Strony `/offer/filmy-korporacyjne` i `/offer/filmy-wizerunkowe` podają „od 8 000 PLN", a kafelek na LP „od 20 000 zł". Zdecydować, czy wyrównać.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
 - [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
 
