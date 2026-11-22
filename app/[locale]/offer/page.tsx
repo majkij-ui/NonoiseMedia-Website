@@ -2,26 +2,13 @@
 
 import { motion } from "framer-motion"
 import { useTranslations } from "next-intl"
-import { Link, useRouter } from "@/i18n/navigation"
+import { useRouter } from "@/i18n/navigation"
 import { Navigation } from "@/components/navigation"
 import { LpServicesGrid } from "@/components/lp/lp-services-grid"
 import { OfferPricingTiers } from "@/components/offer/pricing-tiers"
 import { FooterLegalLinks } from "@/components/footer-legal-links"
 
 const cinematicEase = [0.25, 0.1, 0.25, 1] as const
-
-/** The detailed service pages (/offer/[slug]), linked under the grid so they stay reachable. */
-const servicePages: { key: string; href: string }[] = [
-  { key: "corporateFilm", href: "/offer/filmy-korporacyjne" },
-  { key: "commercialFilm", href: "/offer/filmy-reklamowe" },
-  { key: "brandFilm", href: "/offer/filmy-wizerunkowe" },
-  { key: "productVideos", href: "/offer/filmy-produktowe" },
-  { key: "eventReportage", href: "/offer/reportaz-eventowy" },
-  { key: "instagramReels", href: "/offer/wideo-social-media" },
-  { key: "linkedinVideo", href: "/offer/video-linkedin" },
-  { key: "caseStudies", href: "/offer/video-case-studies" },
-  { key: "expertInterviews", href: "/offer/wywiady-eksperckie" },
-]
 
 // ---------------------------------------------------------------------------
 // Hero
@@ -67,35 +54,6 @@ function Hero() {
 }
 
 // ---------------------------------------------------------------------------
-// Services: the same six tiles with prices as on the paid landing page, so the
-// two never disagree. "Wyceń ten format" goes to /contact with the format chosen.
-// ---------------------------------------------------------------------------
-
-function ServicePagesList() {
-  const t = useTranslations("offer")
-
-  return (
-    <section className="px-6 pb-24 md:px-12 md:pb-32">
-      <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-        {t("allServicesLabel")}
-      </p>
-      <ul className="flex max-w-3xl flex-wrap gap-x-6 gap-y-2">
-        {servicePages.map(({ key, href }) => (
-          <li key={key}>
-            <Link
-              href={href}
-              className="inline-block py-1.5 font-mono text-xs uppercase tracking-[0.16em] text-foreground/70 underline decoration-white/20 underline-offset-4 transition-colors hover:text-foreground"
-            >
-              {t(`services.${key}.title`)}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )
-}
-
-// ---------------------------------------------------------------------------
 // Page Assembly
 // ---------------------------------------------------------------------------
 
@@ -106,8 +64,9 @@ export default function OfferPage() {
     <main className="relative min-h-screen w-full bg-background">
       <Navigation fixed />
       <Hero />
+      {/* The same six tiles with prices as on the paid landing page, so the two never
+          disagree. Here each opened tile also links to its detailed page. */}
       <LpServicesGrid variant="page" onQuote={(service) => router.push(`/contact?service=${service}`)} />
-      <ServicePagesList />
       <OfferPricingTiers />
 
       <footer className="flex flex-wrap items-center justify-end gap-x-6 gap-y-2 px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">

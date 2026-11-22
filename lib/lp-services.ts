@@ -26,6 +26,18 @@ export const LP_SERVICE_EMAIL_LABELS: Record<LpServiceId | typeof LP_SERVICE_OTH
   other: "Coś innego / jeszcze nie wiem",
 }
 
+/**
+ * The detailed page behind a tile ("Więcej szczegółów" on /offer). The landing
+ * page never shows these links: nothing may lead off it. AI video has no page yet.
+ */
+export const LP_SERVICE_PAGES: Partial<Record<LpServiceId, string>> = {
+  corporate: "/offer/filmy-korporacyjne",
+  commercial: "/offer/filmy-reklamowe",
+  social: "/offer/wideo-social-media",
+  podcast: "/offer/wywiady-eksperckie",
+  event: "/offer/reportaz-eventowy",
+}
+
 /** A film a tile can play. `vertical` marks 9:16 material (reels). */
 export type LpExample = {
   id: number

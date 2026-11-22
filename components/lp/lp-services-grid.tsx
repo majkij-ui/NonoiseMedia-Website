@@ -1,14 +1,12 @@
 "use client"
 
 import { useEffect, useEffectEvent, useId, useRef, useState, useSyncExternalStore } from "react"
-import Image from "next/image"
 import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from "framer-motion"
 import {
   Building2,
   Clapperboard,
   Megaphone,
   Mic,
-  Play,
   Plus,
   Share2,
   Sparkles,
@@ -18,7 +16,15 @@ import {
 import { useTranslations } from "next-intl"
 import { sendGTMEvent } from "@/lib/gtm"
 import { ProjectVideoModal } from "@/components/project-video-modal"
-import { LP_SERVICE_EXAMPLES, LP_SERVICE_IDS, type LpExample, type LpServiceId } from "@/lib/lp-services"
+import { ExampleThumb } from "@/components/lp/example-thumb"
+import { Link } from "@/i18n/navigation"
+import {
+  LP_SERVICE_EXAMPLES,
+  LP_SERVICE_IDS,
+  LP_SERVICE_PAGES,
+  type LpExample,
+  type LpServiceId,
+} from "@/lib/lp-services"
 
 const cinematicEase = [0.25, 0.1, 0.25, 1] as const
 /** Slow in, slow out: the curtain. */
@@ -95,62 +101,6 @@ function FadeUp({ children, delay, className = "" }: { children: React.ReactNode
     >
       {children}
     </motion.div>
-  )
-}
-
-/** A playable film still. It wipes in from the left while the picture settles from a slight zoom. */
-function ExampleThumb({
-  example,
-  delay,
-  onPlay,
-  label,
-  sizes,
-}: {
-  example: LpExample
-  delay: number
-  onPlay: (example: LpExample) => void
-  label: string
-  sizes: string
-}) {
-  const reduceMotion = useReducedMotion()
-  return (
-    <motion.button
-      type="button"
-      onClick={() => onPlay(example)}
-      aria-label={label}
-      initial={reduceMotion ? false : { clipPath: "inset(0% 100% 0% 0%)" }}
-      animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
-      transition={{ duration: 0.9, delay, ease: curtainEase }}
-      className={`group/thumb relative block w-full overflow-hidden border border-white/15 bg-neutral-950 text-left ${
-        example.vertical ? "aspect-[9/16]" : "aspect-video"
-      }`}
-    >
-      <motion.div
-        className="absolute inset-0"
-        initial={reduceMotion ? false : { scale: 1.18 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.4, delay, ease: settleEase }}
-      >
-        <Image src={example.image} alt="" fill sizes={sizes} className="object-cover" />
-      </motion.div>
-      <span className="absolute inset-0 bg-black/25 transition-colors duration-300 group-hover/thumb:bg-black/45" />
-      <span className="absolute inset-x-0 bottom-0 flex flex-col p-3 md:p-4">
-        {/* A reel still is too narrow for the client's name; the tile already says whose it is. */}
-        {example.vertical ? null : (
-          <span className="font-mono text-[10px] uppercase tracking-[0.15em] text-white/70">{example.client}</span>
-        )}
-        <span
-          className={`mt-1 font-[family-name:var(--font-display)] uppercase leading-tight tracking-[0.02em] text-white ${
-            example.vertical ? "text-sm" : "text-base md:text-lg"
-          }`}
-        >
-          {example.title}
-        </span>
-      </span>
-      <span className={`absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center ${example.vertical ? "h-9 w-9" : "h-12 w-12"} justify-center rounded-full border border-white/60 bg-black/40 text-white backdrop-blur-sm transition-transform duration-300 group-hover/thumb:scale-110`}>
-        <Play size={18} fill="currentColor" />
-      </span>
-    </motion.button>
   )
 }
 
@@ -335,6 +285,11 @@ export function LpServicesGrid({ onQuote, variant = "landing" }: LpServicesGridP
       setPanelShown(false)
     }
   }
+
+  /** Only where the grid is a page of the site (/offer); never on the landing page. */
+  const detailsHref = (id: LpServiceId) => (variant === "page" ? LP_SERVICE_PAGES[id] : undefined)
+  const DETAILS_LINK_CLASS =
+    "inline-flex items-center justify-center border border-foreground/40 px-6 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-foreground outline-none transition-colors hover:border-foreground hover:bg-foreground hover:text-background focus-visible:ring-2 focus-visible:ring-foreground"
 
   const useLayoutMorph = isDesktop && !reduceMotion
   const openIndex = openId ? LP_SERVICE_IDS.indexOf(openId) : -1
@@ -525,6 +480,15 @@ export function LpServicesGrid({ onQuote, variant = "landing" }: LpServicesGridP
                             >
                               {t("serviceCta")}
                             </button>
+                            {detailsHref(id) ? (
+                              <Link
+                                href={detailsHref(id)!}
+                                onClick={() => sendGTMEvent("lp_service_details_click", { service: id })}
+                                className={`${DETAILS_LINK_CLASS} mt-2 w-full`}
+                              >
+                                {t("serviceDetails")}
+                              </Link>
+                            ) : null}
                           </FadeUp>
                         </div>
                       </motion.div>
@@ -639,7 +603,7 @@ export function LpServicesGrid({ onQuote, variant = "landing" }: LpServicesGridP
                       {openCopy.body}
                     </FadeUp>
 
-                    <FadeUp delay={CONTENT_DELAY + 0.55} className="mt-auto pt-6">
+                    <FadeUp delay={CONTENT_DELAY + 0.55} className="mt-auto flex flex-wrap items-center gap-3 pt-6">
                       <button
                         type="button"
                         onClick={() => {
@@ -652,6 +616,23 @@ export function LpServicesGrid({ onQuote, variant = "landing" }: LpServicesGridP
                           {t("serviceCta")}
                         </span>
                       </button>
+                      {detailsHref(openId) ? (
+                        <Link
+                          href={detailsHref(openId)!}
+                          onClick={(event) => {
+                            // Same guard as the two buttons: the panel is
+                            // clickable before it is visible.
+                            if (!panelArmedRef.current) {
+                              event.preventDefault()
+                              return
+                            }
+                            sendGTMEvent("lp_service_details_click", { service: openId })
+                          }}
+                          className={DETAILS_LINK_CLASS}
+                        >
+                          {t("serviceDetails")}
+                        </Link>
+                      ) : null}
                     </FadeUp>
                   </div>
 

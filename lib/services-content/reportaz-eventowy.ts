@@ -2,6 +2,7 @@ import type { ServicePageData } from "../service-pages"
 
 export const reportazEventowy: ServicePageData = {
   slug: "reportaz-eventowy",
+  tile: "event",
   meta: {
     pl: {
       title: "Reportaż Eventowy Warszawa — Filmowanie Wydarzeń i Konferencji",
