@@ -38,7 +38,7 @@ export const filmyReklamowe: ServicePageData = {
       {
         label: "03 / Szybkość",
         title: "Kampanie mają deadline'y. My też.",
-        body: "Zoptymalizowane procesy pozwalają nam dostarczać gotowe kreacje w trybie ekspresowym — 7 dni od briefu do publikacji, bez kompromisów w jakości obrazu.",
+        body: "Zoptymalizowane procesy pozwalają nam dostarczać pierwszą wersję do 10 dni roboczych od zdjęć, a w trybie przyspieszonym (5 dni roboczych, dopłata od 800 zł netto) jeszcze szybciej — bez kompromisów w jakości obrazu.",
       },
     ],
   },
@@ -76,7 +76,7 @@ export const filmyReklamowe: ServicePageData = {
       {
         question: "Ile kosztuje spot reklamowy?",
         answer:
-          "Krótkie spoty na social media zaczynają się od 4 000 PLN. Pełne kampanie multiplatformowe z wieloma wariantami wyceniamy indywidualnie. Zawsze dopasowujemy zakres do budżetu reklamowego klienta.",
+          "Filmy reklamowe zaczynają się od 15 000 zł netto. Pełne kampanie multiplatformowe z wieloma wariantami wyceniamy indywidualnie. Zawsze dopasowujemy zakres do budżetu reklamowego klienta.",
       },
       {
         question: "Ile wariantów kreacji dostarczacie?",
@@ -91,13 +91,13 @@ export const filmyReklamowe: ServicePageData = {
       {
         question: "Jak szybko mogę otrzymać gotowy materiał?",
         answer:
-          "W trybie standardowym: 2–3 tygodnie. W trybie ekspresowym: 5–7 dni roboczych od dnia zdjęciowego. Ustalamy termin przy pierwszej rozmowie.",
+          "Pierwszą wersję montażu dostajesz do 10 dni roboczych od zdjęć. W trybie przyspieszonym: 5 dni roboczych, za dopłatą od 800 zł netto. Termin ustalamy przy pierwszej rozmowie.",
       },
     ],
   },
   cta: {
     headline: "Masz brief?\nZróbmy z niego kampanię",
-    body: "Prześlij brief lub opisz cel kampanii w dwóch zdaniach. Wrócimy z konceptem kreatywnym i wyceną w ciągu 48 godzin.",
+    body: "Prześlij brief lub opisz cel kampanii w dwóch zdaniach. Odpowiadamy w ciągu 24 godzin w dni robocze, a szczegółową wycenę wysyłamy w 1–3 dni robocze po rozmowie.",
     buttonText: "Wyceń kampanię",
   },
 }

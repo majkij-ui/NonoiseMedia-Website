@@ -155,8 +155,13 @@ function ExampleThumb({
 }
 
 type LpServicesGridProps = {
-  /** Called by "Wyceń ten format": the page preselects the service in the form and scrolls to it. */
+  /** Called by "Wyceń ten format": the page preselects the service in the form and takes the visitor to it. */
   onQuote: (service: LpServiceId) => void
+  /**
+   * "landing": a section of its own, with heading. "page": the grid only, for a
+   * page that already has a hero above it (/offer).
+   */
+  variant?: "landing" | "page"
 }
 
 /**
@@ -167,7 +172,7 @@ type LpServicesGridProps = {
  * (an empty box) is animated by layout, so no text is ever stretched.
  * Phone: the tile opens in place, like an accordion.
  */
-export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
+export function LpServicesGrid({ onQuote, variant = "landing" }: LpServicesGridProps) {
   const t = useTranslations("lp.kampania")
   const isDesktop = useIsDesktop()
   const reduceMotion = useReducedMotion()
@@ -338,27 +343,38 @@ export function LpServicesGrid({ onQuote }: LpServicesGridProps) {
 
   return (
     <LayoutGroup id={`${baseId}-services`}>
-      <section className="relative overflow-hidden bg-surface px-6 py-20 md:px-12 md:py-24">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: "some" }}
-          transition={{ duration: 0.8, ease: cinematicEase }}
-          className="relative z-10 mb-12 grid grid-cols-1 gap-4 md:mb-16 md:grid-cols-12"
-        >
-          <div className="md:col-span-8 lg:col-span-6">
-            <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-              {t("servicesLabel")}
-            </p>
-            <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-5xl md:text-6xl">
-              {t("servicesTitle")}
-            </h2>
-            <p className="mt-4 max-w-sm text-pretty font-sans text-sm leading-relaxed text-foreground/60 md:mt-6">
-              {t("servicesBody")}
-            </p>
-          </div>
-        </motion.div>
+      <section
+        className={
+          variant === "landing"
+            ? "relative overflow-hidden bg-surface px-6 py-20 md:px-12 md:py-24"
+            : "relative overflow-hidden px-6 pb-20 md:px-12 md:pb-24"
+        }
+      >
+        {variant === "landing" ? (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: "some" }}
+            transition={{ duration: 0.8, ease: cinematicEase }}
+            className="relative z-10 mb-12 grid grid-cols-1 gap-4 md:mb-16 md:grid-cols-12"
+          >
+            <div className="md:col-span-8 lg:col-span-6">
+              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                {t("servicesLabel")}
+              </p>
+              <h2 className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground sm:text-5xl md:text-6xl">
+                {t("servicesTitle")}
+              </h2>
+              <p className="mt-4 max-w-sm text-pretty font-sans text-sm leading-relaxed text-foreground/60 md:mt-6">
+                {t("servicesBody")}
+              </p>
+            </div>
+          </motion.div>
+        ) : (
+          <p className="relative z-10 mb-6 max-w-sm font-mono text-[11px] uppercase leading-relaxed tracking-[0.16em] text-muted-foreground">
+            {t("servicesHint")}
+          </p>
+        )}
 
         <div
           ref={gridRef}

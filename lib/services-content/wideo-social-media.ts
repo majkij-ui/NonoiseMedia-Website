@@ -75,7 +75,7 @@ export const wideoSocialMedia: ServicePageData = {
       {
         question: "Ile kosztuje produkcja wideo do social media?",
         answer:
-          "Pakiety zaczynają się od 2 500 PLN za dzień zdjęciowy z postprodukcją. Abonament miesięczny z regularną dostawą contentu wyceniamy indywidualnie.",
+          "Pakiet 10 rolek premium z jednego dnia zdjęciowego zaczyna się od 10 000 zł netto. Inne wielkości pakietu i abonament miesięczny z regularną dostawą contentu wyceniamy indywidualnie.",
       },
       {
         question: "Czy pomagacie z koncepcją i scenariuszami?",

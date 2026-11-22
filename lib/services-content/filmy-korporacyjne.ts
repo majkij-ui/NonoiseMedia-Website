@@ -76,12 +76,12 @@ export const filmyKorporacyjne: ServicePageData = {
       {
         question: "Ile kosztuje film korporacyjny?",
         answer:
-          "Cena zależy od skali projektu — liczby lokacji, dni zdjęciowych i zakresu postprodukcji. Realizacje zaczynają się od 8 000 PLN netto. Przygotujemy bezpłatną wycenę dopasowaną do Twojego budżetu i celów.",
+          "Cena zależy od skali projektu — liczby lokacji, dni zdjęciowych i zakresu postprodukcji. Realizacje zaczynają się od 20 000 zł netto. Przygotujemy bezpłatną wycenę dopasowaną do Twojego budżetu i celów.",
       },
       {
         question: "Jak długo trwa produkcja filmu korporacyjnego?",
         answer:
-          "Typowy projekt realizujemy w 2–4 tygodnie: tydzień na preprodukcję, 1–2 dni zdjęciowe i 1–2 tygodnie na postprodukcję. W trybie ekspresowym dostarczamy materiał w 7 dni.",
+          "Zdjęcia odbywają się zwykle 2–3 tygodnie od zapytania, pilne terminy od około tygodnia. Pierwszą wersję montażu dostajesz do 10 dni roboczych od zdjęć; w trybie przyspieszonym w 5 dni roboczych, za dopłatą od 800 zł netto, po potwierdzeniu terminu.",
       },
       {
         question: "Czy mogę wykorzystać film na wielu platformach?",

@@ -31,6 +31,8 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
   | `lp_portfolio_link_click` | "Zobacz pełne portfolio" under the films (opens `/work` in a new tab) | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |
   | `phone_click` | number in the form section | `components/phone-number.tsx` |
 
+  The service tiles are also used on `/offer`, so `lp_service_open`, `lp_service_video_play` and `lp_service_quote_click` fire there too (check the page path in GTM to tell them apart). On `/offer` the quote button goes to `/contact?service=<id>`; the contact form then shows the format field preselected and sends `lead_service` with `contact_form_success`.
+
   `lp_contact_click` no longer exists: the bottom strip that linked to `/contact` was replaced by the form.
 
   The landing page header and the phone bottom bar show e-mail instead of the phone (owner's decision, 2026-11-20: leads write, almost nobody calls). The links carry `data-gaw-contact="email-header"` and `data-gaw-contact="email-sticky"`; like every other `mailto:` link on the site they push no dataLayer event.

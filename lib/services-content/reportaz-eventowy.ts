@@ -76,12 +76,12 @@ export const reportazEventowy: ServicePageData = {
       {
         question: "Ile kosztuje reportaż eventowy?",
         answer:
-          "Cena zależy od długości eventu, liczby kamer i zakresu postprodukcji. Podstawowe reportaże zaczynają się od 3 500 PLN. Duże konferencje z wielokamerowym setupem i pełną postprodukcją wyceniamy indywidualnie.",
+          "Cena zależy od długości eventu, liczby kamer i zakresu postprodukcji. Podstawowe reportaże zaczynają się od 4 000 zł netto: jeden operator, do 4 godzin na wydarzeniu, aftermovie do 2 minut. Duże konferencje z wielokamerowym setupem i pełną postprodukcją wyceniamy indywidualnie.",
       },
       {
         question: "Jak szybko dostarczycie gotowy film po evencie?",
         answer:
-          "Standardowo 5–10 dni roboczych po evencie. W trybie ekspresowym (np. na potrzeby relacji live lub konferencji prasowej) możemy dostarczyć highlights w 24–48 godzin.",
+          "Standardowo do 10 dni roboczych po evencie. W trybie ekspresowym (np. na potrzeby relacji live lub konferencji prasowej) możemy dostarczyć highlights w 24–48 godzin.",
       },
       {
         question: "Czy filmujecie eventy zamknięte i poufne?",

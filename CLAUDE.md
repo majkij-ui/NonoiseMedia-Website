@@ -45,7 +45,8 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | Shared project list | `lib/projects.ts` |
 | Phone link component | `components/phone-number.tsx` (import: `@/components/phone-number`) |
 | Video modal | `components/project-video-modal.tsx` |
-| About section components | `components/about/*` |
+| About hero and philosophy (the rest of /about reuses `components/lp/*`) | `components/about/*` |
+| Reel behind the homepage and landing page heroes | `components/reel-backdrop.tsx` |
 | Trusted-by logos | `components/trusted-by-logos.tsx` |
 | Testimonials (shared by `/about` and the landing page). Drafts awaiting consent live in `DRAFT_TESTIMONIALS` in `.env.local`, never in the repo (it is public) and never in production | `lib/testimonials.ts` |
 | Pricing tiers | `components/offer/pricing-tiers.tsx` |
@@ -62,13 +63,13 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 
 | Route | Notes |
 |---|---|
-| `/[locale]/` | Homepage, background video reel (`preload="auto"`) |
+| `/[locale]/` | Homepage, full-screen reel behind the hero (`components/reel-backdrop.tsx`: poster first, then the reel, `preload="auto"`) |
 | `/[locale]/work` | Portfolio + BTS film stripe; trusted-by logos |
-| `/[locale]/about` | **Canonical** About page (hero collage, features, philosophy, testimonials, pricing) |
+| `/[locale]/about` | **Canonical** About page: hero collage, then the landing page's own logo strip, process and testimonials (all quotes), with the philosophy block between them |
 | `/[locale]/about-old` | Archived previous about; not in nav; metadata title says "archiwum" |
 | `/[locale]/contact` | Display email/phone, two-column cards (contact form + questionnaire promo). Locked to one viewport only in tall desktop windows. Form POSTs to `/api/send-contact` |
 | `/[locale]/questionnaire` | Intake UX, localized PL/EN |
-| `/[locale]/offer` | Offer overview: nine service cards + pricing tiers |
+| `/[locale]/offer` | Offer overview: the landing page's six tiles with prices (`LpServicesGrid variant="page"`; "Wyceń ten format" goes to `/contact?service=…`), text links to the nine service pages, pricing tiers |
 | `/[locale]/offer/[slug]` | Nine service landing pages (SSG, PL+EN). Data in `lib/services-content/*`, registry in `lib/service-pages.ts` |
 | `/[locale]/privacy` | Privacy policy |
 | `/[locale]/lp/kampania` | Paid ads landing page. **noindex**. Self-contained: its own contact form (`components/lp/lp-lead-section.tsx`), header without menu (logo + e-mail), every CTA scrolls to the form. The only links out are the owner-approved "Zobacz pełne portfolio" (`/work`) and "Wypełnij kwestionariusz" (`/questionnaire`), both opened in a new tab, and the privacy policy — add no others. Stages A–C of the rebuild are live — see `TODO.md` |
@@ -96,6 +97,8 @@ URLs: Polish is unprefixed (`/`, `/about`), English lives under `/en`. Legacy `/
 - **Homepage hero fade stays.** It delays LCP on mobile; the owner prefers the look.
 - **The reel is never re-encoded or compressed.** Image quality is the product. Fix delivery, not pixels.
 - **The reel stays `preload="auto"`.** `preload="none"` was tried and rejected.
+- **The reel starts after its poster** (owner's decision, 2026-11-22), on the homepage and the landing page. The poster is a frame of the reel (`videos/reel-poster-v1.webp`, taken at 1.46 s) and the first play starts at that frame. Do not go back to requesting both at once.
+- **One source for shared content.** Service tiles, prices, time promises, testimonials and the process live in the landing page components and `messages/*.json` (`lp.kampania`); `/offer` and `/about` render the same components. Do not copy that content into another page.
 - **Changed media gets a new filename.** Assets are cached for one year in browsers; a file replaced at the same URL strands returning visitors on the old copy.
 - **A missing file is cached for a year too.** The CDN and browsers keep the 404 for a URL that was requested before the file existed. Upload first, then reference; if a URL was already requested while empty, upload under a different name (this is why the logos are `tchibo-logo.png`, not `tchibo.png`).
 - **Check caching with GET, not HEAD:** `curl -s -o /dev/null -D - <url>`. `curl -I` always reports `DYNAMIC`.

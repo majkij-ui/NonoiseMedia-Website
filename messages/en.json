@@ -55,7 +55,8 @@
         "title": "Expert Interviews",
         "body": "Professional recordings of interviews and industry commentary. Build your expert position through valuable conversations with people from your industry. Leverage the power of cross-marketing."
       }
-    }
+    },
+    "allServicesLabel": "All services in detail"
   },
   "reel": {
     "close": "CLOSE",
@@ -246,7 +247,8 @@
       ],
       "questionnaireTitle": "Not a fan of open questions?",
       "questionnaireBody": "A short questionnaire walks you through the scope of the project: format, style and budget. We prepare a proposal based on your answers.",
-      "questionnaireCta": "Fill in the questionnaire"
+      "questionnaireCta": "Fill in the questionnaire",
+      "servicesHint": "Click a tile to see the scope, the price and sample work."
     }
   },
   "privacy": {

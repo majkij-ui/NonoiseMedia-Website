@@ -81,12 +81,12 @@ export const filmyWizerunkowe: ServicePageData = {
       {
         question: "Ile kosztuje film wizerunkowy?",
         answer:
-          "Produkcje wizerunkowe zaczynają się od 8 000 PLN. Ostateczna cena zależy od liczby lokacji, dni zdjęciowych, zakresu postprodukcji i udziału aktorów lub epizodystów.",
+          "Produkcje wizerunkowe zaczynają się od 20 000 zł netto. Ostateczna cena zależy od liczby lokacji, dni zdjęciowych, zakresu postprodukcji i udziału aktorów lub epizodystów.",
       },
       {
         question: "Ile trwa realizacja filmu wizerunkowego?",
         answer:
-          "Standardowo 3–6 tygodni: tydzień na immersję i scenariusz, 1–3 dni zdjęciowe, 2–3 tygodnie postprodukcji. Projekty wielolokacyjne mogą wymagać dłuższego harmonogramu.",
+          "Zdjęcia odbywają się zwykle 2–3 tygodnie od zapytania; skalę produkcji i liczbę dni zdjęciowych dobieramy do projektu. Pierwszą wersję montażu dostajesz do 10 dni roboczych od zdjęć, a dwie rundy poprawek są w cenie. Projekty wielolokacyjne mogą wymagać dłuższego harmonogramu.",
       },
       {
         question: "Czy film wizerunkowy sprawdzi się w social media?",

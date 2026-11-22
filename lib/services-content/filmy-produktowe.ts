@@ -76,7 +76,7 @@ export const filmyProduktowe: ServicePageData = {
       {
         question: "Ile kosztuje film produktowy?",
         answer:
-          "Proste prezentacje studyjne zaczynają się od 4 000 PLN. Produkcje lifestyle z lokacjami i modelkami wyceniamy od 6 000 PLN. Dokładna cena zależy od złożoności produktu i liczby wariantów.",
+          "Filmy produktowe zaczynają się od 15 000 zł netto. Dokładna cena zależy od złożoności produktu, liczby lokacji i wariantów.",
       },
       {
         question: "Czy realizujecie filmy w studio czy w plenerze?",
@@ -97,7 +97,7 @@ export const filmyProduktowe: ServicePageData = {
   },
   cta: {
     headline: "Pokaż swój produkt\ntak, jak zasługuje",
-    body: "Prześlij zdjęcie produktu i krótki opis. Zaproponujemy styl realizacji i wycenę — zwykle w ciągu 24 godzin.",
+    body: "Prześlij zdjęcie produktu i krótki opis. Odpowiadamy w ciągu 24 godzin w dni robocze, z propozycją stylu realizacji i orientacyjną wyceną.",
     buttonText: "Wyceń film produktowy",
   },
 }

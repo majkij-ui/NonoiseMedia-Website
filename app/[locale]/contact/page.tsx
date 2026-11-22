@@ -1,6 +1,8 @@
 "use client"
 
+import { useState, useSyncExternalStore } from "react"
 import { motion } from "framer-motion"
+import { useTranslations } from "next-intl"
 import { Mail, ClipboardList, MapPin } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PhoneNumber } from "@/components/phone-number"
@@ -8,9 +10,27 @@ import { LeadForm } from "@/components/lead-form"
 import { Link } from "@/i18n/navigation"
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/lib/contact-info"
 import { FooterLegalLinks } from "@/components/footer-legal-links"
+import { LP_SERVICE_IDS, LP_SERVICE_OTHER } from "@/lib/lp-services"
+
+const SERVICE_CHOICES: readonly string[] = [...LP_SERVICE_IDS, LP_SERVICE_OTHER]
+const noSubscription = () => () => {}
+
+/** The format picked on an offer tile, carried here as `?service=`. Empty when there is none. */
+function readServiceFromUrl(): string {
+  const value = new URLSearchParams(window.location.search).get("service") ?? ""
+  return SERVICE_CHOICES.includes(value) ? value : ""
+}
 
 export default function ContactPage() {
+  const tLp = useTranslations("lp.kampania")
   const contactEmail = CONTACT_EMAIL
+
+  // Read from the address bar, not useSearchParams(): that hook would force this
+  // prerendered page into dynamic rendering (same reason as in lib/attribution.ts).
+  const serviceFromUrl = useSyncExternalStore(noSubscription, readServiceFromUrl, () => "")
+  /** null until the visitor touches the field; then their choice wins over the URL. */
+  const [pickedService, setPickedService] = useState<string | null>(null)
+  const service = pickedService ?? serviceFromUrl
   const mapsHref =
     "https://www.google.com/maps/search/?api=1&query=Za+olszyn%C4%85+13B%2F2+05-090+Podolszyn+Nowy"
 
@@ -36,7 +56,13 @@ export default function ContactPage() {
   }
 
   return (
-    <main className="flex min-h-dvh w-full flex-col bg-background text-foreground md-tall:h-[calc(100dvh-var(--consent-offset,0px))] md-tall:min-h-0 md-tall:overflow-hidden">
+    <main
+      className={`flex min-h-dvh w-full flex-col bg-background text-foreground ${
+        // The one-viewport lock is sized for the three-field form. With the format field
+        // and an open cookie bar the submit button would be cut off, so let the page scroll.
+        serviceFromUrl ? "" : "md-tall:h-[calc(100dvh-var(--consent-offset,0px))] md-tall:min-h-0 md-tall:overflow-hidden"
+      }`}
+    >
       <Navigation fixed />
 
       {/* Hero — brutalist header */}
@@ -111,7 +137,25 @@ export default function ContactPage() {
               o swoim projekcie
             </h2>
 
-            <LeadForm source="contact" />
+            <LeadForm
+              source="contact"
+              // The format field appears only for visitors who came from an offer tile:
+              // everyone else keeps the three-field form this page is laid out around.
+              serviceField={
+                serviceFromUrl
+                  ? {
+                      label: tLp("formServiceLabel"),
+                      placeholder: tLp("formServicePlaceholder"),
+                      options: [
+                        ...LP_SERVICE_IDS.map((id) => ({ value: id, label: tLp(`services.${id}.title`) })),
+                        { value: LP_SERVICE_OTHER, label: tLp("formServiceOther") },
+                      ],
+                      value: service,
+                      onChange: setPickedService,
+                    }
+                  : undefined
+              }
+            />
           </motion.div>
 
           {/* Card 2 — Questionnaire CTA */}
