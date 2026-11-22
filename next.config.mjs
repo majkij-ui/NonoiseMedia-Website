@@ -110,7 +110,7 @@ const nextConfig = {
   async redirects() {
     return [
       // Service pages folded into the page of the offer tile they belong to (2026-11-22).
-      // Listed before the generic /pl rule so an old /pl link gets there in one hop.
+      // An old /pl link gets here in two hops, through the generic /pl rule below.
       ...[
         ["filmy-wizerunkowe", "filmy-korporacyjne"],
         ["filmy-produktowe", "filmy-reklamowe"],
@@ -119,7 +119,6 @@ const nextConfig = {
       ].flatMap(([from, to]) => [
         { source: `/offer/${from}`, destination: `/offer/${to}`, permanent: true },
         { source: `/en/offer/${from}`, destination: `/en/offer/${to}`, permanent: true },
-        { source: `/pl/offer/${from}`, destination: `/offer/${to}`, permanent: true },
       ]),
       // Legacy /pl URLs (pre localePrefix:'as-needed') — PL now serves unprefixed.
       // Permanent so ads/backlinks/search consolidate onto the new URLs.
