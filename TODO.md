@@ -331,7 +331,7 @@ Dziś 30 małych kadrów (6 kolumn × 5 rzędów) z mniejszych produkcji.
 
 ## 5. Następny duży krok: przebudowa reszty strony
 
-Pomysł Michała z 2026-11-21. Pierwszy krok zrobiony 2026-11-22 (osobny PR, czeka na wdrożenie): reszta strony korzysta z tych samych elementów co landing page, żeby nie było dwóch wersji prawdy.
+Pomysł Michała z 2026-11-21. Pierwszy krok wdrożony na produkcję 2026-11-22 (PR #16, sprawdzony na żywych stronach): reszta strony korzysta z tych samych elementów co landing page, żeby nie było dwóch wersji prawdy.
 
 Zrobione w pierwszym kroku:
 - [x] `/offer`: zamiast dziewięciu starych kafelków ta sama siatka sześciu kafelków z cenami co na LP (ten sam komponent). „Wyceń ten format" prowadzi do `/contact` z wybranym formatem w formularzu. Pod siatką linki tekstowe do dziewięciu podstron usług, żeby nie zostały bez dojścia. Trzy progi „Wybierz formę współpracy" zostają na razie bez zmian (decyzja Michała).
@@ -343,7 +343,9 @@ Otwarte po pierwszym kroku:
 - [ ] **[M]** Dwie podstrony mają ceny, których nie ma na LP i których nie ruszałem: `/offer/video-linkedin` („od 2 500 PLN za sesję") i `/offer/video-case-studies` („od 4 500 PLN"). Zostają, zmieniamy, czy usuwamy kwoty?
 - [ ] **[M]** Trzy progi na dole `/offer` („Od 4 000 PLN", „Od 7 500 PLN/mies.", „Wycena indywidualna") nie pasują do kafelków nad nimi. Zostały na Twoją prośbę; do decyzji przy kolejnym kroku.
 - [ ] **[M]** Zdanie w hero strony głównej („…tworzące nowoczesne treści wizualne") różni się od zdania na LP. Kolumna na stronie głównej jest wąska, więc nie podmieniałem bez pytania.
-- [ ] Ponowny pomiar szybkości po wdrożeniu (plakat powinien wyraźnie poprawić LCP na stronie głównej i na LP).
+- [x] Ponowny pomiar szybkości po wdrożeniu (2026-11-22, telefon, test laboratoryjny): LP 67–100 w zależności od przebiegu, LCP 8,9–9,4 s (było 11,4 s); strona główna 69, LCP 7,8 s (było 7,4 s). **Reel po plakacie działa, ale nie poprawił LCP w teście.** Wcześniejsze wyjaśnienie (plakat dzieli łącze z reelem) było błędne.
+- [ ] Prawdziwa przyczyna, potwierdzona w raporcie PageSpeed: na telefonie elementem LCP nie jest plakat (Chrome pomija obrazy na cały ekran), tylko akapit tekstu w hero, a ten czeka na JavaScript, bo wejście z przenikaniem startuje dopiero po uruchomieniu skryptów („opóźnienie renderowania elementu" 3,4 s). Rozwiązanie bez zmiany wyglądu: to samo przenikanie zrobić w CSS, żeby tekst nie czekał na skrypty. Na LP do zrobienia od ręki; na stronie głównej dotyka ustalenia „przenikanie zostaje" (wygląd zostaje ten sam, zmienia się tylko mechanizm) — do decyzji Michała.
+- [ ] Miniatury sześciu realizacji ważą razem ok. 1,7 MB, a wyświetlają się w małych kafelkach (PageSpeed: ok. 1,6 MB do zaoszczędzenia). Mniejsze wersje pod nowymi nazwami; filmów to nie dotyczy.
 
 - **Strona główna przejmuje układ landing page'a.** Te same sekcje co `/lp/kampania` (hero, loga, realizacje, oferta z cenami, opinie, proces, FAQ, formularz), ale z normalnym menu: O nas, Portfolio, Kontakt.
 - **Sekcja `/offer`**: dziś sześć formatów na stronie przeglądowej i dziewięć podstron usług. Do rozstrzygnięcia: czy podstrony kurczą się do sześciu formatów.
