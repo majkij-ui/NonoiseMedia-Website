@@ -69,8 +69,8 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | `/[locale]/about-old` | Archived previous about; not in nav; metadata title says "archiwum" |
 | `/[locale]/contact` | Display email/phone, two-column cards (contact form + questionnaire promo). Locked to one viewport only in tall desktop windows. Form POSTs to `/api/send-contact` |
 | `/[locale]/questionnaire` | Intake UX, localized PL/EN |
-| `/[locale]/offer` | Offer overview: the landing page's six tiles with prices (`LpServicesGrid variant="page"`; "Wyceń ten format" goes to `/contact?service=…`), text links to the nine service pages, pricing tiers |
-| `/[locale]/offer/[slug]` | Nine service landing pages (SSG, PL+EN). Data in `lib/services-content/*`, registry in `lib/service-pages.ts` |
+| `/[locale]/offer` | Offer overview: the landing page's six tiles with prices (`LpServicesGrid variant="page"`). An opened tile has "Wyceń ten format" (to `/contact?service=…`) and "Więcej szczegółów" (to the tile's service page); then the pricing tiers |
+| `/[locale]/offer/[slug]` | Five service pages, one per offer tile that has one (SSG, PL+EN; AI video has none yet). Copy in `lib/services-content/*`, registry in `lib/service-pages.ts`; each names its `tile`, and its price, scope points and sample films come from the tile. Four older slugs 308-redirect to these (`next.config.mjs`) |
 | `/[locale]/privacy` | Privacy policy |
 | `/[locale]/lp/kampania` | Paid ads landing page. **noindex**. Self-contained: its own contact form (`components/lp/lp-lead-section.tsx`), header without menu (logo + e-mail), every CTA scrolls to the form. The only links out are the owner-approved "Zobacz pełne portfolio" (`/work`) and "Wypełnij kwestionariusz" (`/questionnaire`), both opened in a new tab, and the privacy policy — add no others. Stages A–C of the rebuild are live — see `TODO.md` |
 

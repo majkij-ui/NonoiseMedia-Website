@@ -148,3 +148,7 @@
 | Google Business Profile | ❓ Unverified | ❓ Unverified |
 | Case study detail pages | ❌ Grid only + embedded in service pages | ❓ Unconfirmed |
 | Blog / content | ❌ None | ❓ Unconfirmed |
+
+---
+
+**Note, 2026-11-22:** four service pages were folded into the page of the offer tile they belong to and now 308-redirect: `/offer/filmy-wizerunkowe` → `/offer/filmy-korporacyjne`, `/offer/filmy-produktowe` → `/offer/filmy-reklamowe`, `/offer/video-linkedin` → `/offer/wideo-social-media`, `/offer/video-case-studies` → `/offer/wywiady-eksperckie`. In the 90 days before, all nine service pages together had one click from search. Rows above that name the old URLs are history.

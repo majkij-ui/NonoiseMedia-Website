@@ -2,6 +2,7 @@ import type { ServicePageData } from "../service-pages"
 
 export const filmyKorporacyjne: ServicePageData = {
   slug: "filmy-korporacyjne",
+  tile: "corporate",
   meta: {
     pl: {
       title: "Filmy Korporacyjne Warszawa — Produkcja Wideo dla Firm",
@@ -49,7 +50,7 @@ export const filmyKorporacyjne: ServicePageData = {
       {
         number: "01",
         title: "Odkrycie & strategia",
-        body: "Poznajemy Twój model biznesowy, cele i grupę docelową. Definiujemy przekaz, ton narracji i mierzalne KPI filmu. Efekt: moodboard i szczegółowy scenariusz.",
+        body: "Poznajemy Twój model biznesowy, cele i grupę docelową. Definiujemy przekaz i ton narracji. Efekt: moodboard i szczegółowy scenariusz.",
       },
       {
         number: "02",
@@ -92,6 +93,11 @@ export const filmyKorporacyjne: ServicePageData = {
         question: "Czy pomagacie z koncepcją i scenariuszem?",
         answer:
           "Tak. Każdy projekt zaczynamy od warsztatu strategicznego, na którym wspólnie definiujemy cel, przekaz i grupę docelową. Scenariusz i moodboard wchodzą w cenę produkcji.",
+      },
+      {
+        question: "Czym film wizerunkowy różni się od reklamowego?",
+        answer:
+          "Film wizerunkowy buduje długoterminową percepcję marki — opowiada historię, pokazuje wartości i kulturę firmy. Film reklamowy to krótka kreacja nastawiona na konkretne działanie (kliknięcie, zakup). Oba typy się uzupełniają.",
       },
     ],
   },

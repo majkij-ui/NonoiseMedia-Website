@@ -1,11 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight, ChevronDown, Play } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { Link } from "@/i18n/navigation"
 import { Navigation } from "@/components/navigation"
+import { ExampleThumb } from "@/components/lp/example-thumb"
+import { ProjectVideoModal } from "@/components/project-video-modal"
+import { LP_SERVICE_EXAMPLES, type LpExample } from "@/lib/lp-services"
 import type { ServicePageData } from "@/lib/service-pages"
 import type { Project } from "@/lib/projects"
 
@@ -91,7 +95,7 @@ function Hero({ data }: { data: ServicePageData }) {
             className="mt-8 md:mt-10"
           >
             <Link
-              href="/contact"
+              href={`/contact?service=${data.tile}`}
               className="inline-block border border-foreground/20 px-10 py-4 font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.1em] text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
             >
               {hero.ctaText}
@@ -99,6 +103,60 @@ function Hero({ data }: { data: ServicePageData }) {
           </motion.div>
         </div>
       </div>
+    </section>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCOPE AND PRICE — read from the offer tile, so the two cannot disagree
+// ═══════════════════════════════════════════════════════════════════════════
+
+type TileCopy = { title: string; price: string; priceNote: string; points: string[] }
+
+function ScopeAndPrice({ data }: { data: ServicePageData }) {
+  const t = useTranslations("lp.kampania")
+  const tile = t.raw(`services.${data.tile}`) as TileCopy
+
+  return (
+    <section className="border-y border-foreground/10 bg-surface px-6 py-16 md:px-12 md:py-24">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: "some" }}
+        transition={{ duration: 0.8, ease: cinematicEase }}
+        className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8"
+      >
+        <div className="md:col-span-5">
+          <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+            {t("serviceScopeLabel")}
+          </p>
+          <p className="font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:text-5xl">
+            {tile.price}
+          </p>
+          {tile.priceNote ? (
+            <p className="mt-3 max-w-sm font-mono text-[11px] uppercase leading-relaxed tracking-[0.14em] text-foreground/60">
+              {tile.priceNote}
+            </p>
+          ) : null}
+          <Link
+            href={`/contact?service=${data.tile}`}
+            className="mt-8 inline-block border border-foreground bg-foreground px-6 py-3.5 font-mono text-xs uppercase tracking-[0.2em] text-background transition-colors hover:bg-transparent hover:text-foreground"
+          >
+            {t("serviceCta")}
+          </Link>
+        </div>
+
+        <ul className="md:col-span-6 md:col-start-7">
+          {tile.points.map((point) => (
+            <li
+              key={point}
+              className="max-w-xl border-t border-foreground/15 py-4 text-sm leading-relaxed text-foreground/85 last:border-b md:text-base"
+            >
+              {point}
+            </li>
+          ))}
+        </ul>
+      </motion.div>
     </section>
   )
 }
@@ -217,7 +275,15 @@ function Process({ data }: { data: ServicePageData }) {
 // CASE STUDY — featured project (matches /work card pattern)
 // ═══════════════════════════════════════════════════════════════════════════
 
-function CaseStudy({ data, project }: { data: ServicePageData; project: Project | undefined }) {
+function CaseStudy({
+  data,
+  project,
+  onPlay,
+}: {
+  data: ServicePageData
+  project: Project | undefined
+  onPlay: (film: { id: number; video: string }) => void
+}) {
   if (!project) return null
   const { caseStudy } = data
 
@@ -247,7 +313,12 @@ function CaseStudy({ data, project }: { data: ServicePageData; project: Project 
           transition={{ duration: 0.8, ease: revealEase }}
           className="w-full lg:w-3/5"
         >
-          <div className="group relative overflow-hidden">
+          <button
+            type="button"
+            onClick={() => project.video && onPlay({ id: project.id, video: project.video })}
+            aria-label={`Odtwórz wideo: ${project.title}`}
+            className="group relative block w-full overflow-hidden text-left"
+          >
             <motion.div whileHover="hover">
               <motion.div
                 variants={{ hover: { scale: 1.03 } }}
@@ -283,7 +354,7 @@ function CaseStudy({ data, project }: { data: ServicePageData; project: Project 
                 </motion.div>
               )}
             </motion.div>
-          </div>
+          </button>
         </motion.div>
 
         {/* Text */}
@@ -334,6 +405,56 @@ function CaseStudy({ data, project }: { data: ServicePageData; project: Project 
             />
           </Link>
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FILMS — the tile's sample films, playable
+// ═══════════════════════════════════════════════════════════════════════════
+
+function Films({
+  films,
+  standalone,
+  onPlay,
+}: {
+  films: LpExample[]
+  /** True when the page has no case study above: the row then gets a full section heading. */
+  standalone: boolean
+  onPlay: (film: LpExample) => void
+}) {
+  const t = useTranslations("lp.kampania")
+  if (!films.length) return null
+  const vertical = films.some((film) => film.vertical)
+
+  return (
+    <section className={standalone ? "px-6 py-24 md:px-12 md:py-40" : "px-6 pb-24 md:px-12 md:pb-40"}>
+      {standalone ? (
+        <h2 className="mb-12 font-[family-name:var(--font-display)] text-4xl uppercase leading-none tracking-[0.02em] text-foreground md:mb-20 md:text-6xl lg:text-7xl">
+          {t("serviceWork")}
+        </h2>
+      ) : (
+        <p className="mb-6 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+          {t("serviceMoreWork")}
+        </p>
+      )}
+      <div
+        className={`grid gap-3 ${
+          vertical ? "max-w-2xl grid-cols-3" : films.length > 1 ? "grid-cols-1 md:grid-cols-2" : "max-w-3xl grid-cols-1"
+        }`}
+      >
+        {films.map((film, i) => (
+          <ExampleThumb
+            key={film.id}
+            example={film}
+            delay={i * 0.12}
+            onPlay={onPlay}
+            label={t("servicePlayAria", { title: film.title })}
+            sizes={vertical ? "(max-width: 768px) 30vw, 220px" : "(max-width: 768px) 100vw, 50vw"}
+            reveal="inView"
+          />
+        ))}
       </div>
     </section>
   )
@@ -458,7 +579,7 @@ function CtaStrip({ data }: { data: ServicePageData }) {
         </p>
         <div className="mt-8 md:mt-10">
           <Link
-            href="/contact"
+            href={`/contact?service=${data.tile}`}
             className="inline-block border border-foreground/20 px-12 py-4 font-[family-name:var(--font-display)] text-sm uppercase tracking-[0.1em] text-foreground transition-colors duration-300 hover:bg-foreground hover:text-background"
           >
             {cta.buttonText}
@@ -474,19 +595,54 @@ function CtaStrip({ data }: { data: ServicePageData }) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export function ServiceLandingClient({ data, project }: Props) {
+  const [film, setFilm] = useState<{ id: number; video: string } | null>(null)
+  const [filmOpen, setFilmOpen] = useState(false)
+
+  const play = (next: { id: number; video: string }) => {
+    setFilm(next)
+    setFilmOpen(true)
+  }
+
+  useEffect(() => {
+    if (!filmOpen) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setFilmOpen(false)
+    }
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    window.addEventListener("keydown", onKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener("keydown", onKeyDown)
+    }
+  }, [filmOpen])
+
+  // The tile's films, minus the one the case study already shows.
+  const films = LP_SERVICE_EXAMPLES[data.tile].filter((example) => example.id !== project?.id)
+
   return (
     <main className="relative min-h-screen w-full bg-background">
       <Navigation fixed />
       <Hero data={data} />
+      <ScopeAndPrice data={data} />
       <Benefits data={data} />
       <Process data={data} />
-      {project && <CaseStudy data={data} project={project} />}
+      {project && <CaseStudy data={data} project={project} onPlay={play} />}
+      <Films films={films} standalone={!project} onPlay={play} />
       <Faqs data={data} />
       <CtaStrip data={data} />
 
       <footer className="flex items-center justify-end px-6 py-8 text-xs tracking-widest text-muted-foreground md:px-12">
         <span>&copy; 2026 NONOISE MEDIA</span>
       </footer>
+
+      <ProjectVideoModal
+        isOpen={filmOpen}
+        activeProject={film}
+        useSharedLayout={false}
+        onClose={() => setFilmOpen(false)}
+        onExitComplete={() => setFilm(null)}
+      />
     </main>
   )
 }

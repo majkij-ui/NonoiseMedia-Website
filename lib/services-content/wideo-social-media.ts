@@ -2,16 +2,17 @@ import type { ServicePageData } from "../service-pages"
 
 export const wideoSocialMedia: ServicePageData = {
   slug: "wideo-social-media",
+  tile: "social",
   meta: {
     pl: {
       title: "Wideo do Social Media dla Firm Warszawa — Short-Form Video",
       description:
-        "Profesjonalna produkcja wideo do social media dla firm w Warszawie. Reelsy, TikToki i YouTube Shorts, które budują markę i generują zasięg organiczny. Bezpłatna wycena.",
+        "Profesjonalna produkcja wideo do social media dla firm w Warszawie. Reelsy, TikToki, YouTube Shorts i wideo na LinkedIn, które budują markę i generują zasięg organiczny. Bezpłatna wycena.",
     },
     en: {
       title: "Social Media Video for Business Warsaw — Short-Form Production",
       description:
-        "Professional short-form video production for businesses in Warsaw. Reels, TikToks and YouTube Shorts that build your brand and drive organic reach. Free quote.",
+        "Professional short-form video production for businesses in Warsaw. Reels, TikToks, YouTube Shorts and LinkedIn video that build your brand and drive organic reach. Free quote.",
     },
   },
   hero: {
@@ -70,7 +71,7 @@ export const wideoSocialMedia: ServicePageData = {
       {
         question: "Ile materiałów mogę dostać z jednego dnia zdjęciowego?",
         answer:
-          "Standardowo 6–12 filmów z jednego dnia zdjęciowego, w zależności od złożoności scenariuszy. Przy prostszych formatach \"mówionych do kamery\" możemy nagrać nawet więcej materiału.",
+          "Do 10 rolek z jednego dnia zdjęciowego, w zależności od złożoności scenariuszy. Przy prostszych formatach \"mówionych do kamery\" możemy nagrać nawet więcej materiału.",
       },
       {
         question: "Ile kosztuje produkcja wideo do social media?",

@@ -2,16 +2,17 @@ import type { ServicePageData } from "../service-pages"
 
 export const filmyReklamowe: ServicePageData = {
   slug: "filmy-reklamowe",
+  tile: "commercial",
   meta: {
     pl: {
       title: "Filmy Reklamowe Warszawa — Spoty i Kampanie Wideo",
       description:
-        "Produkcja filmów reklamowych i spotów wideo w Warszawie. Spoty na social media, kampanie YouTube i reklamy performance nastawione na konwersję. Bezpłatna wycena.",
+        "Produkcja filmów reklamowych i spotów wideo w Warszawie. Spoty na social media, filmy produktowe, kampanie YouTube i reklamy nastawione na konwersję. Bezpłatna wycena.",
     },
     en: {
       title: "Commercial Video Production Warsaw — Ads & Campaigns",
       description:
-        "Commercial video production in Warsaw. Social media ads, YouTube campaigns and performance-driven video spots. Free quote.",
+        "Commercial video production in Warsaw. Social media ads, product films, YouTube campaigns and performance-driven video spots. Free quote.",
     },
   },
   hero: {
@@ -28,7 +29,7 @@ export const filmyReklamowe: ServicePageData = {
       {
         label: "01 / Performance",
         title: "Projektowane pod konwersję",
-        body: "Każdy spot budujemy wokół jasnego CTA i mierzalnego celu. Znamy mechanikę platform reklamowych — od hook'ów po retargeting — i dostarczamy kreacje, które realnie wpływają na ROAS.",
+        body: "Każdy spot budujemy wokół jasnego CTA i mierzalnego celu. Znamy mechanikę platform reklamowych — od hook'ów po retargeting — i dostarczamy kreacje dopasowane do tego, gdzie będą emitowane.",
       },
       {
         label: "02 / Wieloformat",
@@ -49,7 +50,7 @@ export const filmyReklamowe: ServicePageData = {
       {
         number: "01",
         title: "Brief & koncept kreatywny",
-        body: "Analizujemy Twój produkt, grupę docelową i platformę. Proponujemy koncepty kreatywne z hook'ami i wariantami pod testy A/B.",
+        body: "Analizujemy Twój produkt, grupę docelową i platformę. Proponujemy koncepty kreatywne z hook'ami i wariantami kreacji.",
       },
       {
         number: "02",
@@ -59,7 +60,7 @@ export const filmyReklamowe: ServicePageData = {
       {
         number: "03",
         title: "Postprodukcja & iteracja",
-        body: "Dynamiczny montaż, motion graphics i udźwiękowienie. Warianty kreacji gotowe do testowania. Po starcie kampanii — iterujemy na podstawie wyników.",
+        body: "Dynamiczny montaż, motion graphics i udźwiękowienie. Warianty kreacji gotowe do emisji.",
       },
     ],
   },
@@ -81,7 +82,7 @@ export const filmyReklamowe: ServicePageData = {
       {
         question: "Ile wariantów kreacji dostarczacie?",
         answer:
-          "Standardowo dostarczamy 3–5 wariantów (różne hook'i, CTA, długości) w formatach pionowym, kwadratowym i poziomym. Idealne do testów A/B w kampaniach performance.",
+          "Standardowo dostarczamy 3–5 wariantów (różne hook'i, CTA, długości) w formatach pionowym, kwadratowym i poziomym.",
       },
       {
         question: "Czy pomagacie z konceptem kreatywnym?",
@@ -92,6 +93,11 @@ export const filmyReklamowe: ServicePageData = {
         question: "Jak szybko mogę otrzymać gotowy materiał?",
         answer:
           "Pierwszą wersję montażu dostajesz do 10 dni roboczych od zdjęć. W trybie przyspieszonym: 5 dni roboczych, za dopłatą od 800 zł netto. Termin ustalamy przy pierwszej rozmowie.",
+      },
+      {
+        question: "Czy realizujecie też filmy produktowe?",
+        answer:
+          "Tak. Film produktowy realizujemy w studiu albo w plenerze: minimalistyczne tło studyjne dla technologii, naturalne otoczenie dla produktów lifestyle. Często łączymy oba podejścia w jednej produkcji.",
       },
     ],
   },

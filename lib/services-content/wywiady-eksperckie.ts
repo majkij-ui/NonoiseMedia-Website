@@ -2,20 +2,21 @@ import type { ServicePageData } from "../service-pages"
 
 export const wywiadyEksperckie: ServicePageData = {
   slug: "wywiady-eksperckie",
+  tile: "podcast",
   meta: {
     pl: {
       title: "Wywiady Eksperckie Warszawa — Profesjonalne Nagrania Wywiadów",
       description:
-        "Profesjonalna produkcja wywiadów eksperckich i wypowiedzi branżowych w Warszawie. Buduj autorytet i pozycję eksperta przez wartościowe rozmowy. Bezpłatna wycena.",
+        "Produkcja wywiadów eksperckich, podcastów wideo i case studies z klientami w Warszawie. Buduj autorytet i pozycję eksperta przez wartościowe rozmowy. Bezpłatna wycena.",
     },
     en: {
       title: "Expert Interview Video Production Warsaw",
       description:
-        "Professional expert interview and thought leadership video production in Warsaw. Build authority through valuable industry conversations. Free quote.",
+        "Expert interviews, video podcasts and client case study videos produced in Warsaw. Build authority through valuable industry conversations. Free quote.",
     },
   },
   hero: {
-    label: "Wywiady eksperckie — Warszawa",
+    label: "Podcasty i wywiady eksperckie — Warszawa",
     headline: "ROZMOWY\nKTÓRE BUDUJĄ\nAUTORYTET",
     subheadline:
       "Wywiad ekspercki to jedno z najskuteczniejszych narzędzi budowania pozycji w branży. Profesjonalnie zrealizowane rozmowy — z Tobą, Twoim zespołem lub gośćmi zewnętrznymi — dają content, który angażuje, edukuje i buduje zaufanie do Twojej marki.",
@@ -86,6 +87,11 @@ export const wywiadyEksperckie: ServicePageData = {
         question: "Czy wywiad można realizować zdalnie?",
         answer:
           "Tak — realizujemy wywiady zdalne z profesjonalnym setupem po stronie prowadzącego i zestawem instrukcji dla gościa, który nagrywa u siebie. Jakość finalnego materiału jest znacznie wyższa niż standardowe nagrania Teams/Zoom.",
+      },
+      {
+        question: "Czy nagrywacie też wideo case study z klientem?",
+        answer:
+          "Tak. To ten sam rodzaj produkcji: rozmowa z Twoim klientem, uzupełniona ujęciami z realizacji projektu. Pomagamy przygotować pytania, a klient nie musi mieć doświadczenia przed kamerą.",
       },
     ],
   },

@@ -1,9 +1,13 @@
 // ---------------------------------------------------------------------------
 // Service Landing Page — data types & content
 // ---------------------------------------------------------------------------
-// Each entry drives one /offer/[slug] page.
+// Each entry drives one /offer/[slug] page: one per offer tile that has a page.
+// Four older pages (filmy-wizerunkowe, filmy-produktowe, video-linkedin,
+// video-case-studies) were folded into these; next.config.mjs redirects them.
 // Copywriting lives in lib/services-content/ — one file per service.
 // ---------------------------------------------------------------------------
+
+import type { LpServiceId } from "./lp-services"
 
 export type ServiceBenefit = {
   label: string
@@ -24,6 +28,12 @@ export type ServiceFaq = {
 
 export type ServicePageData = {
   slug: string
+  /**
+   * The offer tile this page details. Price, scope points and sample films are
+   * read from the tile (messages `lp.kampania.services`, lib/lp-services.ts), so
+   * the page cannot disagree with it.
+   */
+  tile: LpServiceId
   meta: {
     pl: { title: string; description: string }
     en: { title: string; description: string }
@@ -69,23 +79,15 @@ export type ServicePageData = {
 
 import { filmyKorporacyjne } from "./services-content/filmy-korporacyjne"
 import { filmyReklamowe } from "./services-content/filmy-reklamowe"
-import { filmyWizerunkowe } from "./services-content/filmy-wizerunkowe"
-import { filmyProduktowe } from "./services-content/filmy-produktowe"
 import { reportazEventowy } from "./services-content/reportaz-eventowy"
 import { wideoSocialMedia } from "./services-content/wideo-social-media"
-import { videoLinkedin } from "./services-content/video-linkedin"
-import { videoCaseStudies } from "./services-content/video-case-studies"
 import { wywiadyEksperckie } from "./services-content/wywiady-eksperckie"
 
 export const servicePages: ServicePageData[] = [
   filmyKorporacyjne,
   filmyReklamowe,
-  filmyWizerunkowe,
-  filmyProduktowe,
   reportazEventowy,
   wideoSocialMedia,
-  videoLinkedin,
-  videoCaseStudies,
   wywiadyEksperckie,
 ]
 

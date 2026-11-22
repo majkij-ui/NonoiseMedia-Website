@@ -26,6 +26,7 @@ This document describes how Nonoise Media’s Next.js site is wired for **paid c
   | `lp_service_open` | a service tile is opened; param `service` (`corporate`, `commercial`, `ai`, `social`, `podcast`, `event`) | [`components/lp/lp-services-grid.tsx`](../components/lp/lp-services-grid.tsx) |
   | `lp_service_video_play` | a sample film is played inside an opened tile; params `service`, `video` | same |
   | `lp_service_quote_click` | "Wyceń ten format" inside an opened tile; param `service`. Scrolls to the form with that service preselected | same |
+  | `lp_service_details_click` | "Więcej szczegółów" inside an opened tile, on `/offer` only; param `service` | same |
   | `lp_faq_open` | a question in the FAQ is opened; param `question` (1-based position) | [`components/lp/lp-faq.tsx`](../components/lp/lp-faq.tsx) |
   | `lp_questionnaire_click` | "Wypełnij kwestionariusz" under the form (opens `/questionnaire` in a new tab; the conversion there is `questionnaire_success`) | [`components/lp/lp-lead-section.tsx`](../components/lp/lp-lead-section.tsx) |
   | `lp_portfolio_link_click` | "Zobacz pełne portfolio" under the films (opens `/work` in a new tab) | [`components/lp/project-thumbnail-grid.tsx`](../components/lp/project-thumbnail-grid.tsx) |

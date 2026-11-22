@@ -340,7 +340,7 @@ Zrobione w pierwszym kroku:
 - [x] Ceny i terminy na podstronach usług wyrównane do LP: korporacyjne i wizerunkowe od 20 000 zł, reklamowe i produktowe od 15 000 zł, reportaż od 4 000 zł, pakiet 10 rolek od 10 000 zł, wywiady od 5 000 zł za sesję; pierwsza wersja do 10 dni roboczych, tryb przyspieszony 5 dni roboczych za dopłatą od 800 zł, odpowiedź w 24 godziny w dni robocze.
 
 Otwarte po pierwszym kroku:
-- [ ] **[M]** Dwie podstrony mają ceny, których nie ma na LP: `/offer/video-linkedin` („od 2 500 PLN za sesję") i `/offer/video-case-studies` („od 4 500 PLN"). Plan z punktu 5.1 je wygasza.
+- [x] Ceny z `/offer/video-linkedin` i `/offer/video-case-studies` zniknęły razem z tymi podstronami (punkt 5.1).
 - [ ] **[M]** Trzy progi na dole `/offer` („Od 4 000 PLN", „Od 7 500 PLN/mies.", „Wycena indywidualna") nie pasują do kafelków nad nimi. Zostały na Twoją prośbę; do decyzji przy kolejnym kroku.
 - [ ] **[M]** Zdanie w hero strony głównej („…tworzące nowoczesne treści wizualne") różni się od zdania na LP. Kolumna na stronie głównej jest wąska, więc nie podmieniałem bez pytania.
 - [x] Ponowny pomiar szybkości po wdrożeniu (2026-11-22, telefon, test laboratoryjny): LP 67–100 w zależności od przebiegu, LCP 8,9–9,4 s (było 11,4 s); strona główna 69, LCP 7,8 s (było 7,4 s). **Reel po plakacie działa, ale nie poprawił LCP w teście.** Wcześniejsze wyjaśnienie (plakat dzieli łącze z reelem) było błędne.
@@ -350,7 +350,7 @@ Otwarte po pierwszym kroku:
 - **Strona główna przejmuje układ landing page'a.** Te same sekcje co `/lp/kampania` (hero, loga, realizacje, oferta z cenami, opinie, proces, FAQ, formularz), ale z normalnym menu: O nas, Portfolio, Kontakt.
 - **Sekcja `/offer`**: dziś sześć formatów na stronie przeglądowej i dziewięć podstron usług. Do rozstrzygnięcia: czy podstrony kurczą się do sześciu formatów.
 
-### 5.1 Podstrony usług a sześć kafelków — analiza i plan (2026-11-22, czeka na akceptację Michała)
+### 5.1 Podstrony usług a sześć kafelków — analiza i plan (2026-11-22, plan zaakceptowany; kroki 1–3 zrobione, osobny PR, czeka na wdrożenie)
 
 Stan: dziewięć podstron `/offer/[slug]` z jednego szablonu (hero, trzy korzyści, trzy kroki, opcjonalny film, cztery pytania, przycisk do `/contact`), po ok. 440 słów. Ruch z wyszukiwarki z 90 dni: łącznie jedno kliknięcie; widoczność ma tylko `/offer/filmy-korporacyjne` (78 wyświetleń, średnia pozycja 25). Konsolidacja nie kosztuje więc ruchu.
 
@@ -373,14 +373,15 @@ Co jest nie tak z treścią pięciu podstron, które zostają:
 - Wersja `/en/offer/*` ma angielski tytuł karty i polską treść.
 
 Plan:
-- [ ] **Krok 1 (mały):** w rozwiniętym kafelku na `/offer` drugi przycisk „Więcej szczegółów" obok „Wyceń ten format" (na landing page'u go nie ma: stamtąd nie wyprowadzamy). Lista linków pod siatką znika.
-- [ ] **Krok 2:** cztery przekierowania stałe (PL i EN) według tabeli, aktualizacja mapy strony; przed usunięciem przeniesienie tego, co warto zachować (pytanie „film wizerunkowy a reklamowy", „studio czy plener", wątek LinkedIna, case study jako akapit).
-- [ ] **Krok 3:** pięć podstron pisanych od nowa wokół kafelka: cena i trzy punkty zakresu brane z tych samych danych co kafelek (nie mogą się rozjechać), film z listy kafelka (także pionowy), przycisk kontaktu z wybranym formatem, treść bez obietnic z listy powyżej.
+- [x] **Krok 1:** w rozwiniętym kafelku na `/offer` drugi przycisk „Więcej szczegółów" obok „Wyceń ten format" (na landing page'u go nie ma: stamtąd nie wyprowadzamy). Lista linków pod siatką znika.
+- [x] **Krok 2:** cztery przekierowania stałe (PL i EN) według tabeli; mapa strony ma pięć podstron. Michał: treści wchłanianych podstron nie muszą nigdzie wracać. Przeniesione tylko trzy pytania, które pasują naturalnie: „Czym film wizerunkowy różni się od reklamowego?" (korporacyjne), „Czy realizujecie też filmy produktowe?" (reklamowe), „Czy nagrywacie też wideo case study z klientem?" (wywiady). Cen LinkedIna i case studies nie ma już nigdzie.
+- [x] **Krok 3 (w lżejszej wersji, po decyzji Michała):** teksty podstron zostają; każda dostała blok „Zakres i cena" czytany z kafelka (nie może się z nim rozjechać), filmy z kafelka do odtworzenia (także pionowe; kadr przy case study też już odtwarza film) i przyciski kontaktu z wybranym formatem. Z treści usunięte tylko: ROAS, testy A/B i iteracje po starcie kampanii, KPI filmu.
 - [ ] **Krok 4:** podstrona Wideo AI, gdy będzie materiał.
 
-Do decyzji Michała przed krokiem 2 i 3:
-- [ ] Czy case studies wchłania podstrona wywiadów, czy korporacyjna.
-- [ ] Które z obietnic z listy są prawdziwe i mają zostać (szczególnie: highlights w 24–48 godzin, wywiady zdalne, zespół wielokamerowy na eventach).
+Decyzje Michała (2026-11-22):
+- [x] Case studies wchłania podstrona wywiadów.
+- [x] Hasła z podstron zostają („highlights w 24–48 godzin", zespół wielokamerowy na eventach — to u niego prawie standard, wywiady zdalne, warsztat, 15-minutowa rozmowa). Wyrzucone: ROAS, testy A/B i iteracje kampanii, KPI.
+- [ ] Do rozważenia później: dopisek przy „highlights w 24–48 godzin", że to tryb dodatkowo płatny. Michał skłania się, żeby podstrona pokazywała możliwości bez tego dopisku.
 
 Do ustalenia przed startem:
 - [ ] Co zostaje z obecnej strony głównej (pełnoekranowy reel z przenikaniem zostaje — patrz „Settled Decisions" w `CLAUDE.md`).
