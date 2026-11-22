@@ -4,13 +4,13 @@ import { motion } from "framer-motion"
 import { Quote } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { cinematicEase } from "@/components/about/constants"
-import { landingPageTestimonials } from "@/lib/testimonials"
+import { landingPageTestimonials, type Testimonial } from "@/lib/testimonials"
 
 /**
- * Three compact client quotes. The /about page shows the same data as
- * full-screen slides; here they must not push the form five screens further away.
+ * Client quotes as compact cards, three to a row. The landing page shows the
+ * three picked for it; /about passes the whole list.
  */
-export function LpTestimonials() {
+export function LpTestimonials({ items = landingPageTestimonials }: { items?: Testimonial[] }) {
   const t = useTranslations("lp.kampania")
 
   return (
@@ -24,14 +24,14 @@ export function LpTestimonials() {
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
-        {landingPageTestimonials.map((item, i) => (
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-x-8 md:gap-y-14">
+        {items.map((item, i) => (
           <motion.figure
             key={item.company}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: "some" }}
-            transition={{ duration: 0.7, delay: i * 0.1, ease: cinematicEase }}
+            transition={{ duration: 0.7, delay: (i % 3) * 0.1, ease: cinematicEase }}
             className="flex flex-col border-t border-white/20 pt-5 md:col-span-4"
           >
             <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-foreground/50">{item.company}</p>

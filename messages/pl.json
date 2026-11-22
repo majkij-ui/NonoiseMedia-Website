@@ -55,7 +55,8 @@
         "title": "Wywiady eksperckie",
         "body": "Profesjonalne nagrania wywiadów i wypowiedzi branżowych. Buduj swoją pozycję eksperta poprzez wartościowe rozmowy z osobami z Twojej branży. Skorzystaj z możliwości, jakie daje cross marketing."
       }
-    }
+    },
+    "allServicesLabel": "Wszystkie usługi w szczegółach"
   },
   "reel": {
     "close": "ZAMKNIJ",
@@ -246,7 +247,8 @@
       ],
       "questionnaireTitle": "Nie lubisz pytań otwartych?",
       "questionnaireBody": "Krótki kwestionariusz przeprowadzi Cię przez zakres projektu: od formatu, przez styl, po budżet. Na tej podstawie przygotujemy propozycję.",
-      "questionnaireCta": "Wypełnij kwestionariusz"
+      "questionnaireCta": "Wypełnij kwestionariusz",
+      "servicesHint": "Kliknij kafelek, żeby zobaczyć zakres, cenę i przykładowe realizacje."
     }
   },
   "privacy": {

@@ -5,6 +5,7 @@ import dynamic from "next/dynamic"
 import { useTranslations } from "next-intl"
 import { motion, AnimatePresence } from "framer-motion"
 import { Navigation } from "@/components/navigation"
+import { ReelBackdrop } from "@/components/reel-backdrop"
 import {
   AnimatedHomeButton,
   LANDSCAPE_MOBILE_HERO,
@@ -129,18 +130,8 @@ export default function HomeClient() {
 
   return (
     <main className="relative h-screen w-full overflow-hidden bg-background">
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
-        style={{ opacity: isPlaying ? 1 : 0.6 }}
-        src="https://assets.nonoise.media/videos/my-reel.mp4"
-        loop
-        muted={isMuted}
-        autoPlay
-        playsInline
-        preload="auto"
-      />
+      {/* Background reel: poster first, then the video over it */}
+      <ReelBackdrop videoRef={videoRef} isPlaying={isPlaying} isMuted={isMuted} restOpacity={0.6} />
 
       {/* Dark Overlay */}
       <div

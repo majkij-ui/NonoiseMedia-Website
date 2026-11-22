@@ -211,12 +211,35 @@ Otwarte po etapie B:
 - [x] Teksty kafelków po uwagach Michała (2026-11-21): korporacyjny bez sztywnego „1–3 dni zdjęciowe" (skala dobierana do efektu, budżetu i czasu klienta) i z plikami pod miejsce emisji (LED, telewizor, projektor); reklamowy z castingiem i dronami FPV; rolki jako „nawet 10 rolek premium w jeden dzień", z dopiskiem, że inne pakiety wyceniamy indywidualnie.
 - [x] Lint i build przechodzą; sprawdzone w Chrome na 390, 800, 1024, 1280 i 1440 px; niezależny przegląd w czterech obszarach, potwierdzone uwagi poprawione.
 - [x] Wdrożenie 2026-11-21 ok. 14:20, sprawdzone na żywej stronie: sześć kafelków z cenami, panel otwiera się i mieści, miniatury i filmy ładują się z R2, FAQ, pole usługi w formularzu, obietnice czasowe; szkicu opinii nie ma w HTML ani w JS.
-- [ ] Link do kwestionariusza pod formularzem na LP (osobny PR, czeka na wdrożenie): dwóch z największych klientów z reklam zaczęło od kwestionariusza, a po etapie A landing page do niego nie prowadził. Otwiera `/questionnaire` w nowej karcie, zdarzenie `lp_questionnaire_click`.
-- [ ] Pomiar szybkości ładowania na telefonie (LCP, INP) po wdrożeniu.
+- [x] Link do kwestionariusza pod formularzem na LP (PR #15, wdrożony 2026-11-21 ok. 14:45, sprawdzony na żywej stronie): dwóch z największych klientów z reklam zaczęło od kwestionariusza, a po etapie A landing page do niego nie prowadził. Otwiera `/questionnaire` w nowej karcie, zdarzenie `lp_questionnaire_click`.
+- [x] Pomiar szybkości 2026-11-21 (PageSpeed Insights, test laboratoryjny; danych od prawdziwych użytkowników Google nie ma, bo ruch jest za mały):
+
+  | Strona | Wynik | FCP | LCP | TBT | CLS |
+  |---|---|---|---|---|---|
+  | `/lp/kampania`, telefon | 70 | 1,7 s | 11,4 s | 40 ms | 0 |
+  | `/lp/kampania`, desktop | 88 | 0,5 s | 2,3 s | 20 ms | 0 |
+  | strona główna, telefon | 73 | 1,7 s | 7,4 s | 140 ms | 0 |
+
+  Największym elementem pierwszego ekranu (LCP) jest plakat hero (`videos/PHH.webp`, 110 KB, ładowany z wyprzedzeniem). W zwykłym Chrome na szybkim łączu pojawia się po 0,4 s. Wynik 11,4 s to symulacja wolnej sieci 4G, w której plakat, skrypty i obrazki pod hero dzielą łącze z reelem 53 MB pobieranym od pierwszej chwili. Stabilność układu i responsywność są bardzo dobre.
+- [x] Reel po plakacie: zgoda Michała 2026-11-22, zrobione na LP i na stronie głównej (patrz punkt 5).
+- [ ] Odchudzić loga pod hero: kilka plików PNG ma 2 000–3 500 px szerokości i 55–190 KB przy wyświetlaniu na ok. 150 px (nowe nazwy plików). Mały zysk, zero ryzyka.
+- [ ] Prawdziwe czasy ładowania u odwiedzających: Vercel → projekt → Speed Insights (pakiet jest zainstalowany na stronie).
 - [ ] Reklama AI do kafelka „Wideo AI", gdy będzie gotowa.
 - [ ] **[M]** Dwie rolki (`morris-lloyd-rolka1B.mp4`, `morris-lloyd-rolka2B.mp4`) nie mają optymalizacji pod sieć: indeks pliku leży na końcu, więc film startuje z opóźnieniem. Wyeksportować ponownie z opcją „Network optimization" i wgrać pod nowymi nazwami; potem podmienić dwie linie w `lib/lp-services.ts`.
 
-Ocena według tej samej punktacji (2026-11-20): przed zmianami 31,5–35/100, po etapie A 49,5–57/100. Etapy B i C celują w braki warte razem ok. 30 punktów.
+Ocena według tej samej punktacji: przed zmianami 31,5–35/100, po etapie A 49,5–57/100, **po etapach B i C (2026-11-21) 63,5–71,5/100** (surowy i życzliwy audytor, lekki model, na podstawie pomiarów z żywej strony).
+
+Gdzie zostały punkty po etapie C:
+
+| Kryterium | Wynik | Czego brakuje |
+|---|---|---|
+| Zgodność z reklamą | 4–5/10 | Teksty reklam nigdy nie zostały porównane ze stroną; nagłówek to hasło, usługa jest w małej etykiecie |
+| Wydajność mobilna | 2,5–3/8 | Brak pomiaru LCP i INP po przebudowie; reel 53 MB zostaje (decyzja właściciela) |
+| Dowód społeczny | 5–6,5/10 | Brak liczb i mierzalnych wyników, brak twarzy; opinia Morris & Lloyd czeka na zgodę |
+| Stały przycisk i kontakt jednym kliknięciem | 4,5–5,5/8 | Brak „zadzwoń" w dolnym pasku (decyzja właściciela), brak stałego przycisku na desktopie |
+| Pomiar | 2,5–3/4 | Brak potwierdzonej testowej konwersji w Google Ads po zmianach; import offline niezbudowany |
+
+Pozostałe kryteria są blisko maksimum: droga do kontaktu 10,5–11/12, pierwszy ekran 8–8,5/12, formularz 6–6,5/8, realizacje 5,5–6/8, ceny 4,5–5/6, nawigacja 3,5–4/5, zaufanie 4,5–5/6, FAQ 2,5/3.
 
 Docelowa kolejność sekcji: nagłówek → hero → loga → realizacje → oferta → opinie → proces → ceny → FAQ → formularz → stopka.
 
@@ -277,7 +300,9 @@ Wyniki researchu cen (2026-11-21, opublikowane cenniki polskich studiów; liczby
 **Nadal potrzebne od Michała:**
 - [x] Pliki wideo wgrane przez Michała 2026-11-21 (H.264, 1080p, ok. 8–10 Mb/s). Na przyszłość ten sam eksport: MP4, H.264 High, 1920×1080 (rolki 1080×1920), 25 kl./s, 8–10 Mb/s, AAC 192 kb/s, optymalizacja pod sieć; panel Cloudflare przyjmuje pliki do 300 MB.
 - [ ] Jedna realizacja z mierzalnym wynikiem, jeśli jest.
-- [ ] Teksty reklam z Google Ads (nagłówki i opisy), patrz punkt 1.5.
+- [x] Tekst reklamy (zrzut z wyszukiwarki, 2026-11-21): nagłówek „Produkcja Filmowa B2B - Filmy Korporacyjne - Wid…"; opis: filmy korporacyjne i spoty reklamowe B2B, „kinowa jakość, która napędza sprzedaż", „od A do Z", „transparentne koszty", „darmowa wycena B2B". Linki do podstron: Oferta, Kontakt, O Nas, Portfolio; przycisk „Call us".
+- [ ] Do decyzji: dopasować etykietę nad hasłem i przycisk do reklamy („B2B", „filmy korporacyjne", „bezpłatna wycena").
+- [ ] **[M]** W Google Ads (Kampanie → Zasoby): linki do podstron prowadzą na zwykłe strony serwisu, z pominięciem landing page'a (a `/offer` podaje inne ceny); w opisie reklamy jest podwójna kropka po „Social Media"; obrazek przy reklamie ma oznaczenie „AI", czyli wygenerował go Google — lepiej wgrać własny kadr.
 
 ---
 
@@ -306,10 +331,22 @@ Dziś 30 małych kadrów (6 kolumn × 5 rzędów) z mniejszych produkcji.
 
 ## 5. Następny duży krok: przebudowa reszty strony
 
-Pomysł Michała z 2026-11-21, do rozpisania przed startem; nic z tego nie jest jeszcze zrobione.
+Pomysł Michała z 2026-11-21. Pierwszy krok zrobiony 2026-11-22 (osobny PR, czeka na wdrożenie): reszta strony korzysta z tych samych elementów co landing page, żeby nie było dwóch wersji prawdy.
+
+Zrobione w pierwszym kroku:
+- [x] `/offer`: zamiast dziewięciu starych kafelków ta sama siatka sześciu kafelków z cenami co na LP (ten sam komponent). „Wyceń ten format" prowadzi do `/contact` z wybranym formatem w formularzu. Pod siatką linki tekstowe do dziewięciu podstron usług, żeby nie zostały bez dojścia. Trzy progi „Wybierz formę współpracy" zostają na razie bez zmian (decyzja Michała).
+- [x] `/about`: pasek logo, proces z czasami i opinie w wersji z LP (te same komponenty; na `/about` wszystkie opinie, nie trzy). Stare animowane karty „Jak pracujemy" i pełnoekranowe slajdy opinii usunięte.
+- [x] Reel po plakacie na stronie głównej i na LP (`components/reel-backdrop.tsx`): najpierw plakat 70 KB, dopiero potem reel. Plakat to klatka reela z 1,46 s (po jego rozjaśnieniu z czerni), a pierwsze odtworzenie startuje od tej samej klatki, więc przejścia nie widać. Bez kompresji i bez zmiany `preload`.
+- [x] Ceny i terminy na podstronach usług wyrównane do LP: korporacyjne i wizerunkowe od 20 000 zł, reklamowe i produktowe od 15 000 zł, reportaż od 4 000 zł, pakiet 10 rolek od 10 000 zł, wywiady od 5 000 zł za sesję; pierwsza wersja do 10 dni roboczych, tryb przyspieszony 5 dni roboczych za dopłatą od 800 zł, odpowiedź w 24 godziny w dni robocze.
+
+Otwarte po pierwszym kroku:
+- [ ] **[M]** Dwie podstrony mają ceny, których nie ma na LP i których nie ruszałem: `/offer/video-linkedin` („od 2 500 PLN za sesję") i `/offer/video-case-studies` („od 4 500 PLN"). Zostają, zmieniamy, czy usuwamy kwoty?
+- [ ] **[M]** Trzy progi na dole `/offer` („Od 4 000 PLN", „Od 7 500 PLN/mies.", „Wycena indywidualna") nie pasują do kafelków nad nimi. Zostały na Twoją prośbę; do decyzji przy kolejnym kroku.
+- [ ] **[M]** Zdanie w hero strony głównej („…tworzące nowoczesne treści wizualne") różni się od zdania na LP. Kolumna na stronie głównej jest wąska, więc nie podmieniałem bez pytania.
+- [ ] Ponowny pomiar szybkości po wdrożeniu (plakat powinien wyraźnie poprawić LCP na stronie głównej i na LP).
 
 - **Strona główna przejmuje układ landing page'a.** Te same sekcje co `/lp/kampania` (hero, loga, realizacje, oferta z cenami, opinie, proces, FAQ, formularz), ale z normalnym menu: O nas, Portfolio, Kontakt.
-- **Ceny na podstronach oferty do wyrównania.** `/offer/filmy-korporacyjne` i `/offer/filmy-wizerunkowe` podają „od 8 000 PLN", a kafelek na LP „od 20 000 zł". Do rozstrzygnięcia przy przebudowie: wyrównać, czy przebudować całą sekcję `/offer` (dziś dziewięć usług, na LP sześć).
+- **Sekcja `/offer`**: dziś sześć formatów na stronie przeglądowej i dziewięć podstron usług. Do rozstrzygnięcia: czy podstrony kurczą się do sześciu formatów.
 
 Do ustalenia przed startem:
 - [ ] Co zostaje z obecnej strony głównej (pełnoekranowy reel z przenikaniem zostaje — patrz „Settled Decisions" w `CLAUDE.md`).

@@ -124,6 +124,22 @@
   display: none;
 }
 
+/* The reel backdrop (poster, then video) fades in from black. Pure CSS, so it
+   does not wait for JavaScript: the poster is the first screen's largest element. */
+@keyframes reelBackdropIn {
+  from {
+    opacity: 0;
+  }
+}
+.reel-backdrop-in {
+  animation: reelBackdropIn 0.9s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel-backdrop-in {
+    animation: none;
+  }
+}
+
 @keyframes ekgDash {
   to {
     stroke-dashoffset: 0;

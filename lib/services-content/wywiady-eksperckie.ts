@@ -70,7 +70,7 @@ export const wywiadyEksperckie: ServicePageData = {
       {
         question: "Ile kosztuje realizacja wywiadu eksperckiego?",
         answer:
-          "Nagranie jednego wywiadu z postprodukcją zaczyna się od 2 500 PLN. Pakiety serii wywiadów (np. 4–6 odcinków) wyceniamy korzystniej — idealne dla regularnych formatów podcastowych lub serii contentowych.",
+          "Jedna sesja nagraniowa na trzy kamery, do 3 odcinków po 30 minut, z postprodukcją zaczyna się od 5 000 zł netto. Większe pakiety i serie wywiadów wyceniamy indywidualnie — idealne dla regularnych formatów podcastowych lub serii contentowych.",
       },
       {
         question: "Gdzie realizujecie wywiady?",
