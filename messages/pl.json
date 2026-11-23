@@ -45,7 +45,7 @@
     "necessaryDesc": "Zapamiętują Twój wybór w tym banerze. Bez nich strona nie wie, o co już pytała.",
     "alwaysOn": "Zawsze włączone",
     "analytics": "Analityczne",
-    "analyticsDesc": "Google Analytics: jak odwiedzający korzystają ze strony.",
+    "analyticsDesc": "Google Analytics i Microsoft Clarity: jak odwiedzający korzystają ze strony, w tym zapis przewijania i kliknięć.",
     "ads": "Reklamowe",
     "adsDesc": "Google Ads: pomiar skuteczności reklam i zapamiętanie kliknięcia reklamy na 90 dni.",
     "save": "Zapisz wybór",
@@ -223,7 +223,7 @@
     },
     "label": "Informacje prawne",
     "title": "Polityka prywatności",
-    "updated": "Wersja z 20 listopada 2026",
+    "updated": "Wersja z 23 listopada 2026",
     "intro": "Ten dokument wyjaśnia, jakie dane osobowe zbieramy, gdy korzystasz ze strony nonoise.media, w jakim celu to robimy, komu je powierzamy i jakie przysługują Ci prawa.",
     "sections": [
       {
@@ -265,7 +265,8 @@
         "items": [
           "Vercel Web Analytics mierzy ruch na stronie bez plików cookies. Odwiedzający jest rozpoznawany przez skrót tworzony z danych żądania, ważny przez jeden dzień.",
           "Vercel Speed Insights zbiera pomiary szybkości ładowania strony (Core Web Vitals), bez plików cookies.",
-          "Jeśli zgodzisz się na pliki cookies analityczne, korzystamy także z Google Analytics, aby zrozumieć, jak odwiedzający korzystają ze strony."
+          "Jeśli zgodzisz się na pliki cookies analityczne, korzystamy także z Google Analytics, aby zrozumieć, jak odwiedzający korzystają ze strony.",
+          "Po tej samej zgodzie korzystamy też z Microsoft Clarity. Clarity zapisuje przebieg wizyty: ruchy kursora, kliknięcia, przewijanie i odwiedzane podstrony, i tworzy z nich nagrania sesji oraz mapy kliknięć. Treść wpisywana w pola formularzy jest w nagraniach zawsze zamaskowana. Nagrania oglądamy wyłącznie po to, by ulepszać stronę. Bez Twojej zgody Clarity w ogóle się nie uruchamia."
         ]
       },
       {
@@ -274,7 +275,7 @@
         "items": [
           "Odpowiedź na zapytanie i przygotowanie oferty: art. 6 ust. 1 lit. b RODO (działania przed zawarciem umowy, podjęte na Twoje żądanie) oraz art. 6 ust. 1 lit. f RODO (nasz prawnie uzasadniony interes w prowadzeniu korespondencji).",
           "Działanie i bezpieczeństwo strony oraz analityka bez plików cookies: art. 6 ust. 1 lit. f RODO.",
-          "Pliki cookies i podobne technologie, które nie są niezbędne, w tym Google Analytics, Google Ads i konwersje rozszerzone: Twoja zgoda, art. 6 ust. 1 lit. a RODO w związku z art. 399 ustawy Prawo komunikacji elektronicznej.",
+          "Pliki cookies i podobne technologie, które nie są niezbędne, w tym Google Analytics, Microsoft Clarity, Google Ads i konwersje rozszerzone: Twoja zgoda, art. 6 ust. 1 lit. a RODO w związku z art. 399 ustawy Prawo komunikacji elektronicznej.",
           "Ocena, które zgłoszenia pochodzą z reklam i zakończyły się współpracą, oraz przekazanie tej informacji do Google Ads: art. 6 ust. 1 lit. f RODO (nasz prawnie uzasadniony interes w mierzeniu skuteczności reklam).",
           "Ustalenie, dochodzenie lub obrona roszczeń: art. 6 ust. 1 lit. f RODO."
         ],
@@ -291,7 +292,8 @@
         "items": [
           "Resend (Resend, Inc., USA): wysyłka wiadomości z formularza kontaktowego i kwestionariusza do naszej skrzynki.",
           "Vercel (Vercel Inc., USA): hosting strony, logi serwera, Vercel Web Analytics i Speed Insights.",
-          "Google (Google Ireland Limited, Google LLC): Google Tag Manager, Google Ads i Google Analytics. W zakresie reklam Google może działać jako odrębny administrator danych."
+          "Google (Google Ireland Limited, Google LLC): Google Tag Manager, Google Ads i Google Analytics. W zakresie reklam Google może działać jako odrębny administrator danych.",
+          "Microsoft (Microsoft Corporation, USA): Microsoft Clarity, nagrania sesji i mapy kliknięć. Microsoft może przetwarzać część tych danych także jako odrębny administrator, na zasadach opisanych na privacy.microsoft.com."
         ],
         "after": [
           "Dane mogą otrzymać także organy uprawnione na podstawie przepisów prawa."
@@ -301,7 +303,7 @@
         "id": "transfers",
         "title": "Przekazywanie danych poza EOG",
         "paragraphs": [
-          "Resend, Vercel i Google przetwarzają dane również w Stanach Zjednoczonych. Przekazanie odbywa się na podstawie decyzji Komisji Europejskiej w sprawie EU-US Data Privacy Framework albo standardowych klauzul umownych zatwierdzonych przez Komisję."
+          "Resend, Vercel, Google i Microsoft przetwarzają dane również w Stanach Zjednoczonych. Przekazanie odbywa się na podstawie decyzji Komisji Europejskiej w sprawie EU-US Data Privacy Framework albo standardowych klauzul umownych zatwierdzonych przez Komisję."
         ]
       },
       {
@@ -311,7 +313,7 @@
           "Korespondencja i zgłoszenia z formularzy: przez czas potrzebny do obsługi zapytania i ewentualnej współpracy, a następnie do upływu okresu przedawnienia roszczeń.",
           "Identyfikatory kliknięcia i parametry kampanii w Twojej przeglądarce: 90 dni od wejścia z reklamy, a bez zgody na cookies reklamowe do zamknięcia karty. Możesz je usunąć wcześniej, czyszcząc dane strony w przeglądarce.",
           "Dane przetwarzane na podstawie zgody: do czasu jej wycofania.",
-          "Logi serwera i dane analityczne: zgodnie z okresami przechowywania stosowanymi przez Vercel i Google."
+          "Logi serwera i dane analityczne: zgodnie z okresami przechowywania stosowanymi przez Vercel, Google i Microsoft."
         ]
       },
       {
@@ -339,19 +341,19 @@
         "id": "cookies",
         "title": "Pliki cookies",
         "paragraphs": [
-          "Strona korzysta z plików cookies i podobnych technologii (localStorage, sessionStorage). Te niezbędne do działania strony są używane zawsze, a analityczne i reklamowe dopiero po wyrażeniu zgody w banerze cookies. Baner jest naszym własnym narzędziem: Twój wybór zapisujemy w Twojej przeglądarce i przekazujemy tagom Google jako stan zgody.",
+          "Strona korzysta z plików cookies i podobnych technologii (localStorage, sessionStorage). Te niezbędne do działania strony są używane zawsze, a analityczne i reklamowe dopiero po wyrażeniu zgody w banerze cookies. Baner jest naszym własnym narzędziem: Twój wybór zapisujemy w Twojej przeglądarce i przekazujemy tagom Google oraz Microsoft Clarity jako stan zgody.",
           "Używamy między innymi następujących plików cookies i zapisów w przeglądarce:"
         ],
         "items": [
           "Niezbędne: nnm_consent (nasz plik cookie, do 6 miesięcy) zapamiętuje Twój wybór w banerze.",
           "Bez zgody na cookies reklamowe: nnm_attr_v1 w pamięci sesji (sessionStorage) przechowuje źródło wizyty tylko do zamknięcia karty przeglądarki.",
-          "Analityczne, po zgodzie: _ga oraz _ga_<identyfikator> (Google Analytics, do 2 lat).",
+          "Analityczne, po zgodzie: _ga oraz _ga_<identyfikator> (Google Analytics, do 2 lat), _clck (Microsoft Clarity, identyfikator odwiedzającego, do roku) i _clsk (Microsoft Clarity, łączy odsłony w jedną sesję, 1 dzień).",
           "Reklamowe, po zgodzie: pliki Google Ads o nazwach zaczynających się od _gcl_ i _gac_ (do 90 dni) oraz nnm_attr_v1 w localStorage (źródło wizyty, 90 dni od kliknięcia reklamy)."
         ],
         "after": [
-          "Po zgodzie na cookies reklamowe Google może też zapisywać własne pliki cookies w domenie doubleclick.net (do 13 miesięcy). Aktualną listę plików cookies Google znajdziesz na stronie business.safety.google/adscookies. Zgoda dotyczy pomiaru skuteczności reklam: nie przekazujemy do Google zgody na personalizację reklam.",
+          "Po zgodzie na cookies reklamowe Google może też zapisywać własne pliki cookies w domenie doubleclick.net (do 13 miesięcy). Aktualną listę plików cookies Google znajdziesz na stronie business.safety.google/adscookies. Zgoda dotyczy pomiaru skuteczności reklam: nie przekazujemy do Google zgody na personalizację reklam. Po zgodzie na cookies analityczne Microsoft Clarity może też korzystać z plików cookies Microsoftu w domenach clarity.ms i bing.com; Clarity przekazujemy przy tym brak zgody na cookies reklamowe Microsoftu.",
           "Bez Twojej zgody tagi Google nie zapisują ani nie odczytują plików cookies. Mogą natomiast wysyłać do Google sygnały bez plików cookies i bez identyfikatorów reklamowych, na przykład informację o odsłonie strony i stanie zgody, zgodnie z trybem uzyskiwania zgody Google (Consent Mode).",
-          "Zgodę możesz w każdej chwili zmienić lub wycofać, klikając „Ustawienia cookies” poniżej albo w stopce strony. Po wycofaniu zgody usuwamy pliki cookies Google zapisane w naszej domenie. Plików zapisanych przez Google w domenie doubleclick.net nasza strona nie może usunąć; zrobisz to w ustawieniach przeglądarki."
+          "Zgodę możesz w każdej chwili zmienić lub wycofać, klikając „Ustawienia cookies” poniżej albo w stopce strony. Po wycofaniu zgody usuwamy pliki cookies Google i Microsoft Clarity zapisane w naszej domenie, a Clarity przestaje działać. Plików zapisanych przez Google i Microsoft w ich własnych domenach (doubleclick.net, clarity.ms, bing.com) nasza strona nie może usunąć; zrobisz to w ustawieniach przeglądarki."
         ]
       },
       {

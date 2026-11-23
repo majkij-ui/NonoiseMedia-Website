@@ -102,8 +102,12 @@ function gtag(..._args: unknown[]): void {
   window.dataLayer.push(arguments as unknown as Record<string, unknown>)
 }
 
-/** Google's own first-party cookies, by category. Removed when consent is withdrawn. */
-const ANALYTICS_COOKIES = /^_ga/
+/**
+ * First-party analytics and ads cookies, by category. Removed when consent is
+ * withdrawn. Analytics: Google Analytics (_ga*) and Microsoft Clarity (_clck,
+ * _clsk; see lib/clarity.ts).
+ */
+const ANALYTICS_COOKIES = /^_ga|^_cl(ck|sk)$/
 const ADS_COOKIES = /^_gcl_|^_gac_/
 
 /**
@@ -111,7 +115,7 @@ const ADS_COOKIES = /^_gcl_|^_gac_/
  * but it does not delete them. Withdrawal should leave nothing behind, so
  * expire them on this host and on every parent domain they may sit on.
  */
-function expireCookies(pattern: RegExp): void {
+export function expireCookies(pattern: RegExp): void {
   try {
     const names = document.cookie
       .split("; ")

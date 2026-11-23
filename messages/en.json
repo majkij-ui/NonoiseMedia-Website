@@ -45,7 +45,7 @@
     "necessaryDesc": "Remember your choice in this banner. Without them the site cannot tell what it has already asked.",
     "alwaysOn": "Always on",
     "analytics": "Analytics",
-    "analyticsDesc": "Google Analytics: how visitors use the site.",
+    "analyticsDesc": "Google Analytics and Microsoft Clarity: how visitors use the site, including a record of scrolling and clicks.",
     "ads": "Advertising",
     "adsDesc": "Google Ads: measuring ad performance and remembering the ad click for 90 days.",
     "save": "Save choice",
@@ -223,7 +223,7 @@
     },
     "label": "Legal",
     "title": "Privacy Policy",
-    "updated": "Version of 20 November 2026",
+    "updated": "Version of 23 November 2026",
     "intro": "This document explains what personal data we collect when you use nonoise.media, why we collect it, who we share it with and what rights you have.",
     "sections": [
       {
@@ -265,7 +265,8 @@
         "items": [
           "Vercel Web Analytics measures traffic without cookies. A visitor is recognised by a hash derived from the request, valid for one day.",
           "Vercel Speed Insights collects page load measurements (Core Web Vitals), without cookies.",
-          "If you accept analytics cookies, we also use Google Analytics to understand how visitors use the site."
+          "If you accept analytics cookies, we also use Google Analytics to understand how visitors use the site.",
+          "With the same consent we also use Microsoft Clarity. Clarity records how a visit goes: cursor movement, clicks, scrolling and the pages visited, and turns this into session recordings and click maps. Anything typed into form fields is always masked in the recordings. We watch recordings only to improve the site. Without your consent Clarity does not run at all."
         ]
       },
       {
@@ -274,7 +275,7 @@
         "items": [
           "Answering your enquiry and preparing a quote: Art. 6(1)(b) GDPR (steps taken at your request before entering into a contract) and Art. 6(1)(f) GDPR (our legitimate interest in handling correspondence).",
           "Running and securing the site, and cookieless analytics: Art. 6(1)(f) GDPR.",
-          "Non-essential cookies and similar technologies, including Google Analytics, Google Ads and enhanced conversions: your consent, Art. 6(1)(a) GDPR in connection with Art. 399 of the Polish Electronic Communications Law.",
+          "Non-essential cookies and similar technologies, including Google Analytics, Microsoft Clarity, Google Ads and enhanced conversions: your consent, Art. 6(1)(a) GDPR in connection with Art. 399 of the Polish Electronic Communications Law.",
           "Assessing which enquiries came from ads and turned into work, and reporting this to Google Ads: Art. 6(1)(f) GDPR (our legitimate interest in measuring advertising performance).",
           "Establishing, pursuing or defending legal claims: Art. 6(1)(f) GDPR."
         ],
@@ -291,7 +292,8 @@
         "items": [
           "Resend (Resend, Inc., USA): delivering contact form and questionnaire messages to our inbox.",
           "Vercel (Vercel Inc., USA): hosting, server logs, Vercel Web Analytics and Speed Insights.",
-          "Google (Google Ireland Limited, Google LLC): Google Tag Manager, Google Ads and Google Analytics. For advertising, Google may act as an independent controller."
+          "Google (Google Ireland Limited, Google LLC): Google Tag Manager, Google Ads and Google Analytics. For advertising, Google may act as an independent controller.",
+          "Microsoft (Microsoft Corporation, USA): Microsoft Clarity, session recordings and click maps. Microsoft may also process some of this data as an independent controller, as described at privacy.microsoft.com."
         ],
         "after": [
           "Data may also be disclosed to authorities entitled to it by law."
@@ -301,7 +303,7 @@
         "id": "transfers",
         "title": "Transfers outside the EEA",
         "paragraphs": [
-          "Resend, Vercel and Google also process data in the United States. Transfers rely on the European Commission's adequacy decision for the EU-US Data Privacy Framework or on standard contractual clauses approved by the Commission."
+          "Resend, Vercel, Google and Microsoft also process data in the United States. Transfers rely on the European Commission's adequacy decision for the EU-US Data Privacy Framework or on standard contractual clauses approved by the Commission."
         ]
       },
       {
@@ -311,7 +313,7 @@
           "Correspondence and form submissions: for as long as needed to handle the enquiry and any resulting work, then until the limitation period for claims expires.",
           "Click identifiers and campaign parameters in your browser: 90 days from the ad visit, or, without advertising consent, until the tab is closed. You can remove them sooner by clearing site data in your browser.",
           "Data processed on the basis of consent: until you withdraw it.",
-          "Server logs and analytics data: according to the retention periods used by Vercel and Google."
+          "Server logs and analytics data: according to the retention periods used by Vercel, Google and Microsoft."
         ]
       },
       {
@@ -339,19 +341,19 @@
         "id": "cookies",
         "title": "Cookies",
         "paragraphs": [
-          "The site uses cookies and similar technologies (localStorage, sessionStorage). Those needed for the site to work are always on; analytics and advertising ones only after you consent in the cookie banner. The banner is our own tool: your choice is stored in your browser and passed to Google tags as a consent state.",
+          "The site uses cookies and similar technologies (localStorage, sessionStorage). Those needed for the site to work are always on; analytics and advertising ones only after you consent in the cookie banner. The banner is our own tool: your choice is stored in your browser and passed to Google tags and Microsoft Clarity as a consent state.",
           "The cookies and browser storage entries we use include:"
         ],
         "items": [
           "Essential: nnm_consent (our cookie, up to 6 months) remembers the choice you made in the banner.",
           "Without advertising consent: nnm_attr_v1 in session storage (sessionStorage) keeps the visit source only until you close the browser tab.",
-          "Analytics, after consent: _ga and _ga_<ID> (Google Analytics, up to 2 years).",
+          "Analytics, after consent: _ga and _ga_<ID> (Google Analytics, up to 2 years), _clck (Microsoft Clarity, visitor ID, up to 1 year) and _clsk (Microsoft Clarity, joins page views into one session, 1 day).",
           "Advertising, after consent: Google Ads cookies whose names start with _gcl_ and _gac_ (up to 90 days) and nnm_attr_v1 in localStorage (visit source, 90 days from the ad click)."
         ],
         "after": [
-          "After you consent to advertising cookies, Google may also set its own cookies on the doubleclick.net domain (up to 13 months). Google's current cookie list is at business.safety.google/adscookies. The consent covers measuring ad performance: we do not pass Google consent for ad personalisation.",
+          "After you consent to advertising cookies, Google may also set its own cookies on the doubleclick.net domain (up to 13 months). Google's current cookie list is at business.safety.google/adscookies. The consent covers measuring ad performance: we do not pass Google consent for ad personalisation. After you consent to analytics cookies, Microsoft Clarity may also use Microsoft cookies on the clarity.ms and bing.com domains; we tell Clarity that Microsoft advertising cookies are not consented to.",
           "Without your consent, Google tags do not set or read cookies. They may still send Google signals without cookies and without advertising identifiers, such as the fact of a page view and the consent state, as described by Google Consent Mode.",
-          "You can change or withdraw consent at any time under “Cookie settings” below or in the site footer. When you withdraw consent, we remove the Google cookies stored on our domain. Our site cannot remove cookies Google stored on the doubleclick.net domain; you can clear those in your browser settings."
+          "You can change or withdraw consent at any time under “Cookie settings” below or in the site footer. When you withdraw consent, we remove the Google and Microsoft Clarity cookies stored on our domain, and Clarity stops. Our site cannot remove cookies Google and Microsoft stored on their own domains (doubleclick.net, clarity.ms, bing.com); you can clear those in your browser settings."
         ]
       },
       {

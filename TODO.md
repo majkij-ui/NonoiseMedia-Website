@@ -393,6 +393,16 @@ Do ustalenia przed startem:
 
 ---
 
+## 5.2 Nagrania sesji: Microsoft Clarity (2026-11-23)
+
+Cel: widzieć, co odwiedzający robią na stronie (przewinęli i nic nie kliknęli, weszli i wyszli). Projekt Clarity założył Michał, identyfikator `zi37o7p3zl`.
+
+- [x] Kod: Clarity ładuje się dopiero po zgodzie na analitykę i tylko na `www.nonoise.media` (`lib/clarity.ts`). Zgody sprzed dnia, w którym baner zaczął wymieniać Clarity (`CLARITY_CONSENT_SINCE`), jej nie włączają. Wycofanie zgody zatrzymuje Clarity i usuwa `_clck`/`_clsk`. Każde nasze zdarzenie (`lp_service_open`, `contact_form_success` itd.) oznacza nagranie samą nazwą, bez parametrów, więc nagrania da się filtrować po tym, co ktoś zrobił.
+- [x] Polityka prywatności i opis kategorii „Analityczne" w banerze (PL i EN) wymieniają Clarity.
+- [ ] **[C] Przy wdrożeniu, obowiązkowo:** ustawić `CLARITY_CONSENT_SINCE` w `lib/clarity.ts` na chwilę, w której nowy tekst banera jest już na produkcji (scalenie + ok. 10 minut). Wcześniejsza wartość włączyłaby Clarity osobom, które zgodziły się na tekst bez Clarity.
+- [ ] **[M]** W Clarity: Settings → Masking. Domyślny tryb „Balanced" zasłania liczby, więc w nagraniach nie będzie widać cen. „Relaxed" pokazuje tekst strony, a pola formularzy zasłania zawsze. Rekomendacja Claude: „Relaxed" (strona nie wyświetla cudzych danych).
+- [ ] Po tygodniu: obejrzeć nagrania z `/lp/kampania` (filtr: adres strony albo źródło ruchu) i zapisać tu wnioski.
+
 ## 6. Później (niski priorytet)
 
 - [ ] Strona główna na telefonie trzymanym poziomo: reguły dopasowujące hero (stała `LANDSCAPE_MOBILE_HERO` w `components/animated-home-button.tsx` i `app/[locale]/HomeClient.tsx`) nie generują żadnego CSS. Na LP naprawione wariantem `landscape-phone:`; na stronie głównej do zrobienia tak samo, z obejrzeniem efektu, bo te reguły nigdy dotąd nie działały.
