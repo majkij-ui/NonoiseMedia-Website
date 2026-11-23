@@ -350,7 +350,7 @@ Otwarte po pierwszym kroku:
 - **Strona główna przejmuje układ landing page'a.** Te same sekcje co `/lp/kampania` (hero, loga, realizacje, oferta z cenami, opinie, proces, FAQ, formularz), ale z normalnym menu: O nas, Portfolio, Kontakt.
 - **Sekcja `/offer`**: dziś sześć formatów na stronie przeglądowej i dziewięć podstron usług. Do rozstrzygnięcia: czy podstrony kurczą się do sześciu formatów.
 
-### 5.1 Podstrony usług a sześć kafelków — analiza i plan (2026-11-22, plan zaakceptowany; kroki 1–3 zrobione, osobny PR, czeka na wdrożenie)
+### 5.1 Podstrony usług a sześć kafelków — analiza i plan (2026-11-22, plan zaakceptowany; kroki 1–3 wdrożone na produkcję tego samego dnia, PR 17)
 
 Stan: dziewięć podstron `/offer/[slug]` z jednego szablonu (hero, trzy korzyści, trzy kroki, opcjonalny film, cztery pytania, przycisk do `/contact`), po ok. 440 słów. Ruch z wyszukiwarki z 90 dni: łącznie jedno kliknięcie; widoczność ma tylko `/offer/filmy-korporacyjne` (78 wyświetleń, średnia pozycja 25). Konsolidacja nie kosztuje więc ruchu.
 
@@ -378,6 +378,8 @@ Plan:
 - [x] **Krok 3 (w lżejszej wersji, po decyzji Michała):** teksty podstron zostają; każda dostała blok „Zakres i cena" czytany z kafelka (nie może się z nim rozjechać), filmy z kafelka do odtworzenia (także pionowe; kadr przy case study też już odtwarza film) i przyciski kontaktu z wybranym formatem. Z treści usunięte tylko: ROAS, testy A/B i iteracje po starcie kampanii, KPI filmu.
 - [ ] **Krok 4:** podstrona Wideo AI, gdy będzie materiał.
 
+Sprawdzone na produkcji po wdrożeniu: pięć kafelków ma przycisk z właściwym adresem (Wideo AI bez), landing page nie ma żadnego linku do `/offer`, pięć podstron (PL i EN) odpowiada 200 z blokiem „Zakres i cena" i linkiem kontaktu z formatem, stare adresy odpowiadają 308, mapa strony ma pięć podstron. Stary adres z prefiksem `/pl` trafia na miejsce w dwóch krokach (najpierw ogólna reguła `/pl`, potem przekierowanie podstrony): osobna reguła na jeden krok na Vercelu nie wygrywała z ogólną, więc została usunięta.
+
 Decyzje Michała (2026-11-22):
 - [x] Case studies wchłania podstrona wywiadów.
 - [x] Hasła z podstron zostają („highlights w 24–48 godzin", zespół wielokamerowy na eventach — to u niego prawie standard, wywiady zdalne, warsztat, 15-minutowa rozmowa). Wyrzucone: ROAS, testy A/B i iteracje kampanii, KPI.
@@ -386,10 +388,20 @@ Decyzje Michała (2026-11-22):
 Do ustalenia przed startem:
 - [ ] Co zostaje z obecnej strony głównej (pełnoekranowy reel z przenikaniem zostaje — patrz „Settled Decisions" w `CLAUDE.md`).
 - [ ] Czy `/lp/kampania` zostaje osobną stroną dla reklam (bez menu, `noindex`), a strona główna jest jej wersją z menu i indeksowaną. Rekomendacja Claude: tak — reklamy potrzebują strony bez wyjść, a wyszukiwarka nie powinna widzieć dwóch kopii tej samej treści.
-- [ ] Co z `/offer` i dziewięcioma podstronami usług: zostają pod SEO, czy kurczą się do sześciu formatów z LP.
+- [x] Co z `/offer` i dziewięcioma podstronami usług: zostało pięć, po jednej na kafelek (patrz 5.1); szósta, Wideo AI, później.
 - [ ] Wspólne źródło treści dla strony głównej i LP, żeby ceny i obietnice zmieniać w jednym miejscu.
 
 ---
+
+## 5.2 Nagrania sesji: Microsoft Clarity (2026-11-23)
+
+Cel: widzieć, co odwiedzający robią na stronie (przewinęli i nic nie kliknęli, weszli i wyszli). Projekt Clarity założył Michał, identyfikator `zi37o7p3zl`.
+
+- [x] Kod: Clarity ładuje się dopiero po zgodzie na analitykę i tylko na `www.nonoise.media` (`lib/clarity.ts`). Zgody sprzed dnia, w którym baner zaczął wymieniać Clarity (`CLARITY_CONSENT_SINCE`), jej nie włączają. Wycofanie zgody zatrzymuje Clarity i usuwa `_clck`/`_clsk`. Każde nasze zdarzenie (`lp_service_open`, `contact_form_success` itd.) oznacza nagranie samą nazwą, bez parametrów, więc nagrania da się filtrować po tym, co ktoś zrobił.
+- [x] Polityka prywatności i opis kategorii „Analityczne" w banerze (PL i EN) wymieniają Clarity.
+- [x] **[C] Przy wdrożeniu, obowiązkowo:** (ustawione na 2026-11-23 10:25 UTC) ustawić `CLARITY_CONSENT_SINCE` w `lib/clarity.ts` na chwilę, w której nowy tekst banera jest już na produkcji (scalenie + ok. 10 minut). Wcześniejsza wartość włączyłaby Clarity osobom, które zgodziły się na tekst bez Clarity.
+- [ ] **[M]** W Clarity: Settings → Masking. Domyślny tryb „Balanced" zasłania liczby, więc w nagraniach nie będzie widać cen. „Relaxed" pokazuje tekst strony, a pola formularzy zasłania zawsze. Rekomendacja Claude: „Relaxed" (strona nie wyświetla cudzych danych).
+- [ ] Po tygodniu: obejrzeć nagrania z `/lp/kampania` (filtr: adres strony albo źródło ruchu) i zapisać tu wnioski.
 
 ## 6. Później (niski priorytet)
 

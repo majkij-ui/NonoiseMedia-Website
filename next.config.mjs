@@ -30,6 +30,9 @@ const GOOGLE_HTTPS =
 
 const VERCEL_SCRIPTS = "https://va.vercel-scripts.com https://vercel.live"
 
+/** Microsoft Clarity (lib/clarity.ts): www/scripts/[a-z].clarity.ms and c.bing.com, per Microsoft's CSP page. */
+const CLARITY = "https://*.clarity.ms https://c.bing.com"
+
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   [
@@ -39,11 +42,12 @@ const CONTENT_SECURITY_POLICY = [
     "'unsafe-eval'",
     GOOGLE_HTTPS,
     VERCEL_SCRIPTS,
+    CLARITY,
     // Some GTM / tag flows load dynamic script workers from blob: URLs
     "blob:",
   ].join(" "),
   // Dedicated workers / shared workers — not inherited safely for blob workers; mirror Google + blob
-  ["worker-src", "'self'", "blob:", GOOGLE_HTTPS, VERCEL_SCRIPTS].join(" "),
+  ["worker-src", "'self'", "blob:", GOOGLE_HTTPS, VERCEL_SCRIPTS, CLARITY].join(" "),
   [
     "style-src",
     "'self'",
@@ -73,6 +77,7 @@ const CONTENT_SECURITY_POLICY = [
     "https://assets.nonoise.media",
     GOOGLE_HTTPS,
     VERCEL_SCRIPTS,
+    CLARITY,
   ].join(" "),
   "media-src 'self' blob: https://assets.nonoise.media",
   [
@@ -110,7 +115,7 @@ const nextConfig = {
   async redirects() {
     return [
       // Service pages folded into the page of the offer tile they belong to (2026-11-22).
-      // Listed before the generic /pl rule so an old /pl link gets there in one hop.
+      // An old /pl link gets here in two hops, through the generic /pl rule below.
       ...[
         ["filmy-wizerunkowe", "filmy-korporacyjne"],
         ["filmy-produktowe", "filmy-reklamowe"],
@@ -119,7 +124,6 @@ const nextConfig = {
       ].flatMap(([from, to]) => [
         { source: `/offer/${from}`, destination: `/offer/${to}`, permanent: true },
         { source: `/en/offer/${from}`, destination: `/en/offer/${to}`, permanent: true },
-        { source: `/pl/offer/${from}`, destination: `/offer/${to}`, permanent: true },
       ]),
       // Legacy /pl URLs (pre localePrefix:'as-needed') — PL now serves unprefixed.
       // Permanent so ads/backlinks/search consolidate onto the new URLs.

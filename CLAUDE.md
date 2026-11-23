@@ -19,7 +19,7 @@ Premium, dark-mode portfolio website for **Nonoise Media**, a high-end cinematic
 | Package manager | **pnpm** (lockfile: `pnpm-lock.yaml`) |
 | i18n | `next-intl`, routes under `app/[locale]/` |
 | Email | Resend (`RESEND_API_KEY` env var) |
-| Analytics | `@vercel/analytics` + `@vercel/speed-insights` (loaded via `components/deferred-third-parties.tsx` in `app/[locale]/layout.tsx`) |
+| Analytics | `@vercel/analytics` + `@vercel/speed-insights` (loaded via `components/deferred-third-parties.tsx` in `app/[locale]/layout.tsx`); Microsoft Clarity session recordings (`lib/clarity.ts`): only after analytics consent and only on `www.nonoise.media`; every `sendGTMEvent` name also tags the recording |
 
 ---
 
