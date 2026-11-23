@@ -393,13 +393,15 @@ Do ustalenia przed startem:
 
 ---
 
-## 5.2 Nagrania sesji: Microsoft Clarity (2026-11-23)
+## 5.2 Nagrania sesji: Microsoft Clarity (2026-11-23, wdrożone tego samego dnia, PR 18)
 
 Cel: widzieć, co odwiedzający robią na stronie (przewinęli i nic nie kliknęli, weszli i wyszli). Projekt Clarity założył Michał, identyfikator `zi37o7p3zl`.
 
 - [x] Kod: Clarity ładuje się dopiero po zgodzie na analitykę i tylko na `www.nonoise.media` (`lib/clarity.ts`). Zgody sprzed dnia, w którym baner zaczął wymieniać Clarity (`CLARITY_CONSENT_SINCE`), jej nie włączają. Wycofanie zgody zatrzymuje Clarity i usuwa `_clck`/`_clsk`. Każde nasze zdarzenie (`lp_service_open`, `contact_form_success` itd.) oznacza nagranie samą nazwą, bez parametrów, więc nagrania da się filtrować po tym, co ktoś zrobił.
 - [x] Polityka prywatności i opis kategorii „Analityczne" w banerze (PL i EN) wymieniają Clarity.
 - [x] **[C] Przy wdrożeniu, obowiązkowo:** (ustawione na 2026-11-23 10:25 UTC) ustawić `CLARITY_CONSENT_SINCE` w `lib/clarity.ts` na chwilę, w której nowy tekst banera jest już na produkcji (scalenie + ok. 10 minut). Wcześniejsza wartość włączyłaby Clarity osobom, które zgodziły się na tekst bez Clarity.
+Sprawdzone na produkcji po wdrożeniu: banner i polityka wymieniają Clarity; zgoda sprzed granicy (10:25 UTC) nie włącza Clarity; świeża zgoda na `/lp/kampania` ładuje tag, dane idą do `[a-z].clarity.ms/collect`, Clarity zgłasza `analytics_Storage: granted`, `ad_Storage: denied`; pliki `_clck`/`_clsk` leżą w domenie `.nonoise.media`; po „Odrzuć" zero wysyłek i żadnych plików Clarity.
+
 - [ ] **[M]** W Clarity: Settings → Masking. Domyślny tryb „Balanced" zasłania liczby, więc w nagraniach nie będzie widać cen. „Relaxed" pokazuje tekst strony, a pola formularzy zasłania zawsze. Rekomendacja Claude: „Relaxed" (strona nie wyświetla cudzych danych).
 - [ ] Po tygodniu: obejrzeć nagrania z `/lp/kampania` (filtr: adres strony albo źródło ruchu) i zapisać tu wnioski.
 
