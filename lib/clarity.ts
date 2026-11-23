@@ -32,7 +32,7 @@ const TEST_FLAG = "nnm_clarity_test"
  * Clarity starts once they decide again. Must be the moment the banner text
  * naming Clarity went live (set at deploy), never earlier.
  */
-const CLARITY_CONSENT_SINCE = 1795392000
+const CLARITY_CONSENT_SINCE = 1795429500 // 2026-11-23 10:25 UTC, about 15 min after the merge
 
 const CLARITY_COOKIES = /^_cl(ck|sk)$/
 
